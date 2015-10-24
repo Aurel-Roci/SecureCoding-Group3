@@ -35,6 +35,7 @@ if(!loggedin()){
 							$query = "INSERT INTO tans VALUES('".$rand."','".$username."','0')";
 							if($query_run=mysql_query($query)){
 								$tans .= $rand."<br>";
+								//send email with tans
 							} else {
 								//something went wrong
 								echo "Failed";

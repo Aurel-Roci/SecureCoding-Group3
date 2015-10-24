@@ -5,6 +5,12 @@ session_start();
 $current_file = $_SERVER['SCRIPT_NAME']; 
 $http_referer = $_SERVER['HTTP_REFERER'];
 
+function viewTransactions($user){
+	$query="SELECT * FROM transactions WHERE username='".mysql_real_escape_string($user)."'";
+	$query_run=mysql_query($query);
+	return $query_run;
+}
+
 function generateRandomString($length) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $charactersLength = strlen($characters);
