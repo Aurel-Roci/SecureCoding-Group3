@@ -32,23 +32,24 @@ if(!loggedin()){
 					$query = "SELECT id FROM users WHERE username='".mysql_real_escape_string($username)."'";
 					$result = mysql_query($query);
 					$user_id = mysql_result($result, 0);
+					$tans = "";
 					for ($i = 0; $i <+ 100; $i++) {
 						$rand = generateRandomString(15);
 						$query = "INSERT INTO tans VALUES('".$rand."','".$user_id."')";
 						if($query_run=mysql_query($query)){
 							$tans .= $rand."\n";
-
-							$message = "Dear ".$lastname.",
-								for your new online banking account we send you your TAN codes:
-								".$tans."\nBest regards,\nYour online banking team";
-							$headers = "From: info@team3securecoding.com\n";
-							$headers .= "Reply-To: info@team3securecoding.com";
-							mail($email, "TAN Codes", $message, $headers);
 						} else {
 							//something went wrong
 							echo "Failed";
 						}
 					}
+					$message = "Dear ".$lastname.",
+						for your new online banking account we send you your TAN codes:
+						".$tans."\nBest regards,\nYour online banking team";
+					$headers = "From: info@team3securecoding.com\n";
+					$headers .= "Reply-To: info@team3securecoding.com";
+					$mailing = mail($email, "TAN Codes", $message, $headers);
+					error_log("Mail success: ".$mailing);
 				} else {
 					echo 'Could not register at this time. Try again later';
 				}
