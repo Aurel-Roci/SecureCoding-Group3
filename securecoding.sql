@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 
 -- Drops tables to replace the old ones
 -- if you want only to update comment the following line
-DROP TABLE IF EXISTS users, tans, transactions;
+DROP TABLE IF EXISTS transactions,tans, users;
 
 --
 -- Table structure for table users
