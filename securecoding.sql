@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS users (
   lastname varchar(20) NOT NULL,
   approved bool NOT NULL DEFAULT 0,
   memberrole tinyint NOT NULL,
+  email varchar(100) NOT NULL,
   -- 0 for customer, 1 for employee
   UNIQUE KEY(username),
   PRIMARY KEY(id)
@@ -85,8 +86,8 @@ CREATE TABLE IF NOT EXISTS transactions (
 -- Dumping data for table users
 --
 
-INSERT INTO users (username, password, approved, memberrole, firstname, lastname) VALUES
-('admin', SHA2('samurai', 256), True, 1, 'Admin', 'Admin');
+INSERT INTO users (username, password, approved, memberrole, firstname, lastname, email) VALUES
+('admin', SHA2('samurai', 256), True, 1, 'Admin', 'Admin', 'admin@amdmin');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

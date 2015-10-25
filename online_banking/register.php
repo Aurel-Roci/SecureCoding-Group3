@@ -25,22 +25,25 @@ if(!loggedin()){
 				echo 'The username '.$username.' already exists';
 			} else {
 				$query = "INSERT INTO users (username,password,approved,memberrole,firstname,lastname,email) ";
-				$query .= "VALUES ('".mysql_real_escape_string($username)."', 'SHA2('".mysql_real_escape_string($password);
+				$query .= "VALUES ('".mysql_real_escape_string($username)."', SHA2('".mysql_real_escape_string($password);
 				$query .= "', 256), False,".$memberrole.",'".mysql_real_escape_string($firstname)."','";
 				$query .= mysql_real_escape_string($lastname)."','".mysql_real_escape_string($email)."')";
 				if($query_run=mysql_query($query)){
+					$query = "SELECT id FROM users WHERE username='".mysql_real_escape_string($username)."'";
+					$result = mysql_query($query);
+					$user_id = mysql_result($result, 0);
 					for ($i = 0; $i <+ 100; $i++) {
 						$rand = generateRandomString(15);
-						$query = "INSERT INTO tans VALUES('".$rand."','".$username."')";
+						$query = "INSERT INTO tans VALUES('".$rand."','".$user_id."')";
 						if($query_run=mysql_query($query)){
 							$tans .= $rand."\n";
 
 							$message = "Dear ".$lastname.",
 								for your new online banking account we send you your TAN codes:
-								".$tans."\nBest regards,\nYour online banking team"
-							$headers = 'From: info@team3securecoding.com' . "\n" .
-    							'Reply-To: info@team3securecoding.com'
-							mail($email, "TAN Codes", $message, $headers)
+								".$tans."\nBest regards,\nYour online banking team";
+							$headers = "From: info@team3securecoding.com\n";
+							$headers .= "Reply-To: info@team3securecoding.com";
+							mail($email, "TAN Codes", $message, $headers);
 						} else {
 							//something went wrong
 							echo "Failed";
@@ -80,12 +83,12 @@ if(!loggedin()){
 		ev.preventDefault(); // stop submitting
 		if (this.password !== this.password_again) {
 			// add error message
-			return
+			return;
 		}
 
 		if (!validateEmail(this.email)){
 			// add error message
-			return
+			return;
 		}
 		this.submit(); //validation succeeded
 	})

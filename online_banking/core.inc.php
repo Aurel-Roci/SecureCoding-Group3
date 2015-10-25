@@ -22,7 +22,7 @@ function generateRandomString($length) {
 }
 
 function loggedin() {
-	return isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])
+	return isset($_SESSION['user_id']) && !empty($_SESSION['user_id']);
 }
 
 function redirect($url, $statusCode = 303)
