@@ -17,76 +17,75 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `securecoding`
+-- Database: securecoding
 --
 
 -- --------------------------------------------------------
 
+-- Drops tables to replace the old ones 
+-- if you want only to update comment the following line
+DROP TABLE IF EXISTS users, tans, transactions;
+
 --
--- Table structure for table `tans`
+-- Table structure for table users
 --
 
-CREATE TABLE IF NOT EXISTS `tans` (
-  `tanid` varchar(15) NOT NULL,
-  `userid` varchar(20) NOT NULL,
-  `used` int(11) NOT NULL
+CREATE TABLE IF NOT EXISTS users (
+  id int AUTO_INCREMENT,
+  username varchar(15) NOT NULL,
+  password varchar(64) NOT NULL,
+  firstname varchar(20) NOT NULL,
+  lastname varchar(20) NOT NULL,
+  approved bool NOT NULL DEFAULT 0,
+  memberrole tinyint NOT NULL,
+  PRIMARY KEY(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transactions`
+-- Table structure for table tans
 --
 
-CREATE TABLE IF NOT EXISTS `transactions` (
-  `user` varchar(20) NOT NULL,
-  `ammount` int(10) NOT NULL,
-  `receiver` varchar(20) NOT NULL,
-  `approved` int(1) NOT NULL
+CREATE TABLE IF NOT EXISTS tans (
+  id varchar(15) NOT NULL,
+  user_id int,
+  -- used variable removed and added a tan field in the transactions to
+  -- stick to some database modeling conventions
+  PRIMARY KEY(id),
+  FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Table structure for table transactions
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
-  `UserID` int(15) NOT NULL,
-  `username` varchar(15) NOT NULL,
-  `password` varchar(32) NOT NULL,
-  `approve` int(1) NOT NULL,
-  `Status` varchar(15) NOT NULL,
-  `firstname` varchar(20) NOT NULL,
-  `lastname` varchar(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS transactions (
+  id int AUTO_INCREMENT,
+  sender_id int NOT NULL,
+  recipient_id int NOT NULL,
+  ammount int(10) NOT NULL,
+  approval_date DATETIME,
+  -- same as before if approve_date is not set it is not approved
+  -- and for approving you set the current timestamp
+  -- for example: UPDATE transactions SET approve_date = NOW() WHERE ...
+  create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  tan_id VARCHAR(15) NOT NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY(sender_id) REFERENCES users(id) ON DELETE NO ACTION,
+  FOREIGN KEY(recipient_id) REFERENCES users(id) ON DELETE NO ACTION,
+  FOREIGN KEY(tan_id) REFERENCES tans(id) ON DELETE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table users
 --
 
-INSERT INTO `users` (`UserID`, `username`, `password`, `approve`, `Status`, `firstname`, `lastname`) VALUES
-(1, 'admin', 'a', 1, 'Employee', 'Admin', 'Admin');
+INSERT INTO users (username, password, approved, memberrole, firstname, lastname) VALUES
+('admin', SHA2('samurai', 256), True, 1, 'Admin', 'Admin');
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`UserID`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `UserID` int(15) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
