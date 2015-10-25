@@ -22,7 +22,7 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
--- Drops tables to replace the old ones 
+-- Drops tables to replace the old ones
 -- if you want only to update comment the following line
 DROP TABLE IF EXISTS users, tans, transactions;
 
@@ -38,6 +38,8 @@ CREATE TABLE IF NOT EXISTS users (
   lastname varchar(20) NOT NULL,
   approved bool NOT NULL DEFAULT 0,
   memberrole tinyint NOT NULL,
+  -- 0 for customer, 1 for employee
+  UNIQUE KEY(username),
   PRIMARY KEY(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
