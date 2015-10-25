@@ -19,54 +19,77 @@ if(!loggedin()){
 		$memberrole=$_POST['memberrole'];
 		$email=$_POST['email'];
 		if(!empty($username)&&!empty($password)&&!empty($password_again)&&!empty($firstname)&&!empty($lastname)&&!empty($email)){
-			if($password!=$password_again){
-				echo 'Passwords do not match';
+			$query = "SELECT username FROM users WHERE username='".mysql_real_escape_string($username)."'";
+			$query_run=mysql_query($query);
+			if(mysql_num_rows($query_run)==1){
+				echo 'The username '.$username.' already exists';
 			} else {
+				$query = "INSERT INTO users (username,password,approved,memberrole,firstname,lastname,email) ";
+				$query .= "VALUES ('".mysql_real_escape_string($username)."', 'SHA2('".mysql_real_escape_string($password);
+				$query .= "', 256), False,".$memberrole.",'".mysql_real_escape_string($firstname)."','";
+				$query .= mysql_real_escape_string($lastname)."','".mysql_real_escape_string($email)."')";
+				if($query_run=mysql_query($query)){
+					for ($i = 0; $i <+ 100; $i++) {
+						$rand = generateRandomString(15);
+						$query = "INSERT INTO tans VALUES('".$rand."','".$username."')";
+						if($query_run=mysql_query($query)){
+							$tans .= $rand."\n";
 
-				$query = "SELECT username FROM users WHERE username='$username'";
-				$query_run=mysql_query($query);
-				if(mysql_num_rows($query_run)==1){
-					echo 'The username '.$username.' already exists';
-				} else {
-					$query = "INSERT INTO users (username,password,approved,memberrole,firstname,lastname,email) VALUES ('".$username."', SHA2('".$password."', 256), False,".$memberrole.",'".$firstname."','".$lastname."','".$email."')";
-					if($query_run=mysql_query($query)){
-						for ($i = 0; $i <+ 100; $i++) {
-							$rand=generateRandomString(15);
-							$query = "INSERT INTO tans VALUES('".$rand."','".$username."')";
-							if($query_run=mysql_query($query)){
-								$tans .= $rand."<br>";
-								// TODO send email with tans
-							} else {
-								//something went wrong
-								echo "Failed";
-							}
+							$message = "Dear ".$lastname.",
+								for your new online banking account we send you your TAN codes:
+								".$tans."\nBest regards,\nYour online banking team"
+							$headers = 'From: info@team3securecoding.com' . "\n" .
+    							'Reply-To: info@team3securecoding.com'
+							mail($email, "TAN Codes", $message, $headers)
+						} else {
+							//something went wrong
+							echo "Failed";
 						}
-					} else {
-						echo 'Could not register at this time. Try again later';
 					}
+				} else {
+					echo 'Could not register at this time. Try again later';
 				}
 			}
-
 		} else {
 			 echo 'Please fill in all fields!';
 		}
 }
 ?>
-<form action = "register.php" method = "POST">
-Username: <br> <input type="text" name="username"><br>
-Password: <br> <input type="password" name="password"><br>
-Password again:<br> <input type="password" name="password_again"><br>
-First Name: <br> <input type="text" name="firstname"><br>
-Last Name: <br> <input type="text" name="lastname"><br>
-Email: <br> <input type="email" name="email"><br>
-User:   <br>
-<select name='memberrole'>
-  <option value="0">Customer</option>
-  <option value="1">Employee</option>
-</select>
-<br>
-<input type="submit" value="register">
+<form action = "register.php" method = "POST" id="register-form">
+	Username: <br> <input type="text" name="username"><br>
+	Password: <br> <input type="password" name="password"><br>
+	Password again:<br> <input type="password" name="password_again"><br>
+	First Name: <br> <input type="text" name="firstname"><br>
+	Last Name: <br> <input type="text" name="lastname"><br>
+	Email: <br> <input type="email" name="email"><br>
+	User:   <br>
+	<select name='memberrole'>
+	  <option value="0">Customer</option>
+	  <option value="1">Employee</option>
+	</select>
+	<br>
+	<input type="submit" value="register">
 </form>
+<script type="text/javascript">
+
+	var  function validateEmail (email) {
+		var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+		return re.test(email);
+	}
+	document.getElementById("register-form").submit(function(ev) {
+		ev.preventDefault(); // stop submitting
+		if (this.password !== this.password_again) {
+			// add error message
+			return
+		}
+
+		if (!validateEmail(this.email)){
+			// add error message
+			return
+		}
+		this.submit(); //validation succeeded
+	})
+</script>
 <?php
 } else if(loggedin()){
 	session_destroy();

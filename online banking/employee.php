@@ -13,15 +13,24 @@ if(isset($_POST['user'])){
 		$result=viewTransactions($username);
 			if($result){
 				echo "$query_run";
-				echo "<table>"; // start a table tag in the HTML
-				echo "<tr><th>Username</th><th>Amount</th><th>Receiver</th><th>Approved</th></tr>";
-				while($row = mysql_fetch_array($result)){   //Creates a loop to loop through results
-				    echo "<tr><td>" . $row['username'] . "</td><td>" . $row['amount'] . "</td><td>". $row['receiver']."</td><td>". ($row['approved']?YES:NO) ."</td></tr>";  //$row['index'] the index here is a field name
+?>
+	<table>
+	<tr><th>Username</th><th>Amount</th><th>Receiver</th><th>Approved</th></tr>
+<?php
+                while($row = mysql_fetch_array($result)){   //Creates a loop to loop through results
+				    echo "<tr>";
+                    echo "<td>" . $row['sender_id'] . "</td>";
+                    echo "<td>" . $row['amount'] . "</td>";
+                    echo "<td>". $row['receiver_id']."</td>";
+                    echo "<td>". ($row['approval_date']?$row['approval_date']:"NOT APPROVED YET") ."</td>";
+                    echo "</tr>";  //$row['index'] the index here is a field name
 				}
 			} else {
 				die(mysql_error());
 			}
-	   echo "</table>"; //Close the table in HTML
+?>
+	</table>
+<?php
 	} else {
 		echo "Please enter username!";
 	}
