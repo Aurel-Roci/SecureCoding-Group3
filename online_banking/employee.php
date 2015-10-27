@@ -26,12 +26,12 @@ require 'connect.inc.php'; //connect to DB
         <div class="center">
           <span style="position: absolute; top: 25%; margin-top: 0px;">
             <b>
-              <a href="/">Online Banking</a>
+              <a href="index.php">Online Banking</a>
             </b>
             <span style="color: #888;"></span>
             <span style="font-size: 12pt;">
               <span class="glyphicon glyphicon-menu-right"></span>
-              <a href="/employee.php">Employee</a>
+              <a href="employee.php">Employee</a>
             </span>
           </span>
         </div>
