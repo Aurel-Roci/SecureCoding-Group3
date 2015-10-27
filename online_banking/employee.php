@@ -1,4 +1,11 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+require 'models/user.php';
+require 'models/transaction.php';
+
 require 'core.inc.php'; //reusable functions
 require 'connect.inc.php'; //connect to DB
 ?>
@@ -29,7 +36,7 @@ require 'connect.inc.php'; //connect to DB
           </span>
         </div>
         <span style="float: right;">
-          <span style="margin-top: 20px; font-size: 12pt;">Hier kommt eine E-Mail Adresse</span>
+          <span style="margin-top: 20px; font-size: 12pt;"><?= getUser()->email ?></span>
           <button class="btn btn-danger" onclick="window.location = 'logout.php'">
             <span class="glyphicon glyphicon-log-out"></span>
             Log out
@@ -44,44 +51,53 @@ require 'connect.inc.php'; //connect to DB
         <button class="btn btn-primary center" style="width: 49%; float: right;" type="submit">View Transactions</button>
         <div style="clear: both;"></div>
       </form>
+
+      <?php
+      $post = $_SERVER['REQUEST_METHOD'] === 'POST';
+      if($post) {
+        $username = $_POST['user'];
+        $transactions = fetchTransactionsForUsername($username);
+      ?>
+        <div class="panel panel-default center" style="width: 100%; margin-top: 25px;">
+          <div class="panel-heading">Transactions</div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Sender</th>
+                <th>Recipient</th>
+                <th>Amount</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php   foreach ($transactions as &$transaction) {
+                $sender = fetchUserWithId($transaction->sender_id);
+                $recipient = fetchUserWithId($transaction->recipient_id);
+                ?>
+                <tr>
+                  <td>
+                    <a href="#"><?= $sender->firstname ?> <?= $sender->lastname ?></a>
+                  </td>
+                  <td>
+                    <a href="#"><?= $recipient->firstname ?> <?= $recipient->lastname ?></a>
+                  </td>
+                  <td>
+                    <p><?= $transaction->amount ?></p>
+                  </td>
+                  <td>
+                    <p><?= $transaction->create_date ?></p>
+                  </td>
+                </tr>
+              <?php } ?>
+            </tbody>
+          </table>
+        </div>
+      <?php
+      }
+      ?>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
   </body>
 </html>
-
-
-
-<?php
-/*
-if(isset($_POST['user'])){
- $username=$_POST['user'];
-	if(!empty($username)){
-		$result=viewTransactions($username);
-			if($result){
-				echo "$query_run";
-?>
-	<table>
-	<tr><th>Username</th><th>Amount</th><th>Receiver</th><th>Approved</th></tr>
-<?php
-                while($row = mysql_fetch_array($result)){   //Creates a loop to loop through results
-				    echo "<tr>";
-                    echo "<td>" . $row['sender_id'] . "</td>";
-                    echo "<td>" . $row['amount'] . "</td>";
-                    echo "<td>". $row['receiver_id']."</td>";
-                    echo "<td>". ($row['approval_date']?$row['approval_date']:"NOT APPROVED YET") ."</td>";
-                    echo "</tr>";  //$row['index'] the index here is a field name
-				}
-			} else {
-				die(mysql_error());
-			}
-?>
-	</table>
-<?php
-	} else {
-		echo "Please enter username!";
-	}
-}
-*/
-?>

@@ -1,6 +1,12 @@
 <?php
-require 'core.inc.php'; //reusable functions
-require 'connect.inc.php'; //connect to DB
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+require 'models/user.php';
+
+require 'core.inc.php';
+require 'connect.inc.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,13 +21,12 @@ require 'connect.inc.php'; //connect to DB
   </head>
   <body>
 		<?php
-			//check if user logged in
-			if(loggedin()){ //function in core.inc.php
-				$status = getusersfield('memberrole');//what kind of user
-				if($status == 0){
-					redirect("customer.php");
-				} else if($status == 1) {
+			if(isset($_SESSION['user'])){
+				$user = $_SESSION['user'];
+				if($user->isEmployee()){
 					redirect("employee.php");
+				} else {
+					redirect("customer.php");
 				}
 			} else {
 				include 'loginform.inc.php'; //if not logged in go to login form
