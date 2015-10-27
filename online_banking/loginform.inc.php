@@ -28,7 +28,7 @@
       <span class="input-group-addon" id="basic-addon1">P</span>
       <input class="form-control" name="password" placeholder="Password" type="password">
     </div>
-		<button class="btn btn-default" style="margin-top: 20px" type="submit">Log in</button>
-		<button class="btn btn-default" style="margin-top: 20px" onclick="window.location = 'register.php'; return false;">Register</button>
+		<button class="btn btn-primary" style="margin-top: 20px; width: 49%; float: left;" type="submit">Log in</button>
+		<button class="btn btn-info" style="margin-top: 20px; width: 49%; float: right;" onclick="window.location = 'register.php'; return false;">Register</button>
   </form>
 </div>
