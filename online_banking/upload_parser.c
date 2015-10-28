@@ -62,12 +62,12 @@ int main(int argc, char* argv[]) {
             exit(1);
         } else if (pid == 0) {
             // child process
-            close(socket_fd);
-            int i, index, subindex, reti;
-            char temp_buffer[16];
+            int i, reti;
             regex_t regex;
             char welcome_text[100] = "Welcome on the online banking file submitting server\n";
+
             n = write(client_fd, welcome_text, strlen(welcome_text));
+            close(socket_fd);
 
             if (n < 0) {
                 perror("ERROR writing on socket\n");
@@ -88,8 +88,7 @@ int main(int argc, char* argv[]) {
             printf("Here is the message: %s\n",buffer);
 
 
-            //reti = regcomp(&regex, "^\\d{10},\\d{10},\\d{1,10}[.]?\\d{0,2},[[:alnum:]]{15}$", 0);
-            reti = regcomp(&regex, "[0-9]{10},[0-9]{10},[0-9]{1,10}[.]?[0-9]{0,2},[a-zA-Z0-9]{15}", 0);
+            reti = regcomp(&regex, "^[0-9]\\{10\\},[0-9]\\{10\\},[0-9]\\{1,10\\}[.]\\{0,1\\}[0-9]\\{0,2\\},[a-zA-Z0-9]\\{15\\}$", 0);
             if (reti) {
                 char error_response[100] = "Parsing error!!\nregex wrong!\n";
                 write(client_fd, error_response, strlen(error_response));
@@ -101,21 +100,17 @@ int main(int argc, char* argv[]) {
             if (!reti) {
                 //Match
                 char data[5][16];
-                int index, subindex = 0;
+                int index = 0, subindex = 0;
+                char *temp_buffer;
+                char delimiter[2] = ",";
 
                 memset (data, 0, sizeof (data));
 
-                for (i = 0; i < 4; i++) {
-                    int j = 0;
-                    while(buffer[index] != ',') {
-                        index++;
-                    }
-                    for (; subindex < index; subindex++) {
-                        temp_buffer[j] = buffer[subindex];
-                        j++;
-                    }
-                    temp_buffer[j] = 0x00;
-                    subindex++;
+                temp_buffer = strtok(buffer, delimiter);
+                strcpy(data[0], temp_buffer);
+
+                for (i = 1; i < 4; i++) {
+                    temp_buffer = strtok(NULL, delimiter);
                     strcpy(data[i], temp_buffer);
                 }
                 {
@@ -128,8 +123,8 @@ int main(int argc, char* argv[]) {
                     MYSQL_BIND param[3];
                     MYSQL_RES *result;
                     int k;
-                    char query[200];
-                    char check_query[100];
+                    char query[300];
+                    char check_query[200];
                     char tan_id[31];
                     double amount = strtod(data[2], NULL);
                     char date_text[10];
@@ -145,8 +140,8 @@ int main(int argc, char* argv[]) {
 
                     mysql_real_escape_string(conn, tan_id, data[3], 15);
                     {
-                        char temp[200] = "SELECT ta.user_id FROM tans ta WHERE ta.id = '%s' and ta.id NOT IN (SELECT tr.tan_id FROM transactions tr)";
-                        snprintf(check_query, strlen(temp), temp, tan_id);
+                        char temp[200] = "SELECT ta.user_id FROM tans ta WHERE ta.id = \"%s\" and ta.id NOT IN (SELECT tr.tan_id FROM transactions tr)";
+                        snprintf(check_query, 199, temp, tan_id);
                     }
                     if (mysql_query(conn, check_query)) {
                         perror("ERROR in tan checking!");
@@ -183,8 +178,8 @@ int main(int argc, char* argv[]) {
 
                     stmt = mysql_stmt_init(conn);
                     {
-                        char temp[200] = "PREPARE stmt1 FROM 'INSERT INTO transactions(sender_id, recipient_id, amount, approval_date, tan_id) VALUES(%s, %s, ?, %s, ?))'";
-                        snprintf(query, strlen(temp), temp, data[0], data[1], date_text);
+                        char temp[200] = "INSERT INTO transactions(sender_id, recipient_id, amount, approval_date, tan_id) VALUES(%s, %s, ?, %s, ?)";
+                        snprintf(query, 300, temp, data[0], data[1], date_text);
                     }
                     if (stmt == NULL) {
                         perror("Could not initialize statement handler");
@@ -195,6 +190,7 @@ int main(int argc, char* argv[]) {
 
                     // Prepare the statement
                     if (mysql_stmt_prepare(stmt, query, strlen(query)) != 0) {
+						perror(mysql_error(conn));
                         perror("Could not prepare statement");
                         mysql_close(conn);
                         close(client_fd);
@@ -210,12 +206,13 @@ int main(int argc, char* argv[]) {
                     param[0].length = 0;
 
                     param[1].buffer_type = MYSQL_TYPE_STRING;
-                    param[1].buffer = (void *) &data[0];
+                    param[1].buffer = (void *) &data[3];
                     param[1].buffer_length = strlen(data[3]);
                     param[1].is_null = 0;
                     param[1].length = 0;
 
                     if (mysql_stmt_bind_param(stmt, param) != 0) {
+						perror(mysql_error(conn));
                         perror("Could not bind parameters");
                         mysql_close(conn);
                         close(client_fd);
@@ -223,6 +220,7 @@ int main(int argc, char* argv[]) {
                     }
 
                     if (mysql_stmt_execute(stmt) != 0) {
+						perror(mysql_error(conn));
                         perror("Could not execute statement");
                         mysql_close(conn);
                         close(client_fd);
