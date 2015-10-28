@@ -27,7 +27,7 @@
         $transaction->id = $row["id"];
         $transaction->sender_id = $row["sender_id"];
         $transaction->recipient_id = $row["recipient_id"];
-        $transaction->amount = $row["ammount"];
+        $transaction->amount = $row["amount"];
         $transaction->approval_date = $row["approval_date"];
         $transaction->create_date = $row["create_date"];
         $transaction->tan_id = $row["tan_id"];
