@@ -5,7 +5,7 @@
 #include <netdb.h>
 #include <regex.h>
 #include <strings.h>
-#include <mysql.h>
+#include <mysql/mysql.h>
 #include <sys/types.h>
 
 /**
@@ -24,7 +24,7 @@
 #define DATABASE    "securecoding"
 
 int main(int argc, char* argv[]) {
-    int socket_fd, n;
+    int socket_fd, n, client_len;
     char buffer[64];
     struct sockaddr_in server_adr, client_adr;
 
@@ -47,7 +47,8 @@ int main(int argc, char* argv[]) {
 
     listen(socket_fd, 5);
     while(1) {
-        int client_fd = accept(socket_fd, (struct sockaddr *)&client_adr, sizeof(client_addr));
+        client_len = sizeof(client_adr);
+        int client_fd = accept(socket_fd, (struct sockaddr *)&client_adr, &client_len);
 
         if (client_fd < 0) {
             perror("ERROR in accept");
@@ -65,11 +66,11 @@ int main(int argc, char* argv[]) {
             int i, index, subindex, reti;
             char temp_buffer[16];
             regex_t regex;
-            char welcome_text[100] = "Welcome on the online banking file submitting server";
+            char welcome_text[100] = "Welcome on the online banking file submitting server\n";
             n = write(client_fd, welcome_text, strlen(welcome_text));
 
             if (n < 0) {
-                perror("ERROR writing on socket");
+                perror("ERROR writing on socket\n");
                 close(client_fd);
                 exit(1);
             }
@@ -77,9 +78,9 @@ int main(int argc, char* argv[]) {
             // Reading 63 character since 49 are the max allowed characters 63 is totally ok
             n = read(client_fd, buffer, 63);
             buffer[63] = 0x00;
-
+            buffer[strlen(buffer) - 1] = 0x00;
             if (n < 0) {
-                perror("ERROR reading from socket");
+                perror("ERROR reading from socket\n");
                 close(client_fd);
                 exit(1);
             }
@@ -87,10 +88,11 @@ int main(int argc, char* argv[]) {
             printf("Here is the message: %s\n",buffer);
 
 
-            reti = regcomp(&regex, "[0-9]{10},[0-9]{10},[0-9]{1,10}\\.?[0-9]{0,2},[a-zA-Z0-9]{15}", REG_NOSUB);
+            //reti = regcomp(&regex, "^\\d{10},\\d{10},\\d{1,10}[.]?\\d{0,2},[[:alnum:]]{15}$", 0);
+            reti = regcomp(&regex, "[0-9]{10},[0-9]{10},[0-9]{1,10}[.]?[0-9]{0,2},[a-zA-Z0-9]{15}", 0);
             if (reti) {
-                char error_response[100] = "Parsing error!!\nregex wrong!";
-                write(client_fd, error_response, len(error_response));
+                char error_response[100] = "Parsing error!!\nregex wrong!\n";
+                write(client_fd, error_response, strlen(error_response));
                 close(client_fd);
                 exit(1);
             }
@@ -114,7 +116,7 @@ int main(int argc, char* argv[]) {
                     }
                     temp_buffer[j] = 0x00;
                     subindex++;
-                    data[i] = temp_buffer;
+                    strcpy(data[i], temp_buffer);
                 }
                 {
                     /*
@@ -123,7 +125,7 @@ int main(int argc, char* argv[]) {
                     MYSQL *conn;
                     MYSQL_ROW row;
                     MYSQL_STMT *stmt;
-                    MYSQL_BIND param[4];
+                    MYSQL_BIND param[3];
                     MYSQL_RES *result;
                     int k;
                     char query[200];
@@ -142,9 +144,10 @@ int main(int argc, char* argv[]) {
                     }
 
                     mysql_real_escape_string(conn, tan_id, data[3], 15);
-
-                    snprintf(check_query, "SELECT ta.user_id FROM tans ta WHERE ta.id = '%s' and ta.id NOT IN (SELECT tr.tan_id FROM transactions tr)", tan_id);
-
+                    {
+                        char temp[200] = "SELECT ta.user_id FROM tans ta WHERE ta.id = '%s' and ta.id NOT IN (SELECT tr.tan_id FROM transactions tr)";
+                        snprintf(check_query, strlen(temp), temp, tan_id);
+                    }
                     if (mysql_query(conn, check_query)) {
                         perror("ERROR in tan checking!");
                         mysql_close(conn);
@@ -152,7 +155,7 @@ int main(int argc, char* argv[]) {
                         exit(1);
                     }
 
-                    result = mysql_store_result(con);
+                    result = mysql_store_result(conn);
 
                     if (result == NULL) {
                         perror("ERROR result for tan checking is NULL!");
@@ -162,7 +165,7 @@ int main(int argc, char* argv[]) {
                     }
 
                     if (mysql_num_rows(result) != 1) {
-                        char return_msg[40] = "Either your TAN id was wrong or it was already used!";
+                        char return_msg[60] = "Either your TAN id was wrong or it was already used!\n";
                         write(client_fd, return_msg, strlen(return_msg));
                         mysql_free_result(result);
                         mysql_close(conn);
@@ -173,14 +176,16 @@ int main(int argc, char* argv[]) {
                     mysql_free_result(result);
 
                     if (amount >= 10000) {
-                        date_text = "null";
+                        strcpy(date_text, "null");
                     } else {
-                        date_text = "NOW()";
+                        strcpy(date_text, "NOW()");
                     }
 
                     stmt = mysql_stmt_init(conn);
-                    snprintf(query, "PREPARE stmt1 FROM 'INSERT INTO transactions(sender_id, recipient_id, amount, approval_date, tan_id) VALUES(?, ?, ?, %s, ?))'", date_text);
-
+                    {
+                        char temp[200] = "PREPARE stmt1 FROM 'INSERT INTO transactions(sender_id, recipient_id, amount, approval_date, tan_id) VALUES(%s, %s, ?, %s, ?))'";
+                        snprintf(query, strlen(temp), temp, data[0], data[1], date_text);
+                    }
                     if (stmt == NULL) {
                         perror("Could not initialize statement handler");
                         mysql_close(conn);
@@ -198,29 +203,17 @@ int main(int argc, char* argv[]) {
 
                     memset (param, 0, sizeof (param));
 
-                    param[0].buffer_type = MYSQL_TYPE_LONG;
-                    param[0].buffer = (void *) &(strtol(data[0], NULL, 10));
+                    param[0].buffer_type = MYSQL_TYPE_DOUBLE;
+                    param[0].buffer = (void *) &amount;
                     param[0].is_unsigned = 0;
                     param[0].is_null = 0;
                     param[0].length = 0;
 
-                    param[1].buffer_type = MYSQL_TYPE_LONG;
-                    param[1].buffer = (void *) &(strtol(data[0], NULL, 10));
-                    param[1].is_unsigned = 0;
+                    param[1].buffer_type = MYSQL_TYPE_STRING;
+                    param[1].buffer = (void *) &data[0];
+                    param[1].buffer_length = strlen(data[3]);
                     param[1].is_null = 0;
                     param[1].length = 0;
-
-                    param[2].buffer_type = MYSQL_TYPE_DOUBLE;
-                    param[2].buffer = (void *) &amount;
-                    param[2].is_unsigned = 0;
-                    param[2].is_null = 0;
-                    param[2].length = 0;
-
-                    param[3].buffer_type = MYSQL_TYPE_STRING;
-                    param[3].buffer = (void *) &data[0];
-                    param[3].buffer_length = strlen(data[3]);
-                    param[3].is_null = 0;
-                    param[3].length = 0;
 
                     if (mysql_stmt_bind_param(stmt, param) != 0) {
                         perror("Could not bind parameters");
@@ -237,7 +230,7 @@ int main(int argc, char* argv[]) {
                     }
 
                     if (mysql_affected_rows(conn) != 1) {
-                        perror("affected rows wrong...")
+                        perror("affected rows wrong...");
                     }
 
                     // close connection
@@ -248,8 +241,8 @@ int main(int argc, char* argv[]) {
                     mysql_close(conn);
                 }
             } else if (reti == REG_NOMATCH) {
-                char error_response[100] = "Parsing error!!\nYour data does not correspond the allowed definition!";
-                write(client_fd, error_response, len(error_response));
+                char error_response[100] = "Parsing error!!\nYour data does not correspond the allowed definition!\n";
+                write(client_fd, error_response, strlen(error_response));
                 close(client_fd);
                 exit(1);
             } else {
