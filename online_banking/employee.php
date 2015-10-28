@@ -8,6 +8,12 @@ require 'models/transaction.php';
 
 require 'core.inc.php'; //reusable functions
 require 'connect.inc.php'; //connect to DB
+
+$post = $_SERVER['REQUEST_METHOD'] === 'POST';
+if($post) {
+  $user_id = $_POST['user_id'];
+  approveUserWithId($user_id);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,18 +52,63 @@ require 'connect.inc.php'; //connect to DB
     </div>
 
     <div class="container">
-      <form action="employee.php" method="POST">
-        <input class="form-control" name="user" placeholder="Customer username" style="margin-bottom: 10px; width: 49%; float: left;" type="text">
-        <button class="btn btn-primary center" style="width: 49%; float: right;" type="submit">View Transactions</button>
+      <form action="employee.php" method="GET">
+        <input class="form-control" name="user" placeholder="Customer username" style="margin-bottom: 10px; width: 49%; float: left;" type="text" value="<?= isset($_GET['user']) ? $_GET['user'] : '' ?>">
+        <button class="btn btn-primary center" style="width: 49%; float: right;" type="submit">Show user details</button>
         <div style="clear: both;"></div>
       </form>
 
       <?php
-      $post = $_SERVER['REQUEST_METHOD'] === 'POST';
-      if($post) {
-        $username = $_POST['user'];
+      $search = isset($_GET['user']);
+      if($search) {
+        $username = $_GET['user'];
         $transactions = fetchTransactionsForUsername($username);
+        $user = fetchUserWithUsername($username);
       ?>
+        <div class="panel panel-default center" style="width: 100%; margin-top: 25px;">
+          <div class="panel-heading">User info</div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Approval state</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <p><?= $user->username ?></p>
+                </td>
+                <td>
+                  <p><?= $user->firstname ?></p>
+                </td>
+                <td>
+                  <p><?= $user->lastname ?></p>
+                </td>
+                <td>
+                  <p><?= $user->email ?></p>
+                </td>
+                <td>
+                  <p><?= $user->isEmployee() ? 'Employee' : 'Customer' ?></p>
+                </td>
+                <td>
+                  <?php
+                  if($user->isApproved()) {
+                    echo "<p>Approved</p>";
+                  } else {
+                    echo "<a href='#' onclick='requestApproval(\"".$user->username."\", ".$user->id.",this)'>Approve now!</a>";
+                  }
+                  ?>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
         <div class="panel panel-default center" style="width: 100%; margin-top: 25px;">
           <div class="panel-heading">Transactions</div>
           <table class="table">
@@ -76,10 +127,10 @@ require 'connect.inc.php'; //connect to DB
                 ?>
                 <tr>
                   <td>
-                    <a href="#"><?= $sender->firstname ?> <?= $sender->lastname ?></a>
+                    <a href="employee.php?user=<?= $sender->username ?>"><?= $sender->firstname ?> <?= $sender->lastname ?></a>
                   </td>
                   <td>
-                    <a href="#"><?= $recipient->firstname ?> <?= $recipient->lastname ?></a>
+                    <a href="employee.php?user=<?= $recipient->username ?>"><?= $recipient->firstname ?> <?= $recipient->lastname ?></a>
                   </td>
                   <td>
                     <p><?= $transaction->amount ?></p>
@@ -99,5 +150,29 @@ require 'connect.inc.php'; //connect to DB
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+      function requestApproval(user, id, link) {
+        var approve = confirm("Do you really want to approve "+user+"?");
+
+        if (approve == true) {
+          var http = new XMLHttpRequest();
+          var url = "employee.php";
+          var params = "user_id="+id;
+          http.open("POST", url, true);
+
+          http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          http.setRequestHeader("Content-length", params.length);
+          http.setRequestHeader("Connection", "close");
+
+          http.onreadystatechange = function() {
+            if(http.readyState == 4 && http.status == 200) {
+              link.parentElement.innerHTML = '<p>Approved</p>';
+            }
+          }
+          http.send(params);
+        }
+      }
+    </script>
   </body>
 </html>
