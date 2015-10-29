@@ -83,13 +83,7 @@ require 'connect.inc.php'; //connect to DB
           </tbody>
         </table>
       </div>
-	  <form action="transaction.php" method="POST">
-	    <div  style="width: 100%; margin-center: 20px; text-align:center;">
-		<input type="hidden" name="user" value="<?= getUser()->id ?>">
-			<button class="btn btn-primary center" style="width: 50%; float: center; " type="submit">Make a transaction</button>
-		</div>
-	  </form>
-		
+
       <?php
       $username = getUser()->username;
       $transactions = fetchTransactionsForUsername($username);
@@ -142,6 +136,10 @@ require 'connect.inc.php'; //connect to DB
         }
         ?>
       </div>
+
+      <?php
+      include 'transactions.php';
+       ?>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
