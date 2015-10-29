@@ -110,10 +110,10 @@ if($post) {
         </div>
 
         <div class="panel panel-default center" style="width: 100%; margin-top: 25px;">
-          <?php if (count($transactions) > 0) { ?>
-            <div class="panel-heading">Transactions</div>
-          <?php } else { ?>
+          <?php if (count($transactions) == 0) { ?>
             <div class="panel-heading">No transactions found</div>
+          <?php } else { ?>
+            <div class="panel-heading">Transactions</div>
             <table class="table">
               <thead>
                 <tr>
