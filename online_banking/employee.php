@@ -64,7 +64,7 @@ if($post) {
         $username = $_GET['user'];
         $transactions = fetchTransactionsForUsername($username);
         $user = fetchUserWithUsername($username);
-      ?>
+        ?>
         <div class="panel panel-default center" style="width: 100%; margin-top: 25px;">
           <div class="panel-heading">User info</div>
           <table class="table">
@@ -110,41 +110,139 @@ if($post) {
         </div>
 
         <div class="panel panel-default center" style="width: 100%; margin-top: 25px;">
-          <div class="panel-heading">Transactions</div>
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Sender</th>
-                <th>Recipient</th>
-                <th>Amount</th>
-                <th>Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php   foreach ($transactions as &$transaction) {
-                $sender = fetchUserWithId($transaction->sender_id);
-                $recipient = fetchUserWithId($transaction->recipient_id);
-                ?>
+          <?php if (count($transactions) > 0) { ?>
+            <div class="panel-heading">Transactions</div>
+          <?php } else { ?>
+            <div class="panel-heading">No transactions found</div>
+            <table class="table">
+              <thead>
                 <tr>
-                  <td>
-                    <a href="employee.php?user=<?= $sender->username ?>"><?= $sender->firstname ?> <?= $sender->lastname ?></a>
-                  </td>
-                  <td>
-                    <a href="employee.php?user=<?= $recipient->username ?>"><?= $recipient->firstname ?> <?= $recipient->lastname ?></a>
-                  </td>
-                  <td>
-                    <p><?= $transaction->amount ?></p>
-                  </td>
-                  <td>
-                    <p><?= $transaction->create_date ?></p>
-                  </td>
+                  <th>Sender</th>
+                  <th>Recipient</th>
+                  <th>Amount</th>
+                  <th>Date</th>
                 </tr>
-              <?php } ?>
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                <?php   foreach ($transactions as &$transaction) {
+                  $sender = fetchUserWithId($transaction->sender_id);
+                  $recipient = fetchUserWithId($transaction->recipient_id);
+                  ?>
+                  <tr>
+                    <td>
+                      <a href="employee.php?user=<?= $sender->username ?>"><?= $sender->firstname ?> <?= $sender->lastname ?></a>
+                    </td>
+                    <td>
+                      <a href="employee.php?user=<?= $recipient->username ?>"><?= $recipient->firstname ?> <?= $recipient->lastname ?></a>
+                    </td>
+                    <td>
+                      <p><?= $transaction->amount ?> &euro;</p>
+                    </td>
+                    <td>
+                      <p><?= $transaction->create_date ?></p>
+                    </td>
+                  </tr>
+                <?php } ?>
+              </tbody>
+            </table>
+          <?php } ?>
         </div>
       <?php
-      }
+    } else {
+      $notApprovedUsers = fetchNotApprovedUsers();
+      $notApprovedTransactions = fetchNotApprovedTransactions();
+      ?>
+        <hr>
+        <div class="panel panel-default center" style="width: 100%; margin-top: 25px;">
+          <?php if (count($notApprovedUsers) == 0) { ?>
+            <div class="panel-heading">No user registration requests found</div>
+          <?php } else { ?>
+            <div class="panel-heading">Open user registration requests</div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Username</th>
+                  <th>First name</th>
+                  <th>Last name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Approval state</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($notApprovedUsers as &$user) { ?>
+                  <tr>
+                    <td>
+                      <p><?= $user->username ?></p>
+                    </td>
+                    <td>
+                      <p><?= $user->firstname ?></p>
+                    </td>
+                    <td>
+                      <p><?= $user->lastname ?></p>
+                    </td>
+                    <td>
+                      <p><?= $user->email ?></p>
+                    </td>
+                    <td>
+                      <p><?= $user->isEmployee() ? 'Employee' : 'Customer' ?></p>
+                    </td>
+                    <td>
+                      <?php
+                      if($user->isApproved()) {
+                        echo "<p>Approved</p>";
+                      } else {
+                        echo "<a href='#' onclick='requestApproval(\"".$user->username."\", ".$user->id.",this)'>Approve now!</a>";
+                      }
+                      ?>
+                    </td>
+                  </tr>
+                <?php } ?>
+              </tbody>
+            </table>
+          <?php } ?>
+        </div>
+
+        <div class="panel panel-default center" style="width: 100%; margin-top: 25px;">
+          <?php if (count($notApprovedTransactions) == 0) { ?>
+            <div class="panel-heading">No open transaction requests found</div>
+          <?php } else { ?>
+            <div class="panel-heading">Open transaction requests</div>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Sender</th>
+                  <th>Recipient</th>
+                  <th>Amount</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php   foreach ($notApprovedTransactions as &$transaction) {
+                  $sender = fetchUserWithId($transaction->sender_id);
+                  $recipient = fetchUserWithId($transaction->recipient_id);
+                  ?>
+                  <tr>
+                    <td>
+                      <a href="employee.php?user=<?= $sender->username ?>"><?= $sender->firstname ?> <?= $sender->lastname ?></a>
+                    </td>
+                    <td>
+                      <a href="employee.php?user=<?= $recipient->username ?>"><?= $recipient->firstname ?> <?= $recipient->lastname ?></a>
+                    </td>
+                    <td>
+                      <p><?= $transaction->amount ?> &euro;</p>
+                    </td>
+                    <td>
+                      <p><?= $transaction->create_date ?></p>
+                    </td>
+                  </tr>
+                <?php } ?>
+              </tbody>
+            </table>
+          <?php } ?>
+        </div>
+      <?php
+    }
       ?>
     </div>
 

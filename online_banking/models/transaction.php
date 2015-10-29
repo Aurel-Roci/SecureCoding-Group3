@@ -39,4 +39,30 @@
     return $transactions;
   }
 
+  function fetchNotApprovedTransactions() {
+    $query = "SELECT * FROM transactions WHERE approved = 0 AND amount > 10000";
+
+    $result = mysql_query($query);
+    $transactions = array();
+
+    if($result) {
+      while ($row = mysql_fetch_assoc($result)) {
+        $transaction = new Transaction();
+
+        $transaction->id = $row["id"];
+        $transaction->sender_id = $row["sender_id"];
+        $transaction->recipient_id = $row["recipient_id"];
+        $transaction->amount = $row["amount"];
+        $transaction->approval_date = $row["approval_date"];
+        $transaction->create_date = $row["create_date"];
+        $transaction->tan_id = $row["tan_id"];
+
+        $transactions[] = $transaction;
+      }
+    }
+
+    return $transactions;
+  }
+
+
 ?>

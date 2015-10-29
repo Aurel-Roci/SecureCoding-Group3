@@ -83,4 +83,28 @@
     mysql_query($query);
   }
 
+  function fetchNotApprovedUsers() {
+    $query = "SELECT * FROM users WHERE approved = 0";
+
+    $result = mysql_query($query);
+    $users = array();
+
+		if($result) {
+      while ($row = mysql_fetch_assoc($result)) {
+        $user = new User();
+        
+        $user->id = $row["id"];
+        $user->username = $row["username"];
+        $user->firstname = $row["firstname"];
+        $user->lastname = $row["lastname"];
+        $user->email = $row["email"];
+        $user->memberrole = $row["memberrole"];
+        $user->approved = $row["approved"];
+
+        $users[] = $user;
+      }
+    }
+    return $users;
+  }
+
 ?>
