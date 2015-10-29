@@ -44,7 +44,7 @@ require 'connect.inc.php'; //connect to DB
         </span>
       </div>
     </div>
-
+	
     <div class="container">
       <div class="panel panel-default center" style="width: 100%; margin-top: 25px;">
         <div class="panel-heading">User info</div>
@@ -83,7 +83,13 @@ require 'connect.inc.php'; //connect to DB
           </tbody>
         </table>
       </div>
-
+	  <form action="transaction.php" method="POST">
+	    <div  style="width: 100%; margin-center: 20px; text-align:center;">
+		<input type="hidden" name="user" value="<?= getUser()->id ?>">
+			<button class="btn btn-primary center" style="width: 50%; float: center; " type="submit">Make a transaction</button>
+		</div>
+	  </form>
+		
       <?php
       $username = getUser()->username;
       $transactions = fetchTransactionsForUsername($username);
@@ -104,6 +110,7 @@ require 'connect.inc.php'; //connect to DB
               <th>Recipient</th>
               <th>Amount</th>
               <th>Date</th>
+			  <th>Approval state</th>
             </tr>
           </thead>
           <tbody>
@@ -123,6 +130,9 @@ require 'connect.inc.php'; //connect to DB
                 </td>
                 <td>
                   <p><?= $transaction->create_date ?></p>
+                </td>
+				<td>
+                  <p><?= $transaction->isApproved() ? 'Approved' : 'Not approved'?></p>
                 </td>
               </tr>
             <?php } ?>
