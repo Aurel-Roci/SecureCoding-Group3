@@ -24,13 +24,25 @@ require 'connect.inc.php';
 				$query_run = mysql_query($query);
 				$id = mysql_result($query_run,0);  
 				
-				$query = "INSERT INTO transactions (sender_id,recipient_id,amount,tan_id,approved) "
+				$query2 = "SELECT * FROM tans WHERE user_id ='".mysql_real_escape_string($userid)."' AND id = '".mysql_real_escape_string($tan)."'";
+				$query_run2 = mysql_query($query2);
+				
+				if(mysql_num_rows($query_run2) == 1) {
+					$query3 = "SELECT tan_id FROM transactions WHERE tan_id='".mysql_real_escape_string($tan)."'";
+					$query_run3 = mysql_query($query3);
+					
+					if(mysql_num_rows($query_run3) == 0){
+						$query = "INSERT INTO transactions (sender_id,recipient_id,amount,tan_id,approved) "
 							 . "VALUES ('".mysql_real_escape_string($userid)."', '".mysql_real_escape_string($id)."' ,".$amount.",'". mysql_real_escape_string($tan)."','".$approved."')";
 							 
-				if($query_run = mysql_query($query)){
-					echo "Transactions complete!";
-				} else {
-					echo "Transaction could not be completed!";
+						if($query_run = mysql_query($query)){
+							echo "Transactions complete!";
+						} else {
+							echo "Transaction could not be completed!";
+						}
+					} else {
+						echo "Tan already used!";
+					}
 				}
 							
 			}
