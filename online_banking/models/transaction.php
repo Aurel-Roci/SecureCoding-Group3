@@ -11,6 +11,21 @@
     function isApproved() {
       return !empty($approval_date);
     }
+
+    function to_json() {
+      $sender = fetchUserWithId($this->sender_id);
+      $recipient = fetchUserWithId($this->recipient_id);
+
+      $array = array(
+          "Id" => $this->id,
+          "Sender" => $sender->firstname." ".$sender->lastname,
+          "Recipient" => $recipient->firstname." ".$recipient->lastname,
+          "Amount" => $this->amount." Euro",
+          "Approved" => empty($this->approval_date) ? "Not approved" : "Approved",
+          "Date" => $this->create_date,
+      );
+      return json_encode($array);
+    }
   }
 
   function fetchTransactionsForUsername($username) {
@@ -69,5 +84,16 @@
     return $transactions;
   }
 
-
+  function transactionsToJson($transactions) {
+    $res = "[";
+    for ($i = 0; $i < count($transactions); $i++) {
+      $transaction = $transactions[$i];
+      $res .= $transaction->to_json();
+      if ($i != (count($transactions) - 1)) {
+        $res .= ", ";
+      }
+    }
+    $res = $res . "]";
+    return $res;
+  }
 ?>

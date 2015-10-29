@@ -126,6 +126,7 @@ if($post) {
                   <th>Recipient</th>
                   <th>Amount</th>
                   <th>Date</th>
+                  <th>Approval state</th>
                 </tr>
               </thead>
               <tbody>
@@ -146,12 +147,22 @@ if($post) {
                     <td>
                       <p><?= $transaction->create_date ?></p>
                     </td>
+                    <td>
+                      <?php
+                      if($transaction->isApproved()) {
+                        echo "<p>Approved</p>";
+                      } else {
+                        echo "<a href='#' onclick='requestTransactionApproval(".$transaction->id.",this)'>Approve now!</a>";
+                      }
+                      ?>
+                    </td>
                   </tr>
                 <?php } ?>
               </tbody>
             </table>
           <?php } ?>
         </div>
+        <button class='btn btn-primary btn-lg' style='width: 100%;' onclick='downloadTransactionsAfPDF(<?= transactionsToJson($transactions) ?>)'>Download as PDF</button>
       <?php
     } else {
       $notApprovedUsers = fetchNotApprovedUsers();
@@ -263,6 +274,8 @@ if($post) {
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="dist/jspdf.min.js"></script>
+    <script type="text/javascript" src="dist/jspdf.plugin.table.js"></script>
 
     <script type="text/javascript">
       function requestUserApproval(user, id, link) {
@@ -308,6 +321,16 @@ if($post) {
           http.send(params);
         }
       }
+
+      function downloadTransactionsAfPDF(data) {
+        var doc = new jsPDF('p', 'pt', 'a4', true);
+        doc.setFont("courier", "normal");
+        doc.setFontSize(12);
+
+        var height = doc.drawTable(data);
+        doc.save("transaction.pdf");
+      }
+
     </script>
   </body>
 </html>
