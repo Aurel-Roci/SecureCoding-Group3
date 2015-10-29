@@ -11,8 +11,13 @@ require 'connect.inc.php'; //connect to DB
 
 $post = $_SERVER['REQUEST_METHOD'] === 'POST';
 if($post) {
-  $user_id = $_POST['user_id'];
-  approveUserWithId($user_id);
+  if (isset($_POST['user_id'])) {
+    $user_id = $_POST['user_id'];
+    approveUserWithId($user_id);
+  } else if (isset($_POST['transaction_id'])) {
+    $transaction_id = $_POST['transaction_id'];
+    approveTransactionWithId($transaction_id);
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -100,7 +105,7 @@ if($post) {
                   if($user->isApproved()) {
                     echo "<p>Approved</p>";
                   } else {
-                    echo "<a href='#' onclick='requestApproval(\"".$user->username."\", ".$user->id.",this)'>Approve now!</a>";
+                    echo "<a href='#' onclick='requestUserApproval(\"".$user->username."\", ".$user->id.",this)'>Approve now!</a>";
                   }
                   ?>
                 </td>
@@ -192,7 +197,7 @@ if($post) {
                       if($user->isApproved()) {
                         echo "<p>Approved</p>";
                       } else {
-                        echo "<a href='#' onclick='requestApproval(\"".$user->username."\", ".$user->id.",this)'>Approve now!</a>";
+                        echo "<a href='#' onclick='requestUserApproval(\"".$user->username."\", ".$user->id.",this)'>Approve now!</a>";
                       }
                       ?>
                     </td>
@@ -215,6 +220,7 @@ if($post) {
                   <th>Recipient</th>
                   <th>Amount</th>
                   <th>Date</th>
+                  <th>Approval state</th>
                 </tr>
               </thead>
               <tbody>
@@ -235,6 +241,15 @@ if($post) {
                     <td>
                       <p><?= $transaction->create_date ?></p>
                     </td>
+                    <td>
+                      <?php
+                      if($transaction->isApproved()) {
+                        echo "<p>Approved</p>";
+                      } else {
+                        echo "<a href='#' onclick='requestTransactionApproval(".$transaction->id.",this)'>Approve now!</a>";
+                      }
+                      ?>
+                    </td>
                   </tr>
                 <?php } ?>
               </tbody>
@@ -250,13 +265,35 @@ if($post) {
     <script src="bootstrap/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
-      function requestApproval(user, id, link) {
+      function requestUserApproval(user, id, link) {
         var approve = confirm("Do you really want to approve "+user+"?");
 
         if (approve == true) {
           var http = new XMLHttpRequest();
           var url = "employee.php";
           var params = "user_id="+id;
+          http.open("POST", url, true);
+
+          http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          http.setRequestHeader("Content-length", params.length);
+          http.setRequestHeader("Connection", "close");
+
+          http.onreadystatechange = function() {
+            if(http.readyState == 4 && http.status == 200) {
+              link.parentElement.innerHTML = '<p>Approved</p>';
+            }
+          }
+          http.send(params);
+        }
+      }
+
+      function requestTransactionApproval(id, link) {
+        var approve = confirm("Do you really want to approve this transaction?");
+
+        if (approve == true) {
+          var http = new XMLHttpRequest();
+          var url = "employee.php";
+          var params = "transaction_id="+id;
           http.open("POST", url, true);
 
           http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

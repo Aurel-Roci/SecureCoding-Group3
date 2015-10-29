@@ -9,7 +9,7 @@
     var $tan_id = 0;
 
     function isApproved() {
-      return empty($approval_date);
+      return !empty($approval_date);
     }
   }
 
@@ -39,8 +39,13 @@
     return $transactions;
   }
 
+  function approveTransactionWithId($transaction_id) {
+    $query = "UPDATE transactions SET approval_date = NOW() WHERE id='".$transaction_id."';";
+    mysql_query($query);
+  }
+
   function fetchNotApprovedTransactions() {
-    $query = "SELECT * FROM transactions WHERE approved = 0 AND amount > 10000";
+    $query = "SELECT * FROM transactions WHERE approval_date IS NULL AND amount > 10000";
 
     $result = mysql_query($query);
     $transactions = array();
