@@ -6,6 +6,7 @@ require 'connect.inc.php';
  
   $userid = $_POST['user'];
   
+	mysql_query("INSERT INTO `table` (`dateposted`) VALUES ('$date')");
   if($post) {
   $allPramatetersSet = isset($_POST['username']) && isset($_POST['amount']) && isset($_POST['tan']);
   
@@ -15,9 +16,9 @@ require 'connect.inc.php';
 			$tan = $_POST['tan']; 
 			if(!empty($username) &&!empty($amount) &&!empty($tan)){
 				if($amount<10000){
-					$approved=TRUE;
+					$date = date('Y-m-d H:i:s');
 				} else {
-					$approved=FALSE;
+					$date = NULL;
 				} 
 				
 				$query = "SELECT id FROM users WHERE username ='".mysql_real_escape_string($username)."'";
@@ -32,8 +33,8 @@ require 'connect.inc.php';
 					$query_run3 = mysql_query($query3);
 					
 					if(mysql_num_rows($query_run3) == 0){
-						$query = "INSERT INTO transactions (sender_id,recipient_id,amount,tan_id,approved) "
-							 . "VALUES ('".mysql_real_escape_string($userid)."', '".mysql_real_escape_string($id)."' ,".$amount.",'". mysql_real_escape_string($tan)."','".$approved."')";
+						$query = "INSERT INTO transactions (sender_id,recipient_id,approval_date,amount,tan_id) "
+							 . "VALUES ('".mysql_real_escape_string($userid)."', '".mysql_real_escape_string($id)."','".$date."' ,".$amount.",'". mysql_real_escape_string($tan)."')";
 							 
 						if($query_run = mysql_query($query)){
 							echo "Transactions complete!";
