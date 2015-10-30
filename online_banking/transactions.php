@@ -40,7 +40,7 @@
 <div class="panel panel-default center" style="width: 100%; margin-top: 25px;">
   <div class="panel-heading">Make new transaction</div>
   <div class="panel-body">
-    <form class="form-horizontal" action="" method="POST" onsubmit="return validateFields(this);">
+    <form class="form-horizontal" action="" method="POST" onsubmit="return validateFields(this);" id="transaction_form">
       <div class="form-group">
         <label for="transactionfile" class="col-sm-2 control-label">To</label>
         <div class="col-sm-10">

@@ -118,10 +118,10 @@ require 'init.sec.php';
               ?>
               <tr>
                 <td>
-                  <a href="#"><?= $sender->firstname ?> <?= $sender->lastname ?></a>
+                  <a href="#" onclick="document.getElementById('transaction_form').recipient.value = '<?= $sender->username ?>'; return false;"><?= $sender->firstname ?> <?= $sender->lastname ?></a>
                 </td>
                 <td>
-                  <a href="#"><?= $recipient->firstname ?> <?= $recipient->lastname ?></a>
+                  <a href="#" onclick="document.getElementById('transaction_form').recipient.value = '<?= $recipient->username ?>'; return false;"><?= $recipient->firstname ?> <?= $recipient->lastname ?></a>
                 </td>
                 <td>
                   <p><?= number_format($transaction->amount, 2, ".", ",") ?> &euro;</p>
