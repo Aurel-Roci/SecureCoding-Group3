@@ -62,7 +62,7 @@
   }
 
   function fetchUserWithUsername($username) {
-    $query = "SELECT * FROM users WHERE username='".$username."';";
+    $query = "SELECT * FROM users WHERE username='".mysql_real_escape_string($username)."';";
 
     $result = mysql_query($query);
 
