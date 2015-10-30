@@ -139,6 +139,7 @@ require 'init.sec.php';
         }
         ?>
       </div>
+      <button class='btn btn-primary btn-lg' style='width: 100%;' onclick='downloadTransactionsAfPDF(<?= transactionsToJson($transactions) ?>)'>Download as PDF</button>
 
       <?php
         include 'transactions.php';
@@ -148,5 +149,18 @@ require 'init.sec.php';
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="dist/jspdf.min.js"></script>
+    <script type="text/javascript" src="dist/jspdf.plugin.table.js"></script>
+
+    <script type="text/javascript">
+      function downloadTransactionsAfPDF(data) {
+        var doc = new jsPDF('p', 'pt', 'a4', true);
+        doc.setFont("courier", "normal");
+        doc.setFontSize(12);
+
+        var height = doc.drawTable(data);
+        doc.save("transaction.pdf");
+      }
+    </script>
   </body>
 </html>
