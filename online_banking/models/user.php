@@ -25,7 +25,7 @@
     }
 
     function getBalance() {
-      $query = "SELECT IFNULL((SELECT SUM(amount) FROM transactions WHERE recipient_id = ".$this->id.")-(SELECT SUM(amount) FROM transactions WHERE sender_id = ".$this->id."), 0);";
+      $query = "SELECT IFNULL(IFNULL((SELECT SUM(amount) FROM transactions WHERE recipient_id = ".$this->id." AND approval_date IS NOT NULL), 0)-IFNULL((SELECT SUM(amount) FROM transactions WHERE sender_id = ".$this->id." AND approval_date IS NOT NULL), 0), 0);";
 
       $result = mysql_query($query);
 
