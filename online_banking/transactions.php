@@ -40,7 +40,7 @@
 <div class="panel panel-default center" style="width: 100%; margin-top: 25px;">
   <div class="panel-heading">Make new transaction</div>
   <div class="panel-body">
-    <form class="form-horizontal" action="" method="POST">
+    <form class="form-horizontal" action="" method="POST" onsubmit="return validateFields(this);">
       <div class="form-group">
         <label for="transactionfile" class="col-sm-2 control-label">To</label>
         <div class="col-sm-10">
@@ -79,3 +79,38 @@
     </form>
   </div>
 </div>
+
+<script type="text/javascript">
+  function validateAccount(account) {
+    return account != "";
+  }
+
+  function validateAmount(amount) {
+    var re = /^\d*\.?\d*$/i;
+    return re.test(amount) && amount != "";
+  }
+
+  function validateTAN(tan) {
+    var re = /^\d*\.?\d*$/i;
+    return re.test(tan) && tan != "";
+  }
+
+  function validateFields(form) {
+    if (!validateAccount(form.recipient.value)) {
+      alert("Please provide a valid username.");
+      return false;
+    }
+
+    if (!validateAmount(form.amount.value)) {
+      alert("Please use the correct format for the amount.");
+      return false;
+    }
+
+    if (!validateTAN(form.tan.value)) {
+      alert("Please provide valid TANs.");
+      return false;
+    }
+
+    return true;
+  }
+</script>
