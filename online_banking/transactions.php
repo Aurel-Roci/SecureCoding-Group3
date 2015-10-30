@@ -91,7 +91,7 @@
   }
 
   function validateTAN(tan) {
-    var re = /^\d*\.?\d*$/i;
+    var re = /^[a-zA-Z0-9]{15}$/i;
     return re.test(tan) && tan != "";
   }
 
