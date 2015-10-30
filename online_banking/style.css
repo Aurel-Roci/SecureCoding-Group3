@@ -64,6 +64,12 @@ body {
   color: black;
 }
 
+.profilepic {
+  max-height: 70%;
+  width: auto;
+  border-radius: 50%;
+}
+
 footer {
   border-top: 1px solid;
   border-top-color: #ddd;

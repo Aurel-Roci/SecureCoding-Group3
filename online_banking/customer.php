@@ -28,6 +28,7 @@ require 'init.sec.php';
           </span>
         </div>
         <span style="float: right;">
+          <img class="profilepic" src="http://www.gravatar.com/avatar/<?= md5(getUser()->email) ?>" alt=""/>
           <span style="margin-top: 20px; font-size: 12pt;"><?= getUser()->email ?></span>
           <button class="btn btn-danger" onclick="window.location = 'logout.php'">
             <span class="glyphicon glyphicon-log-out"></span>
@@ -56,7 +57,7 @@ require 'init.sec.php';
               <th>Last name</th>
               <th>Email</th>
               <th>Role</th>
-              <th>Approval state</th>
+              <th>Balance</th>
             </tr>
           </thead>
           <tbody>
@@ -80,7 +81,7 @@ require 'init.sec.php';
                 <p><?= getUser()->isEmployee() ? 'Employee' : 'Customer' ?></p>
               </td>
               <td>
-                <p><?= getUser()->isApproved() ? 'Approved' : 'Not approved' ?></p>
+                <p><?= getUser()->getBalance() ?> &euro;</p>
               </td>
             </tr>
           </tbody>

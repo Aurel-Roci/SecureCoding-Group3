@@ -39,6 +39,7 @@ if($post) {
           </span>
         </div>
         <span style="float: right;">
+          <img class="profilepic" src="http://www.gravatar.com/avatar/<?= md5(getUser()->email) ?>" alt=""/>
           <span style="margin-top: 20px; font-size: 12pt;"><?= getUser()->email ?></span>
           <button class="btn btn-danger" onclick="window.location = 'logout.php'">
             <span class="glyphicon glyphicon-log-out"></span>
@@ -81,6 +82,7 @@ if($post) {
                 <th>Email</th>
                 <th>Role</th>
                 <th>Approval state</th>
+                <th>Balance</th>
               </tr>
             </thead>
             <tbody>
@@ -111,6 +113,9 @@ if($post) {
                     echo "<a href='#' onclick='requestUserApproval(\"".$user->username."\", ".$user->id.",this)'>Approve now!</a>";
                   }
                   ?>
+                </td>
+                <td>
+                  <p><?= $user->getBalance() ?> &euro;</p>
                 </td>
               </tr>
             </tbody>

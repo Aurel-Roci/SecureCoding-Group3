@@ -16,13 +16,27 @@
       return $this->approved == 1;
     }
 
-    function getAccountNumber(){
+    function getAccountNumber() {
       $account_number = $this->id;
       while (strlen($account_number) < 10) {
         $account_number = "0" . $account_number;
       }
       return $account_number;
     }
+
+    function getBalance() {
+      $query = "SELECT IFNULL((SELECT SUM(amount) FROM transactions WHERE recipient_id = ".$this->id.")-(SELECT SUM(amount) FROM transactions WHERE sender_id = ".$this->id."), 0);";
+
+      $result = mysql_query($query);
+
+      if($result && mysql_num_rows($result) > 0) {
+        $row = mysql_fetch_assoc($result);
+        return array_values($row)[0];
+      }
+
+      return "N/A";
+    }
+
   }
 
   function fetchUser($username, $password) {
