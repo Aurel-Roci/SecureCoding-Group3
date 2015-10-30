@@ -9,7 +9,7 @@
     var $tan_id = 0;
 
     function isApproved() {
-      return !empty($approval_date);
+      return !empty($this->approval_date);
     }
 
     function to_json() {
