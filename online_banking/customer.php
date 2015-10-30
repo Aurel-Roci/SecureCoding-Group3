@@ -164,4 +164,5 @@ require 'init.sec.php';
       }
     </script>
   </body>
+  <?php include 'footer.inc.php'; ?>
 </html>

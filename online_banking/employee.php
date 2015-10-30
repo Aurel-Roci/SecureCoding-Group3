@@ -342,4 +342,5 @@ if($post) {
 
     </script>
   </body>
+  <?php include 'footer.inc.php'; ?>
 </html>
