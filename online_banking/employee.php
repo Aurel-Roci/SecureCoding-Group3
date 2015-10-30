@@ -9,6 +9,8 @@ require 'models/transaction.php';
 require 'core.inc.php'; //reusable functions
 require 'connect.inc.php'; //connect to DB
 
+require 'init.sec.php';
+
 $post = $_SERVER['REQUEST_METHOD'] === 'POST';
 if($post) {
   if (isset($_POST['user_id'])) {
@@ -57,6 +59,13 @@ if($post) {
     </div>
 
     <div class="container">
+      <?php
+      if (!getUser()->isApproved()) {
+      ?>
+      <div class="alert alert-warning" role="alert">Your user account isn't approved yet! Please contact an employee</div>
+      <?php
+      } else {
+      ?>
       <form action="employee.php" method="GET">
         <input class="form-control" name="user" placeholder="Customer username" style="margin-bottom: 10px; width: 49%; float: left;" type="text" value="<?= isset($_GET['user']) ? $_GET['user'] : '' ?>">
         <button class="btn btn-primary center" style="width: 49%; float: right;" type="submit">Show user details</button>
@@ -75,6 +84,7 @@ if($post) {
           <table class="table">
             <thead>
               <tr>
+                <th>Account number</th>
                 <th>Username</th>
                 <th>First name</th>
                 <th>Last name</th>
@@ -85,6 +95,9 @@ if($post) {
             </thead>
             <tbody>
               <tr>
+                <td>
+                  <p><?= $user->getAccountNumber() ?></p>
+                </td>
                 <td>
                   <p><?= $user->username ?></p>
                 </td>
@@ -267,8 +280,9 @@ if($post) {
             </table>
           <?php } ?>
         </div>
-      <?php
-    }
+        <?php
+        }
+      }
       ?>
     </div>
 

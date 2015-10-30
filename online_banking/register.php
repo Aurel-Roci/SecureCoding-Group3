@@ -101,7 +101,7 @@ if($post) {
 			if($post && !empty($error)) {
 				echo '<div class="alert alert-danger" role="alert">'.$error.'</div>';
 			} else if ($post && empty($error)) {
-				echo '<div class="alert alert-success" role="alert">Registration was successful.</div>';
+				echo '<div class="alert alert-success" role="alert">Registration was successful. <a href="index.php">Login now</a></div>';
 			}
 			?>
 			<form class="form-horizontal" id="register-form" action='register.php' method="POST" onsubmit="return validateFields(this);">

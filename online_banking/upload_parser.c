@@ -140,8 +140,8 @@ int main(int argc, char* argv[]) {
 
                     mysql_real_escape_string(conn, tan_id, data[3], 15);
                     {
-                        char temp[200] = "SELECT ta.user_id FROM tans ta WHERE ta.id = \"%s\" and ta.id NOT IN (SELECT tr.tan_id FROM transactions tr)";
-                        snprintf(check_query, 199, temp, tan_id);
+                        char temp[200] = "SELECT ta.id FROM tans ta WHERE ta.user_id = \"%s\" and ta.id = \"%s\" and ta.id NOT IN (SELECT tr.tan_id FROM transactions tr)";
+                        snprintf(check_query, 199, temp, data[0], tan_id);
                     }
                     if (mysql_query(conn, check_query)) {
                         perror("ERROR in tan checking!");
@@ -190,7 +190,7 @@ int main(int argc, char* argv[]) {
 
                     // Prepare the statement
                     if (mysql_stmt_prepare(stmt, query, strlen(query)) != 0) {
-						perror(mysql_error(conn));
+						            perror(mysql_error(conn));
                         perror("Could not prepare statement");
                         mysql_close(conn);
                         close(client_fd);
@@ -212,7 +212,7 @@ int main(int argc, char* argv[]) {
                     param[1].length = 0;
 
                     if (mysql_stmt_bind_param(stmt, param) != 0) {
-						perror(mysql_error(conn));
+						            perror(mysql_error(conn));
                         perror("Could not bind parameters");
                         mysql_close(conn);
                         close(client_fd);
@@ -220,7 +220,7 @@ int main(int argc, char* argv[]) {
                     }
 
                     if (mysql_stmt_execute(stmt) != 0) {
-						perror(mysql_error(conn));
+						            perror(mysql_error(conn));
                         perror("Could not execute statement");
                         mysql_close(conn);
                         close(client_fd);

@@ -8,6 +8,8 @@ require 'models/transaction.php';
 
 require 'core.inc.php'; //reusable functions
 require 'connect.inc.php'; //connect to DB
+
+require 'init.sec.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +33,7 @@ require 'connect.inc.php'; //connect to DB
             <span style="color: #888;"></span>
             <span style="font-size: 12pt;">
               <span class="glyphicon glyphicon-menu-right"></span>
-              <a href="employee.php">Customer</a>
+              <a href="customer.php">Customer</a>
             </span>
           </span>
         </div>
@@ -44,13 +46,21 @@ require 'connect.inc.php'; //connect to DB
         </span>
       </div>
     </div>
-	
+
     <div class="container">
+      <?php
+      if (!getUser()->isApproved()) {
+      ?>
+      <div class="alert alert-warning" role="alert">Your user account isn't approved yet! Please contact an employee</div>
+      <?php
+      } else {
+      ?>
       <div class="panel panel-default center" style="width: 100%; margin-top: 25px;">
         <div class="panel-heading">User info</div>
         <table class="table">
           <thead>
             <tr>
+              <th>Account number</th>
               <th>Username</th>
               <th>First name</th>
               <th>Last name</th>
@@ -61,6 +71,9 @@ require 'connect.inc.php'; //connect to DB
           </thead>
           <tbody>
             <tr>
+              <td>
+                <p><?= $user->getAccountNumber() ?></p>
+              </td>
               <td>
                 <p><?= getUser()->username ?></p>
               </td>
@@ -138,7 +151,8 @@ require 'connect.inc.php'; //connect to DB
       </div>
 
       <?php
-      include 'transactions.php';
+        include 'transactions.php';
+      }
        ?>
     </div>
 

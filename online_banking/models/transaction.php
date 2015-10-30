@@ -96,4 +96,28 @@
     $res = $res . "]";
     return $res;
   }
+
+  function isTanFromUser($tan, $userid) {
+  	$query = "SELECT id FROM tans WHERE id = '" . mysql_real_escape_string($tan) . "' and user_id = " . $userid;
+  	$query_result = mysql_query($query);
+  	return mysql_num_rows($query_result) == 1;
+  }
+
+  function isTanUnused($tan){
+  	$query = "SELECT id FROM transactions WHERE tan_id = '" . mysql_real_escape_string($tan) . "'";
+  	$query_result = mysql_query($query);
+  	return mysql_num_rows($query_result) == 0;
+  }
+
+  function insertNewTransaction($senderid, $recipientid, $amount, $tan) {
+    $date_string = "null";
+    if ($amount < 10000) {
+      $date_string = "NOW()";
+    }
+
+  	$query = "INSERT INTO transactions(sender_id, recipient_id, approval_date, amount,tan_id) "
+  		. "VALUES ('" . $senderid . "', '" . $recipientid . "', " . $date_string . ", "
+      . $amount . ", '" . mysql_real_escape_string($tan) . "')";
+    mysql_query($query);
+  }
 ?>

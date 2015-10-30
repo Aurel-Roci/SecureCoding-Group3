@@ -15,6 +15,14 @@
     function isApproved() {
       return $this->approved == 1;
     }
+
+    function getAccountNumber(){
+      $account_number = $this->id;
+      while (strlen($account_number) < 10) {
+        $account_number = "0" . $account_number;
+      }
+      return $account_number;
+    }
   }
 
   function fetchUser($username, $password) {
@@ -92,7 +100,7 @@
 		if($result) {
       while ($row = mysql_fetch_assoc($result)) {
         $user = new User();
-        
+
         $user->id = $row["id"];
         $user->username = $row["username"];
         $user->firstname = $row["firstname"];
