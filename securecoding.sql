@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS transactions (
   id int AUTO_INCREMENT,
   sender_id int NOT NULL,
   recipient_id int NOT NULL,
-  amount int(10) NOT NULL,
+  amount float NOT NULL,
   approval_date DATETIME,
   -- same as before if approve_date is not set it is not approved
   -- and for approving you set the current timestamp

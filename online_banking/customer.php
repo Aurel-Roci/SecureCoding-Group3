@@ -81,7 +81,7 @@ require 'init.sec.php';
                 <p><?= getUser()->isEmployee() ? 'Employee' : 'Customer' ?></p>
               </td>
               <td>
-                <p><?= getUser()->getBalance() ?> &euro;</p>
+                <p><?= number_format(getUser()->getBalance(), 2, ".", ",") ?> &euro;</p>
               </td>
             </tr>
           </tbody>
@@ -124,7 +124,7 @@ require 'init.sec.php';
                   <a href="#"><?= $recipient->firstname ?> <?= $recipient->lastname ?></a>
                 </td>
                 <td>
-                  <p><?= $transaction->amount ?> &euro;</p>
+                  <p><?= number_format($transaction->amount, 2, ".", ",") ?> &euro;</p>
                 </td>
                 <td>
                   <p><?= $transaction->create_date ?></p>

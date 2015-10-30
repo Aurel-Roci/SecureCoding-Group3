@@ -115,7 +115,7 @@ if($post) {
                   ?>
                 </td>
                 <td>
-                  <p><?= $user->getBalance() ?> &euro;</p>
+                  <p><?= number_format($user->getBalance(), 2, ".", ",") ?> &euro;</p>
                 </td>
               </tr>
             </tbody>
@@ -150,7 +150,7 @@ if($post) {
                       <a href="employee.php?user=<?= $recipient->username ?>"><?= $recipient->firstname ?> <?= $recipient->lastname ?></a>
                     </td>
                     <td>
-                      <p><?= $transaction->amount ?> &euro;</p>
+                      <p><?= number_format($transaction->amount, 2, ".", ",") ?> &euro;</p>
                     </td>
                     <td>
                       <p><?= $transaction->create_date ?></p>
@@ -255,7 +255,7 @@ if($post) {
                       <a href="employee.php?user=<?= $recipient->username ?>"><?= $recipient->firstname ?> <?= $recipient->lastname ?></a>
                     </td>
                     <td>
-                      <p><?= $transaction->amount ?> &euro;</p>
+                      <p><?= number_format($transaction->amount, 2, ".", ",") ?> &euro;</p>
                     </td>
                     <td>
                       <p><?= $transaction->create_date ?></p>
