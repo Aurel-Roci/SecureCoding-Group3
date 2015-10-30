@@ -1,14 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-require 'models/user.php';
-require 'models/transaction.php';
-
-require 'core.inc.php'; //reusable functions
-require 'connect.inc.php'; //connect to DB
-
 require 'init.sec.php';
 ?>
 <!DOCTYPE html>
@@ -51,7 +41,7 @@ require 'init.sec.php';
       <?php
       if (!getUser()->isApproved()) {
       ?>
-      <div class="alert alert-warning" role="alert">Your user account isn't approved yet! Please contact an employee</div>
+      <div class="alert alert-warning" role="alert">Your user account hasn't been approved yet! Please contact an employee.</div>
       <?php
       } else {
       ?>

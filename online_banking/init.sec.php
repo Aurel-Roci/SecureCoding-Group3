@@ -3,17 +3,27 @@
   ini_set('display_startup_errors', 1);
   error_reporting(E_ALL);
 
-  $employee_page = strpos($_SERVER['REQUEST_URI'], '/employee.php') !== false;
+  require 'models/user.php';
+  require 'models/transaction.php';
 
-  $user = getUser();
-  if (!isset($user)) {
-    redirect("index.php");
-  }
-  if ($user->isEmployee() && !$employee_page) {
-    redirect("employee.php");
-  }
-  if (!$user->isEmployee() && $employee_page) {
-    redirect("index.php");
+  require 'core.inc.php';
+  require 'connect.inc.php';
+
+  $isOnIndexPage = strpos($_SERVER['REQUEST_URI'], '/index.php') !== false;
+  $isOnRegisterPage = strpos($_SERVER['REQUEST_URI'], '/register.php') !== false;
+  $isOnEmployeePage = strpos($_SERVER['REQUEST_URI'], '/employee.php') !== false;
+
+  if (!isLoggedIn()) {
+    if (!$isOnIndexPage && !$isOnRegisterPage) {
+      redirect("index.php");
+    }
+  } else {
+    $user = getUser();
+    if ($user->isEmployee() && !$isOnEmployeePage) {
+      redirect("employee.php");
+    } else if (!$user->isEmployee() && $isOnEmployeePage) {
+      redirect("index.php");
+    }
   }
 
 ?>

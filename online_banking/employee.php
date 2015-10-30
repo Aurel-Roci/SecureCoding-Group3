@@ -1,14 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-require 'models/user.php';
-require 'models/transaction.php';
-
-require 'core.inc.php'; //reusable functions
-require 'connect.inc.php'; //connect to DB
-
 require 'init.sec.php';
 
 $post = $_SERVER['REQUEST_METHOD'] === 'POST';
