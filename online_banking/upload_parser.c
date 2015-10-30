@@ -25,7 +25,7 @@
 
 int main(int argc, char* argv[]) {
     int socket_fd, n, client_len;
-    char buffer[64];
+    char filePathBuffer[200];
     struct sockaddr_in server_adr, client_adr;
 
     socket_fd = socket(AF_INET, SOCK_STREAM, 0);
@@ -63,30 +63,58 @@ int main(int argc, char* argv[]) {
         } else if (pid == 0) {
             // child process
             int i, reti;
+            FILE *data;
+            size_t len = 64;
             regex_t regex;
-            char welcome_text[100] = "Welcome on the online banking file submitting server\n";
+            char fileFirstLine[64];
 
-            n = write(client_fd, welcome_text, strlen(welcome_text));
+            fileFirstLine[63] = 0x00;
+
             close(socket_fd);
 
-            if (n < 0) {
-                perror("ERROR writing on socket\n");
-                close(client_fd);
-                exit(1);
-            }
+            // Reading filepath
+            n = read(client_fd, filePathBuffer, 199);
+            filePathBuffer[n] = 0x00;
 
-            // Reading 63 character since 49 are the max allowed characters 63 is totally ok
-            n = read(client_fd, buffer, 63);
-            buffer[63] = 0x00;
-            buffer[strlen(buffer) - 1] = 0x00;
             if (n < 0) {
                 perror("ERROR reading from socket\n");
                 close(client_fd);
                 exit(1);
             }
 
-            printf("Here is the message: %s\n",buffer);
+            printf("Here is the message: %s\n%i\n%i", filePathBuffer, strlen(filePathBuffer), n);
 
+            int endofline = strlen(filePathBuffer) - 1;
+            if ((endofline > 0) && (filePathBuffer[endofline] == '\n'))
+                filePathBuffer[endofline] = 0x00;
+                printf("Here is the message: %s\n", filePathBuffer);
+
+            data = fopen(filePathBuffer, "r");
+
+            if (data == NULL) {
+                char error_response[100] = "Open upload file error!\n";
+                write(client_fd, error_response, strlen(error_response));
+                close(client_fd);
+                perror("Error while opening the file.\n");
+                exit(1);
+            }
+
+            if (fgets(fileFirstLine, len, data) == NULL) {
+                char error_response[100] = "Error reading line!\n";
+                write(client_fd, error_response, strlen(error_response));
+                close(client_fd);
+                fclose(data);
+                perror("Error while reading the file.\n");
+                exit(1);
+            }
+
+            printf("Here is the message: %s\n%i", fileFirstLine, strlen(fileFirstLine));
+
+            fclose(data);
+            endofline = strlen(fileFirstLine) - 1;
+            if ((endofline > 0) && (fileFirstLine[endofline] == '\n'))
+                fileFirstLine[endofline] = 0x00;
+                printf("Here is the message: %s\n", fileFirstLine);
 
             reti = regcomp(&regex, "^[0-9]\\{10\\},[0-9]\\{10\\},[0-9]\\{1,10\\}[.]\\{0,1\\}[0-9]\\{0,2\\},[a-zA-Z0-9]\\{15\\}$", 0);
             if (reti) {
@@ -96,7 +124,7 @@ int main(int argc, char* argv[]) {
                 exit(1);
             }
 
-            reti = regexec(&regex, buffer, 0, NULL, 0);
+            reti = regexec(&regex, fileFirstLine, 0, NULL, 0);
             if (!reti) {
                 //Match
                 char data[5][16];
@@ -106,7 +134,7 @@ int main(int argc, char* argv[]) {
 
                 memset (data, 0, sizeof (data));
 
-                temp_buffer = strtok(buffer, delimiter);
+                temp_buffer = strtok(fileFirstLine, delimiter);
                 strcpy(data[0], temp_buffer);
 
                 for (i = 1; i < 4; i++) {
