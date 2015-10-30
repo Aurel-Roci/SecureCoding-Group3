@@ -123,12 +123,12 @@ require 'init.sec.php';
                   <a href="#"><?= $recipient->firstname ?> <?= $recipient->lastname ?></a>
                 </td>
                 <td>
-                  <p><?= $transaction->amount ?></p>
+                  <p><?= $transaction->amount ?> &euro;</p>
                 </td>
                 <td>
                   <p><?= $transaction->create_date ?></p>
                 </td>
-				<td>
+				        <td>
                   <p><?= $transaction->isApproved() ? 'Approved' : 'Not approved'?></p>
                 </td>
               </tr>
