@@ -30,7 +30,12 @@
           // error "user does not exist"
         }
       }
-		}
+		} else if (isset($_FILES['transactionfile'])) {
+      //tmp_name
+      $filepath = $_FILES['transactionfile']['tmp_name'];
+      $return_line = exec("./upload_parser " . escapeshellarg($filepath), $output, $return_var);
+
+    }
   }
 
 ?>
@@ -64,6 +69,21 @@
   </div>
 </div>
 
+<?php
+  if (isset($return_var)) {
+    // echo $return_var;
+    // print_r($output);
+    if ($return_var == 0) {
+?>
+<div class="alert alert-success" role="alert"><?= $output[0]?></div>
+<?php
+    } else {
+?>
+<div class="alert alert-danger" role="alert"><?= $output[0]?></div>
+<?php
+    }
+  }
+?>
 
 <div class="panel panel-default center" style="width: 100%; margin-top: 25px;">
   <div class="panel-heading">Make new transactions by file upload</div>
