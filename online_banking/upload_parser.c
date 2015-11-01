@@ -93,7 +93,7 @@ int main(int argc, char* argv[]) {
             MYSQL_RES *result;
             int k;
             char query[300];
-            char check_query[200];
+            char check_query[500];
             char tan_id[31];
             double amount = strtod(data[2], NULL);
             char date_text[10];
@@ -109,8 +109,8 @@ int main(int argc, char* argv[]) {
 
             mysql_real_escape_string(conn, tan_id, data[3], 15);
             {
-                char temp[200] = "SELECT ta.id FROM tans ta WHERE ta.user_id = \"%s\" and ta.id = \"%s\" and ta.id NOT IN (SELECT tr.tan_id FROM transactions tr)";
-                snprintf(check_query, 199, temp, data[0], tan_id);
+                char temp[400] = "SELECT ta.id FROM tans ta join users u on (ta.user_id = u.id), users u2 WHERE ta.id = \"%s\" and ta.user_id = \"%s\" and u.approved = true and u2.id = \"%s\" and u2.approved = true and NOT EXISTS (SELECT tr.tan_id FROM transactions tr WHERE tr.tan_id = ta.id)";
+                snprintf(check_query, 399, temp, tan_id, data[0], data[1]);
             }
             if (mysql_query(conn, check_query)) {
                 printf("<strong>Error!</strong> Error in tan checking!\n");
@@ -127,7 +127,7 @@ int main(int argc, char* argv[]) {
             }
 
             if (mysql_num_rows(result) != 1) {
-                printf("<strong>Error!</strong> Either your TAN id was wrong or it was already used!\n");
+                printf("<strong>Error!</strong> TAN wrong/used or accounts not approved!\n");
                 mysql_free_result(result);
                 mysql_close(conn);
                 exit(2);
@@ -205,7 +205,7 @@ int main(int argc, char* argv[]) {
             printf("<strong>Success!</strong> Your transaction has been stored.\n");
         }
     } else if (reti == REG_NOMATCH) {
-        printf("<strong>Error!</strong> Your data does not correspond the allowed definition!\n");
+        printf("<strong>Error!</strong> Your data does not correspond the allowed file format definition!\n");
         exit(2);
     } else {
         printf("<strong>Error!</strong> Regex match failed\n");
