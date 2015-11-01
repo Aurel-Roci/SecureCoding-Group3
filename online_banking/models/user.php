@@ -31,7 +31,9 @@
 
       if($result && mysql_num_rows($result) > 0) {
         $row = mysql_fetch_assoc($result);
-        return array_values($row)[0];
+        $array_row = array_values($row);
+        // print_r($array_row[0]);
+        return $array_row[0];
       }
 
       return "N/A";
