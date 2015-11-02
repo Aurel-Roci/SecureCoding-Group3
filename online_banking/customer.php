@@ -115,8 +115,10 @@ require 'init.sec.php';
             <?php   foreach ($transactions as &$transaction) {
               $sender = fetchUserWithId($transaction->sender_id);
               $recipient = fetchUserWithId($transaction->recipient_id);
+              $user_is_sender = $sender->id == getUser()->id;
+              $class = $user_is_sender ? "danger": "success";
               ?>
-              <tr>
+              <tr class="<?= $class?>" >
                 <td>
                   <a href="#" onclick="document.getElementById('transaction_form').recipient.value = '<?= $sender->username ?>'; return false;"><?= $sender->firstname ?> <?= $sender->lastname ?></a>
                 </td>
@@ -124,7 +126,7 @@ require 'init.sec.php';
                   <a href="#" onclick="document.getElementById('transaction_form').recipient.value = '<?= $recipient->username ?>'; return false;"><?= $recipient->firstname ?> <?= $recipient->lastname ?></a>
                 </td>
                 <td>
-                  <p><?= number_format($transaction->amount, 2, ".", ",") ?> &euro;</p>
+                  <p><?= $user_is_sender? "-":""?><?= number_format($transaction->amount, 2, ".", ",") ?> &euro;</p>
                 </td>
                 <td>
                   <p><?= $transaction->create_date ?></p>

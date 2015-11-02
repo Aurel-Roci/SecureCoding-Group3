@@ -5,6 +5,10 @@
 
   $post = $_SERVER['REQUEST_METHOD'] === 'POST';
 
+  if (isset($_GET["return_var"])) {
+    $return_var = $_GET["return_var"];
+  }
+
   if($post) {
     $allPramatetersSet = isset($_POST['recipient']) && isset($_POST['amount']) && isset($_POST['tan']);
 
@@ -22,6 +26,7 @@
 
   				if($tan_is_for_user && $tan_unused) {
   					insertNewTransaction(getUser()->id, $recipient->id, $amount, $tan);
+            header("Refresh:0");
           } else {
             //error message "TAN error"
           }
@@ -34,6 +39,8 @@
       //tmp_name
       $filepath = $_FILES['transactionfile']['tmp_name'];
       $return_line = exec("./upload_parser " . escapeshellarg($filepath), $output, $return_var);
+      echo $_SERVER['REQUEST_URI'];
+      header('Location: ' . $_SERVER['REQUEST_URI'] . '?return_var=' . $return_var . '&output=' . $output[0] . '');
 
     }
   }
@@ -71,15 +78,13 @@
 
 <?php
   if (isset($return_var)) {
-    // echo $return_var;
-    // print_r($output);
     if ($return_var == 0) {
 ?>
-<div class="alert alert-success" role="alert"><?= $output[0]?></div>
+<div class="alert alert-success" role="alert"><?= $_GET["output"]?></div>
 <?php
     } else {
 ?>
-<div class="alert alert-danger" role="alert"><?= $output[0]?></div>
+<div class="alert alert-danger" role="alert"><?= $_GET["output"]?></div>
 <?php
     }
   }
