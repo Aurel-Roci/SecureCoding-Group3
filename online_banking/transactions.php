@@ -21,18 +21,22 @@
 				$recipient = fetchUserWithUsername($recipient_name);
 
         if ($recipient) {
-  				$tan_is_for_user = isTanFromUser($tan, getUser()->id);
-          $tan_unused = isTanUnused($tan);
+          if ($recipient->isApproved()) {
+    				$tan_is_for_user = isTanFromUser($tan, getUser()->id);
+            $tan_unused = isTanUnused($tan);
 
-  				if($tan_is_for_user && $tan_unused) {
-  					insertNewTransaction(getUser()->id, $recipient->id, $amount, $tan);
-            header("Refresh:0");
+    				if($tan_is_for_user && $tan_unused) {
+    					insertNewTransaction(getUser()->id, $recipient->id, $amount, $tan);
+              header("Refresh:0");
+            } else {
+              $error_msg = "<strong>Warning!</strong> Your TAN is either wrong or already used";
+            }
           } else {
-            //error message "TAN error"
+            $error_msg = "<strong>Warning!</strong> User is not approved";
           }
 
 			  } else {
-          // error "user does not exist"
+          $error_msg = "<strong>Warning!</strong> User does not exists";
         }
       }
 		} else if (isset($_FILES['transactionfile'])) {
@@ -45,6 +49,12 @@
     }
   }
 
+
+  if (isset($error_msg)) {
+?>
+<div class="alert alert-warning" role="alert" style="margin-top: 25px;"><?= $error_msg?></div>
+<?php
+  }
 ?>
 
 

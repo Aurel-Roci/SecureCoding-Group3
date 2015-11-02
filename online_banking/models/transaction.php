@@ -30,7 +30,7 @@
 
   function fetchTransactionsForUsername($username) {
     $query = "SELECT * FROM transactions WHERE sender_id IN (SELECT id FROM users WHERE username = '".$username."')"
-           . "UNION SELECT * FROM transactions WHERE recipient_id IN (SELECT id FROM users WHERE username = '".$username."')";
+           . "UNION SELECT * FROM transactions WHERE recipient_id IN (SELECT id FROM users WHERE username = '".$username."') ORDER BY approval_date desc, create_date desc";
 
     $result = mysql_query($query);
     $transactions = array();
