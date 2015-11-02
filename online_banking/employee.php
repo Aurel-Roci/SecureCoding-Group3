@@ -69,10 +69,12 @@ if($post) {
         $username = $_GET['user'];
         $transactions = fetchTransactionsForUsername($username);
         $user = fetchUserWithUsername($username);
-		if(empty($user)){
-			echo 'No such user exists!';
-		} else{
-        ?>
+    		if (empty($user)){
+      ?>
+        <div class="alert alert-warning" role="alert"><strong>Warning!</strong> User does not exists</div>
+      <?php
+    		}
+      ?>
         <div class="panel panel-default center" style="width: 100%; margin-top: 25px;">
           <div class="panel-heading">User info</div>
           <table class="table">
@@ -88,6 +90,9 @@ if($post) {
                 <th>Balance</th>
               </tr>
             </thead>
+            <?php
+            if (!empty($user)) {
+            ?>
             <tbody>
               <tr>
                 <td>
@@ -122,6 +127,9 @@ if($post) {
                 </td>
               </tr>
             </tbody>
+            <?php
+            }
+            ?>
           </table>
         </div>
 
@@ -175,7 +183,6 @@ if($post) {
         </div>
         <button class='btn btn-primary btn-lg' style='width: 100%;' onclick='downloadTransactionsAfPDF(<?= transactionsToJson($transactions) ?>)'>Download as PDF</button>
       <?php
-	  }
     } else {
       $notApprovedUsers = fetchNotApprovedUsers();
       $notApprovedTransactions = fetchNotApprovedTransactions();
