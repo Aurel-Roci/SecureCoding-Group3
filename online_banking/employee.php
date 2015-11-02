@@ -69,6 +69,9 @@ if($post) {
         $username = $_GET['user'];
         $transactions = fetchTransactionsForUsername($username);
         $user = fetchUserWithUsername($username);
+		if(empty($user)){
+			echo 'No such user exists!';
+		} else{
         ?>
         <div class="panel panel-default center" style="width: 100%; margin-top: 25px;">
           <div class="panel-heading">User info</div>
@@ -172,6 +175,7 @@ if($post) {
         </div>
         <button class='btn btn-primary btn-lg' style='width: 100%;' onclick='downloadTransactionsAfPDF(<?= transactionsToJson($transactions) ?>)'>Download as PDF</button>
       <?php
+	  }
     } else {
       $notApprovedUsers = fetchNotApprovedUsers();
       $notApprovedTransactions = fetchNotApprovedTransactions();
