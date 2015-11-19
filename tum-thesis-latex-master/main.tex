@@ -1,4 +1,4 @@
-\RequirePackage[l2tabu,orthodox]{nag}
+\RequirePackage[l2tabu,orthodox]{nag}  
 
 % TODO: decide if one-sided/two-sided
 %\documentclass[headsepline,footsepline,footinclude=false,fontsize=11pt,paper=a4,listof=totoc,bibliography=totoc,BCOR=12mm,DIV=12]{scrbook} % two-sided
@@ -15,21 +15,457 @@
 \begin{document}
 
 \input{pages/cover}
-
+ 
 \frontmatter{}
 
-\input{pages/title}
-\input{pages/disclaimer}
-\input{pages/acknowledgements}
-\input{pages/abstract}
+%\input{pages/title}
+%\input{pages/disclaimer}
+%\input{pages/acknowledgements}
+%\input{pages/abstract}
 \microtypesetup{protrusion=false}
 \tableofcontents{}
 \microtypesetup{protrusion=true}
 
 \mainmatter{}
 
-\input{chapters/01_introduction}
+\chapter{Time Tracking Table}
+%\input{chapters/01_introduction}
 % TODO: add more chapters here
+\chapter{Vulnerabilities Overview}
+Based on our testing, we identified the following vulnerabilities for the Secode21
+Bank and the OnlineBanking Bank:
+\section{Secode21}
+\subsection{Static Session ID}\label{Static Session ID}\
+
+•Likelihood: \textit{high}\
+
+•Implication: \textit{high}\
+
+•Risk: \textit{high}\
+
+•Reference: OWASP OTG-SESS-003 (see section \ref{} )\\
+
+The session id is saved in form of the (static) user id in a cookie. This cookie can be used on any machine
+to take over the account of a user. The lifetime of this cookie is only limited by the cookie lifetime field.
+
+
+\subsection{Stored XSS in Registration}\label{Stored XSS in Registration}\
+
+•Likelihood: \textit{medium}\
+
+•Implication: \textit{high}\
+
+•Risk: \textit{high}\
+
+•Reference: OWASP OTG-INPVAL-002 (see section \ref{} )\\
+
+Using stored cross-site-scripting attacks, one can inject JavaScript code, that is run, when the Administrator/Employee logs in. Arbitrary code can be loaded from a third party page.
+
+\subsection{Missing Lock Out Mechanism}\label{Missing Lock Out Mechanism}\
+
+	•Likelihood: \textit{high}\
+	
+	•Implication: \textit{medium}\
+	
+	•Risk: \textit{medium}\
+	
+	•Reference: OWASP OTG-AUTHN-003 (see section \ref{} )\\
+	
+The application has no lock out mechanism, which allows brute force attacks on known usernames and testing
+for a valid password
+
+\section{Team3 Online Banking}
+
+\section{Vulnerability Overview}
+
+\chapter{Detailed Report}
+
+The following pages describe for each test how both applications Secode21 and Online Banking Bank
+performed. The test is divided in different sections following the OWASP Testing Guide v4.
+
+\pagebreak 
+\section{Configuration and Deploy Management Testing}\
+\subsection{Test File Extensions Handling for Sensitive Information(OTG-CONFIG-003)}\
+\pagebreak 
+\subsection{Test HTTP Methods(OTG-CONFIG-006)}\
+\pagebreak 
+\subsection{Test HTTP Strict Transport Security(OTG-CONFIG-007)}\
+\pagebreak 
+\subsection{Test RIA cross domain policy(OTG-CONFIG-008)}\
+
+ 
+\pagebreak 
+\section{Identity Management Testing}\
+\subsection{Test Role Definitions(OTG-IDENT-001)}\
+\pagebreak 
+\subsection{Test User Registration Process(OTG-IDENT-002)}\
+\pagebreak 
+\subsection{Test Account Provisioning Process(OTG-IDENT-003)}\
+\pagebreak 
+\subsection{Testing for Account Enumeration and Guessable User Account(OTG-IDENT-004)}\
+\pagebreak 
+\subsection{Testing for Weak or unenforced username policy(OTG-IDENT-005)}\
+ 
+\pagebreak 
+\section{Authentication Testing}\
+\subsection{Testing for Credentials Transported over an Encrypted Channel(OTG-AUTHN-001)}\
+\pagebreak 
+\subsection{Testing for default credentials(OTG-AUTHN-002)}\
+\pagebreak 
+\subsection{Testing for Weak lock out mechanism(OTG-AUTHN-003)}\
+\pagebreak 
+\subsection{Testing for bypassing authentication schema(OTG-AUTHN-004)}\
+\pagebreak 
+\subsection{Test remember password functionality(OTG-AUTHN-005)}\
+\pagebreak 
+\subsection{Testing for Browser cache weakness(OTG-AUTHN-006)}\
+\pagebreak 
+\subsection{Testing for Weak password policy(OTG-AUTHN-007)}\
+\pagebreak 
+\subsection{Testing for Weak security question/answer(OTG-AUTHN-008)}\
+\pagebreak 
+\subsection{Testing for weak password change or reset functionalities (OTG-AUTHN-009)}\
+\pagebreak 
+\subsection{Testing for Weaker authentication in alternative channel(OTG-AUTHN-010)}\
+ 
+\pagebreak 
+\section{Authorization Testing}\
+\subsection{Testing Directory traversal/file include(OTG-AUTHZ-001)}\
+\pagebreak 
+\subsection{Testing for bypassing authorization schema(OTG-AUTHZ-002)}\
+\pagebreak 
+\subsection{Testing for Privilege Escalation(OTG-AUTHZ-003)}\
+\pagebreak 
+\subsection{Testing for Insecure Direct Object References(OTG-AUTHZ-004)}\
+ 
+\pagebreak 
+\section{Session Management Testing}\
+\subsection{Testing for Bypassing Session Management Schema(OTG-SESS-001)}\
+\pagebreak 
+\subsection{Testing for Cookies attributes(OTG-SESS-002)}\
+\pagebreak 
+\subsection{Testing for Session Fixation(OTG-SESS-003)}\
+
+
+\begin{tabular}{cc}
+	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 0\\ Impact: 0\\ Risk:0 \end{tabular}
+\end{tabular}\
+
+\begin{tabular}{ p{3cm}|p{13cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\ 
+	\hline
+	Observation   & N/A    \\
+	Discovery  &   N/A  \\
+	Likelihood & N/A \\
+	Implication    & N/A \\
+	Recommendations& N/A \\ 
+	\hline
+\end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{center}
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+%\begin{table}[]
+	%\centering
+%	\caption{My caption}
+	%\label{my-label}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9} 
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} }              
+	\end{tabular}
+%\end{table}
+\end{center}
+\pagebreak 
+\subsection{Testing for Exposed Session Variables(OTG-SESS-004)}\
+\pagebreak 
+\subsection{Testing for Cross Site Request Forgery(OTG-SESS-005)}\
+\pagebreak 
+\subsection{Testing for logout functionality(OTG-SESS-006)}\
+\pagebreak 
+\subsection{Test Session Timeout(OTG-SESS-007)}\
+\pagebreak 
+\subsection{Testing for Session puzzling(OTG-SESS-008)}\ 
+
+\pagebreak 
+\section{Data Validation Testing}\
+\subsection{Testing for Reflected Cross Site Scripting(OTG-INPVAL-001)}\
+
+\begin{tabular}{cc}
+	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 0\\ Impact: 0\\ Risk:0 \end{tabular}
+\end{tabular}\
+
+\begin{tabular}{ p{3cm}|p{13cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\ 
+	\hline
+	Observation   & We observed no reflected cross site scripting vulnerability.    \\
+	Discovery  &   It seems that all parameters are stored in the database before inserting the values in the HTML  \\
+	Likelihood & N/A \\
+	Implication    & N/A \\
+	Recommendations& N/A \\ 
+	\hline
+\end{tabular}
+
+\\
+\vspace{0.5cm}
+\\
+\begin{center}
+	% Please add the following required packages to your document preamble:
+	% \usepackage[table,xcdraw]{xcolor}
+	% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+	%\begin{table}[]
+	%\centering
+	%	\caption{My caption}
+	%\label{my-label}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9} 
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} }              
+	\end{tabular}
+	%\end{table}
+\end{center}
+
+\pagebreak 
+\subsection{Testing for Stored Cross Site Scripting(OTG-INPVAL-002)}\
+
+\begin{tabular}{cc}
+\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 7\\ Impact: 10\\ Risk: 10\end{tabular}
+\end{tabular}\
+
+
+\begin{tabular}{ p{3cm}|p{12cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\ 
+	\hline
+	Observation   & We observed several possibilities to execute a stored XSS attack. But not all of
+	them could be exploited as the length of the corresponding database fields was
+	often very restricted.
+	We manually tried to inject JavaScript code in every input field. Therefore we
+	used the following code, which just alerts a message.    \\
+	
+	Discovery  &   We inserted Javascript code in the name field on the register page.
+	When we logged in as an employee the script was executed.  There were cases when the script caused for new registered users after the script was entered to not appear.\\
+	
+	Likelihood & This vulnerability can be easily detected, but require some JavaScript knowledge
+	to exploit it.  But the	BeEF framework allows to quickly test several attacks,	therefore we estimated the likelihood to be medium. \\
+	
+	Implication    &The implications are severe as we proofed that it is possible to steal the session. As we injected the code on the admin landingpage, which implies that we were able to act as an admin and register an abitrary account. \\
+	
+	Recommendations& Implement a input sanitation on all input fields on the backend side!  Try to
+	use whitelisting for the different datatypes and do not rely on the frontend input
+	validation.\\ 
+	\hline
+\end{tabular}
+
+\\
+\vspace{0.5cm}
+\\
+\begin{center}
+	% Please add the following required packages to your document preamble:
+	% \usepackage[table,xcdraw]{xcolor}
+	% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+	%\begin{table}[]
+	%\centering
+	%	\caption{My caption}
+	%\label{my-label}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9} 
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} }              
+	\end{tabular}
+	%\end{table}
+\end{center}
+
+\pagebreak 
+\subsection{Testing for HTTP Verb Tampering(OTG-INPVAL-003)}\
+
+\begin{tabular}{cc}
+	Secode21 \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 0\\ Impact: 0\\ Risk: 0 \end{tabular}
+\end{tabular}\
+
+
+\begin{tabular}{ p{3cm}|p{13cm}  }
+	\hline
+	\multicolumn{2}{c}{Secode21} \\ 
+	\hline
+	Observation   &  We did not observe any notable behaviour.  \\
+	
+	Discovery  &   We used the Zed  Attack  Proxy  (ZAP)	to change the HTTP requests method
+	to the ones listed below. The requests that were allowed responded
+	with the index page or an empty body. The rejected requests responded with an
+	error message in the body \
+	
+	Methods that were allowed\
+	
+	•	HEAD\
+	
+	•	OPTIONS\
+	
+	•	GET\
+	
+	•	POST\
+	
+	•	PUT  \
+	
+	Methods that were rejected\
+	
+	•	TRACE\
+	
+	•	CONNECT  \\
+	
+	
+	Likelihood & N/A \\
+	Implication    & N/A \\
+	Recommendations& N/A \\ 
+	
+	\hline
+\end{tabular}
+
+\\
+\vspace{0.5cm}
+\\
+\begin{center}
+	% Please add the following required packages to your document preamble:
+	% \usepackage[table,xcdraw]{xcolor}
+	% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+	%\begin{table}[]
+	%\centering
+	%	\caption{My caption}
+	%\label{my-label}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9} 
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} }              
+	\end{tabular}
+	%\end{table}
+\end{center}
+
+\pagebreak 
+\subsection{Testing for HTTP Parameter pollution(OTG-INPVAL-004)}\
+\pagebreak 
+\subsection{Testing for SQL Injection  (OTG-INPVAL-005)}\
+\pagebreak 
+\subsection{Testing for XML Injection(OTG-INPVAL-008)}\
+\pagebreak 
+\subsection{Testing for SSI Injection(OTG-INPVAL-009)}\
+\pagebreak 
+\subsection{Testing for XPath Injection(OTG-INPVAL-010)}\
+\pagebreak 
+\subsection{IMAP/SMTP Injection(OTG-INPVAL-011)}\
+\pagebreak 
+\subsection{Testing for Code Injection, Testing for Local File Inclusion, Testing for Remote File Inclusion(OTG-INPVAL-012)}\
+\pagebreak 
+\subsection{Testing for Command Injection(OTG-INPVAL-013)}\
+\pagebreak 
+\subsection{Testing for Buffer overflow, Testing for Heap overflow, Testing for Stack overflow, Testing for Format string (OTG-INPVAL-014)}\
+\pagebreak 
+\subsection{Testing for incubated vulnerabilities(OTG-INPVAL-015)}\
+\pagebreak 
+\subsection{Testing for HTTP Splitting/Smuggling(OTG-INPVAL-016)}\
+
+\section{Error Handling}\
+
+\textbf{Secode21}\
+
+Secode21 does not provide a lot of error messages for incorrect inputs (e.g. incorrect TAN
+length, wrong TAN, TAN used). \\ 
+Based on the client side input validation, there are also no messages for manipulated input via proxy or by removing the validation patterns, which can lead to problems. Examples would be a malformated email which results in a not working account or a longer input then expected, which cuts off the end of the input. There are some cases when the page returns the path of the file where the error occurred.\\   
+ 
+\textbf{Team3 Online Banking}
+
+
+\section{Cryptography}\
+ 
+\pagebreak 
+\section{Business Logic Testing}\
+\subsection{Test Business Logic Data Validation(OTG-BUSLOGIC-001)}\
+\pagebreak 
+\subsection{Test Ability to Forge Requests(OTG-BUSLOGIC-002)}\
+\pagebreak 
+\subsection{Test Integrity Checks(OTG-BUSLOGIC-003)}\
+\pagebreak 
+\subsection{Test for Process Timing(OTG-BUSLOGIC-004)}\
+\pagebreak 
+\subsection{Test Number of Times a Function Can be Used Limits(OTG-BUSLOGIC-005)}\
+\pagebreak 
+\subsection{Testing for the Circumvention of Work Flows(OTG-BUSLOGIC-006)}\
+\pagebreak 
+\subsection{Test Defenses Against Application Mis-use(OTG-BUSLOGIC-007)}\
+\pagebreak 
+\subsection{Test Upload of Unexpected File Types(OTG-BUSLOGIC-008)}\
+\pagebreak 
+\subsection{Test Upload of Malicious Files(OTG-BUSLOGIC-009)}\
+
+
+\section{Client Side Testing}
+
+
+
 
 \appendix{}
 
@@ -38,8 +474,8 @@
 \printglossaries{}
 
 \microtypesetup{protrusion=false}
-\listoffigures{}
-\listoftables{}
+%\listoffigures{}
+%\listoftables{}
 \microtypesetup{protrusion=true}
 \printbibliography{}
 
