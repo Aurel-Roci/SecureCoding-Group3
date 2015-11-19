@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.11.17)  19 NOV 2015 17:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.11.17)  19 NOV 2015 17:52
 entering extended mode
 **main.tex
 (main.tex
@@ -1765,135 +1765,66 @@ Overfull \hbox (3.108pt too wide) in paragraph at lines 225--225
  []
 
 
-Overfull \hbox (72.33852pt too wide) in paragraph at lines 217--228
+Overfull \hbox (72.33852pt too wide) in paragraph at lines 217--231
 [][] 
  []
 
 
-! LaTeX Error: There's no line here to end.
+Underfull \hbox (badness 10000) in paragraph at lines 217--231
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.230 \vspace
-             {0.5cm}
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.232 \begin
-            {center}
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
+ []
 
 [36]
-Overfull \hbox (3.108pt too wide) in paragraph at lines 289--289
+Overfull \hbox (3.108pt too wide) in paragraph at lines 288--288
 []|\T1/pplx/m/n/10.95 (-20) Recommendations| 
  []
 
 
-Overfull \hbox (43.88576pt too wide) in paragraph at lines 271--294
+Overfull \hbox (43.88576pt too wide) in paragraph at lines 270--296
 [][] 
  []
 
 
-! LaTeX Error: There's no line here to end.
+Underfull \hbox (badness 10000) in paragraph at lines 270--296
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.296 \vspace
-             {0.5cm}
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
+ []
 
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.298 \begin
-            {center}
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-[37]
-Overfull \hbox (3.108pt too wide) in paragraph at lines 369--369
+[37] [38]
+Overfull \hbox (3.108pt too wide) in paragraph at lines 367--367
 []|\T1/pplx/m/n/10.95 (-20) Recommendations| 
  []
 
 
-Overfull \hbox (72.33852pt too wide) in paragraph at lines 337--373
+Overfull \hbox (72.33852pt too wide) in paragraph at lines 335--374
 [][] 
  []
 
 
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.375 \vspace
-             {0.5cm}
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! LaTeX Error: There's no line here to end.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.377 \begin
-            {center}
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-[38] [39] [40] [41] [42] [43] [44] [45] [46] [47] [48]
-Underfull \hbox (badness 10000) in paragraph at lines 435--438
+Underfull \hbox (badness 10000) in paragraph at lines 335--374
 
  []
 
-[49] [50] [51] [52] [53] [54] [55] [56] [57]
+[39] [40] [41] [42] [43] [44] [45] [46] [47] [48] [49]
+Underfull \hbox (badness 10000) in paragraph at lines 432--435
+
+ []
+
+[50] [51] [52] [53] [54] [55] [56] [57] [58]
 No file main.gls.
 No file main.acr.
 
-LaTeX Warning: Empty bibliography on input line 480.
+LaTeX Warning: Empty bibliography on input line 477.
 
 No complaints by nag.
-[58]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 482.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 482.
+[59]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 479.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 479.
  (main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 482.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 482.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 479.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 479.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: CBF80E5C423E787721A4D8011FBD3B25;7284.
 
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: 3B074DC7AB69564E5B1D62FCF01C1BD2;7283
-(rerunfilecheck)             After:  CBF80E5C423E787721A4D8011FBD3B25;7284.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1903,11 +1834,11 @@ LaTeX Warning: There were undefined references.
 Package logreq Info: Writing requests to 'main.run.xml'.
  ) 
 Here is how much of TeX's memory you used:
- 42273 strings out of 493673
- 898856 string characters out of 3143959
+ 42278 strings out of 493673
+ 898894 string characters out of 3143959
  1586475 words of memory out of 3000000
  44608 multiletter control sequences out of 15000+200000
- 40938 words of font info for 137 fonts, out of 3000000 for 9000
+ 41161 words of font info for 140 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  75i,14n,83p,1916b,3115s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program File
@@ -1915,9 +1846,9 @@ s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX
  2.9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
 e1/urw/palatino/uplr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/palatin
 o/uplri8a.pfb>
-Output written on main.pdf (62 pages, 634258 bytes).
+Output written on main.pdf (63 pages, 634969 bytes).
 PDF statistics:
- 727 PDF objects out of 1000 (max. 8388607)
- 136 named destinations out of 1000 (max. 500000)
+ 731 PDF objects out of 1000 (max. 8388607)
+ 137 named destinations out of 1000 (max. 500000)
  27231 words of extra memory for PDF output out of 29859 (max. 10000000)
 
