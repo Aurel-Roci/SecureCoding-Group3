@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.7.26)  20 NOV 2015 17:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.7.26)  21 NOV 2015 00:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1351,42 +1351,23 @@ LaTeX Info: Redefining \nameref on input line 15.
 \openout8 = `main.out'.
 
 Package nag Info: Command \hc@caption not defined, skipping amendment on input line 15.
- (./pages/cover.tex
-
-./pages/cover.tex:12: LaTeX Error: File `logos/tum' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.12   \includegraphics[width=40mm]{logos/tum}
-                                              
-I could not locate the file with any of these extensions:
-.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-./pages/cover.tex:33: LaTeX Error: File `logos/faculty' not found.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.33   \includegraphics[width=20mm]{logos/faculty}
-                                                  
-I could not locate the file with any of these extensions:
-.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-[1
+ (./pages/cover.tex <logos/tum.pdf, id=296, 55.20625pt x 30.1125pt>
+File: logos/tum.pdf Graphic file (type pdf)
+ <use logos/tum.pdf>
+Package pdftex.def Info: logos/tum.pdf used on input line 12.
+(pdftex.def)             Requested size: 113.81102pt x 62.08203pt.
+ <logos/faculty.pdf, id=297, 30.1125pt x 33.12375pt>
+File: logos/faculty.pdf Graphic file (type pdf)
+ <use logos/faculty.pdf>
+Package pdftex.def Info: logos/faculty.pdf used on input line 33.
+(pdftex.def)             Requested size: 56.9055pt x 62.60217pt.
+ [1
 
 \openout5 = `main.ist'.
 
 
 
-{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}])
+{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./logos/tum.pdf> <./logos/faculty.pdf>])
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/pplx/b/n' tried instead on input line 26.
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <20.74> not available
@@ -1418,11 +1399,6 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Overfull \hbox (12.3962pt too wide) in paragraph at lines 41--41
- [][] [][]\T1/pplx/m/n/10.95 (-20) Testing for Ac-count Enu-mer-a-tion and Guess-able User Account(OTG- 
- []
-
-
 Overfull \hbox (15.3466pt too wide) in paragraph at lines 47--47
  [][] [][]\T1/pplx/m/n/10.95 (-20) Testing for Cre-den-tials Trans-ported over an En-crypted Channel(OTG- 
  []
@@ -1433,7 +1409,7 @@ Overfull \hbox (15.3466pt too wide) in paragraph at lines 47--47
 
 ]
 LaTeX Font Info:    Font shape `T1/pplx/m/sl' in size <10.95> not available
-(Font)              Font shape `T1/pplx/m/it' tried instead on input line 133.
+(Font)              Font shape `T1/pplx/m/it' tried instead on input line 131.
  [2])
 \tf@toc=\write9
 \openout9 = `main.toc'.
@@ -1494,72 +1470,97 @@ Chapter 3.
 [4
 
 
-] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22] [23] [24] [25] [26] [27] [28] [29]
-Overfull \hbox (3.108pt too wide) in paragraph at lines 164--164
-[]|\T1/pplx/m/n/10.95 (-20) Recommendations| 
- []
-
-
-Overfull \hbox (72.2764pt too wide) in paragraph at lines 156--170
+]
+Overfull \hbox (20.28429pt too wide) in paragraph at lines 96--111
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 156--170
+Underfull \hbox (badness 10000) in paragraph at lines 96--111
 
  []
 
-[30] [31] [32] [33] [34] [35]
-Overfull \hbox (3.108pt too wide) in paragraph at lines 227--227
-[]|\T1/pplx/m/n/10.95 (-20) Recommendations| 
+[5] [6]
+Overfull \hbox (20.28429pt too wide) in paragraph at lines 142--175
+[][] 
  []
 
-
-Overfull \hbox (72.2764pt too wide) in paragraph at lines 219--233
+[7]
+Overfull \hbox (20.28429pt too wide) in paragraph at lines 184--199
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 219--233
+Underfull \hbox (badness 10000) in paragraph at lines 184--199
 
  []
 
-[36]
-Overfull \hbox (3.108pt too wide) in paragraph at lines 290--290
-[]|\T1/pplx/m/n/10.95 (-20) Recommendations| 
- []
-
-
-Overfull \hbox (43.82364pt too wide) in paragraph at lines 272--298
+<figures/charles_results.png, id=472, 621.32124pt x 269.005pt>
+File: figures/charles_results.png Graphic file (type png)
+ <use figures/charles_results.png>
+Package pdftex.def Info: figures/charles_results.png used on input line 224.
+(pdftex.def)             Requested size: 372.79562pt x 161.40424pt.
+ [8 <./figures/charles_results.png>]
+Overfull \hbox (20.28429pt too wide) in paragraph at lines 235--250
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 272--298
+Underfull \hbox (badness 10000) in paragraph at lines 235--250
 
+ []
+
+[9]
+Overfull \hbox (20.28429pt too wide) in paragraph at lines 282--297
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 282--297
+
+ []
+
+[10]
+Overfull \hbox (20.28429pt too wide) in paragraph at lines 326--341
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 326--341
+
+ []
+
+[11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36]
+Overfull \hbox (20.28429pt too wide) in paragraph at lines 430--442
+[][] 
  []
 
 [37]
-Overfull \hbox (3.108pt too wide) in paragraph at lines 369--369
-[]|\T1/pplx/m/n/10.95 (-20) Recommendations| 
- []
-
-
-Overfull \hbox (72.2764pt too wide) in paragraph at lines 337--376
+Overfull \hbox (20.28429pt too wide) in paragraph at lines 450--468
 [][] 
  []
 
+[38] [39] [40]
+Overfull \hbox (20.28429pt too wide) in paragraph at lines 512--525
+[][] 
+ []
 
-Underfull \hbox (badness 10000) in paragraph at lines 337--376
+[41] [42] [43] [44] [45] [46]
+Underfull \hbox (badness 10000) in paragraph at lines 541--542
 
  []
 
-[38] [39] [40] [41] [42] [43] [44] [45] [46] [47] [48]
-Underfull \hbox (badness 10000) in paragraph at lines 434--437
+
+Underfull \hbox (badness 10000) in paragraph at lines 543--546
 
  []
 
-[49] [50] [51] [52] [53] [54] [55] [56] [57] (/Users/stefankofler/securecoding/SecureCoding-Group3/tum-thesis-latex-master/.texpadtmp/main.gls [58]
+
+Underfull \hbox (badness 10000) in paragraph at lines 547--548
+
+ []
+
+[47] [48] [49] [50] [51] [52] [53] [54] [55] (/Users/stefankofler/securecoding/SecureCoding-Group3/tum-thesis-latex-master/.texpadtmp/main.gls [56]
 LaTeX Font Info:    Try loading font information for T1+cmss on input line 5.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/base/t1cmss.fd
 File: t1cmss.fd 2014/09/29 v2.5h Standard LaTeX font definitions
@@ -1568,29 +1569,29 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             `cmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-) (/Users/stefankofler/securecoding/SecureCoding-Group3/tum-thesis-latex-master/.texpadtmp/main.acr [59
+) (/Users/stefankofler/securecoding/SecureCoding-Group3/tum-thesis-latex-master/.texpadtmp/main.acr [57
 
 
 
 
 ])
 
-LaTeX Warning: Empty bibliography on input line 479.
+LaTeX Warning: Empty bibliography on input line 588.
 
 No complaints by nag.
-[60
+[58
 
 
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 481.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 481.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 590.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 590.
  (/Users/stefankofler/securecoding/SecureCoding-Group3/tum-thesis-latex-master/.texpadtmp/main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 481.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 481.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 590.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 590.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 80528B109C63D87F427C52177F34C748;7211.
+(rerunfilecheck)             Checksum: 972A854E1BC4DA333C5E2FF5F93FAB9D;6919.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1603,18 +1604,18 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 42352 strings out of 493089
- 905754 string characters out of 6134842
- 1582098 words of memory out of 5000000
- 44761 multiletter control sequences out of 15000+600000
- 42887 words of font info for 144 fonts, out of 8000000 for 9000
+ 42386 strings out of 493089
+ 906274 string characters out of 6134842
+ 1582096 words of memory out of 5000000
+ 44775 multiletter control sequences out of 15000+600000
+ 44777 words of font info for 170 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,14n,83p,1836b,3114s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on /Users/stefankofler/securecoding/SecureCoding-Group3/tum-thesis-latex-master/.texpadtmp/main.pdf (64 pages, 113058 bytes).
+Output written on /Users/stefankofler/securecoding/SecureCoding-Group3/tum-thesis-latex-master/.texpadtmp/main.pdf (62 pages, 670008 bytes).
 PDF statistics:
- 720 PDF objects out of 1000 (max. 8388607)
- 643 compressed objects within 7 object streams
- 144 named destinations out of 1000 (max. 500000)
- 29797 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 746 PDF objects out of 1000 (max. 8388607)
+ 635 compressed objects within 7 object streams
+ 140 named destinations out of 1000 (max. 500000)
+ 29788 words of extra memory for PDF output out of 29859 (max. 10000000)
 

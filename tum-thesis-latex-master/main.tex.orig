@@ -87,13 +87,17 @@ performed. The test is divided in different sections following the OWASP Testing
 
 
 \section{Configuration and Deploy Management Testing}\
-\subsection{Test File Extensions Handling for Sensitive Information (OTG-CONFIG-003)}\
+\subsection{Test File Extensions Handling for Sensitive Information(OTG-CONFIG-003)}\
 
 \begin{tabular}{cc}
 	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 8\\ Impact: 5\\ Risk:5 \end{tabular}
 \end{tabular}\
 
+<<<<<<< HEAD
+\begin{tabular}{ p{3cm}|p{13cm}  }
+=======
 \begin{tabular}{ l|p{11cm}  }
+>>>>>>> develop
 	\hline
 	\multicolumn{2}{c}{\textbf{Secode21}} \\ 
 	\hline
@@ -132,51 +136,64 @@ performed. The test is divided in different sections following the OWASP Testing
 \end{center}
 \pagebreak 
 
-\subsection{Test HTTP Methods (OTG-CONFIG-006)}\
-
-
+<<<<<<< HEAD
+\subsection{Testing for logout functionality(OTG-SESS-006)}\
 \begin{tabular}{cc}
 	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 8\\ Impact: 5\\ Risk:5 \end{tabular}
 \end{tabular}\
 
-\begin{tabular}{ l|p{11cm}  }
+\begin{tabular}{ p{3cm}|p{13cm}  }
 	\hline
 	\multicolumn{2}{c}{\textbf{Secode21}} \\ 
 	\hline
-	Observation   &  We did not observe any notable behavior.  \\
-	Discovery  &  We used the Zed  Attack  Proxy  (ZAP)	to change the HTTP requests method to the ones listed below. The requests that were allowed responded
-	with the index page or an empty body. The rejected requests responded with an
-	error message in the body.\
-	
-	Methods that were allowed\
-	
-	•	HEAD\
-	
-	•	OPTIONS\
-	
-	•	GET\
-	
-	•	POST\
-	
-	•	PUT  \
-	
-	Methods that were rejected\
-	
-	•	TRACE\
-	
-	•	CONNECT  \\
-	
+	Observation   & The \textit{HTTP Strict Transport Security} protocol is never used. \\
+	Discovery  & We used \textit{Charles Web Proxy} to check the HTTP response headers and the \textit{Strict-Transport-Security} header was not found. \\
 	Likelihood & N/A \\
 	Implication    & N/A \\
-	Recommendations & N/A \\
-	Comparison&  \\  
+	Recommendations & It would be better so transport some data via https and use the HSTS protocol. \\
+	Comparison& The same results apply for our web application. \\  
 	\hline
 \end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{center}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9} 
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } L              \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N             
+	\end{tabular}
+\end{center}
+\pagebreak 
 
-
+\subsection{Test Session Timeout(OTG-SESS-007)}\
+\pagebreak 
+\subsection{Testing for Session puzzling(OTG-SESS-008)}\ 
 
 \pagebreak 
-\subsection{Test HTTP Strict Transport Security (OTG-CONFIG-007)}\
+
+
+
+=======
+>>>>>>> develop
+\subsection{Test HTTP Methods(OTG-CONFIG-006)}\
+\pagebreak 
+\subsection{Test HTTP Strict Transport Security(OTG-CONFIG-007)}\
 \begin{tabular}{cc}
 	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 8\\ Impact: 5\\ Risk:5 \end{tabular}
 \end{tabular}\
@@ -218,155 +235,26 @@ performed. The test is divided in different sections following the OWASP Testing
 		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N             
 	\end{tabular}
 \end{center}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.6]{figures/charles_results}
-\end{figure}
-
 \pagebreak 
 
 \pagebreak 
-\subsection{Test RIA cross domain policy (OTG-CONFIG-008)}\
-\begin{tabular}{cc}
-	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 8\\ Impact: 5\\ Risk:5 \end{tabular}
-\end{tabular}\
+\subsection{Test RIA cross domain policy(OTG-CONFIG-008)}\
 
-\begin{tabular}{ l|p{11cm}  }
-	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\ 
-	\hline
-	Observation   & There are no RIA applications on the system and therefore is no crossdomain.xml file provided. \\
-	Discovery  & Using \textit{wget} we tried to find a \textit{crossdomain.xml} or \textit{clientaccesspolicy.xml} file and couldn't find it. \\
-	Likelihood & N/A \\
-	Implication    & N/A \\
-	Recommendations & N/A \\
-	Comparison & The same results applies for our web application. \\  
-	\hline
-\end{tabular}
-\\
-\vspace{0.5cm}
-\\
-\begin{center}
-	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9} 
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF} 
-		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF} 
-		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF} 
-		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF} 
-		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF} 
-		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF} 
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF} 
-		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF} 
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N/A             
-	\end{tabular}
-\end{center}
+ 
 \pagebreak 
 
  
 \pagebreak 
 \section{Identity Management Testing}\
-\subsection{Test Role Definitions (OTG-IDENT-001)}\
-\begin{tabular}{cc}
-	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 10\\ Impact: 4\\ Risk:4 \end{tabular}
-\end{tabular}\
-
-\begin{tabular}{ l|p{11cm}  }
-	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\ 
-	\hline
-	Observation   & We found out that there exist two different roles in the system. There is the role of a normal customer and the role of an employee. Employees have the additional functionality to view account and transaction details of all the customers. Transactions over 10000 euro and new user registrations can be accepted by the employee. \\
-	Discovery  & No special tools except a browser were needed because all the roles and their available functions are described. \\
-	Likelihood & It is very likely that people find this information. \\
-	Implication    & There is no direct implication, but knowing the roles and their functionality helps with other attacks. \\
-	Recommendations & Don't describe the roles on the web page. \\
-	Comparison & Our web application provides the same roles, but the roles are not described on the web page. \\  
-	\hline
-\end{tabular}
-\\
-\vspace{0.5cm}
-\\
-\begin{center}
-	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9} 
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF} 
-		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{ECF4FF} 
-		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{BBDAFF} 
-		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{ECF4FF} 
-		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{BBDAFF} 
-		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
-		\rowcolor[HTML]{ECF4FF} 
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{BBDAFF} 
-		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{ECF4FF} 
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N             
-	\end{tabular}
-\end{center}
+\subsection{Test Role Definitions(OTG-IDENT-001)}\
 \pagebreak 
-
-\subsection{Test User Registration Process (OTG-IDENT-002)}\
-\begin{tabular}{cc}
-	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 5\\ Impact: 5\\ Risk: 5 \end{tabular}
-\end{tabular}\
-
-\begin{tabular}{ l|p{11cm}  }
-	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\ 
-	\hline
-	Observation   & Any person can register themself as an user and this registration than gets validated by an employee. One person can register multiple times and with different roles. There is no proof of the identity of a user possible. The identification requirements include the name, surname, phone number, email address and username, but only two of these can be verified. \\
-	Discovery  & No special tools are needed to get this information. A browser and multiple registration tests provided the necessary results. \\
-	Likelihood & It is quite likely that this information can be retrieved by any user with minimal experience. \\
-	Implication    & User could try to register multiple times and with wrong information to get access to user accounts with more permissions or to create multiple bank accounts. \\
-	Recommendations & The information passed in the registration form should be validated, especially the email address and phone number can be verified very easily. The name can be validated by hand if a customer would go to the bank and the employee would than accept his registration. \\
-	Comparison & Our web application doesn't require a phone number for the registration an the role of the user can be selected in the registration form. It doesn't make our application less secure, because the registration has still to be accepted by an employee. \\  
-	\hline
-\end{tabular}
-\\
-\vspace{0.5cm}
-\\
-\begin{center}
-	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9} 
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF} 
-		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{ECF4FF} 
-		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{BBDAFF} 
-		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{ECF4FF} 
-		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{BBDAFF} 
-		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
-		\rowcolor[HTML]{ECF4FF} 
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{BBDAFF} 
-		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{ECF4FF} 
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N             
-	\end{tabular}
-\end{center}
-
+\subsection{Test User Registration Process(OTG-IDENT-002)}\
 \pagebreak 
-\subsection{Test Account Provisioning Process (OTG-IDENT-003)}\
+\subsection{Test Account Provisioning Process(OTG-IDENT-003)}\
 \pagebreak 
-\subsection{Testing for Account Enumeration and Guessable User Account (OTG-IDENT-004)}\
+\subsection{Testing for Account Enumeration and Guessable User Account(OTG-IDENT-004)}\
 \pagebreak 
-\subsection{Testing for Weak or unenforced username policy (OTG-IDENT-005)}\
+\subsection{Testing for Weak or unenforced username policy(OTG-IDENT-005)}\
  
 \pagebreak 
 \section{Authentication Testing}\
@@ -408,6 +296,77 @@ performed. The test is divided in different sections following the OWASP Testing
 \pagebreak 
 \subsection{Testing for Session Fixation(OTG-SESS-003)}\
 
+ 
+ \subsubsection{Team 21}
+ 
+ \begin{table}[H]
+ 	\centering
+ 	\begin{tabular}{l p{11cm}} 
+ 		\textit{Observation} &  N/A\\ 
+ 		\hline
+ 		\textit{Discovery} &  N/A \\
+ 		\hline
+ 		\textit{Likelihood} & N/A\\
+ 		\hline
+ 		\textit{Implication} & N/A\\
+ 		\hline
+ 		\textit{Recommendations} & N/A\\ 
+ 	\end{tabular}
+ 	\caption{OWASP OTG-SESS-003 results for team 21}
+ 	\label{table:scenario2}
+ \end{table}
+ 
+ \subsubsection{Team 3}
+ 
+ \begin{table}[H]
+ 	\centering
+ 	\begin{tabular}{l p{11cm}} 
+ 		\textit{Observation} &  N/A\\ 
+ 		\hline
+ 		\textit{Discovery} &  N/A \\
+ 		\hline
+ 		\textit{Likelihood} & N/A\\
+ 		\hline
+ 		\textit{Implication} & N/A\\
+ 		\hline
+ 		\textit{Recommendations} & N/A\\ 
+ 	\end{tabular}
+ 	\caption{OWASP OTG-SESS-003 results for team 3}
+ 	\label{table:scenario2}
+ \end{table}
+ \
+ \vspace{0.5cm}
+ \
+ \begin{center}
+ 	% Please add the following required packages to your document preamble:
+ 	% \usepackage[table,xcdraw]{xcolor}
+ 	% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+ 	%\begin{table}[]
+ 	%\centering
+ 	%	\caption{My caption}
+ 	%\label{my-label}
+ 	\begin{tabular}{ll}
+ 		\rowcolor[HTML]{34CDF9} 
+ 		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+ 		\rowcolor[HTML]{BBDAFF} 
+ 		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} }               \\
+ 		\rowcolor[HTML]{ECF4FF} 
+ 		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} }               \\
+ 		\rowcolor[HTML]{BBDAFF} 
+ 		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} }               \\
+ 		\rowcolor[HTML]{ECF4FF} 
+ 		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} }               \\
+ 		\rowcolor[HTML]{BBDAFF} 
+ 		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} }               \\
+ 		\rowcolor[HTML]{ECF4FF} 
+ 		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} }               \\
+ 		\rowcolor[HTML]{BBDAFF} 
+ 		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} }               \\
+ 		\rowcolor[HTML]{ECF4FF} 
+ 		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} }              
+ 	\end{tabular}
+ 	%\end{table}
+ \end{center}
 \pagebreak 
 \subsection{Testing for Exposed Session Variables(OTG-SESS-004)}\
 \pagebreak 
@@ -423,48 +382,214 @@ performed. The test is divided in different sections following the OWASP Testing
 \section{Data Validation Testing}\
 \subsection{Testing for Reflected Cross Site Scripting(OTG-INPVAL-001)}\
 
-\begin{tabular}{cc}
-	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 8\\ Impact: 5\\ Risk:5 \end{tabular}
-\end{tabular}\
+\subsubsection{Team 21}
 
-\begin{tabular}{ l|p{11cm}  }
-	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\ 
-	\hline
-	Observation   & We observed no reflected cross site scripting vulnerability. \\
-	Discovery  & It seems that all parameters are stored in the database before inserting the values in the HTML. \\
-	Likelihood & N/A \\
-	Implication    & N/A \\
-	Recommendations &  N/A \\
-	Comparison& The same results apply for our web application. \\  
-	\hline
-\end{tabular}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{l p{11cm}} 
+		\textit{Observation} & We observed no reflected cross site scripting vulnerability. \\ 
+		\hline
+		\textit{Discovery} &  It seems that all parameters are stored in the database before inserting the values in the HTML. \\
+		\hline
+		\textit{Likelihood} & N/A\\
+		\hline
+		\textit{Implication} & N/A\\
+		\hline
+		\textit{Recommendations} & N/A\\ 
+	\end{tabular}
+	\caption{OWASP OTG-INPVAL-001 results for team 21}
+	\label{table:scenario2}
+\end{table}
+
+\subsubsection{Team 3}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{l p{11cm}} 
+		\textit{Observation} &  N/A\\ 
+		\hline
+		\textit{Discovery} &  N/A \\
+		\hline
+		\textit{Likelihood} & N/A\\
+		\hline
+		\textit{Implication} & N/A\\
+		\hline
+		\textit{Recommendations} & N/A\\ 
+	\end{tabular}
+	\caption{OWASP OTG-INPVAL-001 results for team 3}
+	\label{table:scenario2}
+\end{table} 
+\
+\vspace{0.5cm}
+\
+\begin{center}
+	% Please add the following required packages to your document preamble:
+	% \usepackage[table,xcdraw]{xcolor}
+	% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+	%\begin{table}[]
+	%\centering
+	%	\caption{My caption}
+	%\label{my-label}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9} 
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} }              
+	\end{tabular}
+	%\end{table}
+\end{center}
 
 \pagebreak 
 \subsection{Testing for Stored Cross Site Scripting(OTG-INPVAL-002)}\
 
-\begin{tabular}{cc}
-	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 8\\ Impact: 5\\ Risk:5 \end{tabular}
-\end{tabular}\
+\subsubsection{Team 21}
 
-\begin{tabular}{ l|p{11cm}  }
-	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\ 
-	\hline
-	Observation   &  We observed several possibilities to execute a stored XSS attack. But not all of
-	them could be exploited as the length of the corresponding database fields was
-	often very restricted.
-	We manually tried to inject JavaScript code in every input field. Therefore we
-	used the following code, which just alerts a message. \\
-	Discovery  & We inserted Javascript code in the name field on the register page.
-	When we logged in as an employee the script was executed.  There were cases when the script caused for new registered users after the script was entered to not appear. \\
-	Likelihood & This vulnerability can be easily detected, but require some JavaScript knowledge to exploit it. Therefore we estimated the likelihood to be medium. \\
-	Implication    & The implications are severe as we proofed that it is possible to steal the session. As we injected the code on the admin landingpage, which implies that we were able to act as an admin and register an abitrary account. \\
-	Recommendations & Implement a input sanitation on all input fields on the backend side!  Try to use whitelisting for the different datatypes and do not rely on the frontend input
-	validation. \\
-	Comparison& \\  
-	\hline
-\end{tabular}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{l p{11cm}} 
+		\textit{Observation} & We observed several possibilities to execute a stored XSS attack. But not all of
+		them could be exploited as the length of the corresponding database fields was
+		often very restricted.
+		We manually tried to inject JavaScript code in every input field. Therefore we
+		used the following code, which just alerts a message. \\ 
+		\hline
+		\textit{Discovery} &   We inserted Javascript code in the name field on the register page.
+		When we logged in as an employee the script was executed.  There were cases when the script caused for new registered users after the script was entered to not appear. \\
+		\hline
+		\textit{Likelihood} & This vulnerability can be easily detected, but require some JavaScript knowledge to exploit it. Therefore we estimated the likelihood to be medium.\\
+		\hline
+		\textit{Implication} & The implications are severe as we proofed that it is possible to steal the session. As we injected the code on the admin landingpage, which implies that we were able to act as an admin and register an abitrary account.\\
+		\hline
+		\textit{Recommendations} &Implement a input sanitation on all input fields on the backend side!  Try to use whitelisting for the different datatypes and do not rely on the frontend input
+		validation.\\ 
+	\end{tabular}
+	\caption{OWASP OTG-INPVAL-002 results for team 21}
+	\label{table:scenario2}
+\end{table}
+
+\subsubsection{Team 3}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{l p{11cm}} 
+		\textit{Observation} &  N/A\\ 
+		\hline
+		\textit{Discovery} &  N/A \\
+		\hline
+		\textit{Likelihood} & N/A\\
+		\hline
+		\textit{Implication} & N/A\\
+		\hline
+		\textit{Recommendations} & N/A\\ 
+	\end{tabular}
+	\caption{OWASP OTG-INPVAL-002 results for team 3}
+	\label{table:scenario2}
+\end{table}    
+\vspace{0.5cm} 
+\begin{center}
+	% Please add the following required packages to your document preamble:
+	% \usepackage[table,xcdraw]{xcolor}
+	% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+	%\begin{table}[]
+	%\centering
+	%	\caption{My caption}
+	%\label{my-label}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9} 
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} }               \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} }              
+	\end{tabular}
+	%\end{table}
+\end{center}
+\pagebreak 
+\subsection{Testing for HTTP Verb Tampering(OTG-INPVAL-003)}\
+
+\subsubsection{Team 21}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{l p{11cm}} 
+		\textit{Observation} &We did not observe any notable behavior.  \\ 
+		\hline
+		\textit{Discovery} &   We used the Zed  Attack  Proxy  (ZAP)	to change the HTTP requests method to the ones listed below. The requests that were allowed responded
+		with the index page or an empty body. The rejected requests responded with an
+		error message in the body.\
+		
+		Methods that were allowed\
+		
+		•	HEAD\
+		
+		•	OPTIONS\
+		
+		•	GET\
+		
+		•	POST\
+		
+		•	PUT  \
+		
+		Methods that were rejected\
+		
+		•	TRACE\
+		
+		•	CONNECT  \\\\
+		\hline
+		\textit{Likelihood} & N/A \\
+		\hline
+		\textit{Implication} & N/A\\
+		\hline
+		\textit{Recommendations} & N/A\\ 
+	\end{tabular}
+	\caption{OWASP OTG-INPVAL-003 results for team 21}
+	\label{table:scenario2}
+\end{table}
+
+\subsubsection{Team 3}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{l p{11cm}} 
+		\textit{Observation} &  N/A\\ 
+		\hline
+		\textit{Discovery} &  N/A \\
+		\hline
+		\textit{Likelihood} & N/A\\
+		\hline
+		\textit{Implication} & N/A\\
+		\hline
+		\textit{Recommendations} & N/A\\ 
+	\end{tabular}
+	\caption{OWASP OTG-INPVAL-003 results for team 3}
+	\label{table:scenario2}
+\end{table}    
 
 \vspace{0.5cm} 
 \begin{center}
@@ -479,50 +604,36 @@ performed. The test is divided in different sections following the OWASP Testing
 		\rowcolor[HTML]{34CDF9} 
 		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
 		\rowcolor[HTML]{BBDAFF} 
-		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} N}               \\
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} }               \\
 		\rowcolor[HTML]{ECF4FF} 
-		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} M}               \\
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} }               \\
 		\rowcolor[HTML]{BBDAFF} 
-		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} N}               \\
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} }               \\
 		\rowcolor[HTML]{ECF4FF} 
-		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} Y}               \\
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} }               \\
 		\rowcolor[HTML]{BBDAFF} 
-		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} U}               \\
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} }               \\
 		\rowcolor[HTML]{ECF4FF} 
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} M}               \\
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} }               \\
 		\rowcolor[HTML]{BBDAFF} 
-		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} M}               \\
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} }               \\
 		\rowcolor[HTML]{ECF4FF} 
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} L}              
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} }              
 	\end{tabular}
 	%\end{table}
 \end{center}
-\pagebreak 
-\subsection{Testing for HTTP Verb Tampering(OTG-INPVAL-003)}\
+
 
 \pagebreak 
 \subsection{Testing for HTTP Parameter pollution(OTG-INPVAL-004)}\
 \pagebreak 
 \subsection{Testing for SQL Injection  (OTG-INPVAL-005)}\
-
-\begin{tabular}{cc}
-	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 8\\ Impact: 5\\ Risk:5 \end{tabular}
-\end{tabular}\
-
-\begin{tabular}{ l|p{11cm}  }
-	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\ 
-	\hline
-	Observation   & We observed that no SQL Injection was possible. \\
-	Discovery  & We tried inserting various SQL statements in the fields of using \textit{SQL Inject Me} tool and failed. \\
-	
-	Likelihood & N/A \\
-	Implication    & N/A \\
-	Recommendations & N/A \\
-	Comparison&  \\  
-	\hline
-\end{tabular}
-
+\pagebreak 
+\subsection{Testing for XML Injection(OTG-INPVAL-008)}\
+\pagebreak 
+\subsection{Testing for SSI Injection(OTG-INPVAL-009)}\
+\pagebreak 
+\subsection{Testing for XPath Injection(OTG-INPVAL-010)}\
 \pagebreak 
 \subsection{IMAP/SMTP Injection(OTG-INPVAL-011)}\
 \pagebreak 
