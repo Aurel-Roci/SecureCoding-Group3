@@ -87,7 +87,7 @@ performed. The test is divided in different sections following the OWASP Testing
 
 
 \section{Configuration and Deploy Management Testing}\
-\subsection{Test File Extensions Handling for Sensitive Information(OTG-CONFIG-003)}\
+\subsection{Test File Extensions Handling for Sensitive Information (OTG-CONFIG-003)}\
 
 \begin{tabular}{cc}
 	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 8\\ Impact: 5\\ Risk:5 \end{tabular}
@@ -132,9 +132,9 @@ performed. The test is divided in different sections following the OWASP Testing
 \end{center}
 \pagebreak 
 
-\subsection{Test HTTP Methods(OTG-CONFIG-006)}\
+\subsection{Test HTTP Methods (OTG-CONFIG-006)}\
 \pagebreak 
-\subsection{Test HTTP Strict Transport Security(OTG-CONFIG-007)}\
+\subsection{Test HTTP Strict Transport Security (OTG-CONFIG-007)}\
 \begin{tabular}{cc}
 	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 8\\ Impact: 5\\ Risk:5 \end{tabular}
 \end{tabular}\
@@ -176,12 +176,57 @@ performed. The test is divided in different sections following the OWASP Testing
 		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N             
 	\end{tabular}
 \end{center}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.6]{figures/charles_results}
+\end{figure}
+
 \pagebreak 
 
 \pagebreak 
-\subsection{Test RIA cross domain policy(OTG-CONFIG-008)}\
+\subsection{Test RIA cross domain policy (OTG-CONFIG-008)}\
+\begin{tabular}{cc}
+	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 8\\ Impact: 5\\ Risk:5 \end{tabular}
+\end{tabular}\
 
- 
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\ 
+	\hline
+	Observation   & There are no RIA applications on the system and therefore is no crossdomain.xml file provided. \\
+	Discovery  & Using \textit{wget} we tried to find a \textit{crossdomain.xml} or \textit{clientaccesspolicy.xml} file and couldn't find it. \\
+	Likelihood & N/A \\
+	Implication    & N/A \\
+	Recommendations & N/A \\
+	Comparison & The same results applies for our web application. \\  
+	\hline
+\end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{center}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9} 
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N/A             
+	\end{tabular}
+\end{center}
 \pagebreak 
 
  
