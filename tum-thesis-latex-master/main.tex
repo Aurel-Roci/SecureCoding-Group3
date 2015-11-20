@@ -88,7 +88,102 @@ performed. The test is divided in different sections following the OWASP Testing
 
 \section{Configuration and Deploy Management Testing}\
 \subsection{Test File Extensions Handling for Sensitive Information(OTG-CONFIG-003)}\
+
+\begin{tabular}{cc}
+	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 8\\ Impact: 5\\ Risk:5 \end{tabular}
+\end{tabular}\
+
+\begin{tabular}{ p{3cm}|p{13cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\ 
+	\hline
+	Observation   & File extensions are handled correctly but while testing we found a folder called SQL with sql files and pdf files describing the database structure and the sql commands used by the web application.    \\
+	Discovery  & Thanks to the tool \textit{dotdotpwn}, that tries automatically different URLs, we found the SQL folder. We passed the following parameters: \\
+	Likelihood & The likelihood is quite high that someone tries a tool to find these kind of vulnerabilities. There is no need for special knowledge because the tools work quite automatically without much configuration. \\
+	Implication    & These vulnerabilities could help attackers to perform sql injection attacks because you know the database structure and the sql commands used in the implementation of the web application. \\
+	Recommendations& Block the access to sql files and to those folders that describe the web applications architecture. \\ 
+	Comparison& Our web application handles file extensions correctly, but it is possible to access the compiled c program that handles the batch files. This is a problem because you can reverse engineer the code and use the vulnerabilities found. This scenario is possible but is very complex. \\ 
+	\hline
+\end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{center}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9} 
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } L              \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N             
+	\end{tabular}
+\end{center}
 \pagebreak 
+
+\subsection{Testing for logout functionality(OTG-SESS-006)}\
+\begin{tabular}{cc}
+	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 8\\ Impact: 5\\ Risk:5 \end{tabular}
+\end{tabular}\
+
+\begin{tabular}{ p{3cm}|p{13cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\ 
+	\hline
+	Observation   & The \textit{HTTP Strict Transport Security} protocol is never used. \\
+	Discovery  & We used \textit{Charles Web Proxy} to check the HTTP response headers and the \textit{Strict-Transport-Security} header was not found. \\
+	Likelihood & N/A \\
+	Implication    & N/A \\
+	Recommendations & It would be better so transport some data via https and use the HSTS protocol. \\
+	Comparison& The same results apply for our web application. \\  
+	\hline
+\end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{center}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9} 
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } L              \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N             
+	\end{tabular}
+\end{center}
+\pagebreak 
+
+\subsection{Test Session Timeout(OTG-SESS-007)}\
+\pagebreak 
+\subsection{Testing for Session puzzling(OTG-SESS-008)}\ 
+
+\pagebreak 
+
+
+
 \subsection{Test HTTP Methods(OTG-CONFIG-006)}\
 \pagebreak 
 \subsection{Test HTTP Strict Transport Security(OTG-CONFIG-007)}\
