@@ -1,0 +1,215 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\select@language {american}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}Time Tracking Table}{1}{chapter.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}Vulnerabilities Overview}{2}{chapter.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.1}Secode21}{2}{section.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1.1}Static Session ID}{2}{subsection.2.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1.2}Stored XSS in Registration}{2}{subsection.2.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1.3}Missing Lock Out Mechanism}{2}{subsection.2.1.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.2}Team3 Online Banking}{3}{section.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2.3}Vulnerability Overview}{3}{section.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}Detailed Report}{4}{chapter.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}Information Gathering Testing}{5}{section.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.1}Conduct Search Engine Discovery and Reconnaissance for Information Leakage (OWASP OTG-INFO-001)}{5}{subsection.3.1.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Team 21}{5}{section*.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Team 3}{5}{section*.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.2}Fingerprint Web Server (OWASP OTG-INFO-002)}{6}{subsection.3.1.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Team 21}{6}{section*.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Team 3}{7}{section*.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.3}Review Webserver Metafiles for Information Leakage (OWASP OTG-INFO-003)}{8}{subsection.3.1.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Team 21}{9}{section*.10}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Team 3}{9}{section*.12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.4}Enumerate Applications on Webserver (OWASP OTG-INFO-004)}{10}{subsection.3.1.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Team 21}{11}{section*.14}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Team 3}{11}{section*.16}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.5}Review webpage comments and metadata for information leakage (OTG-INFO-005)}{12}{subsection.3.1.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Team 21}{12}{section*.18}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Team 3}{12}{section*.20}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.6}Identify application entry points (OTG-INFO-006)}{13}{subsection.3.1.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Team 21}{13}{section*.22}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Team 3}{13}{section*.24}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.7}Map execution paths through application (OTG-INFO-007)}{14}{subsection.3.1.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Team 21}{14}{section*.26}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Team 3}{14}{section*.28}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.8}Fingerprint Web Application Framework (OTG-INFO-008)}{15}{subsection.3.1.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Team 21}{15}{section*.30}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Team 3}{15}{section*.32}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.9}Fingerprint Web Application (OTG-INFO-009)}{16}{subsection.3.1.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Team 21}{16}{section*.34}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Team 3}{16}{section*.36}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1.10}Map Application Architecture (OTG-INFO-010)}{17}{subsection.3.1.10}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Team 21}{17}{section*.38}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsubsection}{\nonumberline Team 3}{17}{section*.40}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}Configuration and Deploy Management Testing}{18}{section.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.1}Test File Extensions Handling for Sensitive Information(OTG-CONFIG-003)}{18}{subsection.3.2.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.2}Test HTTP Methods(OTG-CONFIG-006)}{19}{subsection.3.2.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.3}Test HTTP Strict Transport Security(OTG-CONFIG-007)}{20}{subsection.3.2.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2.4}Test RIA cross domain policy(OTG-CONFIG-008)}{21}{subsection.3.2.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.3}Identity Management Testing}{22}{section.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3.1}Test Role Definitions(OTG-IDENT-001)}{22}{subsection.3.3.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3.2}Test User Registration Process(OTG-IDENT-002)}{23}{subsection.3.3.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3.3}Test Account Provisioning Process(OTG-IDENT-003)}{24}{subsection.3.3.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3.4}Testing for Account Enumeration and Guessable User Account(OTG-IDENT-004)}{25}{subsection.3.3.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3.5}Testing for Weak or unenforced username policy(OTG-IDENT-005)}{26}{subsection.3.3.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.4}Authentication Testing}{27}{section.3.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4.1}Testing for Credentials Transported over an Encrypted Channel(OTG-AUTHN-001)}{27}{subsection.3.4.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4.2}Testing for default credentials(OTG-AUTHN-002)}{28}{subsection.3.4.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4.3}Testing for Weak lock out mechanism(OTG-AUTHN-003)}{29}{subsection.3.4.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4.4}Testing for bypassing authentication schema(OTG-AUTHN-004)}{30}{subsection.3.4.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4.5}Test remember password functionality(OTG-AUTHN-005)}{31}{subsection.3.4.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4.6}Testing for Browser cache weakness(OTG-AUTHN-006)}{32}{subsection.3.4.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4.7}Testing for Weak password policy(OTG-AUTHN-007)}{33}{subsection.3.4.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4.8}Testing for Weak security question/answer(OTG-AUTHN-008)}{34}{subsection.3.4.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4.9}Testing for weak password change or reset functionalities (OTG-AUTHN-009)}{35}{subsection.3.4.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.4.10}Testing for Weaker authentication in alternative channel(OTG-AUTHN-010)}{36}{subsection.3.4.10}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.5}Authorization Testing}{37}{section.3.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.5.1}Testing Directory traversal/file include(OTG-AUTHZ-001)}{37}{subsection.3.5.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.5.2}Testing for bypassing authorization schema(OTG-AUTHZ-002)}{38}{subsection.3.5.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.5.3}Testing for Privilege Escalation(OTG-AUTHZ-003)}{39}{subsection.3.5.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.5.4}Testing for Insecure Direct Object References(OTG-AUTHZ-004)}{40}{subsection.3.5.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.6}Session Management Testing}{41}{section.3.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.6.1}Testing for Bypassing Session Management Schema(OTG-SESS-001)}{41}{subsection.3.6.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.6.2}Testing for Cookies attributes(OTG-SESS-002)}{42}{subsection.3.6.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.6.3}Testing for Session Fixation(OTG-SESS-003)}{43}{subsection.3.6.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.6.4}Testing for Exposed Session Variables(OTG-SESS-004)}{44}{subsection.3.6.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.6.5}Testing for Cross Site Request Forgery(OTG-SESS-005)}{45}{subsection.3.6.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.6.6}Testing for logout functionality(OTG-SESS-006)}{46}{subsection.3.6.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.6.7}Test Session Timeout(OTG-SESS-007)}{47}{subsection.3.6.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.6.8}Testing for Session puzzling(OTG-SESS-008)}{48}{subsection.3.6.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.7}Data Validation Testing}{49}{section.3.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.7.1}Testing for Reflected Cross Site Scripting(OTG-INPVAL-001)}{49}{subsection.3.7.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.7.2}Testing for Stored Cross Site Scripting(OTG-INPVAL-002)}{50}{subsection.3.7.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.7.3}Testing for HTTP Verb Tampering(OTG-INPVAL-003)}{51}{subsection.3.7.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.7.4}Testing for HTTP Parameter pollution(OTG-INPVAL-004)}{52}{subsection.3.7.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.7.5}Testing for SQL Injection (OTG-INPVAL-005)}{53}{subsection.3.7.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.7.6}Testing for XML Injection(OTG-INPVAL-008)}{54}{subsection.3.7.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.7.7}Testing for SSI Injection(OTG-INPVAL-009)}{55}{subsection.3.7.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.7.8}Testing for XPath Injection(OTG-INPVAL-010)}{56}{subsection.3.7.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.7.9}IMAP/SMTP Injection(OTG-INPVAL-011)}{57}{subsection.3.7.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.7.10}Testing for Code Injection, Testing for Local File Inclusion, Testing for Remote File Inclusion(OTG-INPVAL-012)}{58}{subsection.3.7.10}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.7.11}Testing for Command Injection(OTG-INPVAL-013)}{59}{subsection.3.7.11}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.7.12}Testing for Buffer overflow, Testing for Heap overflow, Testing for Stack overflow, Testing for Format string (OTG-INPVAL-014)}{60}{subsection.3.7.12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.7.13}Testing for incubated vulnerabilities(OTG-INPVAL-015)}{61}{subsection.3.7.13}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.7.14}Testing for HTTP Splitting/Smuggling(OTG-INPVAL-016)}{62}{subsection.3.7.14}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.8}Error Handling}{62}{section.3.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.9}Cryptography}{62}{section.3.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.10}Business Logic Testing}{63}{section.3.10}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.10.1}Test Business Logic Data Validation(OTG-BUSLOGIC-001)}{63}{subsection.3.10.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.10.2}Test Ability to Forge Requests(OTG-BUSLOGIC-002)}{64}{subsection.3.10.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.10.3}Test Integrity Checks(OTG-BUSLOGIC-003)}{65}{subsection.3.10.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.10.4}Test for Process Timing(OTG-BUSLOGIC-004)}{66}{subsection.3.10.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.10.5}Test Number of Times a Function Can be Used Limits(OTG-BUSLOGIC-005)}{67}{subsection.3.10.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.10.6}Testing for the Circumvention of Work Flows(OTG-BUSLOGIC-006)}{68}{subsection.3.10.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.10.7}Test Defenses Against Application Mis-use(OTG-BUSLOGIC-007)}{69}{subsection.3.10.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.10.8}Test Upload of Unexpected File Types(OTG-BUSLOGIC-008)}{70}{subsection.3.10.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.10.9}Test Upload of Malicious Files(OTG-BUSLOGIC-009)}{71}{subsection.3.10.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.11}Client Side Testing}{71}{section.3.11}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Glossary}{72}{section*.42}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Acronyms}{73}{section*.44}
