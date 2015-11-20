@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.7.26)  20 NOV 2015 12:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.7.26)  20 NOV 2015 17:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1249,65 +1249,7 @@ Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/biblatex/lbx/english.lbx
 File: english.lbx 2015/04/19 v3.0 biblatex localization (PK/JW/AB)
-)) (/Users/stefankofler/securecoding/SecureCoding-Group3/tum-thesis-latex-master/.texpadtmp/main.aux
-
-LaTeX Warning: Label `table:scenario2' multiply defined.
-
-
-LaTeX Warning: Label `table:scenario2' multiply defined.
-
-
-LaTeX Warning: Label `table:scenario2' multiply defined.
-
-
-LaTeX Warning: Label `table:scenario2' multiply defined.
-
-
-LaTeX Warning: Label `table:scenario2' multiply defined.
-
-
-LaTeX Warning: Label `table:scenario2' multiply defined.
-
-
-LaTeX Warning: Label `table:scenario2' multiply defined.
-
-
-LaTeX Warning: Label `table:scenario2' multiply defined.
-
-
-LaTeX Warning: Label `table:scenario2' multiply defined.
-
-
-LaTeX Warning: Label `table:scenario2' multiply defined.
-
-
-LaTeX Warning: Label `table:scenario2' multiply defined.
-
-
-LaTeX Warning: Label `table:scenario2' multiply defined.
-
-
-LaTeX Warning: Label `table:scenario2' multiply defined.
-
-
-LaTeX Warning: Label `table:scenario2' multiply defined.
-
-
-LaTeX Warning: Label `table:scenario2' multiply defined.
-
-
-LaTeX Warning: Label `table:scenario2' multiply defined.
-
-
-LaTeX Warning: Label `table:scenario2' multiply defined.
-
-
-LaTeX Warning: Label `table:scenario2' multiply defined.
-
-
-LaTeX Warning: Label `table:scenario2' multiply defined.
-
-)
+)) (/Users/stefankofler/securecoding/SecureCoding-Group3/tum-thesis-latex-master/.texpadtmp/main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
@@ -1475,23 +1417,24 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             `zplm' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [1
 
-
-
-]
-Overfull \hbox (12.3962pt too wide) in paragraph at lines 103--103
+Overfull \hbox (12.3962pt too wide) in paragraph at lines 41--41
  [][] [][]\T1/pplx/m/n/10.95 (-20) Testing for Ac-count Enu-mer-a-tion and Guess-able User Account(OTG- 
  []
 
 
-Overfull \hbox (15.3466pt too wide) in paragraph at lines 109--109
+Overfull \hbox (15.3466pt too wide) in paragraph at lines 47--47
  [][] [][]\T1/pplx/m/n/10.95 (-20) Testing for Cre-den-tials Trans-ported over an En-crypted Channel(OTG- 
  []
 
+[1
+
+
+
+]
 LaTeX Font Info:    Font shape `T1/pplx/m/sl' in size <10.95> not available
-(Font)              Font shape `T1/pplx/m/it' tried instead on input line 167.
-[2])
+(Font)              Font shape `T1/pplx/m/it' tried instead on input line 133.
+ [2])
 \tf@toc=\write9
 \openout9 = `main.toc'.
 
@@ -1551,91 +1494,72 @@ Chapter 3.
 [4
 
 
-] [5]
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 141.
- (/usr/local/texlive/2015/texmf-dist/tex/latex/base/t1cmtt.fd
-File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-Package microtype Info: Loading generic settings for font family
-(microtype)             `cmtt' (encoding: T1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
-
-Underfull \hbox (badness 10000) in paragraph at lines 141--142
-\T1/cmtt/m/n/10.95 cvedetails . com / vulnerability-[]list / vendor _ id-[]45 / product _
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 160--161
-\T1/cmtt/m/n/10.95 cvedetails . com / vulnerability-[]list / vendor _ id-[]45 / product _
- []
-
-[6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35] [36] [37] [38] [39] [40] [41] [42]
-Overfull \hbox (3.108pt too wide) in paragraph at lines 583--583
+] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22] [23] [24] [25] [26] [27] [28] [29]
+Overfull \hbox (3.108pt too wide) in paragraph at lines 164--164
 []|\T1/pplx/m/n/10.95 (-20) Recommendations| 
  []
 
 
-Overfull \hbox (72.2764pt too wide) in paragraph at lines 575--589
+Overfull \hbox (72.2764pt too wide) in paragraph at lines 156--170
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 575--589
+Underfull \hbox (badness 10000) in paragraph at lines 156--170
 
  []
 
-[43] [44] [45] [46] [47] [48]
-Overfull \hbox (3.108pt too wide) in paragraph at lines 646--646
+[30] [31] [32] [33] [34] [35]
+Overfull \hbox (3.108pt too wide) in paragraph at lines 227--227
 []|\T1/pplx/m/n/10.95 (-20) Recommendations| 
  []
 
 
-Overfull \hbox (72.2764pt too wide) in paragraph at lines 638--652
+Overfull \hbox (72.2764pt too wide) in paragraph at lines 219--233
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 638--652
+Underfull \hbox (badness 10000) in paragraph at lines 219--233
 
  []
 
-[49]
-Overfull \hbox (3.108pt too wide) in paragraph at lines 709--709
+[36]
+Overfull \hbox (3.108pt too wide) in paragraph at lines 290--290
 []|\T1/pplx/m/n/10.95 (-20) Recommendations| 
  []
 
 
-Overfull \hbox (43.82364pt too wide) in paragraph at lines 691--717
+Overfull \hbox (43.82364pt too wide) in paragraph at lines 272--298
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 691--717
+Underfull \hbox (badness 10000) in paragraph at lines 272--298
 
  []
 
-[50]
-Overfull \hbox (3.108pt too wide) in paragraph at lines 788--788
+[37]
+Overfull \hbox (3.108pt too wide) in paragraph at lines 369--369
 []|\T1/pplx/m/n/10.95 (-20) Recommendations| 
  []
 
 
-Overfull \hbox (72.2764pt too wide) in paragraph at lines 756--795
+Overfull \hbox (72.2764pt too wide) in paragraph at lines 337--376
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 756--795
+Underfull \hbox (badness 10000) in paragraph at lines 337--376
 
  []
 
-[51] [52] [53] [54] [55] [56] [57] [58] [59] [60] [61]
-Underfull \hbox (badness 10000) in paragraph at lines 853--856
+[38] [39] [40] [41] [42] [43] [44] [45] [46] [47] [48]
+Underfull \hbox (badness 10000) in paragraph at lines 434--437
 
  []
 
-[62] [63] [64] [65] [66] [67] [68] [69] [70] (/Users/stefankofler/securecoding/SecureCoding-Group3/tum-thesis-latex-master/.texpadtmp/main.gls [71]
+[49] [50] [51] [52] [53] [54] [55] [56] [57] (/Users/stefankofler/securecoding/SecureCoding-Group3/tum-thesis-latex-master/.texpadtmp/main.gls [58]
 LaTeX Font Info:    Try loading font information for T1+cmss on input line 5.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/base/t1cmss.fd
 File: t1cmss.fd 2014/09/29 v2.5h Standard LaTeX font definitions
@@ -1644,27 +1568,27 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             `cmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-) (/Users/stefankofler/securecoding/SecureCoding-Group3/tum-thesis-latex-master/.texpadtmp/main.acr [72
+) (/Users/stefankofler/securecoding/SecureCoding-Group3/tum-thesis-latex-master/.texpadtmp/main.acr [59
 
 
 
 
 ])
 
-LaTeX Warning: Empty bibliography on input line 898.
+LaTeX Warning: Empty bibliography on input line 479.
 
 No complaints by nag.
-[73
+[60
 
 
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 900.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 900.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 481.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 481.
  (/Users/stefankofler/securecoding/SecureCoding-Group3/tum-thesis-latex-master/.texpadtmp/main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 900.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 900.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 481.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 481.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 80528B109C63D87F427C52177F34C748;7211.
 
@@ -1674,26 +1598,23 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 42491 strings out of 493089
- 907890 string characters out of 6134842
- 1582210 words of memory out of 5000000
- 44811 multiletter control sequences out of 15000+600000
- 44316 words of font info for 160 fonts, out of 8000000 for 9000
+ 42352 strings out of 493089
+ 905754 string characters out of 6134842
+ 1582098 words of memory out of 5000000
+ 44761 multiletter control sequences out of 15000+600000
+ 42887 words of font info for 144 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,14n,83p,1836b,3114s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on /Users/stefankofler/securecoding/SecureCoding-Group3/tum-thesis-latex-master/.texpadtmp/main.pdf (77 pages, 159964 bytes).
+{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on /Users/stefankofler/securecoding/SecureCoding-Group3/tum-thesis-latex-master/.texpadtmp/main.pdf (64 pages, 113058 bytes).
 PDF statistics:
- 899 PDF objects out of 1000 (max. 8388607)
- 806 compressed objects within 9 object streams
- 208 named destinations out of 1000 (max. 500000)
- 30397 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 720 PDF objects out of 1000 (max. 8388607)
+ 643 compressed objects within 7 object streams
+ 144 named destinations out of 1000 (max. 500000)
+ 29797 words of extra memory for PDF output out of 29859 (max. 10000000)
 
