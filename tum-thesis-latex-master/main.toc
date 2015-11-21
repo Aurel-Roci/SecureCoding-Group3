@@ -126,7 +126,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.9.6}Testing for the Circumvention of Work Flows(OTG-BUSLOGIC-006)}{52}{subsection.3.9.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.9.7}Test Defenses Against Application Mis-use(OTG-BUSLOGIC-007)}{53}{subsection.3.9.7}
+\contentsline {subsection}{\numberline {3.9.7}Test Defenses Against Application Misuse(OTG-BUSLOGIC-007)}{53}{subsection.3.9.7}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.9.8}Test Upload of Unexpected File Types(OTG-BUSLOGIC-008)}{54}{subsection.3.9.8}
 \defcounter {refsection}{0}\relax 

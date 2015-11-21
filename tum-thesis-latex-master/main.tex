@@ -487,6 +487,24 @@ performed. The test is divided in different sections following the OWASP Testing
 
 \section{Authentication Testing}\
 \subsection{Testing for Credentials Transported over an Encrypted Channel(OTG-AUTHN-001)}\
+
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\hline
+	Observation   & This ensures that our credentials are sent using an encrypted channel and that the credentials are not readable by a malicious user using a sniffer. \\
+	Discovery  &  We used \textit{Zed Attack Proxy (ZED)} in order to capture packet headers and to inspect them.  We saw that the request addressed to the web application is  using the HTTPS protocol.\\
+	Likelihood & N/A \\
+	Implication    & N/A \\
+	Recommendations & N/A. \\
+	Comparison & The same applies for our web application.\\
+	\hline
+\end{tabular}
+
 \pagebreak
 \subsection{Testing for default credentials(OTG-AUTHN-002)}\
 \begin{tabular}{cR{12cm}}
@@ -539,6 +557,8 @@ performed. The test is divided in different sections following the OWASP Testing
  
 \pagebreak
 \subsection{Testing for Browser cache weakness (OTG-AUTHN-006)}\
+
+
 \pagebreak
 \subsection{Testing for Weak password policy (OTG-AUTHN-007)}\ 
  
@@ -859,7 +879,7 @@ Based on the client side input validation, there are also no messages for manipu
 \pagebreak
 \subsection{Testing for the Circumvention of Work Flows(OTG-BUSLOGIC-006)}\
 \pagebreak
-\subsection{Test Defenses Against Application Mis-use(OTG-BUSLOGIC-007)}\
+\subsection{Test Defenses Against Application Misuse(OTG-BUSLOGIC-007)}\
 \pagebreak
 \subsection{Test Upload of Unexpected File Types(OTG-BUSLOGIC-008)}\
 \pagebreak

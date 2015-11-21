@@ -60,7 +60,7 @@
 \BOOKMARK [2][-]{subsection.3.9.4}{Test for Process Timing\(OTG-BUSLOGIC-004\)}{section.3.9}% 60
 \BOOKMARK [2][-]{subsection.3.9.5}{Test Number of Times a Function Can be Used Limits\(OTG-BUSLOGIC-005\)}{section.3.9}% 61
 \BOOKMARK [2][-]{subsection.3.9.6}{Testing for the Circumvention of Work Flows\(OTG-BUSLOGIC-006\)}{section.3.9}% 62
-\BOOKMARK [2][-]{subsection.3.9.7}{Test Defenses Against Application Mis-use\(OTG-BUSLOGIC-007\)}{section.3.9}% 63
+\BOOKMARK [2][-]{subsection.3.9.7}{Test Defenses Against Application Misuse\(OTG-BUSLOGIC-007\)}{section.3.9}% 63
 \BOOKMARK [2][-]{subsection.3.9.8}{Test Upload of Unexpected File Types\(OTG-BUSLOGIC-008\)}{section.3.9}% 64
 \BOOKMARK [2][-]{subsection.3.9.9}{Test Upload of Malicious Files\(OTG-BUSLOGIC-009\)}{section.3.9}% 65
 \BOOKMARK [1][-]{section.3.10}{Client Side Testing}{chapter.3}% 66
