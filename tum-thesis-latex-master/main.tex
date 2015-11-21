@@ -84,9 +84,9 @@ performed. The test is divided in different sections following the OWASP Testing
 \section{Configuration and Deploy Management Testing}\
 \subsection{Test File Extensions Handling for Sensitive Information (OTG-CONFIG-003)}\
 
-\begin{tabular}{cc}
-	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 8\\ Impact: 5\\ Risk:5 \end{tabular}
-\end{tabular}\
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 8\\& Impact: 5\\& Risk: 5
+\end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
@@ -130,9 +130,9 @@ performed. The test is divided in different sections following the OWASP Testing
 \subsection{Test HTTP Methods (OTG-CONFIG-006)}\
 
 
-\begin{tabular}{cc}
-	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 8\\ Impact: 5\\ Risk:5 \end{tabular}
-\end{tabular}\
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
@@ -171,9 +171,9 @@ performed. The test is divided in different sections following the OWASP Testing
 
 \pagebreak
 \subsection{Test HTTP Strict Transport Security (OTG-CONFIG-007)}\
-\begin{tabular}{cc}
-	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 8\\ Impact: 5\\ Risk:5 \end{tabular}
-\end{tabular}\
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
@@ -222,9 +222,9 @@ performed. The test is divided in different sections following the OWASP Testing
 
 \pagebreak
 \subsection{Test RIA cross domain policy (OTG-CONFIG-008)}\
-\begin{tabular}{cc}
-	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 8\\ Impact: 5\\ Risk:5 \end{tabular}
-\end{tabular}\
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
@@ -269,20 +269,20 @@ performed. The test is divided in different sections following the OWASP Testing
 \pagebreak
 \section{Identity Management Testing}\
 \subsection{Test Role Definitions (OTG-IDENT-001)}\
-\begin{tabular}{cc}
-	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 10\\ Impact: 4\\ Risk:4 \end{tabular}
-\end{tabular}\
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 10\\& Impact: 4\\& Risk: 4
+\end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\ 
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
 	\hline
 	Observation   & We found out that there exist two different roles in the system. There is the role of a normal customer and the role of an employee. Employees have the additional functionality to view account and transaction details of all the customers. Transactions over 10000 euro and new user registrations can be accepted by the employee. \\
 	Discovery  & No special tools except a browser were needed because all the roles and their available functions are described. \\
 	Likelihood & It is very likely that people find this information. \\
 	Implication    & There is no direct implication, but knowing the roles and their functionality helps with other attacks. \\
 	Recommendations & Don't describe the roles on the web page. \\
-	Comparison & Our web application provides the same roles, but the roles are not described on the web page. \\  
+	Comparison & Our web application provides the same roles, but the roles are not described on the web page. \\
 	\hline
 \end{tabular}
 \\
@@ -290,43 +290,43 @@ performed. The test is divided in different sections following the OWASP Testing
 \\
 \begin{center}
 	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9} 
+		\rowcolor[HTML]{34CDF9}
 		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF} 
+		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{ECF4FF} 
+		\rowcolor[HTML]{ECF4FF}
 		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{BBDAFF} 
+		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{ECF4FF} 
+		\rowcolor[HTML]{ECF4FF}
 		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{BBDAFF} 
+		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
-		\rowcolor[HTML]{ECF4FF} 
+		\rowcolor[HTML]{ECF4FF}
 		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{BBDAFF} 
+		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{ECF4FF} 
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N             
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N
 	\end{tabular}
 \end{center}
-\pagebreak 
+\pagebreak
 
 \subsection{Test User Registration Process (OTG-IDENT-002)}\
-\begin{tabular}{cc}
-	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 5\\ Impact: 5\\ Risk: 5 \end{tabular}
-\end{tabular}\
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 5\\& Impact: 5\\& Risk: 5
+\end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\ 
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
 	\hline
 	Observation   & Any person can register themself as an user and this registration than gets validated by an employee. One person can register multiple times and with different roles. There is no proof of the identity of a user possible. The identification requirements include the name, surname, phone number, email address and username, but only two of these can be verified. \\
 	Discovery  & No special tools are needed to get this information. A browser and multiple registration tests provided the necessary results. \\
 	Likelihood & It is quite likely that this information can be retrieved by any user with minimal experience. \\
 	Implication    & User could try to register multiple times and with wrong information to get access to user accounts with more permissions or to create multiple bank accounts. \\
 	Recommendations & The information passed in the registration form should be validated, especially the email address and phone number can be verified very easily. The name can be validated by hand if a customer would go to the bank and the employee would than accept his registration. \\
-	Comparison & Our web application doesn't require a phone number for the registration an the role of the user can be selected in the registration form. It doesn't make our application less secure, because the registration has still to be accepted by an employee. \\  
+	Comparison & Our web application doesn't require a phone number for the registration an the role of the user can be selected in the registration form. It doesn't make our application less secure, because the registration has still to be accepted by an employee. \\
 	\hline
 \end{tabular}
 \\
@@ -334,35 +334,35 @@ performed. The test is divided in different sections following the OWASP Testing
 \\
 \begin{center}
 	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9} 
+		\rowcolor[HTML]{34CDF9}
 		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF} 
+		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{ECF4FF} 
+		\rowcolor[HTML]{ECF4FF}
 		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{BBDAFF} 
+		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{ECF4FF} 
+		\rowcolor[HTML]{ECF4FF}
 		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{BBDAFF} 
+		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
-		\rowcolor[HTML]{ECF4FF} 
+		\rowcolor[HTML]{ECF4FF}
 		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{BBDAFF} 
+		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{ECF4FF} 
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N             
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N
 	\end{tabular}
 \end{center}
 
-\pagebreak 
+\pagebreak
 \subsection{Test Account Provisioning Process (OTG-IDENT-003)}\
-\pagebreak 
+\pagebreak
 \subsection{Testing for Account Enumeration and Guessable User Account (OTG-IDENT-004)}\
-\pagebreak 
+\pagebreak
 \subsection{Testing for Weak or unenforced username policy (OTG-IDENT-005)}\
- 
-\pagebreak 
+
+\pagebreak
 \section{Authentication Testing}\
 \subsection{Testing for Credentials Transported over an Encrypted Channel(OTG-AUTHN-001)}\
 \pagebreak
