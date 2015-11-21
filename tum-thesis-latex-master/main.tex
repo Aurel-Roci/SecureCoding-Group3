@@ -354,15 +354,137 @@ performed. The test is divided in different sections following the OWASP Testing
 		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N
 	\end{tabular}
 \end{center}
-
 \pagebreak
+
 \subsection{Test Account Provisioning Process (OTG-IDENT-003)}\
-\pagebreak
-\subsection{Testing for Account Enumeration and Guessable User Account (OTG-IDENT-004)}\
-\pagebreak
-\subsection{Testing for Weak or unenforced username policy (OTG-IDENT-005)}\
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: N/A\\& Impact: N/A\\& Risk: N/A
+\end{tabular}
 
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\ 
+	\hline
+	Observation   & Our observation showed us that employees can accept customer registrations and can make customer accounts to employee accounts. \\
+	Discovery  & All the observations were made with the \textit{Chrome} web browser. \\
+	Implication    & If an employee account gets hacked you can make even other accounts to employees and accept new registrations. \\
+	Recommendations & N/A \\
+	Comparison & In our web application the employee doesn't make customer accounts to employee accounts but rather accepts special employee registrations. It makes no difference in the security. \\  
+	\hline
+\end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{center}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9} 
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N/A             
+	\end{tabular}
+\end{center}
 \pagebreak
+
+\subsection{Testing for Account Enumeration and Guessable User Account (OTG-IDENT-004)}\
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\ 
+	\hline
+	Observation   & We found out that the web application makes no difference between existing usernames and non existing usernames when trying to login with wrong credentials. The same html response and the same response headers are provided by the system. \\
+	Discovery  & We used the \textit{Charles Web Proxy} to analyze the web application responses. \\
+	Implication    & N/A \\
+	Recommendations & N/A \\
+	Comparison & Our web application makes no difference between login tries with existing usernames and non existing ones. Both web applications aren't vulnerable here. \\  
+	\hline
+\end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{center}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9} 
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N/A             
+	\end{tabular}
+\end{center}
+\pagebreak
+
+\subsection{Testing for Weak or unenforced username policy (OTG-IDENT-005)}\
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\ 
+	\hline
+	Observation   & The usernames are not auto-generated and therefore there is no special structure in the usernames. \\
+	Discovery  & No tool is used here. The username field in the registration form gives us all the information we need. \\
+	Implication    & N/A \\
+	Recommendations & N/A \\
+	Comparison & The same applies for our web application. \\  
+	\hline
+\end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{center}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9} 
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{BBDAFF} 
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF} 
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N/A             
+	\end{tabular}
+\end{center}
+\pagebreak
+
 \section{Authentication Testing}\
 \subsection{Testing for Credentials Transported over an Encrypted Channel(OTG-AUTHN-001)}\
 \pagebreak
