@@ -567,8 +567,48 @@ performed. The test is divided in different sections following the OWASP Testing
 \pagebreak
 \section{Authorization Testing}\
 \subsection{Testing Directory traversal/file include (OTG-AUTHZ-001)}\
- 
+ \begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 8\\& Impact: 5\\& Risk: 5
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\hline
+	Observation   & Directory traversal is possible for two folders that don't contain an \textit{index} file. That are the two folders \textit{SQL} and \textit{fpdf17}. Especially the possibility to access the SQL folder that contains information about the database structure is a huge vulnerability. On the other hand it wasn't possible to access any system files. \\
+	Discovery  & We used \textit{Charles Web Proxy} to analyze the web traffic to find entry points that could possibly be used to access files. We didn't find any vulnerability there, but by testing manually with \textit{wget} we found the two folders where directory traversal is possible. Running the tool \textit{dotdotpwn} didn't provide us any system resources that are accessible. \\
+	Likelihood & It is quite likely to find the two folders. \\
+	Implication    & There is no direct impact, but the SQL database structure could help with SQL injection attacks. \\
+	Comparison & Make these folders not accessible trough web requests.  \\
+	\hline
+\end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{center}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9}
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } L              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N
+	\end{tabular}
+\end{center}
 \pagebreak
+
 \subsection{Testing for Privilege Escalation (OTG-AUTHZ-003)}\
 
 \begin{tabular}{cR{12cm}}
