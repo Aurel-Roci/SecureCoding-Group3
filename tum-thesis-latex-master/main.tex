@@ -158,7 +158,7 @@ performed. The test is divided in different sections following the OWASP Testing
 	\begin{itemize}
 		\item TRACE
 		\item CONNECT
-	\end{itemize}
+	\end{itemize} \\
 
 	Likelihood & N/A \\
 	Implication    & N/A \\
@@ -489,32 +489,71 @@ performed. The test is divided in different sections following the OWASP Testing
 \subsection{Testing for Credentials Transported over an Encrypted Channel(OTG-AUTHN-001)}\
 \pagebreak
 \subsection{Testing for default credentials(OTG-AUTHN-002)}\
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 10\\& Impact: 4\\& Risk: 6
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\hline
+	Observation   & We found out that there exists the default credentials \textit{admin:admin} \\
+	Discovery  & We were already given these credentials.\\
+	Likelihood & It is very likely that people find this information. \\
+	Implication    & The attacker gain administrator access in the web application. \\
+	Recommendations & Use other credentials for testing, or delete the default ones after you launch the application. \\
+	Comparison & Our web application has a different combination of \textit{user:password}.\\
+	\hline
+\end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{center}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9}
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } M              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } M              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N
+	\end{tabular}
+\end{center}
+
 \pagebreak
-\subsection{Testing for Weak lock out mechanism(OTG-AUTHN-003)}\
+\subsection{Testing for Weak lock out mechanism (OTG-AUTHN-003)}\
+
 \pagebreak
-\subsection{Testing for bypassing authentication schema(OTG-AUTHN-004)}\
+\subsection{Testing for bypassing authentication schema (OTG-AUTHN-004)}\
+ 
 \pagebreak
-\subsection{Test remember password functionality(OTG-AUTHN-005)}\
+\subsection{Testing for Browser cache weakness (OTG-AUTHN-006)}\
 \pagebreak
-\subsection{Testing for Browser cache weakness(OTG-AUTHN-006)}\
+\subsection{Testing for Weak password policy (OTG-AUTHN-007)}\ 
+ 
 \pagebreak
-\subsection{Testing for Weak password policy(OTG-AUTHN-007)}\
-\pagebreak
-\subsection{Testing for Weak security question/answer(OTG-AUTHN-008)}\
-\pagebreak
-\subsection{Testing for weak password change or reset functionalities (OTG-AUTHN-009)}\
-\pagebreak
-\subsection{Testing for Weaker authentication in alternative channel(OTG-AUTHN-010)}\
+\subsection{Testing for Weaker authentication in alternative channel (OTG-AUTHN-010)}\
 
 \pagebreak
 \section{Authorization Testing}\
-\subsection{Testing Directory traversal/file include(OTG-AUTHZ-001)}\
+\subsection{Testing Directory traversal/file include (OTG-AUTHZ-001)}\
 \pagebreak
-\subsection{Testing for bypassing authorization schema(OTG-AUTHZ-002)}\
+\subsection{Testing for bypassing authorization schema (OTG-AUTHZ-002)}\
 \pagebreak
-\subsection{Testing for Privilege Escalation(OTG-AUTHZ-003)}\
+\subsection{Testing for Privilege Escalation (OTG-AUTHZ-003)}\
 \pagebreak
-\subsection{Testing for Insecure Direct Object References(OTG-AUTHZ-004)}\
+\subsection{Testing for Insecure Direct Object References (OTG-AUTHZ-004)}\
 
 \pagebreak
 \section{Session Management Testing}\
@@ -575,7 +614,7 @@ performed. The test is divided in different sections following the OWASP Testing
 	\hline
 	\multicolumn{2}{c}{\textbf{Secode21}} \\
 	\hline
-	Observation   & The session id is not invalidated and therfore does not change after the user is authenticated. This means
+	Observation   & The session id is not invalidated and therefore does not change after the user is authenticated. This means
 	an attacker can force a known session id on a user. Once the user is authenticated the attacker can access also as authenticated
 	user \\
 	Discovery  & We used the Chrome extension ``Advanced Rest Client'' to analyze the Request and the Cookies\\
@@ -721,7 +760,7 @@ performed. The test is divided in different sections following the OWASP Testing
 	Likelihood & N/A \\
 	Implication    & N/A \\
 	Recommendations & N/A \\
-	Comparison&  \\
+	Comparison& Our web application is also immune to SQL Injections \\ 
 	\hline
 \end{tabular}
 
