@@ -1,4 +1,4 @@
-\RequirePackage[l2tabu,orthodox]{nag}  
+\RequirePackage[l2tabu,orthodox]{nag}
 
 % TODO: decide if one-sided/two-sided
 %\documentclass[headsepline,footsepline,footinclude=false,fontsize=11pt,paper=a4,listof=totoc,bibliography=totoc,BCOR=12mm,DIV=12]{scrbook} % two-sided
@@ -12,10 +12,12 @@
 \input{glossary/terms}
 \input{glossary/acronyms}
 
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
 \begin{document}
 
 \input{pages/cover}
- 
+
 \frontmatter{}
 
 %\input{pages/title}
@@ -36,41 +38,34 @@ Based on our testing, we identified the following vulnerabilities for the Secode
 Bank and the OnlineBanking Bank:
 \section{Secode21}
 \subsection{Static Session ID}\label{Static Session ID}\
-
-•Likelihood: \textit{high}\
-
-•Implication: \textit{high}\
-
-•Risk: \textit{high}\
-
-•Reference: OWASP OTG-SESS-003 (see section \ref{} )\\
+\begin{itemize}
+	\item Likelihood: \textit{high}
+	\item Implication: \textit{high}
+	\item Risk: \textit{high}
+	\item Reference: OWASP OTG-SESS-003 (see section \ref{} )
+\end{itemize}
 
 The session id is saved in form of the (static) user id in a cookie. This cookie can be used on any machine
 to take over the account of a user. The lifetime of this cookie is only limited by the cookie lifetime field.
 
 
 \subsection{Stored XSS in Registration}\label{Stored XSS in Registration}\
-
-•Likelihood: \textit{medium}\
-
-•Implication: \textit{high}\
-
-•Risk: \textit{high}\
-
-•Reference: OWASP OTG-INPVAL-002 (see section \ref{} )\\
+\begin{itemize}
+	\item Likelihood: \textit{medium}
+	\item Implication: \textit{high}
+	\item Risk: \textit{high}
+	\item Reference: OWASP OTG-INPVAL-002 (see section \ref{} )
+\end{itemize}
 
 Using stored cross-site-scripting attacks, one can inject JavaScript code, that is run, when the Administrator/Employee logs in. Arbitrary code can be loaded from a third party page.
 
 \subsection{Missing Lock Out Mechanism}\label{Missing Lock Out Mechanism}\
-
-	•Likelihood: \textit{high}\
-	
-	•Implication: \textit{medium}\
-	
-	•Risk: \textit{medium}\
-	
-	•Reference: OWASP OTG-AUTHN-003 (see section \ref{} )\\
-	
+\begin{itemize}
+	\item Likelihood: \textit{high}
+	\item Implication: \textit{medium}
+	\item Risk: \textit{medium}
+	\item Reference: OWASP OTG-AUTHN-003 (see section \ref{} )
+\end{itemize}
 The application has no lock out mechanism, which allows brute force attacks on known usernames and testing
 for a valid password
 
@@ -83,7 +78,7 @@ for a valid password
 The following pages describe for each test how both applications Secode21 and Online Banking Bank
 performed. The test is divided in different sections following the OWASP Testing Guide v4.
 
-\pagebreak 
+\pagebreak
 
 
 \section{Configuration and Deploy Management Testing}\
@@ -95,14 +90,14 @@ performed. The test is divided in different sections following the OWASP Testing
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\ 
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
 	\hline
 	Observation   & File extensions are handled correctly but while testing we found a folder called SQL with sql files and pdf files describing the database structure and the sql commands used by the web application.    \\
 	Discovery  & Thanks to the tool \textit{dotdotpwn}, that tries automatically different URLs, we found the SQL folder. We passed the following parameters: \\
 	Likelihood & The likelihood is quite high that someone tries a tool to find these kind of vulnerabilities. There is no need for special knowledge because the tools work quite automatically without much configuration. \\
 	Implication    & These vulnerabilities could help attackers to perform sql injection attacks because you know the database structure and the sql commands used in the implementation of the web application. \\
-	Recommendations& Block the access to sql files and to those folders that describe the web applications architecture. \\ 
-	Comparison& Our web application handles file extensions correctly, but it is possible to access the compiled c program that handles the batch files. This is a problem because you can reverse engineer the code and use the vulnerabilities found. This scenario is possible but is very complex. \\ 
+	Recommendations& Block the access to sql files and to those folders that describe the web applications architecture. \\
+	Comparison& Our web application handles file extensions correctly, but it is possible to access the compiled c program that handles the batch files. This is a problem because you can reverse engineer the code and use the vulnerabilities found. This scenario is possible but is very complex. \\
 	\hline
 \end{tabular}
 \\
@@ -110,27 +105,27 @@ performed. The test is divided in different sections following the OWASP Testing
 \\
 \begin{center}
 	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9} 
+		\rowcolor[HTML]{34CDF9}
 		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF} 
+		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{ECF4FF} 
+		\rowcolor[HTML]{ECF4FF}
 		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{BBDAFF} 
+		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{ECF4FF} 
+		\rowcolor[HTML]{ECF4FF}
 		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{BBDAFF} 
+		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
-		\rowcolor[HTML]{ECF4FF} 
+		\rowcolor[HTML]{ECF4FF}
 		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{BBDAFF} 
+		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{ECF4FF} 
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N             
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N
 	\end{tabular}
 \end{center}
-\pagebreak 
+\pagebreak
 
 \subsection{Test HTTP Methods (OTG-CONFIG-006)}\
 
@@ -141,41 +136,40 @@ performed. The test is divided in different sections following the OWASP Testing
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\ 
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
 	\hline
 	Observation   &  We did not observe any notable behavior.  \\
 	Discovery  &  We used the Zed  Attack  Proxy  (ZAP)	to change the HTTP requests method to the ones listed below. The requests that were allowed responded
 	with the index page or an empty body. The rejected requests responded with an
 	error message in the body.\
-	
+
 	Methods that were allowed\
-	
-	•	HEAD\
-	
-	•	OPTIONS\
-	
-	•	GET\
-	
-	•	POST\
-	
-	•	PUT  \
-	
+
+	\begin{itemize}
+		\item HEAD
+		\item OPTIONS
+		\item GET
+		\item POST
+		\item PUT
+	\end{itemize}
+
 	Methods that were rejected\
-	
-	•	TRACE\
-	
-	•	CONNECT  \\
-	
+
+	\begin{itemize}
+		\item TRACE
+		\item CONNECT
+	\end{itemize}
+
 	Likelihood & N/A \\
 	Implication    & N/A \\
 	Recommendations & N/A \\
-	Comparison&  \\  
+	Comparison &  Both webapps have the same allowed methods.\\
 	\hline
 \end{tabular}
 
 
 
-\pagebreak 
+\pagebreak
 \subsection{Test HTTP Strict Transport Security (OTG-CONFIG-007)}\
 \begin{tabular}{cc}
 	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 8\\ Impact: 5\\ Risk:5 \end{tabular}
@@ -183,14 +177,14 @@ performed. The test is divided in different sections following the OWASP Testing
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\ 
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
 	\hline
 	Observation   & The \textit{HTTP Strict Transport Security} protocol is never used. \\
 	Discovery  & We used \textit{Charles Web Proxy} to check the HTTP response headers and the \textit{Strict-Transport-Security} header was not found. \\
 	Likelihood & N/A \\
 	Implication    & N/A \\
 	Recommendations & It would be better so transport some data via https and use the HSTS protocol. \\
-	Comparison& The same results apply for our web application. \\  
+	Comparison& The same results apply for our web application. \\
 	\hline
 \end{tabular}
 \\
@@ -198,24 +192,24 @@ performed. The test is divided in different sections following the OWASP Testing
 \\
 \begin{center}
 	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9} 
+		\rowcolor[HTML]{34CDF9}
 		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF} 
+		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{ECF4FF} 
+		\rowcolor[HTML]{ECF4FF}
 		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{BBDAFF} 
+		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{ECF4FF} 
+		\rowcolor[HTML]{ECF4FF}
 		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{BBDAFF} 
+		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
-		\rowcolor[HTML]{ECF4FF} 
+		\rowcolor[HTML]{ECF4FF}
 		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{BBDAFF} 
+		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{ECF4FF} 
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N             
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N
 	\end{tabular}
 \end{center}
 
@@ -224,9 +218,9 @@ performed. The test is divided in different sections following the OWASP Testing
 \includegraphics[scale=0.6]{figures/charles_results}
 \end{figure}
 
-\pagebreak 
+\pagebreak
 
-\pagebreak 
+\pagebreak
 \subsection{Test RIA cross domain policy (OTG-CONFIG-008)}\
 \begin{tabular}{cc}
 	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 8\\ Impact: 5\\ Risk:5 \end{tabular}
@@ -234,14 +228,14 @@ performed. The test is divided in different sections following the OWASP Testing
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\ 
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
 	\hline
 	Observation   & There are no RIA applications on the system and therefore is no crossdomain.xml file provided. \\
 	Discovery  & Using \textit{wget} we tried to find a \textit{crossdomain.xml} or \textit{clientaccesspolicy.xml} file and couldn't find it. \\
 	Likelihood & N/A \\
 	Implication    & N/A \\
 	Recommendations & N/A \\
-	Comparison & The same results applies for our web application. \\  
+	Comparison & The same results applies for our web application. \\
 	\hline
 \end{tabular}
 \\
@@ -249,30 +243,30 @@ performed. The test is divided in different sections following the OWASP Testing
 \\
 \begin{center}
 	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9} 
+		\rowcolor[HTML]{34CDF9}
 		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF} 
+		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF} 
+		\rowcolor[HTML]{ECF4FF}
 		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF} 
+		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF} 
+		\rowcolor[HTML]{ECF4FF}
 		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF} 
+		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF} 
+		\rowcolor[HTML]{ECF4FF}
 		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF} 
+		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF} 
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N/A             
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N/A
 	\end{tabular}
 \end{center}
-\pagebreak 
+\pagebreak
 
- 
-\pagebreak 
+
+\pagebreak
 \section{Identity Management Testing}\
 \subsection{Test Role Definitions (OTG-IDENT-001)}\
 \begin{tabular}{cc}
@@ -371,55 +365,141 @@ performed. The test is divided in different sections following the OWASP Testing
 \pagebreak 
 \section{Authentication Testing}\
 \subsection{Testing for Credentials Transported over an Encrypted Channel(OTG-AUTHN-001)}\
-\pagebreak 
+\pagebreak
 \subsection{Testing for default credentials(OTG-AUTHN-002)}\
-\pagebreak 
+\pagebreak
 \subsection{Testing for Weak lock out mechanism(OTG-AUTHN-003)}\
-\pagebreak 
+\pagebreak
 \subsection{Testing for bypassing authentication schema(OTG-AUTHN-004)}\
-\pagebreak 
+\pagebreak
 \subsection{Test remember password functionality(OTG-AUTHN-005)}\
-\pagebreak 
+\pagebreak
 \subsection{Testing for Browser cache weakness(OTG-AUTHN-006)}\
-\pagebreak 
+\pagebreak
 \subsection{Testing for Weak password policy(OTG-AUTHN-007)}\
-\pagebreak 
+\pagebreak
 \subsection{Testing for Weak security question/answer(OTG-AUTHN-008)}\
-\pagebreak 
+\pagebreak
 \subsection{Testing for weak password change or reset functionalities (OTG-AUTHN-009)}\
-\pagebreak 
+\pagebreak
 \subsection{Testing for Weaker authentication in alternative channel(OTG-AUTHN-010)}\
- 
-\pagebreak 
+
+\pagebreak
 \section{Authorization Testing}\
 \subsection{Testing Directory traversal/file include(OTG-AUTHZ-001)}\
-\pagebreak 
+\pagebreak
 \subsection{Testing for bypassing authorization schema(OTG-AUTHZ-002)}\
-\pagebreak 
+\pagebreak
 \subsection{Testing for Privilege Escalation(OTG-AUTHZ-003)}\
-\pagebreak 
+\pagebreak
 \subsection{Testing for Insecure Direct Object References(OTG-AUTHZ-004)}\
- 
-\pagebreak 
+
+\pagebreak
 \section{Session Management Testing}\
 \subsection{Testing for Bypassing Session Management Schema(OTG-SESS-001)}\
-\pagebreak 
+
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\hline
+	Observation   & PHP session ids are used and such session ids normally can't be bypassed that means calculated easily\\
+	Discovery  & We used the Chrome extension ``Advanced Rest Client'' to analyze the Request and the Cookies\\
+	Likelihood & NA\\
+	Implication    & NA\\
+	Recommendations& NA\\
+	Comparison& Our web application also uses PHP session ids \\
+	\hline
+\end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{center}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9}
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } NA              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } NA              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } NA              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } NA              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } NA              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } NA              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } NA              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } NA
+	\end{tabular}
+\end{center}
+
+\pagebreak
 \subsection{Testing for Cookies attributes(OTG-SESS-002)}\
-\pagebreak 
+\pagebreak
 \subsection{Testing for Session Fixation(OTG-SESS-003)}\
 
-\pagebreak 
-\subsection{Testing for Exposed Session Variables(OTG-SESS-004)}\
-\pagebreak 
-\subsection{Testing for Cross Site Request Forgery(OTG-SESS-005)}\
-\pagebreak 
-\subsection{Testing for logout functionality(OTG-SESS-006)}\
-\pagebreak 
-\subsection{Test Session Timeout(OTG-SESS-007)}\
-\pagebreak 
-\subsection{Testing for Session puzzling(OTG-SESS-008)}\ 
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 8\\& Impact: 5\\& Risk: 3
+\end{tabular}
 
-\pagebreak 
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\hline
+	Observation   & The session id is not invalidated and therfore does not change after the user is authenticated. This means
+	an attacker can force a known session id on a user. Once the user is authenticated the attacker can access also as authenticated
+	user \\
+	Discovery  & We used the Chrome extension ``Advanced Rest Client'' to analyze the Request and the Cookies\\
+	Likelihood & This attack is pretty easy and can also be performed by low skilled people\\
+	Implication    & The attacker can do everything the user can \\
+	Recommendations& Change the session id after logging in \\
+	Comparison& Our web application has exact the same vulnerability\\
+	\hline
+\end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{center}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9}
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N             \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } R              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } H              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } H              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N
+	\end{tabular}
+\end{center}
+\pagebreak
+\subsection{Testing for Exposed Session Variables(OTG-SESS-004)}\
+\pagebreak
+\subsection{Testing for Cross Site Request Forgery(OTG-SESS-005)}\
+\pagebreak
+\subsection{Testing for logout functionality(OTG-SESS-006)}\
+\pagebreak
+\subsection{Test Session Timeout(OTG-SESS-007)}\
+\pagebreak
+\subsection{Testing for Session puzzling(OTG-SESS-008)}\
+
+\pagebreak
 \section{Data Validation Testing}\
 \subsection{Testing for Reflected Cross Site Scripting(OTG-INPVAL-001)}\
 
@@ -429,18 +509,18 @@ performed. The test is divided in different sections following the OWASP Testing
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\ 
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
 	\hline
 	Observation   & We observed no reflected cross site scripting vulnerability. \\
 	Discovery  & It seems that all parameters are stored in the database before inserting the values in the HTML. \\
 	Likelihood & N/A \\
 	Implication    & N/A \\
 	Recommendations &  N/A \\
-	Comparison& The same results apply for our web application. \\  
+	Comparison& The same results apply for our web application. \\
 	\hline
 \end{tabular}
 
-\pagebreak 
+\pagebreak
 \subsection{Testing for Stored Cross Site Scripting(OTG-INPVAL-002)}\
 
 \begin{tabular}{cc}
@@ -449,7 +529,7 @@ performed. The test is divided in different sections following the OWASP Testing
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\ 
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
 	\hline
 	Observation   &  We observed several possibilities to execute a stored XSS attack. But not all of
 	them could be exploited as the length of the corresponding database fields was
@@ -462,11 +542,11 @@ performed. The test is divided in different sections following the OWASP Testing
 	Implication    & The implications are severe as we proofed that it is possible to steal the session. As we injected the code on the admin landingpage, which implies that we were able to act as an admin and register an abitrary account. \\
 	Recommendations & Implement a input sanitation on all input fields on the backend side!  Try to use whitelisting for the different datatypes and do not rely on the frontend input
 	validation. \\
-	Comparison& \\  
+	Comparison& \\
 	\hline
 \end{tabular}
 
-\vspace{0.5cm} 
+\vspace{0.5cm}
 \begin{center}
 	% Please add the following required packages to your document preamble:
 	% \usepackage[table,xcdraw]{xcolor}
@@ -476,33 +556,33 @@ performed. The test is divided in different sections following the OWASP Testing
 	%	\caption{My caption}
 	%\label{my-label}
 	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9} 
+		\rowcolor[HTML]{34CDF9}
 		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF} 
+		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} N}               \\
-		\rowcolor[HTML]{ECF4FF} 
+		\rowcolor[HTML]{ECF4FF}
 		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} M}               \\
-		\rowcolor[HTML]{BBDAFF} 
+		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} N}               \\
-		\rowcolor[HTML]{ECF4FF} 
+		\rowcolor[HTML]{ECF4FF}
 		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} Y}               \\
-		\rowcolor[HTML]{BBDAFF} 
+		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} U}               \\
-		\rowcolor[HTML]{ECF4FF} 
+		\rowcolor[HTML]{ECF4FF}
 		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} M}               \\
-		\rowcolor[HTML]{BBDAFF} 
+		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} M}               \\
-		\rowcolor[HTML]{ECF4FF} 
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} L}              
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} L}
 	\end{tabular}
 	%\end{table}
 \end{center}
-\pagebreak 
+\pagebreak
 \subsection{Testing for HTTP Verb Tampering(OTG-INPVAL-003)}\
 
-\pagebreak 
+\pagebreak
 \subsection{Testing for HTTP Parameter pollution(OTG-INPVAL-004)}\
-\pagebreak 
+\pagebreak
 \subsection{Testing for SQL Injection  (OTG-INPVAL-005)}\
 
 \begin{tabular}{cc}
@@ -511,29 +591,29 @@ performed. The test is divided in different sections following the OWASP Testing
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\ 
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
 	\hline
 	Observation   & We observed that no SQL Injection was possible. \\
 	Discovery  & We tried inserting various SQL statements in the fields of using \textit{SQL Inject Me} tool and failed. \\
-	
+
 	Likelihood & N/A \\
 	Implication    & N/A \\
 	Recommendations & N/A \\
-	Comparison&  \\  
+	Comparison&  \\
 	\hline
 \end{tabular}
 
-\pagebreak 
+\pagebreak
 \subsection{IMAP/SMTP Injection(OTG-INPVAL-011)}\
-\pagebreak 
+\pagebreak
 \subsection{Testing for Code Injection, Testing for Local File Inclusion, Testing for Remote File Inclusion(OTG-INPVAL-012)}\
-\pagebreak 
+\pagebreak
 \subsection{Testing for Command Injection(OTG-INPVAL-013)}\
-\pagebreak 
+\pagebreak
 \subsection{Testing for Buffer overflow, Testing for Heap overflow, Testing for Stack overflow, Testing for Format string (OTG-INPVAL-014)}\
-\pagebreak 
+\pagebreak
 \subsection{Testing for incubated vulnerabilities(OTG-INPVAL-015)}\
-\pagebreak 
+\pagebreak
 \subsection{Testing for HTTP Splitting/Smuggling(OTG-INPVAL-016)}\
 
 \section{Error Handling}\
@@ -541,32 +621,32 @@ performed. The test is divided in different sections following the OWASP Testing
 \textbf{Team21}\\
 
 Team21 does not provide a lot of error messages for incorrect inputs (e.g. incorrect TAN
-length, wrong TAN, TAN used). \\ 
-Based on the client side input validation, there are also no messages for manipulated input via proxy or by removing the validation patterns, which can lead to problems. Examples would be a malformated email which results in a not working account or a longer input then expected, which cuts off the end of the input. There are some cases when the page returns the path of the file where the error occurred.\\   
- 
+length, wrong TAN, TAN used). \\
+Based on the client side input validation, there are also no messages for manipulated input via proxy or by removing the validation patterns, which can lead to problems. Examples would be a malformated email which results in a not working account or a longer input then expected, which cuts off the end of the input. There are some cases when the page returns the path of the file where the error occurred.\\
+
 \textbf{Team3}\\
 
 
 \section{Cryptography}\
- 
-\pagebreak 
+
+\pagebreak
 \section{Business Logic Testing}\
 \subsection{Test Business Logic Data Validation(OTG-BUSLOGIC-001)}\
-\pagebreak 
+\pagebreak
 \subsection{Test Ability to Forge Requests(OTG-BUSLOGIC-002)}\
-\pagebreak 
+\pagebreak
 \subsection{Test Integrity Checks(OTG-BUSLOGIC-003)}\
-\pagebreak 
+\pagebreak
 \subsection{Test for Process Timing(OTG-BUSLOGIC-004)}\
-\pagebreak 
+\pagebreak
 \subsection{Test Number of Times a Function Can be Used Limits(OTG-BUSLOGIC-005)}\
-\pagebreak 
+\pagebreak
 \subsection{Testing for the Circumvention of Work Flows(OTG-BUSLOGIC-006)}\
-\pagebreak 
+\pagebreak
 \subsection{Test Defenses Against Application Mis-use(OTG-BUSLOGIC-007)}\
-\pagebreak 
+\pagebreak
 \subsection{Test Upload of Unexpected File Types(OTG-BUSLOGIC-008)}\
-\pagebreak 
+\pagebreak
 \subsection{Test Upload of Malicious Files(OTG-BUSLOGIC-009)}\
 
 
