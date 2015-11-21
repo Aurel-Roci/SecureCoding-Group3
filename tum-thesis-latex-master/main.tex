@@ -548,8 +548,7 @@ performed. The test is divided in different sections following the OWASP Testing
 \pagebreak
 \section{Authorization Testing}\
 \subsection{Testing Directory traversal/file include (OTG-AUTHZ-001)}\
-\pagebreak
-\subsection{Testing for bypassing authorization schema (OTG-AUTHZ-002)}\
+ 
 \pagebreak
 \subsection{Testing for Privilege Escalation (OTG-AUTHZ-003)}\
 
@@ -668,9 +667,9 @@ performed. The test is divided in different sections following the OWASP Testing
 	\end{tabular}
 \end{center}
 \pagebreak
-\subsection{Testing for Exposed Session Variables(OTG-SESS-004)}\
+\subsection{Testing for Exposed Session Variables (OTG-SESS-004)}\
 \pagebreak
-\subsection{Testing for Cross Site Request Forgery(OTG-SESS-005)}\
+\subsection{Testing for Cross Site Request Forgery (OTG-SESS-005)}\
 \pagebreak
 \subsection{Testing for logout functionality(OTG-SESS-006)}\
 \pagebreak
@@ -811,6 +810,25 @@ Based on the client side input validation, there are also no messages for manipu
 \pagebreak
 \section{Business Logic Testing}\
 \subsection{Test Business Logic Data Validation(OTG-BUSLOGIC-001)}\
+
+\begin{tabular}{cc}
+	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 0\\ Impact: 0\\ Risk:0 \end{tabular}
+\end{tabular}\
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\hline
+	Observation   & Tests show that data validation is both: client side and server side.\\
+	Discovery  & We intercepted the input before it gets send to the server using \textit{Burp} and manipulated the data, and we received an error message. \\
+	
+	Likelihood & N/A \\
+	Implication    & N/A \\
+	Recommendations & N/A \\
+	Comparison& We got the same result with our application. \\ 
+	\hline
+\end{tabular}
+
 \pagebreak
 \subsection{Test Ability to Forge Requests(OTG-BUSLOGIC-002)}\
 \pagebreak
@@ -819,6 +837,25 @@ Based on the client side input validation, there are also no messages for manipu
 \subsection{Test for Process Timing(OTG-BUSLOGIC-004)}\
 \pagebreak
 \subsection{Test Number of Times a Function Can be Used Limits(OTG-BUSLOGIC-005)}\
+
+\begin{tabular}{cc}
+	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 0\\ Impact: 0\\ Risk:0 \end{tabular}
+\end{tabular}\
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\hline
+	Observation   & We tried inserting the same tan multiple times.\\
+	Discovery  & The web application did not accept requests with a TAN that was already used. \\
+	
+	Likelihood & N/A \\
+	Implication    & N/A \\
+	Recommendations & N/A \\
+	Comparison& We got the same result with our application. \\ 
+	\hline
+\end{tabular}
+
 \pagebreak
 \subsection{Testing for the Circumvention of Work Flows(OTG-BUSLOGIC-006)}\
 \pagebreak
