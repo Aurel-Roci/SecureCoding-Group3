@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.11.17)  21 NOV 2015 13:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.11.17)  22 NOV 2015 11:25
 entering extended mode
 **main.tex
 (main.tex
@@ -1626,13 +1626,13 @@ LaTeX Info: Redefining \nameref on input line 17.
 Package nag Info: Command \hc@caption not defined, skipping amendment on input 
 line 17.
  (pages/cover.tex
-<logos/tum.pdf, id=270, 55.20625pt x 30.1125pt>
+<logos/tum.pdf, id=266, 55.20625pt x 30.1125pt>
 File: logos/tum.pdf Graphic file (type pdf)
  <use logos/tum.pdf>
 Package pdftex.def Info: logos/tum.pdf used on input line 12.
 (pdftex.def)             Requested size: 113.81102pt x 62.08203pt.
 
-<logos/faculty.pdf, id=271, 30.1125pt x 33.12375pt>
+<logos/faculty.pdf, id=267, 30.1125pt x 33.12375pt>
 File: logos/faculty.pdf Graphic file (type pdf)
  <use logos/faculty.pdf>
 Package pdftex.def Info: logos/faculty.pdf used on input line 33.
@@ -1773,7 +1773,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 178--193
 
  []
 
-<figures/charles_results.png, id=438, 621.32124pt x 269.005pt>
+<figures/charles_results.png, id=433, 621.32124pt x 269.005pt>
 File: figures/charles_results.png Graphic file (type png)
 
 <use figures/charles_results.png>
@@ -1859,108 +1859,122 @@ Underfull \hbox (badness 10000) in paragraph at lines 514--529
 
  []
 
-[18] [19] [20] [21] [22] [23]
-Overfull \hbox (4.35834pt too wide) in paragraph at lines 574--577
+[18] [19] [20]
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 562--565
 [][] 
  []
 
 
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 578--590
-[][] 
- []
-
-[24] [25]
-Overfull \hbox (4.35834pt too wide) in paragraph at lines 598--601
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 566--591
 [][] 
  []
 
 
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 602--617
+Underfull \hbox (badness 10000) in paragraph at lines 566--591
+
+ []
+
+[21] [22] [23]
+Underfull \hbox (badness 10000) in paragraph at lines 625--639
+
+ []
+
+[24]
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 665--668
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 602--617
-
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 669--681
+[][] 
  []
 
-[26] [27]
-Overfull \hbox (4.35834pt too wide) in paragraph at lines 645--648
+[25] [26]
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 689--692
 [][] 
  []
 
 
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 649--666
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 693--708
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 649--666
+Underfull \hbox (badness 10000) in paragraph at lines 693--708
 
  []
 
-[28] [29] [30] [31] [32] [33]
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 707--719
+[27] [28]
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 736--739
 [][] 
  []
 
-[34]
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 727--745
+
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 740--757
 [][] 
  []
 
-[35] [36] [37] [38]
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 789--802
+
+Underfull \hbox (badness 10000) in paragraph at lines 740--757
+
+ []
+
+[29] [30] [31] [32] [33] [34]
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 798--810
 [][] 
  []
 
-[39] [40] [41] [42] [43] [44]
-Underfull \hbox (badness 10000) in paragraph at lines 818--819
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 820--823
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 824--825
-
- []
-
-[45]
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 837--850
+[35]
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 818--836
 [][] 
  []
 
-[46] [47] [48] [49]
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 864--877
+[36] [37] [38] [39]
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 880--893
 [][] 
  []
 
-[50] [51] [52] [53]
+[40] [41] [42] [43] [44] [45]
+Underfull \hbox (badness 10000) in paragraph at lines 909--910
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 911--914
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 915--916
+
+ []
+
+[46]
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 928--941
+[][] 
+ []
+
+[47] [48] [49] [50]
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 955--968
+[][] 
+ []
+
+[51] [52] [53] [54]
 No file main.gls.
 No file main.acr.
 
-LaTeX Warning: Empty bibliography on input line 903.
+LaTeX Warning: Empty bibliography on input line 994.
 
 No complaints by nag.
-[54]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 905.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 905.
+[55]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 996.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 996.
  (main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 905.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 905.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 996.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 996.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 70447B91E8EAD3794205D770355E20D5;6429.
 
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: D1B3321CA168C3FDA0693B7513831955;6537
-(rerunfilecheck)             After:  70447B91E8EAD3794205D770355E20D5;6429.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1970,24 +1984,21 @@ LaTeX Warning: There were undefined references.
 Package logreq Info: Writing requests to 'main.run.xml'.
  ) 
 Here is how much of TeX's memory you used:
- 42380 strings out of 493673
- 900168 string characters out of 3143959
+ 42395 strings out of 493673
+ 900281 string characters out of 3143959
  1588012 words of memory out of 3000000
- 44657 multiletter control sequences out of 15000+200000
- 44272 words of font info for 183 fonts, out of 3000000 for 9000
+ 44656 multiletter control sequences out of 15000+200000
+ 45138 words of font info for 195 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  75i,14n,83p,1935b,3115s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{subsection.3.3.7} has been referenced but does no
-t exist, replaced by a fixed one
-
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program Files/
-MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2
-.9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
-/urw/palatino/uplr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/palatino/
-uplri8a.pfb>
-Output written on main.pdf (58 pages, 739869 bytes).
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program File
+s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX
+ 2.9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/urw/palatino/uplr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/palatin
+o/uplri8a.pfb>
+Output written on main.pdf (59 pages, 744907 bytes).
 PDF statistics:
- 683 PDF objects out of 1000 (max. 8388607)
+ 682 PDF objects out of 1000 (max. 8388607)
  126 named destinations out of 1000 (max. 500000)
- 27180 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 27172 words of extra memory for PDF output out of 29859 (max. 10000000)
 
