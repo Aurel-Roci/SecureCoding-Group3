@@ -1144,9 +1144,91 @@ Based on the client side input validation, there are also no messages for manipu
 
 
 \subsection{Testing for Client Side URL Redirect (OTG-CLIENT-004)}\
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\hline
+	Observation   & We couldn't find any client side redirections in the html source code of the web application and therefore exists no client side url redirect vulnerability. \\
+	Discovery  & We used \textit{Chrome} and its web inspector to look at the html code. \\
+	Likelihood & N/A \\
+	Implication    & N/A \\
+	Comparison & The same results apply for our web application. \\
+	\hline
+\end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{center}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9}
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N/A
+	\end{tabular}
+\end{center}
 \pagebreak
+
 \subsection{Testing for CSS Injection (OTG-CLIENT-005)}\
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\hline
+	Observation   & Our search didn't find any spots in the html source code where there is user generated input used to change some css attributes. \\
+	Discovery  & \textit{Chrome} and its web inspector were used to read the html code. \\
+	Likelihood & N/A \\
+	Implication    & N/A \\
+	Comparison & The same results apply for our web application \\
+	\hline
+\end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{center}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9}
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N/A
+	\end{tabular}
+\end{center}
 \pagebreak
+
 \subsection{Testing for Client Side Resource Manipulation (OTG-CLIENT-006)}\
 \pagebreak
 \subsection{Test Cross Origin Resource Sharing (OTG-CLIENT-007)}\
