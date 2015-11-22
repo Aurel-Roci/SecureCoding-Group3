@@ -138,32 +138,13 @@ performed. The test is divided in different sections following the OWASP Testing
 	\hline
 	\multicolumn{2}{c}{\textbf{Secode21}} \\
 	\hline
-	Observation   &  We did not observe any notable behavior.  \\
-	Discovery  &  We used the Zed  Attack  Proxy  (ZAP)	to change the HTTP requests method to the ones listed below. The requests that were allowed responded
-	with the index page or an empty body. The rejected requests responded with an
-	error message in the body.\
-
-	Methods that were allowed\
-
-	\begin{itemize}
-		\item HEAD
-		\item OPTIONS
-		\item GET
-		\item POST
-		\item PUT
-	\end{itemize}
-
-	Methods that were rejected\
-
-	\begin{itemize}
-		\item TRACE
-		\item CONNECT
-	\end{itemize} \\
-
+	Observation   &  he application is not accessable over HTTP. HTTPS is enforced.  \\
+	Discovery  &  We also tried to connect via \textit{netcat} using the following command: \textit{{nc IP\_ADDRESS 80}} , which did not work. \\
+	
 	Likelihood & N/A \\
 	Implication    & N/A \\
 	Recommendations & N/A \\
-	Comparison &  Both webapps have the same allowed methods.\\
+	Comparison &  The same applies for our web application.\\
 	\hline
 \end{tabular}
 
@@ -867,6 +848,58 @@ performed. The test is divided in different sections following the OWASP Testing
 \end{center}
 \pagebreak
 \subsection{Testing for HTTP Verb Tampering(OTG-INPVAL-003)}\
+
+
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\hline
+	Observation   &  We did not observe any notable behavior.  \\
+	Discovery  &  We used the Zed  Attack  Proxy  (ZAP)	to change the HTTP requests method to the ones listed below. The requests that were allowed responded
+	with the index page or an empty body. The rejected requests responded with an
+	error message in the body.\
+	
+	Methods that were allowed\
+	
+	\begin{itemize}
+		\item HEAD
+		\item OPTIONS
+		\item GET
+		\item POST
+		
+	\end{itemize}
+	
+	Methods that were rejected\
+	
+	\begin{itemize}
+		\item TRACE
+		\item PUT
+		\item PROPFIND
+	\end{itemize} \\
+	
+	Likelihood & N/A \\
+	Implication    & N/A \\
+	Recommendations & N/A \\
+	Comparison &  Both webapps have the same allowed methods.\\
+	\hline
+\end{tabular}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{tampering.png}
+	\caption{Results}
+	\label{fig:test}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[width=\linewidth]{script.png}
+	\caption{Script used for testing}
+	\label{fig:script}
+\end{figure}
+
 
 \pagebreak
 \subsection{Testing for HTTP Parameter pollution(OTG-INPVAL-004)}\
