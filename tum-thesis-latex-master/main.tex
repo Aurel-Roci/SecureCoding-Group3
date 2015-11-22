@@ -1007,11 +1007,160 @@ Based on the client side input validation, there are also no messages for manipu
 \subsection{Test Upload of Unexpected File Types(OTG-BUSLOGIC-008)}\
 \pagebreak
 \subsection{Test Upload of Malicious Files(OTG-BUSLOGIC-009)}\
-
+\pagebreak
 
 \section{Client Side Testing}
 
+\subsection{Testing for DOM based Cross Site Scripting (OTG-CLIENT-001)}\
 
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\hline
+	Observation   & Observing the HTML source code showed us that they don't use javascript and therefore there can't be any DOM XSS vulnerabilities. \\
+	Discovery  & We used \textit{Chrome} and its developer tools to take a look at the HTML source code. \\
+	Likelihood & N/A \\
+	Implication    & N/A \\
+	Comparison & Our web application uses javascript in many different cases, but we couldn't find any DOM XSS vulnerabilities. \\
+	\hline
+\end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{center}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9}
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N/A
+	\end{tabular}
+\end{center}
+
+\pagebreak
+
+\subsection{Testing for JavaScript Execution (OTG-CLIENT-002)}\
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 9\\& Impact: 10\\& Risk: 9
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\hline
+	Observation   & We found several XSS vulnerabilities allowing the execution of arbitrary javascript code in the clients browser. \\
+	Discovery  & We used the tools \textit{w3af} and \textit{ZED Attack Proxy} to find some XSS vulnerabilities and found enough of them. \\
+	Likelihood & It is very likely that these vulnerabilities are found and you don't need much experience to use them. \\
+	Implication    & The vulnerabilities found can be used to hijack the session of an user, accept user registrations or even making user accounts to employee accounts. \\
+	Comparison & Our app is also vulnerable against XSS attacks but the difficulty is higher as in their web application. More experienced people are necessary to exploit them. \\
+	\hline
+\end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{center}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9}
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } H              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } H              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } L
+	\end{tabular}
+\end{center}
+\pagebreak
+
+\subsection{Testing for HTML Injection (OTG-CLIENT-003)}\
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 8\\& Impact: 7\\& Risk: 7
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\hline
+	Observation   & The HTML injection vulnerability exists  \\
+	Discovery  & The vulnerability was found by the tools \textit{w3af} and \textit{ZED Attack Proxy}. \\
+	Likelihood & It is quite likely that this vulnerability is found and can be used very easily. \\
+	Implication    &  vulnerability can have many consequences, like disclosure of a user's session cookies that could be used to impersonate the victim, or, more generally, it can allow the attacker to modify the page content seen by the victims. \\
+	Comparison & Our web application is vulnerable as well, but javascript validations and text length restrictions of the input fields make it more difficult to exploit these vulnerabilities. \\
+	\hline
+\end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{center}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9}
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } L              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } L              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } L
+	\end{tabular}
+\end{center}
+\pagebreak
+
+
+\subsection{Testing for Client Side URL Redirect (OTG-CLIENT-004)}\
+\pagebreak
+\subsection{Testing for CSS Injection (OTG-CLIENT-005)}\
+\pagebreak
+\subsection{Testing for Client Side Resource Manipulation (OTG-CLIENT-006)}\
+\pagebreak
+\subsection{Test Cross Origin Resource Sharing (OTG-CLIENT-007)}\
+\pagebreak
+\subsection{Testing for Cross Site Flashing (OTG-CLIENT-008)}\
+\pagebreak
+\subsection{Testing for Clickjacking (OTG-CLIENT-009)}\
+\pagebreak
+\subsection{Testing WebSockets (OTG-CLIENT-010)}\
+\pagebreak
+\subsection{Test Web Messaging (OTG-CLIENT-011)}\
+\pagebreak
+\subsection{Test Local Storage (OTG-CLIENT-012)}\
+\pagebreak
 
 
 \appendix{}
