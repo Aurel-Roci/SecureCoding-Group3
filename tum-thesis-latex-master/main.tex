@@ -45,18 +45,18 @@
 %\input{pages/abstract}
 \microtypesetup{protrusion=false}
 \tableofcontents{}
-\microtypesetup{protrusion=true} 
+\microtypesetup{protrusion=true}
 \mainmatter{}
 
 \chapter{Time Tracking Table}
- 
-\begin{table}[htb] 
-	
+
+\begin{table}[htb]
+
 	\centering
 	\resizebox{9cm}{!}{%
 	\begin{tabular}{lll}
-		\hline 
-		{\textbf{Name}} & { \textbf{Task}} & {\textbf{Time}} \\ \hline 
+		\hline
+		{\textbf{Name}} & { \textbf{Task}} & {\textbf{Time}} \\ \hline
 		Aurel Roci &  Test HTTP Methods  &  0.25          \\
 	    & Error Handling   &  1             \\
 		& Testing for default credentials & 0.25  \\
@@ -71,6 +71,8 @@
 		& Testing for Cross Site Request Forgery  & 0.5  \\
 		& Testing for Privilege Escalation  & 1.5  \\
 		& Presentation & 0.25 \\
+		\hline
+		\hline
 		Stefan Ch. Kofler & Test File Extensions Handling for Sensitive Information & 2.0 \\
 		& Test HTTP Strict Transport Security & 0.5 \\
 		& Test RIA cross domain policy & 0.5 \\
@@ -79,7 +81,6 @@
 		& Test Account Provisioning Process & 0.5 \\
 		& Testing for Account Enumeration and Guessable User Account & 0.5 \\
 		& Testing for Weak or unenforced username policy & 0.5 \\
-		& Testing Directory traversal/file include & 1.5 \\
 		& Testing for DOM based Cross Site Scripting & 0.75 \\
 		& Testing for JavaScript Execution & 2.0 \\
 		& Testing for HTML Injection & 0.5 \\
@@ -92,11 +93,37 @@
 		& Testing WebSockets & 0.75 \\
 		& Test Web Messaging & 0.5 \\
 		& Test Local Storage & 0.5 \\
-		 &  &                                                                   
+		\hline
+		\hline
+		Patrick Sattler & understanding w3af and configuration & 2 \\
+		& w3af testing overflow and format string & 1.5 \\
+		& Test bruteforce for password & 0.5 \\
+		& Test bruteforce for TAN & 1 \\
+		& Test Registration process & 1 \\
+		& Test password policy & 0.5 \\
+		& Test credentials transport & 1 \\
+		& Test bypassing authentication schema & 1 \\
+		& Test browser cache weakness & 1 \\
+		& Test weak password policy & 0.5 \\
+		& Testing Directory traversal/file include & 1.75 \\
+		& Testing bypassing session management & 1 \\
+		& Testing cookie attributes & 0.75 \\
+		& Testing session fixation & 0.75 \\
+		& Testing for Exposed Session Variables & 0.5 \\
+		& Testing for Cross Site Request Forgery & 1 \\
+		& Testing for logout functionality & 0.5 \\
+		& Test Session Timeout & 0.75 \\
+		& Testing for Session puzzling & 0.25 \\
+		& Testing for XML/SSI/XPATH Injection & 2 \\
+		& Testing for Code Injection, local or remote file inclusion & 1 \\
+		& Testing for Command Injection & 0.5 \\
+		& Testing for Format string & 0.25 \\
+		& Testing for incubated vulnerabilities & 0.5 \\
+		 &  &
 	\end{tabular}%
 }
 \end{table}
- 
+
 %\input{chapters/01_introduction}
 % TODO: add more chapters here
 \chapter{Vulnerabilities Overview}
@@ -894,7 +921,7 @@ performed. The test is divided in different sections following the OWASP Testing
 	Comparison & The same results apply for our web application.\\
 	\hline
 \end{tabular}
- 
+
 \pagebreak
 \section{Session Management Testing}\
 \subsection{Testing for Bypassing Session Management Schema(OTG-SESS-001)}\
@@ -1083,7 +1110,7 @@ performed. The test is divided in different sections following the OWASP Testing
 		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N
 	\end{tabular}
 \end{center}
- 
+
 \pagebreak
 \subsection{Testing for logout functionality(OTG-SESS-006)}\
 
