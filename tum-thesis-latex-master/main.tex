@@ -1230,9 +1230,92 @@ Based on the client side input validation, there are also no messages for manipu
 \pagebreak
 
 \subsection{Testing for Client Side Resource Manipulation (OTG-CLIENT-006)}\
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\hline
+	Observation   & We couldn't find any vulnerability here, but we could only check if such a vulnerability exists in the javascript code and not in the  php code, because we had no access to the php source code. \\
+	Discovery  & We used \textit{Chrome} and its developer tools to inspect the html/javascript code. \\
+	Likelihood & N/A \\
+	Implication    & N/A \\
+	Comparison & Our web application uses javascript more often, but user controlled input which specifies the path of a resource was not found. \\
+	\hline
+\end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{center}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9}
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N/A
+	\end{tabular}
+\end{center}
 \pagebreak
+
 \subsection{Test Cross Origin Resource Sharing (OTG-CLIENT-007)}\
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\hline
+	Observation   & The inspected web application doesn't make use of XMLHttpRequests and therefor no cross origin resource sharing vulnerabilities exist. \\
+	Discovery  & We used \textit{Chrome} and its developer tools to inspect the html/javascript code and \textit{Charles Web Proxy} to make sure that no request is executed. \\
+	Likelihood & N/A \\
+	Implication    & N/A \\
+	Comparison & Our web application uses XMLHttpRequests but sends the requests to the same origin and therefor there exist no cross origin resource sharing vulnerabilities. \\
+	\hline
+\end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{center}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9}
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N/A              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N/A
+	\end{tabular}
+\end{center}
 \pagebreak
+
+
 \subsection{Testing for Cross Site Flashing (OTG-CLIENT-008)}\
 \pagebreak
 \subsection{Testing for Clickjacking (OTG-CLIENT-009)}\
