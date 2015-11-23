@@ -32,50 +32,48 @@
 \BOOKMARK [1][-]{section.3.4}{Authorization Testing}{chapter.3}% 32
 \BOOKMARK [2][-]{subsection.3.4.1}{Testing Directory traversal/file include \(OTG-AUTHZ-001\)}{section.3.4}% 33
 \BOOKMARK [2][-]{subsection.3.4.2}{Testing for Privilege Escalation \(OTG-AUTHZ-003\)}{section.3.4}% 34
-\BOOKMARK [2][-]{subsection.3.4.3}{Testing for Insecure Direct Object References \(OTG-AUTHZ-004\)}{section.3.4}% 35
-\BOOKMARK [1][-]{section.3.5}{Session Management Testing}{chapter.3}% 36
-\BOOKMARK [2][-]{subsection.3.5.1}{Testing for Bypassing Session Management Schema\(OTG-SESS-001\)}{section.3.5}% 37
-\BOOKMARK [2][-]{subsection.3.5.2}{Testing for Cookies attributes\(OTG-SESS-002\)}{section.3.5}% 38
-\BOOKMARK [2][-]{subsection.3.5.3}{Testing for Session Fixation\(OTG-SESS-003\)}{section.3.5}% 39
-\BOOKMARK [2][-]{subsection.3.5.4}{Testing for Exposed Session Variables \(OTG-SESS-004\)}{section.3.5}% 40
-\BOOKMARK [2][-]{subsection.3.5.5}{Testing for Cross Site Request Forgery \(OTG-SESS-005\)}{section.3.5}% 41
-\BOOKMARK [2][-]{subsection.3.5.6}{Testing for logout functionality\(OTG-SESS-006\)}{section.3.5}% 42
-\BOOKMARK [2][-]{subsection.3.5.7}{Test Session Timeout\(OTG-SESS-007\)}{section.3.5}% 43
-\BOOKMARK [2][-]{subsection.3.5.8}{Testing for Session puzzling\(OTG-SESS-008\)}{section.3.5}% 44
-\BOOKMARK [1][-]{section.3.6}{Data Validation Testing}{chapter.3}% 45
-\BOOKMARK [2][-]{subsection.3.6.1}{Testing for Reflected Cross Site Scripting\(OTG-INPVAL-001\)}{section.3.6}% 46
-\BOOKMARK [2][-]{subsection.3.6.2}{Testing for Stored Cross Site Scripting\(OTG-INPVAL-002\)}{section.3.6}% 47
-\BOOKMARK [2][-]{subsection.3.6.3}{Testing for HTTP Verb Tampering\(OTG-INPVAL-003\)}{section.3.6}% 48
-\BOOKMARK [2][-]{subsection.3.6.4}{Testing for HTTP Parameter pollution\(OTG-INPVAL-004\)}{section.3.6}% 49
-\BOOKMARK [2][-]{subsection.3.6.5}{Testing for SQL Injection \(OTG-INPVAL-005\)}{section.3.6}% 50
-\BOOKMARK [2][-]{subsection.3.6.6}{IMAP/SMTP Injection\(OTG-INPVAL-011\)}{section.3.6}% 51
-\BOOKMARK [2][-]{subsection.3.6.7}{Testing for Code Injection, Testing for Local File Inclusion, Testing for Remote File Inclusion\(OTG-INPVAL-012\)}{section.3.6}% 52
-\BOOKMARK [2][-]{subsection.3.6.8}{Testing for Command Injection\(OTG-INPVAL-013\)}{section.3.6}% 53
-\BOOKMARK [2][-]{subsection.3.6.9}{Testing for Buffer overflow, Testing for Heap overflow, Testing for Stack overflow, Testing for Format string \(OTG-INPVAL-014\)}{section.3.6}% 54
-\BOOKMARK [2][-]{subsection.3.6.10}{Testing for incubated vulnerabilities\(OTG-INPVAL-015\)}{section.3.6}% 55
-\BOOKMARK [2][-]{subsection.3.6.11}{Testing for HTTP Splitting/Smuggling\(OTG-INPVAL-016\)}{section.3.6}% 56
-\BOOKMARK [1][-]{section.3.7}{Error Handling}{chapter.3}% 57
-\BOOKMARK [1][-]{section.3.8}{Cryptography}{chapter.3}% 58
-\BOOKMARK [1][-]{section.3.9}{Business Logic Testing}{chapter.3}% 59
-\BOOKMARK [2][-]{subsection.3.9.1}{Test Business Logic Data Validation\(OTG-BUSLOGIC-001\)}{section.3.9}% 60
-\BOOKMARK [2][-]{subsection.3.9.2}{Test Ability to Forge Requests\(OTG-BUSLOGIC-002\)}{section.3.9}% 61
-\BOOKMARK [2][-]{subsection.3.9.3}{Test Integrity Checks\(OTG-BUSLOGIC-003\)}{section.3.9}% 62
-\BOOKMARK [2][-]{subsection.3.9.4}{Test for Process Timing\(OTG-BUSLOGIC-004\)}{section.3.9}% 63
-\BOOKMARK [2][-]{subsection.3.9.5}{Test Number of Times a Function Can be Used Limits\(OTG-BUSLOGIC-005\)}{section.3.9}% 64
-\BOOKMARK [2][-]{subsection.3.9.6}{Testing for the Circumvention of Work Flows\(OTG-BUSLOGIC-006\)}{section.3.9}% 65
-\BOOKMARK [2][-]{subsection.3.9.7}{Test Defenses Against Application Misuse\(OTG-BUSLOGIC-007\)}{section.3.9}% 66
-\BOOKMARK [2][-]{subsection.3.9.8}{Test Upload of Unexpected File Types\(OTG-BUSLOGIC-008\)}{section.3.9}% 67
-\BOOKMARK [2][-]{subsection.3.9.9}{Test Upload of Malicious Files\(OTG-BUSLOGIC-009\)}{section.3.9}% 68
-\BOOKMARK [1][-]{section.3.10}{Client Side Testing}{chapter.3}% 69
-\BOOKMARK [2][-]{subsection.3.10.1}{Testing for DOM based Cross Site Scripting \(OTG-CLIENT-001\)}{section.3.10}% 70
-\BOOKMARK [2][-]{subsection.3.10.2}{Testing for JavaScript Execution \(OTG-CLIENT-002\)}{section.3.10}% 71
-\BOOKMARK [2][-]{subsection.3.10.3}{Testing for HTML Injection \(OTG-CLIENT-003\)}{section.3.10}% 72
-\BOOKMARK [2][-]{subsection.3.10.4}{Testing for Client Side URL Redirect \(OTG-CLIENT-004\)}{section.3.10}% 73
-\BOOKMARK [2][-]{subsection.3.10.5}{Testing for CSS Injection \(OTG-CLIENT-005\)}{section.3.10}% 74
-\BOOKMARK [2][-]{subsection.3.10.6}{Testing for Client Side Resource Manipulation \(OTG-CLIENT-006\)}{section.3.10}% 75
-\BOOKMARK [2][-]{subsection.3.10.7}{Test Cross Origin Resource Sharing \(OTG-CLIENT-007\)}{section.3.10}% 76
-\BOOKMARK [2][-]{subsection.3.10.8}{Testing for Cross Site Flashing \(OTG-CLIENT-008\)}{section.3.10}% 77
-\BOOKMARK [2][-]{subsection.3.10.9}{Testing for Clickjacking \(OTG-CLIENT-009\)}{section.3.10}% 78
-\BOOKMARK [2][-]{subsection.3.10.10}{Testing WebSockets \(OTG-CLIENT-010\)}{section.3.10}% 79
-\BOOKMARK [2][-]{subsection.3.10.11}{Test Web Messaging \(OTG-CLIENT-011\)}{section.3.10}% 80
-\BOOKMARK [2][-]{subsection.3.10.12}{Test Local Storage \(OTG-CLIENT-012\)}{section.3.10}% 81
+\BOOKMARK [1][-]{section.3.5}{Session Management Testing}{chapter.3}% 35
+\BOOKMARK [2][-]{subsection.3.5.1}{Testing for Bypassing Session Management Schema\(OTG-SESS-001\)}{section.3.5}% 36
+\BOOKMARK [2][-]{subsection.3.5.2}{Testing for Cookies attributes\(OTG-SESS-002\)}{section.3.5}% 37
+\BOOKMARK [2][-]{subsection.3.5.3}{Testing for Session Fixation\(OTG-SESS-003\)}{section.3.5}% 38
+\BOOKMARK [2][-]{subsection.3.5.4}{Testing for Exposed Session Variables \(OTG-SESS-004\)}{section.3.5}% 39
+\BOOKMARK [2][-]{subsection.3.5.5}{Testing for logout functionality\(OTG-SESS-006\)}{section.3.5}% 40
+\BOOKMARK [2][-]{subsection.3.5.6}{Test Session Timeout\(OTG-SESS-007\)}{section.3.5}% 41
+\BOOKMARK [2][-]{subsection.3.5.7}{Testing for Session puzzling\(OTG-SESS-008\)}{section.3.5}% 42
+\BOOKMARK [1][-]{section.3.6}{Data Validation Testing}{chapter.3}% 43
+\BOOKMARK [2][-]{subsection.3.6.1}{Testing for Reflected Cross Site Scripting\(OTG-INPVAL-001\)}{section.3.6}% 44
+\BOOKMARK [2][-]{subsection.3.6.2}{Testing for Stored Cross Site Scripting\(OTG-INPVAL-002\)}{section.3.6}% 45
+\BOOKMARK [2][-]{subsection.3.6.3}{Testing for HTTP Verb Tampering\(OTG-INPVAL-003\)}{section.3.6}% 46
+\BOOKMARK [2][-]{subsection.3.6.4}{Testing for SQL Injection \(OTG-INPVAL-005\) and Mysql testing \(OTG-INPVAL-005\)}{section.3.6}% 47
+\BOOKMARK [2][-]{subsection.3.6.5}{Testing for XML Injection\(OTG-INPVAL-008\)}{section.3.6}% 48
+\BOOKMARK [2][-]{subsection.3.6.6}{Testing for SSI Injection\(OTG-INPVAL-009\)}{section.3.6}% 49
+\BOOKMARK [2][-]{subsection.3.6.7}{Testing for XPATH Injection\(OTG-INPVAL-010\)}{section.3.6}% 50
+\BOOKMARK [2][-]{subsection.3.6.8}{Testing for Code Injection, Testing for Local File Inclusion, Testing for Remote File Inclusion\(OTG-INPVAL-012\)}{section.3.6}% 51
+\BOOKMARK [2][-]{subsection.3.6.9}{Testing for Command Injection\(OTG-INPVAL-013\)}{section.3.6}% 52
+\BOOKMARK [2][-]{subsection.3.6.10}{Testing for Buffer overflow, Testing for Heap overflow, Testing for Stack overflow, Testing for Format string \(OTG-INPVAL-014\)}{section.3.6}% 53
+\BOOKMARK [2][-]{subsection.3.6.11}{Testing for incubated vulnerabilities\(OTG-INPVAL-015\)}{section.3.6}% 54
+\BOOKMARK [1][-]{section.3.7}{Error Handling}{chapter.3}% 55
+\BOOKMARK [1][-]{section.3.8}{Cryptography}{chapter.3}% 56
+\BOOKMARK [1][-]{section.3.9}{Business Logic Testing}{chapter.3}% 57
+\BOOKMARK [2][-]{subsection.3.9.1}{Test Business Logic Data Validation\(OTG-BUSLOGIC-001\)}{section.3.9}% 58
+\BOOKMARK [2][-]{subsection.3.9.2}{Test Ability to Forge Requests\(OTG-BUSLOGIC-002\)}{section.3.9}% 59
+\BOOKMARK [2][-]{subsection.3.9.3}{Test Integrity Checks\(OTG-BUSLOGIC-003\)}{section.3.9}% 60
+\BOOKMARK [2][-]{subsection.3.9.4}{Test for Process Timing\(OTG-BUSLOGIC-004\)}{section.3.9}% 61
+\BOOKMARK [2][-]{subsection.3.9.5}{Test Number of Times a Function Can be Used Limits\(OTG-BUSLOGIC-005\)}{section.3.9}% 62
+\BOOKMARK [2][-]{subsection.3.9.6}{Testing for the Circumvention of Work Flows\(OTG-BUSLOGIC-006\)}{section.3.9}% 63
+\BOOKMARK [2][-]{subsection.3.9.7}{Test Defenses Against Application Misuse\(OTG-BUSLOGIC-007\)}{section.3.9}% 64
+\BOOKMARK [2][-]{subsection.3.9.8}{Test Upload of Unexpected File Types\(OTG-BUSLOGIC-008\)}{section.3.9}% 65
+\BOOKMARK [2][-]{subsection.3.9.9}{Test Upload of Malicious Files\(OTG-BUSLOGIC-009\)}{section.3.9}% 66
+\BOOKMARK [1][-]{section.3.10}{Client Side Testing}{chapter.3}% 67
+\BOOKMARK [2][-]{subsection.3.10.1}{Testing for DOM based Cross Site Scripting \(OTG-CLIENT-001\)}{section.3.10}% 68
+\BOOKMARK [2][-]{subsection.3.10.2}{Testing for JavaScript Execution \(OTG-CLIENT-002\)}{section.3.10}% 69
+\BOOKMARK [2][-]{subsection.3.10.3}{Testing for HTML Injection \(OTG-CLIENT-003\)}{section.3.10}% 70
+\BOOKMARK [2][-]{subsection.3.10.4}{Testing for Client Side URL Redirect \(OTG-CLIENT-004\)}{section.3.10}% 71
+\BOOKMARK [2][-]{subsection.3.10.5}{Testing for CSS Injection \(OTG-CLIENT-005\)}{section.3.10}% 72
+\BOOKMARK [2][-]{subsection.3.10.6}{Testing for Client Side Resource Manipulation \(OTG-CLIENT-006\)}{section.3.10}% 73
+\BOOKMARK [2][-]{subsection.3.10.7}{Test Cross Origin Resource Sharing \(OTG-CLIENT-007\)}{section.3.10}% 74
+\BOOKMARK [2][-]{subsection.3.10.8}{Testing for Cross Site Flashing \(OTG-CLIENT-008\)}{section.3.10}% 75
+\BOOKMARK [2][-]{subsection.3.10.9}{Testing for Clickjacking \(OTG-CLIENT-009\)}{section.3.10}% 76
+\BOOKMARK [2][-]{subsection.3.10.10}{Testing WebSockets \(OTG-CLIENT-010\)}{section.3.10}% 77
+\BOOKMARK [2][-]{subsection.3.10.11}{Test Web Messaging \(OTG-CLIENT-011\)}{section.3.10}% 78
+\BOOKMARK [2][-]{subsection.3.10.12}{Test Local Storage \(OTG-CLIENT-012\)}{section.3.10}% 79

@@ -45,11 +45,37 @@
 %\input{pages/abstract}
 \microtypesetup{protrusion=false}
 \tableofcontents{}
-\microtypesetup{protrusion=true}
-
+\microtypesetup{protrusion=true} 
 \mainmatter{}
 
 \chapter{Time Tracking Table}
+ 
+\begin{table}[htb] 
+	
+	\centering
+	\resizebox{9cm}{!}{%
+	\begin{tabular}{lll}
+		\hline 
+		{\textbf{Name}} & { \textbf{Task}} & {\textbf{Time}} \\ \hline 
+		Aurel Roci &  Test HTTP Methods  &  0.25          \\
+	    & Error Handling   &  1             \\
+		& Testing for default credentials & 0.25  \\
+		& Testing for Reflected Cross Site Scripting &  0.5  \\
+		& Testing for Stored Cross Site Scripting   & 2 \\
+		& Testing for HTTP Verb Tampering &  0.5     \\
+		& Testing for SQL Injection &  2 \\
+		& Test Number of Times a Function Can be Used Limits & 0.75 \\
+		& Test Business Logic Data Validation & 1.5 \\
+		& Executive Summary & 0.5 \\
+		& Testing Report & 2  \\
+		& Testing for Cross Site Request Forgery  & 0.5  \\
+		& Testing for Privilege Escalation  & 1.5  \\
+		& Presentation & 0.25 \\
+		 &  &                                                                   
+	\end{tabular}%
+}
+\end{table}
+ 
 %\input{chapters/01_introduction}
 % TODO: add more chapters here
 \chapter{Vulnerabilities Overview}
@@ -96,9 +122,8 @@ for a valid password
 	\item Risk: \textit{medium}
 	\item Reference: OWASP OTG-AUTHN-001
 \end{itemize}
-The application has no lock out mechanism, which allows brute force attacks on known usernames and testing
-for a valid password
 
+It is possible to access \textit{SQL} directory through the \textit{url}.
 
 
 \section{Team3 Online Banking}
@@ -636,11 +661,11 @@ performed. The test is divided in different sections following the OWASP Testing
 	\hline
 	\multicolumn{2}{c}{\textbf{Secode21}} \\
 	\hline
-	Observation &  We did not find any possibility to bypass the authentication schema\\
-	Discovery & NA\\
-	Likelihood & NA\\
-	Implication & NA\\
-	Recommendations & NA\\
+	Observation &  We did not find any possibility to bypass the authentication schema.\\
+	Discovery & N/A\\
+	Likelihood & N/A\\
+	Implication & N/A\\
+	Recommendations & N/A\\
 	Comparison & Neither we found a possibility in our web app \\
 	\hline
 \end{tabular}
@@ -848,10 +873,7 @@ performed. The test is divided in different sections following the OWASP Testing
 	Comparison & The same results apply for our web application.\\
 	\hline
 \end{tabular}
-
-\pagebreak
-\subsection{Testing for Insecure Direct Object References (OTG-AUTHZ-004)}\
-
+ 
 \pagebreak
 \section{Session Management Testing}\
 \subsection{Testing for Bypassing Session Management Schema(OTG-SESS-001)}\
@@ -1040,11 +1062,7 @@ performed. The test is divided in different sections following the OWASP Testing
 		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N
 	\end{tabular}
 \end{center}
-
-\pagebreak
-\subsection{Testing for Cross Site Request Forgery (OTG-SESS-005)}\
-
-
+ 
 \pagebreak
 \subsection{Testing for logout functionality(OTG-SESS-006)}\
 

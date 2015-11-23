@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.11.17)  23 NOV 2015 19:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.11.17)  23 NOV 2015 20:28
 entering extended mode
 **main.tex
 (main.tex
@@ -1493,7 +1493,8 @@ Package: supertabular 2004/02/20 v4.1e the supertabular environment
 ("C:\Program Files\MiKTeX 2.9\tex\latex\glossaries\styles\glossary-tree.sty"
 Package: glossary-tree 2015/09/09 v4.18 (NLCT)
 \glstreeindent=\skip82
-))) ("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\float\float.sty"
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count341
 \float@exts=\toks54
@@ -1501,14 +1502,53 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks55
 \@floatcapt=\box49
 )
-Package scrhack Info: loading float hack on input line 7.
+Package scrhack Info: loading float hack on input line 22.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\koma-script\float.hak"
 File: float.hak 2015/10/03 v3.19a KOMA-Script package (hacking package float)
 Package scrhack Info: redefining \newfloat on input line 161.
 Package scrhack Info: redefining \listof on input line 161.
 Package scrhack Info: undefining \float@addtolists on input line 161.
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\adjustbox\adjustbox.sty"
+Package: adjustbox 2012/05/21 v1.0 Adjusting TeX boxes (trim, clip, ...)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\adjustbox\adjcalc.sty"
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
+-ends (calc, etex, pgfmath)
 )
+("C:\Program Files\MiKTeX 2.9\tex\latex\adjustbox\trimclip.sty"
+Package: trimclip 2012/05/16 v1.0 Trim and clip general TeX material
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\collectbox\collectbox.sty"
+Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
+\collectedbox=\box50
+)
+\tc@llx=\dimen218
+\tc@lly=\dimen219
+\tc@urx=\dimen220
+\tc@ury=\dimen221
+Package trimclip Info: Using driver 'tc-pdftex.def'.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\adjustbox\tc-pdftex.def"
+File: tc-pdftex.def 2012/05/13 v1.0 Clipping driver for pdftex
+))
+\adjbox@Width=\dimen222
+\adjbox@Height=\dimen223
+\adjbox@Depth=\dimen224
+\adjbox@Totalheight=\dimen225
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\ifoddpage\ifoddpage.sty"
+Package: ifoddpage 2011/09/13 v1.0 Conditionals for odd/even page detection
+\c@checkoddpage=\count342
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\ltxmisc\varwidth.sty"
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box51
+\sift@deathcycles=\count343
+\@vwid@loff=\dimen226
+\@vwid@roff=\dimen227
+))
 (settings/settings.tex
 \glswrite=\write5
 \glo@main@file=\write6
@@ -1565,19 +1605,19 @@ Package biblatex Info: Reference section=0 on input line 17.
 Package biblatex Info: Reference segment=0 on input line 17.
 ("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count342
-\scratchdimen=\dimen218
-\scratchbox=\box50
-\nofMPsegments=\count343
-\nofMParguments=\count344
+\scratchcounter=\count344
+\scratchdimen=\dimen228
+\scratchbox=\box52
+\nofMPsegments=\count345
+\nofMParguments=\count346
 \everyMPshowfont=\toks56
-\MPscratchCnt=\count345
-\MPscratchDim=\dimen219
-\MPnumerator=\count346
-\makeMPintoPDFobject=\count347
+\MPscratchCnt=\count347
+\MPscratchDim=\dimen229
+\MPnumerator=\count348
+\makeMPintoPDFobject=\count349
 \everyMPtoPDFconversion=\toks57
 )
-\c@lstlisting=\count348
+\c@lstlisting=\count350
 Package scrhack Info: undefining \float@addtolists on input line 17.
  ABD: EveryShipout initializing macros
 Package pgfplots notification 'compat/show suggested version=true': you might b
@@ -1606,7 +1646,7 @@ Package: ltcaption 2013/06/09 v1.4-94 longtable captions (AR)
 )
 Package caption Info: supertabular package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\AtBeginShipoutBox=\box51
+\AtBeginShipoutBox=\box53
 Package hyperref Info: Link coloring OFF on input line 17.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
@@ -1615,7 +1655,7 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 ("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count349
+\c@section@level=\count351
 )
 LaTeX Info: Redefining \ref on input line 17.
 LaTeX Info: Redefining \pageref on input line 17.
@@ -1626,13 +1666,13 @@ LaTeX Info: Redefining \nameref on input line 17.
 Package nag Info: Command \hc@caption not defined, skipping amendment on input 
 line 17.
  (pages/cover.tex
-<logos/tum.pdf, id=330, 55.20625pt x 30.1125pt>
+<logos/tum.pdf, id=322, 55.20625pt x 30.1125pt>
 File: logos/tum.pdf Graphic file (type pdf)
  <use logos/tum.pdf>
 Package pdftex.def Info: logos/tum.pdf used on input line 12.
 (pdftex.def)             Requested size: 113.81102pt x 62.08203pt.
 
-<logos/faculty.pdf, id=331, 30.1125pt x 33.12375pt>
+<logos/faculty.pdf, id=323, 30.1125pt x 33.12375pt>
 File: logos/faculty.pdf Graphic file (type pdf)
  <use logos/faculty.pdf>
 Package pdftex.def Info: logos/faculty.pdf used on input line 33.
@@ -1726,16 +1766,19 @@ an En-crypted Channel(OTG-
 
 ]
 LaTeX Font Info:    Font shape `T1/pplx/m/sl' in size <10.95> not available
-(Font)              Font shape `T1/pplx/m/it' tried instead on input line 125.
+(Font)              Font shape `T1/pplx/m/it' tried instead on input line 121.
  [3])
 \tf@toc=\write9
  [4]
 chapter 1.
+
+Package nag Warning: table with no \caption on input line 77.
+
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.55 \chapter
+l.81 \chapter
              {Vulnerabilities Overview} [1
 
 
@@ -1743,16 +1786,16 @@ l.55 \chapter
 ]
 chapter 2.
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 58.
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 84.
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <12> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 59.
-LaTeX Font Info:    Try loading font information for OMS+pplx on input line 61.
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 85.
+LaTeX Font Info:    Try loading font information for OMS+pplx on input line 87.
 
-LaTeX Font Info:    No file OMSpplx.fd. on input line 61.
+LaTeX Font Info:    No file OMSpplx.fd. on input line 87.
 
 LaTeX Font Warning: Font shape `OMS/pplx/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbullet' on input line 61.
+(Font)              for symbol `textbullet' on input line 87.
 
 [2
 
@@ -1763,182 +1806,182 @@ chapter 3.
 
 
 ]
-Overfull \hbox (4.35834pt too wide) in paragraph at lines 152--155
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 177--180
 [][] 
  []
 
 
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 156--171
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 181--196
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 156--171
+Underfull \hbox (badness 10000) in paragraph at lines 181--196
 
  []
 
 [6] [7]
-Overfull \hbox (4.35834pt too wide) in paragraph at lines 198--201
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 223--226
 [][] 
  []
 
 
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 202--215
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 227--240
 [][] 
  []
 
 [8]
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 224--239
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 249--264
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 224--239
+Underfull \hbox (badness 10000) in paragraph at lines 249--264
 
  []
 
-<figures/charles_results.png, id=521, 621.32124pt x 269.005pt>
+<figures/charles_results.png, id=513, 621.32124pt x 269.005pt>
 File: figures/charles_results.png Graphic file (type png)
 
 <use figures/charles_results.png>
-Package pdftex.def Info: figures/charles_results.png used on input line 264.
+Package pdftex.def Info: figures/charles_results.png used on input line 289.
 (pdftex.def)             Requested size: 372.79562pt x 161.40424pt.
  [9] [10 <./figures/charles_results.png>]
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 275--290
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 300--315
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 275--290
+Underfull \hbox (badness 10000) in paragraph at lines 300--315
 
  []
 
 [11]
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 322--337
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 347--362
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 322--337
+Underfull \hbox (badness 10000) in paragraph at lines 347--362
 
  []
 
 [12]
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 366--381
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 391--406
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 366--381
+Underfull \hbox (badness 10000) in paragraph at lines 391--406
 
  []
 
 [13] [14]
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 410--424
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 435--449
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 410--424
+Underfull \hbox (badness 10000) in paragraph at lines 435--449
 
  []
 
 [15]
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 453--467
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 478--492
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 453--467
+Underfull \hbox (badness 10000) in paragraph at lines 478--492
 
  []
 
 [16]
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 496--510
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 521--535
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 496--510
+Underfull \hbox (badness 10000) in paragraph at lines 521--535
 
  []
 
 [17]
-Overfull \hbox (4.35834pt too wide) in paragraph at lines 537--540
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 562--565
 [][] 
  []
 
 
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 541--560
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 566--585
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 541--560
+Underfull \hbox (badness 10000) in paragraph at lines 566--585
 
  []
 
 [18]
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 589--605
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 614--630
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 589--605
+Underfull \hbox (badness 10000) in paragraph at lines 614--630
 
  []
 
 [19]
-Overfull \hbox (4.35834pt too wide) in paragraph at lines 631--634
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 656--659
 [][] 
  []
 
 
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 635--650
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 660--675
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 635--650
+Underfull \hbox (badness 10000) in paragraph at lines 660--675
 
  []
 
 [20]
-Overfull \hbox (4.35834pt too wide) in paragraph at lines 676--679
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 701--704
 [][] 
  []
 
 
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 680--696
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 705--721
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 680--696
+Underfull \hbox (badness 10000) in paragraph at lines 705--721
 
  []
 
 [21]
-Overfull \hbox (4.35834pt too wide) in paragraph at lines 722--725
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 747--750
 [][] 
  []
 
 
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 726--742
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 751--767
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 726--742
+Underfull \hbox (badness 10000) in paragraph at lines 751--767
 
  []
 
 [22]
-Overfull \hbox (4.35834pt too wide) in paragraph at lines 769--772
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 794--797
 [][] 
  []
 
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 779.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 807.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1cmtt.fd"
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
@@ -1948,249 +1991,329 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 773--792
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 798--826
 [][] 
  []
 
-[23] <data/dotdotpwn.png, id=591, 1444.39626pt x 880.28876pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 798--826
+
+ []
+
+[23] <data/dotdotpwn.png, id=583, 1444.39626pt x 880.28876pt>
 File: data/dotdotpwn.png Graphic file (type png)
 
 <use data/dotdotpwn.png>
-Package pdftex.def Info: data/dotdotpwn.png used on input line 797.
+Package pdftex.def Info: data/dotdotpwn.png used on input line 851.
 (pdftex.def)             Requested size: 418.25555pt x 254.9011pt.
-
-Overfull \hbox (4.35834pt too wide) in paragraph at lines 806--809
+ [24 <./data/dotdotpwn.png>]
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 860--863
 [][] 
  []
 
 
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 810--822
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 864--876
 [][] 
  []
 
-[24 <./data/dotdotpwn.png>] [25]
-Overfull \hbox (4.35834pt too wide) in paragraph at lines 830--833
-[][] 
- []
-
-
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 834--849
+[25]
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 881--884
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 834--849
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 885--900
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 885--900
 
  []
 
 [26]
-Overfull \hbox (4.35834pt too wide) in paragraph at lines 875--878
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 926--929
 [][] 
  []
 
 
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 880--899
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 931--950
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 880--899
+Underfull \hbox (badness 10000) in paragraph at lines 931--950
 
  []
 
 [27]
-Overfull \hbox (4.35834pt too wide) in paragraph at lines 925--928
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 976--979
 [][] 
  []
 
 
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 929--946
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 980--997
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 929--946
+Underfull \hbox (badness 10000) in paragraph at lines 980--997
 
  []
 
 [28]
-Overfull \hbox (4.35834pt too wide) in paragraph at lines 971--974
-[][] 
- []
-
-
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 975--992
-[][] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 975--992
-
- []
-
-[29] [30]
 Overfull \hbox (4.35834pt too wide) in paragraph at lines 1022--1025
 [][] 
  []
 
 
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 1026--1046
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 1026--1043
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1026--1046
+Underfull \hbox (badness 10000) in paragraph at lines 1026--1043
+
+ []
+
+[29]
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 1069--1072
+[][] 
+ []
+
+
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 1073--1093
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1073--1093
+
+ []
+
+[30]
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 1119--1122
+[][] 
+ []
+
+
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 1123--1139
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1123--1139
 
  []
 
 [31]
-Overfull \hbox (4.35834pt too wide) in paragraph at lines 1072--1075
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 1165--1168
 [][] 
  []
 
 
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 1076--1092
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 1169--1182
 [][] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1076--1092
-
  []
 
 [32]
-Overfull \hbox (4.35834pt too wide) in paragraph at lines 1118--1121
-[][] 
- []
-
-
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 1122--1135
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 1191--1203
 [][] 
  []
 
 [33]
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 1144--1156
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 1211--1232
 [][] 
  []
 
-[34]
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 1164--1182
-[][] 
- []
-
-[35] [36]
-Overfull \hbox (4.35834pt too wide) in paragraph at lines 1218--1221
+[34] [35]
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 1268--1271
 [][] 
  []
 
 
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 1222--1255
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 1272--1305
 [][] 
  []
 
-<tampering.png, id=648, 383.18156pt x 191.21437pt>
+<tampering.png, id=638, 383.18156pt x 191.21437pt>
 File: tampering.png Graphic file (type png)
  <use tampering.png>
-Package pdftex.def Info: tampering.png used on input line 1257.
+Package pdftex.def Info: tampering.png used on input line 1307.
 (pdftex.def)             Requested size: 418.25555pt x 208.7288pt.
 
-<script.png, id=649, 572.1375pt x 152.06813pt>
+<script.png, id=639, 572.1375pt x 152.06813pt>
 File: script.png Graphic file (type png)
  <use script.png>
-Package pdftex.def Info: script.png used on input line 1263.
+Package pdftex.def Info: script.png used on input line 1313.
 (pdftex.def)             Requested size: 418.25555pt x 111.1689pt.
- [37] [38 <./tampering.png> <./script.png>] [39]
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 1278--1291
+ [36] [37 <./tampering.png> <./script.png>]
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 1321--1324
 [][] 
  []
 
-[40] [41] [42] [43] [44] [45]
-Underfull \hbox (badness 10000) in paragraph at lines 1307--1308
+
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 1325--1339
+[][] 
+ []
+
+[38]
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 1343--1346
+[][] 
+ []
+
+
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 1347--1359
+[][] 
+ []
+
+[39]
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 1363--1366
+[][] 
+ []
+
+
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 1367--1379
+[][] 
+ []
+
+[40]
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 1383--1386
+[][] 
+ []
+
+
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 1387--1399
+[][] 
+ []
+
+[41]
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 1403--1406
+[][] 
+ []
+
+
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 1407--1421
+[][] 
+ []
+
+[42]
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 1425--1428
+[][] 
+ []
+
+
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 1429--1441
+[][] 
+ []
+
+[43]
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 1445--1448
+[][] 
+ []
+
+
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 1449--1463
+[][] 
+ []
+
+[44]
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 1467--1470
+[][] 
+ []
+
+
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 1471--1487
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1490--1491
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1309--1312
+Underfull \hbox (badness 10000) in paragraph at lines 1492--1495
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1313--1314
+Underfull \hbox (badness 10000) in paragraph at lines 1496--1497
 
  []
 
-[46]
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 1326--1339
+[45] [46]
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 1509--1522
 [][] 
  []
 
 [47] [48] [49] [50]
-Overfull \hbox (20.3464pt too wide) in paragraph at lines 1353--1366
+Overfull \hbox (20.3464pt too wide) in paragraph at lines 1536--1549
 [][] 
  []
 
 [51] [52] [53] [54] [55]
-Overfull \hbox (4.35834pt too wide) in paragraph at lines 1381--1384
+Overfull \hbox (4.35834pt too wide) in paragraph at lines 1564--1567
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1385--1399
+Underfull \hbox (badness 10000) in paragraph at lines 1568--1582
 
  []
 
 [56]
-Underfull \hbox (badness 10000) in paragraph at lines 1429--1443
+Underfull \hbox (badness 10000) in paragraph at lines 1612--1626
 
  []
 
 [57]
-Underfull \hbox (badness 10000) in paragraph at lines 1472--1486
+Underfull \hbox (badness 10000) in paragraph at lines 1655--1669
 
  []
 
 [58]
-Underfull \hbox (badness 10000) in paragraph at lines 1516--1530
+Underfull \hbox (badness 10000) in paragraph at lines 1699--1713
 
  []
 
 [59]
-Underfull \hbox (badness 10000) in paragraph at lines 1559--1573
+Underfull \hbox (badness 10000) in paragraph at lines 1742--1756
 
  []
 
 [60]
-Underfull \hbox (badness 10000) in paragraph at lines 1602--1616
+Underfull \hbox (badness 10000) in paragraph at lines 1785--1799
 
  []
 
 [61]
-Underfull \hbox (badness 10000) in paragraph at lines 1645--1659
+Underfull \hbox (badness 10000) in paragraph at lines 1828--1842
 
  []
 
 [62]
-Underfull \hbox (badness 10000) in paragraph at lines 1688--1702
+Underfull \hbox (badness 10000) in paragraph at lines 1871--1885
 
  []
 
 [63]
-Underfull \hbox (badness 10000) in paragraph at lines 1732--1748
+Underfull \hbox (badness 10000) in paragraph at lines 1915--1931
 
  []
 
 [64]
-Underfull \hbox (badness 10000) in paragraph at lines 1778--1792
+Underfull \hbox (badness 10000) in paragraph at lines 1961--1975
 
  []
 
 [65]
-Underfull \hbox (badness 10000) in paragraph at lines 1821--1835
+Underfull \hbox (badness 10000) in paragraph at lines 2004--2018
 
  []
 
 [66]
-Underfull \hbox (badness 10000) in paragraph at lines 1864--1878
+Underfull \hbox (badness 10000) in paragraph at lines 2047--2061
 
  []
 
@@ -2198,18 +2321,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 1864--1878
 No file main.gls.
 No file main.acr.
 
-LaTeX Warning: Empty bibliography on input line 1913.
+LaTeX Warning: Empty bibliography on input line 2096.
 
-No complaints by nag.
+
+Package nag Warning: 1 complaints in total.
+
 [68]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1915.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1915.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2098.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2098.
  (main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1915.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1915.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2098.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2098.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 6392C11F5CE6527A858D2F21E54D108B;7915.
+(rerunfilecheck)             Checksum: EB5E6445EFD2378BEAB0C191DE07CF79;7710.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -2217,11 +2342,11 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 Package logreq Info: Writing requests to 'main.run.xml'.
  ) 
 Here is how much of TeX's memory you used:
- 42769 strings out of 493673
- 904200 string characters out of 3143959
- 1588161 words of memory out of 3000000
- 44978 multiletter control sequences out of 15000+200000
- 47059 words of font info for 203 fonts, out of 3000000 for 9000
+ 43328 strings out of 493673
+ 913731 string characters out of 3143959
+ 1597261 words of memory out of 3000000
+ 45503 multiletter control sequences out of 15000+200000
+ 47505 words of font info for 209 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
  75i,14n,83p,1935b,3115s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\aurel\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\
@@ -2230,9 +2355,9 @@ ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/urw/palatino/uplb8a.pfb><C:/Program Files/MiKTeX 2.9
 /fonts/type1/urw/palatino/uplr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/u
 rw/palatino/uplri8a.pfb>
-Output written on main.pdf (73 pages, 973252 bytes).
+Output written on main.pdf (73 pages, 983036 bytes).
 PDF statistics:
- 873 PDF objects out of 1000 (max. 8388607)
- 162 named destinations out of 1000 (max. 500000)
- 27827 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 881 PDF objects out of 1000 (max. 8388607)
+ 163 named destinations out of 1000 (max. 500000)
+ 27811 words of extra memory for PDF output out of 29859 (max. 10000000)
 
