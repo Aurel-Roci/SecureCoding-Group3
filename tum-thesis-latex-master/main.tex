@@ -22,19 +22,19 @@
 
 
 {
-	\chapter{Executive Summary}\ 
-	
+	\chapter{Executive Summary}\
+
    \textbf{Secode21}\\
-	
+
 	We found several vulnerabilities, which could cause severe damage to the \textit{Secode21}. It is possible to get access to the admin page via stealing the session. Thus an attacker can register an arbitrary employee or customer and unlock the registered user. An	attacker can also execute a brute force attack on known user ids as there is no lock mechanism to prevent this. Besides the security issues there is also a severe problem with regard to the business logic. In the current state this web application should not be used productively!	\\
-	
-	
+
+
 	\textbf{Team3 Online Banking}\\
-	
+
 	We found some issues, which potentially could cause damage to the \textit{Team3 Online Banking}. However the detected issues are quite easy to fix. If an experienced attacker performs a man in the middle attack he'll be able to track session ids. The implications are severe, as the	attacker can take over the role of the customer, but this attack requires advanced knowledge. With regard to the business logic there was only one issue with low risk detected. \\
-	
+
 	\textbf{Comparison}\\
-	
+
 	In summary we were able to clearly state out that the \textit{Team3 Online Banking} web application has less and also less severe vulnerabilites then the \textit{Secode21} web application. Furthermore it has to be said that the detected issues of the \textit{Team3 Online Banking} are easier to fix and will cost less money to implement.
 }
 
@@ -61,7 +61,7 @@ Bank and the OnlineBanking Bank:
 	\item Likelihood: \textit{high}
 	\item Implication: \textit{high}
 	\item Risk: \textit{high}
-	\item Reference: OWASP OTG-SESS-003 
+	\item Reference: OWASP OTG-SESS-003
 \end{itemize}
 
 The session id is saved in form of the (static) user id in a cookie. This cookie can be used on any machine
@@ -73,7 +73,7 @@ to take over the account of a user. The lifetime of this cookie is only limited 
 	\item Likelihood: \textit{medium}
 	\item Implication: \textit{high}
 	\item Risk: \textit{high}
-	\item Reference: OWASP OTG-INPVAL-002 
+	\item Reference: OWASP OTG-INPVAL-002
 \end{itemize}
 
 Using stored cross-site-scripting attacks, one can inject JavaScript code, that is run, when the Administrator/Employee logs in. Arbitrary code can be loaded from a third party page.
@@ -83,7 +83,7 @@ Using stored cross-site-scripting attacks, one can inject JavaScript code, that 
 	\item Likelihood: \textit{high}
 	\item Implication: \textit{medium}
 	\item Risk: \textit{medium}
-	\item Reference: OWASP OTG-AUTHN-003 
+	\item Reference: OWASP OTG-AUTHN-003
 \end{itemize}
 The application has no lock out mechanism, which allows brute force attacks on known usernames and testing
 for a valid password
@@ -94,7 +94,7 @@ for a valid password
 	\item Likelihood: \textit{high}
 	\item Implication: \textit{medium}
 	\item Risk: \textit{medium}
-	\item Reference: OWASP OTG-AUTHN-001 
+	\item Reference: OWASP OTG-AUTHN-001
 \end{itemize}
 The application has no lock out mechanism, which allows brute force attacks on known usernames and testing
 for a valid password
@@ -108,7 +108,7 @@ for a valid password
 	\item Likelihood: \textit{high}
 	\item Implication: \textit{high}
 	\item Risk: \textit{high}
-	\item Reference: OWASP OTG-SESS-003 
+	\item Reference: OWASP OTG-SESS-003
 \end{itemize}
 
 The session id is saved in form of the (static) user id in a cookie. This cookie can be used on any machine
@@ -120,7 +120,7 @@ to take over the account of a user. The lifetime of this cookie is only limited 
 	\item Likelihood: \textit{medium}
 	\item Implication: \textit{high}
 	\item Risk: \textit{high}
-	\item Reference: OWASP OTG-INPVAL-002 
+	\item Reference: OWASP OTG-INPVAL-002
 \end{itemize}
 
 Using stored cross-site-scripting attacks, one can inject JavaScript code, that is run, when the Administrator/Employee logs in. Arbitrary code can be loaded from a third party page.
@@ -130,7 +130,7 @@ Using stored cross-site-scripting attacks, one can inject JavaScript code, that 
 	\item Likelihood: \textit{high}
 	\item Implication: \textit{medium}
 	\item Risk: \textit{medium}
-	\item Reference: OWASP OTG-AUTHN-003  
+	\item Reference: OWASP OTG-AUTHN-003
 \end{itemize}
 The application has no lock out mechanism, which allows brute force attacks on known usernames and testing
 for a valid password
@@ -821,8 +821,6 @@ performed. The test is divided in different sections following the OWASP Testing
 	\end{tabular}
 \end{center}
 
-\pagebreak
-
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{data/dotdotpwn.png}
@@ -906,8 +904,8 @@ performed. The test is divided in different sections following the OWASP Testing
 \begin{tabular}{cR{12cm}}
 	\textbf{Secode21} & Likelihood: 10\\& Impact: 3\\& Risk: 3
 \end{tabular}
- 
- 
+
+
 \begin{tabular}{ l|p{11cm}  }
 	\hline
 	\multicolumn{2}{c}{\textbf{Secode21}} \\
@@ -915,7 +913,7 @@ performed. The test is divided in different sections following the OWASP Testing
 	Observation &  The cookie for the PHP session id has a to general path (``//''). So
 	the application is vulnerable to other web application on the same server. They will
 	also get the cookie from the user. \\
-	
+
 	Discovery  & We used the Chrome developer tools to analyze the cookies\\
 	Likelihood & N/A\\
 	Implication    & The cookies can be read and used by other web applications that
@@ -1901,7 +1899,7 @@ Based on the client side input validation, there are also no messages for manipu
 	\multicolumn{2}{c}{\textbf{Secode21}} \\
 	\hline
 	Observation   & We found a vulnerability in the web application that allows attackers to make clickjacking attacks by bundling the website inside an iframe to give the user the feeling of interacting with the target website but being instead on a malicious web page. \\
-	
+
 	Discovery  & The tool \textit{w3af} found out that the web application does not make use of protection techniques to prevent click jacking attacks. The use of \textit{X-Frame-Options} header would help on the server side to prevent against this type of attacks, but is never used by this web application. \\
 	\\
 	Likelihood & It is quite likely that someone would use this kind of exploits on an online banking website, because the people trust these websites. It is not very difficult to use this vulnerability to attack the users. \\
