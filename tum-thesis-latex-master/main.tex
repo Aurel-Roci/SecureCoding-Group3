@@ -767,14 +767,17 @@ performed. The test is divided in different sections following the OWASP Testing
 \subsection{Testing Directory traversal/file include (OTG-AUTHZ-001)}\
 
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+	\textbf{Secode21} & Likelihood: 4\\& Impact: 5\\& Risk: 5
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
 	\multicolumn{2}{c}{\textbf{Secode21}} \\
 	\hline
-	Observation   & We could not find any path traversals. \\
+	Observation   & We could not find any path traversals with dotdotpwn but w3af found some.
+	The phpinfo.php can be accessed and it contains the paths for several config files. So
+	an attacker directly knows where to search for this files. Also since the attacker can see
+	the phpinfo.php and see the installed software and its versions he can easily search for vulnerabilities for that version \\
 	Discovery  & We used the dotdotpwn tool to find such traversals with the following command:
 	\begin{lstlisting}
 		sudo ./dotdotpwn.pl -O -m http -h 192.168.21.39
@@ -782,13 +785,41 @@ performed. The test is divided in different sections following the OWASP Testing
 	\end{lstlisting}
 	-O is to get the operating system; -d 10 dotdotpwn will search until a deepness of 10;
 	-m is to indicate that the protocol is http and -h for the server ip; -f /etc/hosts searches
-	after the hosts file; -k defines that a file without localhost in it is a false positive\\
-	Likelihood & N/A \\
-	Implication    & N/A \\
-	Recommendations & N/A \\
-	Comparison & The same results apply for our web application.\\
+	after the hosts file; -k defines that a file without ``localhost'' in it is a false positive.
+	Afterwards we tried w3af and it found the phpinfo.php file\\
+	Likelihood & This is more an additional information for other attacks but it is a
+	good help for attackers to find vulnerabilities faster \\
+	Implication    & The attacker knows the position of the config files, how php is
+	configured and what version are used \\
+	Recommendations & make the phpinfo page not accessible or delete it \\
+	Comparison & Our webapp does not have a phpinfo page.\\
 	\hline
 \end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{center}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9}
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } L              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N
+	\end{tabular}
+\end{center}
 
 \pagebreak
 
@@ -1169,7 +1200,10 @@ performed. The test is divided in different sections following the OWASP Testing
 	them could be exploited as the length of the corresponding database fields was
 	often very restricted.
 	We manually tried to inject JavaScript code in every input field. Therefore we
-	used the following code, which just alerts a message. \\
+	used the following code, which just alerts a message.
+	\begin{lstlisting}
+		<script type="javascript">alert("XSS");</script>
+	\end{lstlisting} \\
 	Discovery  & We inserted Javascript code in the name field on the register page.
 	When we logged in as an employee the script was executed.  There were cases when the script caused for new registered users after the script was entered to not appear. \\
 	Likelihood & This vulnerability can be easily detected, but require some JavaScript knowledge to exploit it. Therefore we estimated the likelihood to be medium. \\
@@ -1265,23 +1299,21 @@ performed. The test is divided in different sections following the OWASP Testing
 	\label{fig:script}
 \end{figure}
 
-
 \pagebreak
-\subsection{Testing for HTTP Parameter pollution(OTG-INPVAL-004)}\
-\pagebreak
-\subsection{Testing for SQL Injection  (OTG-INPVAL-005)}\
+\subsection{Testing for SQL Injection (OTG-INPVAL-005) and Mysql testing (OTG-INPVAL-005)}\
 
-\begin{tabular}{cc}
-	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 8\\ Impact: 5\\ Risk:5 \end{tabular}
-\end{tabular}\
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
 	\multicolumn{2}{c}{\textbf{Secode21}} \\
 	\hline
-	Observation   & We observed that no SQL Injection was possible. \\
-	Discovery  & We tried inserting various SQL statements in the fields of using \textit{SQL Inject Me} tool and failed. \\
-
+	Observation   & We observed that no SQL Injection was possible. Since we knew that the other team had
+	to use Mysql we tested also specifically for Mysql \\
+	Discovery  & We tried inserting various SQL statements in the fields of using \textit{SQL Inject Me} tool and failed.
+	Also w3af was used and it could not find any vulnerabilities \\
 	Likelihood & N/A \\
 	Implication    & N/A \\
 	Recommendations & N/A \\
@@ -1290,17 +1322,152 @@ performed. The test is divided in different sections following the OWASP Testing
 \end{tabular}
 
 \pagebreak
-\subsection{IMAP/SMTP Injection(OTG-INPVAL-011)}\
+\subsection{Testing for XML Injection(OTG-INPVAL-008)}\
+
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\hline
+	Observation   & We did not find any vulnerability regarding XML Injection\\
+	Discovery  & We used w3af to find XML injection vulerabilities and it could not find any. \\
+	Likelihood & N/A \\
+	Implication    & N/A \\
+	Recommendations & N/A \\
+	Comparison& Our web application is also immune to XML Injections \\
+	\hline
+\end{tabular}
+
+\pagebreak
+\subsection{Testing for SSI Injection(OTG-INPVAL-009)}\
+
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\hline
+	Observation   & We did not find any vulnerability regarding SSI Injection\\
+	Discovery  & We used w3af to find SSI injection possibilities and it could not find any vulnerabilities. \\
+	Likelihood & N/A \\
+	Implication    & N/A \\
+	Recommendations & N/A \\
+	Comparison& Our web application is also immune to XML Injections \\
+	\hline
+\end{tabular}
+
+\pagebreak
+\subsection{Testing for XPATH Injection(OTG-INPVAL-010)}\
+
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\hline
+	Observation   & We did not find any vulnerability regarding XPATH Injection\\
+	Discovery  & We used w3af to find XPATH injections and it could not find any vulnerabilities \\
+	Likelihood & N/A \\
+	Implication    & N/A \\
+	Recommendations & N/A \\
+	Comparison& Our web application is also immune to XPATH Injections \\
+	\hline
+\end{tabular}
+
 \pagebreak
 \subsection{Testing for Code Injection, Testing for Local File Inclusion, Testing for Remote File Inclusion(OTG-INPVAL-012)}\
+
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\hline
+	Observation   & We did not find any vulnerability regarding code injection and local or remote file inclusion in our
+	web app. Team 21 did not implemented that feature\\
+	Discovery  & Tryed to perform a command execution via the backticks (`) and also the semicolon (;) in the filename but our
+	webapp correctly handled the files without injections \\
+	Likelihood & N/A \\
+	Implication    & N/A \\
+	Recommendations & N/A \\
+	Comparison& NA \\
+	\hline
+\end{tabular}
+
 \pagebreak
 \subsection{Testing for Command Injection(OTG-INPVAL-013)}\
+
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\hline
+	Observation   & Could not find any possibilities too for such a injection\\
+	Discovery  & Searched manually and used the OWASPTOP10 profile for w3af and did not found a possibility\\
+	Likelihood & N/A \\
+	Implication    & N/A \\
+	Recommendations & N/A \\
+	Comparison& Neither our app showed such a vulnerability\\
+	\hline
+\end{tabular}
+
 \pagebreak
 \subsection{Testing for Buffer overflow, Testing for Heap overflow, Testing for Stack overflow, Testing for Format string (OTG-INPVAL-014)}\
+
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\hline
+	Observation   & We did not find any vulnerability regarding buffer overflow,
+	heap overflow, stack overflow or string formatting\\
+	Discovery  & We used w3af to locate such vilnerabilities. \\
+	Likelihood & N/A \\
+	Implication    & N/A \\
+	Recommendations & N/A \\
+	Comparison& Our web application is also immune to buffer overflow,
+	heap overflow, stack overflow and string formatting \\
+	\hline
+\end{tabular}
+
 \pagebreak
 \subsection{Testing for incubated vulnerabilities(OTG-INPVAL-015)}\
-\pagebreak
-\subsection{Testing for HTTP Splitting/Smuggling(OTG-INPVAL-016)}\
+
+\begin{tabular}{cR{12cm}}
+	\textbf{Secode21} & Likelihood: 7\\& Impact: 7\\& Risk: 5
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\hline
+	Observation   & A part of the XSS injection counts also to this vulnerability thats possible on the web app of
+	team 21. Code like the example on the owasp page for OTG-INPVAL-015 could exploit the web app\\
+	Discovery  & We knew that stored XSS is possible so also this attack works and someone could hijack an
+	admins account simply by creating an user\\
+	Likelihood & The attack is pretty easy and the employee only has to view the accounts
+	page and if the attacker is a bit skilled the employee does not even discover that something was wrong \\
+	Implication    & The attacker can hijack the session and do all the other things possible with XSS\\
+	Recommendations & Validate and escape the user input \\
+	Comparison& Our web application has the same vulnerability but there it is a lot more restricted.
+	Only really short injection code can be used so the possibilities are limited. \\
+	\hline
+\end{tabular}
 
 \section{Error Handling}\
 
