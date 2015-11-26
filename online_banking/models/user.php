@@ -27,14 +27,14 @@
   }
 
   function userBalance($user_id, $balance){
-		$query = "UPDATE users SET balance = '".$balance."' WHERE id='".$user_id."';";
+		$query = "UPDATE users SET balance = '".$balance."' WHERE id='".$user_id."'";
 		mysql_query($query);
 	}
    
 	
   function getBalance($id) {
        
-      $query = "SELECT balance FROM users WHERE  id ='".$id."'"; //'".2."'";
+      $query = "SELECT balance FROM users WHERE  id ='".$id."'";
       $result = mysql_query($query);
       if($result && mysql_num_rows($result) > 0) {
         $row = mysql_fetch_assoc($result);
