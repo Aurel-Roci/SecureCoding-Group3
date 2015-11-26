@@ -5,56 +5,60 @@
 
   $post = $_SERVER['REQUEST_METHOD'] === 'POST';
 
-  if (isset($_GET["return_var"])) {
-    $return_var = $_GET["return_var"];
-  }
-
   if($post) {
-    $allPramatetersSet = isset($_POST['recipient']) && isset($_POST['amount']) && isset($_POST['tan']);
+    $allPramatetersSet = isset($_POST['recipient']) && isset($_POST['amount']) && isset($_POST['tan']) && isset($_POST['description']);
 
   	if($allPramatetersSet){
 			$recipient_name = $_POST['recipient'];
 			$amount = $_POST['amount'];
 			$tan = $_POST['tan'];
-			if(!empty($recipient_name) &&!empty($amount) &&!empty($tan)){
+      $description = $_POST['description'];
+			if($amount<0){
+        ?>
+        <div class="alert alert-warning" role="alert"><strong>Warning!</strong>You cannot transfer a negative amount of money!</div>
+        <?php
+      }else{
+        if(!empty($recipient_name) &&!empty($amount) &&!empty($tan)&&  !empty($description)){
+          $senderbalance = getBalance(getUser()->id);
+          $newbalance = $senderbalance - $amount;
+          if($newbalance>=0){
+              $recipient = fetchUserWithUsername($recipient_name);
+                  if ($recipient) {
+                    userBalance(getUser()->id,$newbalance);
+                    $recipientbalance = getBalance($recipient->id);
+                    $transfer = $recipientbalance+$amount;
+                    userBalance($recipient->id,$transfer);
+            				$tan_is_for_user = isTanFromUser($tan, getUser()->id);
+                    $tan_unused = isTanUnused($tan);
 
-				$recipient = fetchUserWithUsername($recipient_name);
+            				if($tan_is_for_user && $tan_unused) {
+            					insertNewTransaction(getUser()->id, $recipient->id, $amount, $description, $tan);
+                    } else {
+                      ?>
+                      <div class="alert alert-warning" role="alert"><strong>Warning!</strong> There is a problem with the inserted TAN!</div>
+                      <?php
+                    }
 
-        if ($recipient) {
-          if ($recipient->isApproved()) {
-    				$tan_is_for_user = isTanFromUser($tan, getUser()->id);
-            $tan_unused = isTanUnused($tan);
-
-    				if($tan_is_for_user && $tan_unused) {
-    					insertNewTransaction(getUser()->id, $recipient->id, $amount, $tan);
-              header("Refresh:0");
-            } else {
-              $error_msg = "<strong>Warning!</strong> Your TAN is either wrong or already used";
-            }
-          } else {
-            $error_msg = "<strong>Warning!</strong> User is not approved";
-          }
-
-			  } else {
-          $error_msg = "<strong>Warning!</strong> User does not exists";
+          			  } else {
+                    ?>
+                    <div class="alert alert-warning" role="alert"><strong>Warning!</strong> The user you are trying to reach does not exist!</div>
+                    <?php
+                  }
+              }else {
+                ?>
+                <div class="alert alert-warning" role="alert"><strong>Warning!</strong> You do not have enough money to make this transaction!</div>
+                <?php
+              }
         }
       }
 		} else if (isset($_FILES['transactionfile'])) {
       //tmp_name
       $filepath = $_FILES['transactionfile']['tmp_name'];
       $return_line = exec("./upload_parser " . escapeshellarg($filepath), $output, $return_var);
-      echo $_SERVER['REQUEST_URI'];
-      header('Location: ' . $_SERVER['REQUEST_URI'] . '?return_var=' . $return_var . '&output=' . $output[0] . '');
 
     }
   }
 
-
-  if (isset($error_msg)) {
-?>
-<div class="alert alert-warning" role="alert" style="margin-top: 25px;"><?= $error_msg?></div>
-<?php
-  }
 ?>
 
 
@@ -81,6 +85,12 @@
           <input class="form-control" name="tan" placeholder="1234567890ABCDE" type="text">
         </div>
       </div>
+      <div class="form-group">
+        <label for="transactionfile" class="col-sm-2 control-label">Description</label>
+        <div class="col-sm-10">
+          <input class="form-control" name="description" placeholder="Enter description" type="text">
+        </div>
+      </div>
       <input type="submit" class="form-control" value="Submit transaction" />
     </form>
   </div>
@@ -88,13 +98,15 @@
 
 <?php
   if (isset($return_var)) {
+    // echo $return_var;
+    // print_r($output);
     if ($return_var == 0) {
 ?>
-<div class="alert alert-success" role="alert"><?= $_GET["output"]?></div>
+<div class="alert alert-success" role="alert"><?= $output[0]?></div>
 <?php
     } else {
 ?>
-<div class="alert alert-danger" role="alert"><?= $_GET["output"]?></div>
+<div class="alert alert-danger" role="alert"><?= $output[0]?></div>
 <?php
     }
   }

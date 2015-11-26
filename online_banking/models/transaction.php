@@ -3,6 +3,9 @@
     var $id = 0;
     var $sender_id = 0;
     var $recipient_id = 0;
+    var $sender_acc=0;
+    var $recipient_acc=0;
+    var $description="";
     var $amount = 0;
     var $approval_date = "";
     var $create_date = "";
@@ -19,8 +22,11 @@
       $array = array(
           "Id" => $this->id,
           "Sender" => $sender->firstname." ".$sender->lastname,
+          "Sender Account" => $sender->getAccountNumber(),
           "Recipient" => $recipient->firstname." ".$recipient->lastname,
+          "Recipient Account" => $recipient->getAccountNumber(),
           "Amount" => $this->amount." Euro",
+          "Description" => $this->description,
           "Approved" => empty($this->approval_date) ? "Not approved" : "Approved",
           "Date" => $this->create_date,
       );
@@ -30,7 +36,7 @@
 
   function fetchTransactionsForUsername($username) {
     $query = "SELECT * FROM transactions WHERE sender_id IN (SELECT id FROM users WHERE username = '".$username."')"
-           . "UNION SELECT * FROM transactions WHERE recipient_id IN (SELECT id FROM users WHERE username = '".$username."') ORDER BY approval_date desc, create_date desc";
+           . "UNION SELECT * FROM transactions WHERE recipient_id IN (SELECT id FROM users WHERE username = '".$username."')";
 
     $result = mysql_query($query);
     $transactions = array();
@@ -41,7 +47,8 @@
 
         $transaction->id = $row["id"];
         $transaction->sender_id = $row["sender_id"];
-        $transaction->recipient_id = $row["recipient_id"];
+        $transaction->recipient_id = $row["recipient_id"]; 
+        $transaction->description = $row["description"];
         $transaction->amount = $row["amount"];
         $transaction->approval_date = $row["approval_date"];
         $transaction->create_date = $row["create_date"];
@@ -71,7 +78,10 @@
 
         $transaction->id = $row["id"];
         $transaction->sender_id = $row["sender_id"];
+        $transaction->sender_acc = $row["sender_acc"];
         $transaction->recipient_id = $row["recipient_id"];
+        $transaction->recipient_acc = $row["recipient_acc"];
+        $transaction->description = $row["description"];
         $transaction->amount = $row["amount"];
         $transaction->approval_date = $row["approval_date"];
         $transaction->create_date = $row["create_date"];
@@ -109,15 +119,15 @@
   	return mysql_num_rows($query_result) == 0;
   }
 
-  function insertNewTransaction($senderid, $recipientid, $amount, $tan) {
+  function insertNewTransaction($senderid, $recipientid, $amount, $description, $tan) {
     $date_string = "null";
     if ($amount < 10000) {
       $date_string = "NOW()";
     }
 
-  	$query = "INSERT INTO transactions(sender_id, recipient_id, approval_date, amount,tan_id) "
+  	$query = "INSERT INTO transactions(sender_id, recipient_id, approval_date, amount, description, tan_id) "
   		. "VALUES ('" . $senderid . "', '" . $recipientid . "', " . $date_string . ", "
-      . $amount . ", '" . mysql_real_escape_string($tan) . "')";
+      . $amount . " , '".mysql_real_escape_string($description)." ','" . mysql_real_escape_string($tan) . "')";
     mysql_query($query);
   }
 ?>

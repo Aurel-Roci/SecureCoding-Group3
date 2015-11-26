@@ -3,7 +3,11 @@ require 'init.sec.php';
 
 $post = $_SERVER['REQUEST_METHOD'] === 'POST';
 if($post) {
-  if (isset($_POST['user_id'])) {
+  if(isset($_POST['balance'])) {
+      $balance= $_POST['balance'];
+      $user_id = $_POST['user_id'];
+      userBalance($user_id, $balance);
+    }else if (isset($_POST['user_id'])) {
     $user_id = $_POST['user_id'];
     approveUserWithId($user_id);
   } else if (isset($_POST['transaction_id'])) {
@@ -69,12 +73,12 @@ if($post) {
         $username = $_GET['user'];
         $transactions = fetchTransactionsForUsername($username);
         $user = fetchUserWithUsername($username);
-    		if (empty($user)){
-      ?>
-        <div class="alert alert-warning" role="alert"><strong>Warning!</strong> User does not exists</div>
-      <?php
-    		}
-      ?>
+        if (empty($user)){
+          ?>
+            <div class="alert alert-warning" role="alert"><strong>Warning!</strong> User does not exists</div>
+          <?php
+        		}
+          ?>
         <div class="panel panel-default center" style="width: 100%; margin-top: 25px;">
           <div class="panel-heading">User info</div>
           <table class="table">
@@ -90,9 +94,6 @@ if($post) {
                 <th>Balance</th>
               </tr>
             </thead>
-            <?php
-            if (!empty($user)) {
-            ?>
             <tbody>
               <tr>
                 <td>
@@ -123,13 +124,16 @@ if($post) {
                   ?>
                 </td>
                 <td>
-                  <p><?= number_format($user->getBalance(), 2, ".", ",") ?> &euro;</p>
+                  <p><?= number_format(getBalance($user->id), 2, ".", ",") ?> &euro;
+                    <?php
+                    if($user->isApproved()) {
+                      echo "<a href='#' onclick='requestBalanceChange(\"".$user->username."\", ".$user->id.")'>Initialize!</a>";
+                    }
+                    ?>
+                  </p>
                 </td>
               </tr>
             </tbody>
-            <?php
-            }
-            ?>
           </table>
         </div>
 
@@ -142,10 +146,13 @@ if($post) {
               <thead>
                 <tr>
                   <th>Sender</th>
+                  <th>Sender Account</th>
                   <th>Recipient</th>
+                  <th>Recipient Account</th>
                   <th>Amount</th>
+                  <th>Description</th>
                   <th>Date</th>
-                  <th>Approval state</th>
+    			        <th>Approval state</th>
                 </tr>
               </thead>
               <tbody>
@@ -158,10 +165,19 @@ if($post) {
                       <a href="employee.php?user=<?= $sender->username ?>"><?= $sender->firstname ?> <?= $sender->lastname ?></a>
                     </td>
                     <td>
+                      <p><?= $sender->getAccountNumber() ?></p>
+                    </td>
+                    <td>
                       <a href="employee.php?user=<?= $recipient->username ?>"><?= $recipient->firstname ?> <?= $recipient->lastname ?></a>
                     </td>
                     <td>
+                      <p><?= $recipient->getAccountNumber() ?></p></p>
+                    </td>
+                    <td>
                       <p><?= number_format($transaction->amount, 2, ".", ",") ?> &euro;</p>
+                    </td>
+                    <td>
+                      <p><?= $transaction->description ?></p>
                     </td>
                     <td>
                       <p><?= $transaction->create_date ?></p>
@@ -247,10 +263,13 @@ if($post) {
               <thead>
                 <tr>
                   <th>Sender</th>
+                  <th>Sender Account</th>
                   <th>Recipient</th>
+                  <th>Recipient Account</th>
                   <th>Amount</th>
+                  <th>Description</th>
                   <th>Date</th>
-                  <th>Approval state</th>
+    			        <th>Approval state</th>
                 </tr>
               </thead>
               <tbody>
@@ -263,10 +282,19 @@ if($post) {
                       <a href="employee.php?user=<?= $sender->username ?>"><?= $sender->firstname ?> <?= $sender->lastname ?></a>
                     </td>
                     <td>
+                      <p><?= $sender->getAccountNumber() ?></p>
+                    </td>
+                    <td>
                       <a href="employee.php?user=<?= $recipient->username ?>"><?= $recipient->firstname ?> <?= $recipient->lastname ?></a>
                     </td>
                     <td>
+                      <p><?= $recipient->getAccountNumber() ?></p></p>
+                    </td>
+                    <td>
                       <p><?= number_format($transaction->amount, 2, ".", ",") ?> &euro;</p>
+                    </td>
+                    <td>
+                      <p><?= $transaction->description ?></p>
                     </td>
                     <td>
                       <p><?= $transaction->create_date ?></p>
@@ -319,6 +347,28 @@ if($post) {
           http.send(params);
         }
       }
+
+      function requestBalanceChange(user, id){
+        var balance = prompt("Please enter ammount", 12345);
+
+        if (balance != null) {
+          var http = new XMLHttpRequest();
+          var url = "employee.php";
+          var params = "balance="+balance+'&user_id='+id;
+          http.open("POST", url, true);
+
+          http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          http.setRequestHeader("Content-length", params.length);
+          http.setRequestHeader("Connection", "close");
+          http.send(params);
+        }
+      }
+
+
+      function handleError(error) {
+          alert(error);
+      }
+
 
       function requestTransactionApproval(id, link) {
         var approve = confirm("Do you really want to approve this transaction?");

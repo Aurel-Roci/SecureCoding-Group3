@@ -81,7 +81,7 @@ require 'init.sec.php';
                 <p><?= getUser()->isEmployee() ? 'Employee' : 'Customer' ?></p>
               </td>
               <td>
-                <p><?= number_format(getUser()->getBalance(), 2, ".", ",") ?> &euro;</p>
+                <p><?= number_format(getBalance($user->id), 2, ".", ",") ?> &euro;</p>
               </td>
             </tr>
           </tbody>
@@ -105,8 +105,11 @@ require 'init.sec.php';
           <thead>
             <tr>
               <th>Sender</th>
+              <th>Sender Account</th>
               <th>Recipient</th>
+              <th>Recipient Account</th>
               <th>Amount</th>
+              <th>Description</th>
               <th>Date</th>
 			  <th>Approval state</th>
             </tr>
@@ -115,19 +118,26 @@ require 'init.sec.php';
             <?php   foreach ($transactions as &$transaction) {
               $sender = fetchUserWithId($transaction->sender_id);
               $recipient = fetchUserWithId($transaction->recipient_id);
-              $user_is_sender = $sender->id == getUser()->id;
-              $class = $user_is_sender ? "danger": "success";
               ?>
-              <tr class="<?= $class?>" >
+              <tr>
                 <td>
                   <a href="#" onclick="document.getElementById('transaction_form').recipient.value = '<?= $sender->username ?>'; return false;"><?= $sender->firstname ?> <?= $sender->lastname ?></a>
-                </td>
+                </td> 
+                <td>
+                  <p><?= $sender->getAccountNumber() ?></p>
+                </td> 
                 <td>
                   <a href="#" onclick="document.getElementById('transaction_form').recipient.value = '<?= $recipient->username ?>'; return false;"><?= $recipient->firstname ?> <?= $recipient->lastname ?></a>
-                </td>
+                </td> 
                 <td>
-                  <p><?= $user_is_sender? "-":""?><?= number_format($transaction->amount, 2, ".", ",") ?> &euro;</p>
-                </td>
+                  <p><?= $recipient->getAccountNumber() ?></p></p>
+                </td> 
+                <td>
+                  <p><?= number_format($transaction->amount, 2, ".", ",") ?> &euro;</p>
+                </td> 
+                <td>
+                  <p><?= $transaction->description ?></p>
+                </td> 
                 <td>
                   <p><?= $transaction->create_date ?></p>
                 </td>
