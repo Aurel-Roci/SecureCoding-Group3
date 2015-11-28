@@ -1,4 +1,5 @@
 <?php
+require_once('core.inc.php');
 $error = "";
 $post = $_SERVER['REQUEST_METHOD'] === 'POST';
 if($post) {
@@ -37,17 +38,14 @@ if($post) {
 						if($query_run = mysql_query($query)) {
 							$tans .= $rand."\n";
 						} else {
-							$error = "Failed generating tans";
+							$i--;
 						}
 					}
-
-					$message = "Dear ".$lastname.",
-						for your new online banking account we send you your TAN codes:
-						".$tans."\nBest regards,\nYour online banking team";
-					$headers = "From: info@team3securecoding.com\n";
-					$headers .= "Reply-To: info@team3securecoding.com";
-					$mailing = mail($email, "TAN Codes", $message, $headers);
-					error_log("Mail success: ".$mailing);
+					if(!sendmail($email, $tans)) {
+					  error_log('Message was not sent.'); 
+					} else {
+					  error_log('Message has been sent.');
+					}
 				} else {
 					$error = "Could not register at this time. Try again later";
 				}

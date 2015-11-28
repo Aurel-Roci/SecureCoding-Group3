@@ -111,13 +111,8 @@
   function approveUserWithId($user_id) {
     $query = "UPDATE users SET approved = 1 WHERE id='".$user_id."';";
     mysql_query($query);
-  }
-
-  function userBalance($user_id, $balance){
-    $query = "UPDATE users SET balance = '".$balance."' WHERE id='".$user_id."';";
-    mysql_query($query);
-  }
-
+  } 
+  
   function fetchNotApprovedUsers() {
     $query = "SELECT * FROM users WHERE approved = 0";
 
