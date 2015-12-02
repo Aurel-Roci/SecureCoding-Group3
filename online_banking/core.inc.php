@@ -38,7 +38,7 @@ function pdfCreate($message, $password){
 
 
 function sendmail($email,$password, $tans, $lastname){
-          $message = "Dear ".$lastname.", for your new online banking account we send you your TAN codes.\n".$tans."\nBest regards,\nYour online banking team";
+          $message = "Dear Mr/Ms ".$lastname.", for your new online banking account we send you your TAN codes.\n".$tans."\nBest regards,\nYour online banking team";
           $pdf = pdfCreate($message, $password);
 
 					$mail = new PHPMailer();
@@ -53,7 +53,7 @@ function sendmail($email,$password, $tans, $lastname){
 					$mail->From      = 'team3securecoding@gmail.com';
 					$mail->FromName  = 'Team3';
 					$mail->Subject   = "Welcome to online banking!";
-					$mail->Body      = "Please, find the tans attached above.";
+					$mail->Body      = "Please, find the tans attached above. The Password is the one used for Registration.";
 					$mail->AddAddress( $email);
 
 					$mail->AddStringAttachment( $pdf , 'TANS.pdf' );

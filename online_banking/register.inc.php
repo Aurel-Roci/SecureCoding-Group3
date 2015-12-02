@@ -56,7 +56,7 @@ if($post) {
 
 							}else if($tan==1){
 
-							} 
+							}
 
 						} else {
 							$error = "Could not register at this time. Try again later";
