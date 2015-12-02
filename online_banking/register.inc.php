@@ -15,7 +15,7 @@ if($post) {
 		$email = $_POST['email'];
 		$tans = $_POST['tans'];
 
-		$regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$";
+		$regex = "^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$";
 
 		if(preg_match("/^$regex$/", $password)){
 			if(!empty($username) && !empty($password) && !empty($password_again) && !empty($firstname) && !empty($lastname) && !empty($email)) {
@@ -28,6 +28,8 @@ if($post) {
 								. "VALUES ('".mysql_real_escape_string($username)."', SHA2('".mysql_real_escape_string($password)
 								. "', 256), False,".$memberrole.",'".mysql_real_escape_string($firstname)."','"
 								. mysql_real_escape_string($lastname)."','".mysql_real_escape_string($email)."')";
+
+						echo $query;
 
 						if($query_run = mysql_query($query)) {
 							$query = "SELECT id FROM users WHERE username='".mysql_real_escape_string($username)."'";
@@ -58,8 +60,8 @@ if($post) {
 			} else {
 				$error = "Please fill in all fields!";
 			}
-		}else{
-			echo '<div class="alert alert-warning" role="alert"><strong>Warning!</strong> Password must be minimum 8 characters at least 1 Uppercase letter, 1 Lowercase letter and 1 Number:</div>';
+		} else {
+			$error = "Password must have at least 8 characters containing at least 1 uppercase letter, 1 lowercase letter and 1 number";
 		}
 	}
 }
