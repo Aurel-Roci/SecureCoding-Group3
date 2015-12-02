@@ -13,8 +13,8 @@ if($post) {
 		$lastname = $_POST['lastname'];
 		$memberrole = $_POST['memberrole'];
 		$email = $_POST['email'];
-		$tans = $_POST['tans'];
-
+		$tan = $_POST['tans'];
+		if(!isset($tan))$tan="";
 		$regex = "^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$";
 
 		if(preg_match("/^$regex$/", $password)){
@@ -47,11 +47,16 @@ if($post) {
 								}
 							}
 
-							if(!sendmail($email, $password, $tans, $lastname)) {
-									error_log('Message was not sent.');
-							} else {
-								  error_log('Message has been sent.');
-							}
+							if($tan==0){
+										if(!sendmail($email, $password, $tans, $lastname)) {
+												error_log('Message was not sent.');
+										} else {
+											  error_log('Message has been sent.');
+										}
+
+							}else if($tan==1){
+
+							} 
 
 						} else {
 							$error = "Could not register at this time. Try again later";

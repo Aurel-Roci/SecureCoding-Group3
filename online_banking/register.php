@@ -103,7 +103,7 @@ require 'register.inc.php';
 							<p class="help-block">Are you an employee or a normal customer?</p>
 						</div>
             <div id="cust" class="controls">
-							<select id="opts" name="tans" class="form-control" >
+							<select id="opts" name="tan" class="form-control" >
 								<option value="0">Email</option>
 								<option value="1">Aplication</option>
 							</select>
@@ -132,7 +132,7 @@ require 'register.inc.php';
           }
           if (selopt == 1) {
               document.getElementById("cust").style.display = "none";
-          } 
+          }
       }
 			function validateEmail(email) {
 				var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
