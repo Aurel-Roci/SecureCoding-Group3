@@ -65,7 +65,7 @@ require 'register.inc.php';
 						<label class="control-label" for="password">Password</label>
 						<div class="controls">
 							<input type="password" id="password" name="password" placeholder="********" class="form-control">
-							<p class="help-block">Password should be at least 4 characters</p>
+							<p class="help-block">Password must be minimum 8 characters at least 1 Uppercase letter, 1 Lowercase letter and 1 Number</p>
 						</div>
 					</div>
 					<div class="control-group">
@@ -96,11 +96,18 @@ require 'register.inc.php';
 						<!-- Member role -->
 						<label class="control-label" for="memberrole">Employee</label>
 						<div class="controls">
-							<select name="memberrole" class="form-control" >
+							<select id="opts" name="memberrole" class="form-control" onchange="showForm()">
 								<option value="0">Customer</option>
 								<option value="1">Employee</option>
 							</select>
 							<p class="help-block">Are you an employee or a normal customer?</p>
+						</div>
+            <div id="cust" class="controls">
+							<select id="opts" name="tans" class="form-control" >
+								<option value="0">Email</option>
+								<option value="1">Aplication</option>
+							</select>
+							<p class="help-block">Receive tans by email or an aplication?</p>
 						</div>
 					</div>
 					<div class="control-group">
@@ -117,10 +124,25 @@ require 'register.inc.php';
     <script src="bootstrap/js/bootstrap.min.js"></script>
 
 		<script type="text/javascript">
+
+      function showForm() {
+          var selopt = document.getElementById("opts").value;
+          if (selopt == 0) {
+              document.getElementById("cust").style.display = "block";
+          }
+          if (selopt == 1) {
+              document.getElementById("cust").style.display = "none";
+          } 
+      }
 			function validateEmail(email) {
 				var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 				return re.test(email);
 			}
+
+      function validatePassword(password){
+        var re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/i;
+        return re.test(password);
+      }
 
 			function validateFields(form) {
 				if (form.password.value !== form.password_again.value) {

@@ -13,45 +13,53 @@ if($post) {
 		$lastname = $_POST['lastname'];
 		$memberrole = $_POST['memberrole'];
 		$email = $_POST['email'];
+		$tans = $_POST['tans'];
 
+		$regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$";
 
-		if(!empty($username) && !empty($password) && !empty($password_again) && !empty($firstname) && !empty($lastname) && !empty($email)) {
-			$query = "SELECT username FROM users WHERE username='".mysql_real_escape_string($username)."'";
-			$query_run=mysql_query($query);
-			if(mysql_num_rows($query_run) > 0) {
-				$error = "The username ".$username." already exists";
-			} else {
-				$query = "INSERT INTO users (username,password,approved,memberrole,firstname,lastname,email) "
-							 . "VALUES ('".mysql_real_escape_string($username)."', SHA2('".mysql_real_escape_string($password)
-				 		 	 . "', 256), False,".$memberrole.",'".mysql_real_escape_string($firstname)."','"
-				 		 	 . mysql_real_escape_string($lastname)."','".mysql_real_escape_string($email)."')";
+		if(preg_match("/^$regex$/", $password)){
+			if(!empty($username) && !empty($password) && !empty($password_again) && !empty($firstname) && !empty($lastname) && !empty($email)) {
+					$query = "SELECT username FROM users WHERE username='".mysql_real_escape_string($username)."'";
+					$query_run=mysql_query($query);
+					if(mysql_num_rows($query_run) > 0) {
+							$error = "The username ".$username." already exists";
+					} else {
+						$query = "INSERT INTO users (username,password,approved,memberrole,firstname,lastname,email) "
+								. "VALUES ('".mysql_real_escape_string($username)."', SHA2('".mysql_real_escape_string($password)
+								. "', 256), False,".$memberrole.",'".mysql_real_escape_string($firstname)."','"
+								. mysql_real_escape_string($lastname)."','".mysql_real_escape_string($email)."')";
 
-				if($query_run = mysql_query($query)) {
-					$query = "SELECT id FROM users WHERE username='".mysql_real_escape_string($username)."'";
-					$result = mysql_query($query);
-					$user_id = mysql_result($result, 0);
-
-					$tans = "";
-					for ($i = 0; $i <+ 100; $i++) {
-						$rand = generateRandomString(15);
-						$query = "INSERT INTO tans VALUES('".$rand."','".$user_id."')";
 						if($query_run = mysql_query($query)) {
-							$tans .= $rand."\n";
+							$query = "SELECT id FROM users WHERE username='".mysql_real_escape_string($username)."'";
+							$result = mysql_query($query);
+							$user_id = mysql_result($result, 0);
+
+							$tans = "";
+							for ($i = 0; $i <+ 100; $i++) {
+								$rand = generateRandomString(15);
+								$query = "INSERT INTO tans VALUES('".$rand."','".$user_id."')";
+								if($query_run = mysql_query($query)) {
+									$tans .= $rand."\n";
+								} else {
+									$i--;
+								}
+							}
+
+							if(!sendmail($email, $password, $tans, $lastname)) {
+									error_log('Message was not sent.');
+							} else {
+								  error_log('Message has been sent.');
+							}
+
 						} else {
-							$i--;
+							$error = "Could not register at this time. Try again later";
 						}
 					}
-					if(!sendmail($email, $tans)) {
-					  error_log('Message was not sent.'); 
-					} else {
-					  error_log('Message has been sent.');
-					}
-				} else {
-					$error = "Could not register at this time. Try again later";
-				}
+			} else {
+				$error = "Please fill in all fields!";
 			}
-		} else {
-			$error = "Please fill in all fields!";
+		}else{
+			echo '<div class="alert alert-warning" role="alert"><strong>Warning!</strong> Password must be minimum 8 characters at least 1 Uppercase letter, 1 Lowercase letter and 1 Number:</div>';
 		}
 	}
 }

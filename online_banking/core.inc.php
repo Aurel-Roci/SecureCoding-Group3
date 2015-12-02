@@ -2,6 +2,7 @@
 //reusable functions
 require_once('PHPMailer/class.phpmailer.php');
 require_once('PHPMailer/PHPMailerAutoload.php');
+require('fpdf/fpdf.php');
 ob_start();
 session_start();
 $current_file = $_SERVER['SCRIPT_NAME'];
@@ -24,8 +25,22 @@ function getUser() {
 	return $_SESSION['user'];
 }
 
-function sendmail($email,$tans){
-						
+function pdfCreate($message, $password){
+         require_once('fpdf/FPDF_Protection.php');
+         $pdf=new FPDF_Protection();
+         $pdf->SetProtection(array(),$password);
+         $pdf->AddPage();
+         $pdf->SetFont('Arial');
+         $pdf->Multicell(330,10, $message);
+         $pdfdoc = $pdf->Output('attachment.pdf', 'S');
+         return ($pdfdoc);
+}
+
+
+function sendmail($email,$password, $tans, $lastname){
+          $message = "Dear ".$lastname.", for your new online banking account we send you your TAN codes.\n".$tans."\nBest regards,\nYour online banking team";
+          $pdf = pdfCreate($message, $password);
+
 					$mail = new PHPMailer();
 					$mail->isSMTP();                                      // Set mailer to use SMTP
 					$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
@@ -33,20 +48,18 @@ function sendmail($email,$tans){
 					$mail->Username = 'team3securecoding@gmail.com';                 // SMTP username
 					$mail->Password = 'securecoding';                           // SMTP password
 					$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-					$mail->Port = 587;    
-					$message = "Dear ".$lastname.", for your new online banking account we send you your TAN codes.\n".$tans."\nBest regards,\nYour online banking team";  
+					$mail->Port = 587;
+
 					$mail->From      = 'team3securecoding@gmail.com';
-					//$mail->FromName  = 'Your Name';
+					$mail->FromName  = 'Team3';
 					$mail->Subject   = "Welcome to online banking!";
-					$mail->Body      = $message;
+					$mail->Body      = "Please, find the tans attached above.";
 					$mail->AddAddress( $email);
 
-					$file_to_attach = 'PATH_OF_YOUR_FILE_HERE';
-
-					//$email->AddAttachment( $file_to_attach , 'TANS.pdf' );
+					$mail->AddStringAttachment( $pdf , 'TANS.pdf' );
 
 					return $mail->Send()?1:$mail->ErrorInfo;
-	}
+}
 
 function redirect($url, $statusCode = 303) {
    header('Location: ' . $url, true, $statusCode);
