@@ -13,7 +13,7 @@ if($post) {
 		$lastname = $_POST['lastname'];
 		$memberrole = $_POST['memberrole'];
 		$email = $_POST['email'];
-		$tan = $_POST['tans'];
+		$tan = $_POST['tan'];
 		if(!isset($tan))$tan="";
 		$regex = "^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$";
 
