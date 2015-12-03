@@ -4,7 +4,26 @@ require_once('PHPMailer/class.phpmailer.php');
 require_once('PHPMailer/PHPMailerAutoload.php');
 require('fpdf/fpdf.php');
 ob_start();
+session_name('72AM7bD1sp2zIDdoEv6g');
 session_start();
+session_regenerate_id(true);
+
+if (isset($_SESSION['user_agent'])) {
+  if ($_SESSION['user_agent'] != $_SERVER['HTTP_USER_AGENT']) {
+    session_destroy();
+  }
+} else {
+  $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
+}
+
+if (isset($_SESSION['remote_ip'])) {
+  if ($_SESSION['remote_ip'] != $_SERVER['REMOTE_ADDR']) {
+    session_destroy();
+  }
+} else {
+  $_SESSION['remote_ip'] = $_SERVER['REMOTE_ADDR'];
+}
+
 $current_file = $_SERVER['SCRIPT_NAME'];
 
 function generateRandomString($length) {
