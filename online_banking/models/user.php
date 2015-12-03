@@ -1,4 +1,7 @@
 <?php
+  const ATTEMPTS_BEFORE_LOCKOUT = 3;
+  const LOCKOUT_CLEAR_TIME = 300;
+
   class User {
     var $id = 0;
     var $username = "";
@@ -35,10 +38,14 @@
         return $array_row[0];
       }
     }
-
   }
 
   function fetchUser($username, $password) {
+    if (!isset($_SESSION["failedLoginAttempts"])) {
+      $_SESSION["failedLoginAttempts"] = 0;
+      $_SESSION["lastFailedLoginAttempt"] = 0;
+    }
+
     $query = "SELECT * FROM users WHERE username='".mysql_real_escape_string($username)
            . "' AND password=SHA2('".mysql_real_escape_string($password)."', 256)";
 
@@ -56,7 +63,13 @@
       $user->memberrole = $row["memberrole"];
       $user->approved = $row["approved"];
 
+      $_SESSION["failedLoginAttempts"] = 0;
+      $_SESSION["lastFailedLoginAttempt"] = 0;
+
       return $user;
+    } else {
+      $_SESSION["failedLoginAttempts"] = $_SESSION["failedLoginAttempts"] + 1;
+      $_SESSION["lastFailedLoginAttempt"] = time();
     }
   }
 
@@ -132,6 +145,17 @@
       }
     }
     return $users;
+  }
+
+  function isLoginBlocked() {
+    if (!isset($_SESSION["failedLoginAttempts"])) {
+      $_SESSION["failedLoginAttempts"] = 0;
+      $_SESSION["lastFailedLoginAttempt"] = 0;
+    }
+    if ($_SESSION["failedLoginAttempts"] > ATTEMPTS_BEFORE_LOCKOUT && $_SESSION["lastFailedLoginAttempt"] > time() - LOCKOUT_CLEAR_TIME) {
+      return true;
+    }
+    return false;
   }
 
 ?>
