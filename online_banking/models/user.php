@@ -24,23 +24,19 @@
       return $account_number;
     }
 
-  }
+    function getBalance() {
+      $query = "SELECT IFNULL(IFNULL((SELECT SUM(amount) FROM transactions WHERE recipient_id = ".$this->id." AND approval_date IS NOT NULL), 0)-IFNULL((SELECT SUM(amount) FROM transactions WHERE sender_id = ".$this->id." AND approval_date IS NOT NULL), 0), 0);";
 
-
-  function getBalance($id) {
-
-      $query = "SELECT balance FROM users WHERE  id ='".$id."'"; //'".2."'";
       $result = mysql_query($query);
+
       if($result && mysql_num_rows($result) > 0) {
         $row = mysql_fetch_assoc($result);
-          $array_row = array_values($row);
-          // print_r($array_row[0]);
-          return $array_row[0];
-        //return (float)$result;
+        $array_row = array_values($row);
+        return $array_row[0];
       }
-
-      return (float)"N/A";
     }
+
+  }
 
   function fetchUser($username, $password) {
     $query = "SELECT * FROM users WHERE username='".mysql_real_escape_string($username)

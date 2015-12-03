@@ -117,7 +117,7 @@ if($post) {
                   <p><?= $user->email ?></p>
                 </td>
                 <td>
-                  <p id="user_balance"><?= number_format(getBalance($user->id), 2, ".", ",") ?> &euro;</p>
+                  <p id="user_balance"><?= number_format($user->getBalance(), 2, ".", ",") ?> &euro;</p>
                 </td>
                 <td>
                   <p><?= $user->isEmployee() ? 'Employee' : 'Customer' ?></p>
@@ -240,7 +240,7 @@ if($post) {
                       <p><?= $user->email ?></p>
                     </td>
                     <td>
-                      <p id="user_balance"><?= number_format(getBalance($user->id), 2, ".", ",") ?> &euro;</p>
+                      <p id="user_balance"><?= number_format($user->getBalance(), 2, ".", ",") ?> &euro;</p>
                     </td>
                     <td>
                       <p><?= $user->isEmployee() ? 'Employee' : 'Customer' ?></p>

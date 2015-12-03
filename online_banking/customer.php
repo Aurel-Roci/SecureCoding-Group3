@@ -81,7 +81,7 @@ require 'init.sec.php';
                 <p><?= getUser()->isEmployee() ? 'Employee' : 'Customer' ?></p>
               </td>
               <td>
-                <p><?= number_format(getBalance($user->id), 2, ".", ",") ?> &euro;</p>
+                <p><?= number_format($user->getBalance(), 2, ".", ",") ?> &euro;</p>
               </td>
             </tr>
           </tbody>
@@ -122,22 +122,22 @@ require 'init.sec.php';
               <tr>
                 <td>
                   <a href="#" onclick="document.getElementById('transaction_form').recipient.value = '<?= $sender->username ?>'; return false;"><?= $sender->firstname ?> <?= $sender->lastname ?></a>
-                </td> 
+                </td>
                 <td>
                   <p><?= $sender->getAccountNumber() ?></p>
-                </td> 
+                </td>
                 <td>
                   <a href="#" onclick="document.getElementById('transaction_form').recipient.value = '<?= $recipient->username ?>'; return false;"><?= $recipient->firstname ?> <?= $recipient->lastname ?></a>
-                </td> 
+                </td>
                 <td>
                   <p><?= $recipient->getAccountNumber() ?></p></p>
-                </td> 
+                </td>
                 <td>
                   <p><?= number_format($transaction->amount, 2, ".", ",") ?> &euro;</p>
-                </td> 
+                </td>
                 <td>
                   <p><?= $transaction->description ?></p>
-                </td> 
+                </td>
                 <td>
                   <p><?= $transaction->create_date ?></p>
                 </td>
