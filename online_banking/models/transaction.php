@@ -47,7 +47,7 @@
 
         $transaction->id = $row["id"];
         $transaction->sender_id = $row["sender_id"];
-        $transaction->recipient_id = $row["recipient_id"]; 
+        $transaction->recipient_id = $row["recipient_id"];
         $transaction->description = $row["description"];
         $transaction->amount = $row["amount"];
         $transaction->approval_date = $row["approval_date"];
@@ -127,7 +127,20 @@
 
   	$query = "INSERT INTO transactions(sender_id, recipient_id, approval_date, amount, description, tan_id) "
   		. "VALUES ('" . $senderid . "', '" . $recipientid . "', " . $date_string . ", "
-      . $amount . " , '".mysql_real_escape_string($description)." ','" . mysql_real_escape_string($tan) . "')";
+      . $amount . " , '" . mysql_real_escape_string($description) . "','" . mysql_real_escape_string($tan) . "')";
+    mysql_query($query);
+  }
+
+  function initializeBalance($user_id, $balance) {
+    $tan = '';
+    do {
+      $rand = generateRandomString(15);
+      $query = "INSERT INTO tans VALUES('" . $rand . "','" . getUser()->id . "')";
+      $tan = $rand;
+    } while(!($query_run = mysql_query($query)));
+    $query = "INSERT INTO transactions(sender_id, recipient_id, approval_date, amount, description, tan_id) "
+  		. "VALUES ('" . getUser()->id . "', '" . $user_id . "', NOW(), "
+      . $balance . " , 'balance initialization','" . $tan . "')";
     mysql_query($query);
   }
 ?>

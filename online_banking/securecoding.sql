@@ -71,6 +71,7 @@ CREATE TABLE IF NOT EXISTS transactions (
   recipient_id int NOT NULL,
   amount float NOT NULL,
   approval_date DATETIME,
+  description VARCHAR(200) NOT NULL,
   -- same as before if approve_date is not set it is not approved
   -- and for approving you set the current timestamp
   -- for example: UPDATE transactions SET approve_date = NOW() WHERE ...

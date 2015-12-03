@@ -23,17 +23,12 @@
       }
       return $account_number;
     }
- 
+
   }
 
-  function userBalance($user_id, $balance){
-		$query = "UPDATE users SET balance = '".$balance."' WHERE id='".$user_id."';";
-		mysql_query($query);
-	}
-   
-	
+
   function getBalance($id) {
-       
+
       $query = "SELECT balance FROM users WHERE  id ='".$id."'"; //'".2."'";
       $result = mysql_query($query);
       if($result && mysql_num_rows($result) > 0) {
@@ -46,7 +41,7 @@
 
       return (float)"N/A";
     }
-	
+
   function fetchUser($username, $password) {
     $query = "SELECT * FROM users WHERE username='".mysql_real_escape_string($username)
            . "' AND password=SHA2('".mysql_real_escape_string($password)."', 256)";
@@ -111,8 +106,14 @@
   function approveUserWithId($user_id) {
     $query = "UPDATE users SET approved = 1 WHERE id='".$user_id."';";
     mysql_query($query);
-  } 
-  
+  }
+
+  function approveUserWithIdAndBalance($user_id, $balance) {
+    $query = "UPDATE users SET approved = 1 WHERE id='".$user_id."';";
+    mysql_query($query);
+    initializeBalance($user_id, $balance);
+  }
+
   function fetchNotApprovedUsers() {
     $query = "SELECT * FROM users WHERE approved = 0";
 

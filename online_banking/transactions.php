@@ -54,8 +54,8 @@
 		} else if (isset($_FILES['transactionfile'])) {
       //tmp_name
       $filepath = $_FILES['transactionfile']['tmp_name'];
-      $return_line = exec("./upload_parser " . escapeshellarg($filepath), $output, $return_var);
-
+      $output = [];
+      $return_line = exec("../parser_src/upload_parser " . escapeshellarg($filepath), $output, $return_var);
     }
   }
 
@@ -97,23 +97,22 @@
 </div>
 
 <?php
-  if (isset($return_var)) {
-    // echo $return_var;
-    // print_r($output);
-    if ($return_var == 0) {
-?>
-<div class="alert alert-success" role="alert"><?= $output[0]?></div>
-<?php
-    } else {
-?>
-<div class="alert alert-danger" role="alert"><?= $output[0]?></div>
-<?php
-    }
+foreach ($output as $line) {
+  if (strstr($line, "Successfully") === FALSE) {
+    ?>
+    <div class="alert alert-danger" role="alert"><strong>Error!</strong><?= $line?></div>
+    <?php
+  } else {
+    ?>
+    <div class="alert alert-success" role="alert"><strong>Success!</strong><?= $line?></div>
+    <?php
   }
+}
+
 ?>
 
 <div class="panel panel-default center" style="width: 100%; margin-top: 25px;">
-  <div class="panel-heading">Make new transactions by file upload</div>
+  <div class="panel-heading">Make new transactions by batch file upload</div>
   <div class="panel-body">
     <form class="form-horizontal" enctype="multipart/form-data" action="" method="POST">
       <div class="form-group">

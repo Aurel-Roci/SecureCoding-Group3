@@ -3,11 +3,16 @@ require 'init.sec.php';
 
 $post = $_SERVER['REQUEST_METHOD'] === 'POST';
 if($post) {
-  if(isset($_POST['balance'])) {
-      $balance= $_POST['balance'];
-      $user_id = $_POST['user_id'];
-      userBalance($user_id, $balance);
-    }else if (isset($_POST['user_id'])) {
+  if(isset($_POST['balance']) && isset($_POST['user_id'])) {
+    $balance= $_POST['balance'];
+    $user_id = $_POST['user_id'];
+    if (is_numeric($balance)) {
+      approveUserWithIdAndBalance($user_id, $balance);
+    }else {
+      header(':', true, 400);
+    }
+
+  }else if (isset($_POST['user_id'])) {
     $user_id = $_POST['user_id'];
     approveUserWithId($user_id);
   } else if (isset($_POST['transaction_id'])) {
@@ -112,8 +117,16 @@ if($post) {
                   <p><?= $user->email ?></p>
                 </td>
                 <td>
+                  <p id="user_balance"><?= number_format(getBalance($user->id), 2, ".", ",") ?> &euro;</p>
+                </td>
+                <td>
                   <p><?= $user->isEmployee() ? 'Employee' : 'Customer' ?></p>
                 </td>
+                <?php if (!$user->isApproved()) { ?>
+                <td>
+                  <p><input style="border: 1px solid #CCC;border-radius: 4px;" name="balance" placeholder="0.0" type="text"></p>
+                </td>
+                <?php } ?>
                 <td>
                   <?php
                   if($user->isApproved()) {
@@ -122,15 +135,6 @@ if($post) {
                     echo "<a href='#' onclick='requestUserApproval(\"".$user->username."\", ".$user->id.",this)'>Approve now!</a>";
                   }
                   ?>
-                </td>
-                <td>
-                  <p><?= number_format(getBalance($user->id), 2, ".", ",") ?> &euro;
-                    <?php
-                    if($user->isApproved()) {
-                      echo "<a href='#' onclick='requestBalanceChange(\"".$user->username."\", ".$user->id.")'>Initialize!</a>";
-                    }
-                    ?>
-                  </p>
                 </td>
               </tr>
             </tbody>
@@ -236,8 +240,16 @@ if($post) {
                       <p><?= $user->email ?></p>
                     </td>
                     <td>
+                      <p id="user_balance"><?= number_format(getBalance($user->id), 2, ".", ",") ?> &euro;</p>
+                    </td>
+                    <td>
                       <p><?= $user->isEmployee() ? 'Employee' : 'Customer' ?></p>
                     </td>
+                    <?php if (!$user->isApproved()) { ?>
+                    <td>
+                      <p><input style="border: 1px solid #CCC;border-radius: 4px;" name="balance" placeholder="0.0" type="text"></p>
+                    </td>
+                    <?php } ?>
                     <td>
                       <?php
                       if($user->isApproved()) {
@@ -333,6 +345,11 @@ if($post) {
           var http = new XMLHttpRequest();
           var url = "employee.php";
           var params = "user_id="+id;
+          var balance = 0;
+          if (document.getElementsByName('balance')[0].value.length > 0) {
+            balance = document.getElementsByName('balance')[0].value;
+            params = params + "&balance=" + balance;
+          }
           http.open("POST", url, true);
 
           http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -341,25 +358,13 @@ if($post) {
 
           http.onreadystatechange = function() {
             if(http.readyState == 4 && http.status == 200) {
+              link.parentElement.parentElement.removeChild(link.parentElement.parentElement.querySelector('[name="balance"]').parentElement.parentElement);
+              link.parentElement.parentElement.querySelector('#user_balance').innerHTML = balance + " &euro;";
               link.parentElement.innerHTML = '<p>Approved</p>';
+            } else if (http.readyState == 4 && http.status == 400) {
+              alert("Could not approve user!\nMalformed balance");
             }
           }
-          http.send(params);
-        }
-      }
-
-      function requestBalanceChange(user, id){
-        var balance = prompt("Please enter ammount", 12345);
-
-        if (balance != null) {
-          var http = new XMLHttpRequest();
-          var url = "employee.php";
-          var params = "balance="+balance+'&user_id='+id;
-          http.open("POST", url, true);
-
-          http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-          http.setRequestHeader("Content-length", params.length);
-          http.setRequestHeader("Connection", "close");
           http.send(params);
         }
       }
