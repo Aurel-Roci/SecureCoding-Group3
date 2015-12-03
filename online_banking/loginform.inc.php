@@ -5,6 +5,7 @@
   	$password = $_POST['password'];
 
     if ($user = fetchUser($username, $password)) {
+    	session_regenerate_id();
       $_SESSION['user'] = $user;
       header('Location: index.php');
     }
