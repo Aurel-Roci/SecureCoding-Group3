@@ -6,62 +6,68 @@ if($post) {
 	$allPramatetersSet = isset($_POST['username']) && isset($_POST['password']) && isset($_POST['password_again']) &&
 		isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']);
 	if($allPramatetersSet) {
-		$username = $_POST['username'];
+		$username = htmlspecialchars($_POST['username']);
 		$password = $_POST['password'];
 		$password_again = $_POST['password_again'];
-		$firstname = $_POST['firstname'];
-		$lastname = $_POST['lastname'];
+		$firstname = htmlspecialchars($_POST['firstname']);
+		$lastname = htmlspecialchars($_POST['lastname']);
 		$memberrole = $_POST['memberrole'];
 		$email = $_POST['email'];
 		$tan = $_POST['tan'];
 		if(!isset($tan))$tan="";
-		$regex = "^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$";
 
-		if(preg_match("/^$regex$/", $password)){
-			if(!empty($username) && !empty($password) && !empty($password_again) && !empty($firstname) && !empty($lastname) && !empty($email)) {
-					$query = "SELECT username FROM users WHERE username='".mysql_real_escape_string($username)."'";
-					$query_run=mysql_query($query);
-					if(mysql_num_rows($query_run) > 0) {
-							$error = "The username ".$username." already exists";
-					} else {
-						$query = "INSERT INTO users (username,password,approved,memberrole,firstname,lastname,email) "
-								. "VALUES ('".mysql_real_escape_string($username)."', SHA2('".mysql_real_escape_string($password)
-								. "', 256), False,".$memberrole.",'".mysql_real_escape_string($firstname)."','"
-								. mysql_real_escape_string($lastname)."','".mysql_real_escape_string($email)."')";
+		$passwordRegex = "^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$";
+		$emailRegex = "^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$";
 
-						if($query_run = mysql_query($query)) {
-							$query = "SELECT id FROM users WHERE username='".mysql_real_escape_string($username)."'";
-							$result = mysql_query($query);
-							$user_id = mysql_result($result, 0);
-
-							$tans = "";
-							for ($i = 0; $i <+ 100; $i++) {
-								$rand = generateRandomString(15);
-								$query = "INSERT INTO tans VALUES('".$rand."','".$user_id."')";
-								if($query_run = mysql_query($query)) {
-									$tans .= $rand."\n";
-								} else {
-									$i--;
-								}
-							}
-
-							if($tan==0){
-										if(!sendmail($email, $password, $tans, $lastname)) {
-												error_log('Message was not sent.');
-										} else {
-											  error_log('Message has been sent.');
-										}
-
-							}else if($tan==1){
-
-							}
-
+		if(preg_match("/^$passwordRegex/", $password)) {
+			if(preg_match("/^$passwordRegex/", $password)){
+				if(!empty($username) && !empty($password) && !empty($password_again) && !empty($firstname) && !empty($lastname) && !empty($email)) {
+						$query = "SELECT username FROM users WHERE username='".mysql_real_escape_string($username)."'";
+						$query_run=mysql_query($query);
+						if(mysql_num_rows($query_run) > 0) {
+								$error = "The username ".$username." already exists";
 						} else {
-							$error = "Could not register at this time. Try again later";
+							$query = "INSERT INTO users (username,password,approved,memberrole,firstname,lastname,email) "
+									. "VALUES ('".mysql_real_escape_string($username)."', SHA2('".mysql_real_escape_string($password)
+									. "', 256), False,".$memberrole.",'".mysql_real_escape_string($firstname)."','"
+									. mysql_real_escape_string($lastname)."','".mysql_real_escape_string($email)."')";
+
+							if($query_run = mysql_query($query)) {
+								$query = "SELECT id FROM users WHERE username='".mysql_real_escape_string($username)."'";
+								$result = mysql_query($query);
+								$user_id = mysql_result($result, 0);
+
+								$tans = "";
+								for ($i = 0; $i <+ 100; $i++) {
+									$rand = generateRandomString(15);
+									$query = "INSERT INTO tans VALUES('".$rand."','".$user_id."')";
+									if($query_run = mysql_query($query)) {
+										$tans .= $rand."\n";
+									} else {
+										$i--;
+									}
+								}
+
+								if($tan==0){
+											if(!sendmail($email, $password, $tans, $lastname)) {
+													error_log('Message was not sent.');
+											} else {
+												  error_log('Message has been sent.');
+											}
+
+								}else if($tan==1){
+
+								}
+
+							} else {
+								$error = "Could not register at this time. Try again later";
+							}
 						}
-					}
+				} else {
+					$error = "Please fill in all fields!";
+				}
 			} else {
-				$error = "Please fill in all fields!";
+				$error = "This is not a valid email address!";
 			}
 		} else {
 			$error = "Password must have at least 8 characters containing at least 1 uppercase letter, 1 lowercase letter and 1 number";
