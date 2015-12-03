@@ -94,9 +94,9 @@ if($post) {
                 <th>First name</th>
                 <th>Last name</th>
                 <th>Email</th>
+                <th>Balance</th>
                 <th>Role</th>
                 <th>Approval state</th>
-                <th>Balance</th>
               </tr>
             </thead>
             <tbody>
@@ -220,6 +220,7 @@ if($post) {
                   <th>First name</th>
                   <th>Last name</th>
                   <th>Email</th>
+                  <th>Balance</th>
                   <th>Role</th>
                   <th>Approval state</th>
                 </tr>
