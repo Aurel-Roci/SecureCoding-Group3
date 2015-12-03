@@ -3,11 +3,15 @@
 require_once('PHPMailer/class.phpmailer.php');
 require_once('PHPMailer/PHPMailerAutoload.php');
 require('fpdf/fpdf.php');
+
+header('X-Frame-Options: DENY');
+
 ob_start();
 session_set_cookie_params(600, dirname($_SERVER['REQUEST_URI']));
 session_name('72AM7bD1sp2zIDdoEv6g');
 session_start();
 session_regenerate_id(true);
+
 
 if (isset($_SESSION['user_agent'])) {
   if ($_SESSION['user_agent'] != $_SERVER['HTTP_USER_AGENT']) {
