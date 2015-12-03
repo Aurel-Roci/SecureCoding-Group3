@@ -12,9 +12,10 @@
   $isOnIndexPage = strpos($_SERVER['REQUEST_URI'], '/index.php') !== false;
   $isOnRegisterPage = strpos($_SERVER['REQUEST_URI'], '/register.php') !== false;
   $isOnEmployeePage = strpos($_SERVER['REQUEST_URI'], '/employee.php') !== false;
+  $isOnPasswordResetPage = strpos($_SERVER['REQUEST_URI'], '/passwordReset.php') !== false;
 
   if (!isLoggedIn()) {
-    if (!$isOnIndexPage && !$isOnRegisterPage) {
+    if (!$isOnIndexPage && !$isOnRegisterPage && !$isOnPasswordResetPage) {
       redirect("index.php");
     }
   } else {

@@ -61,6 +61,27 @@ function sendmail($email,$password, $tans, $lastname){
 					return $mail->Send()?1:$mail->ErrorInfo;
 }
 
+function sendPasswordResetMail($email, $link, $lastname){
+          $message = "Dear Mr/Ms ".$lastname.", you can reset your password by clicking on following link: ".$link."\nIf you didn't request a password reset please ignore this email.\nBest regards,\nYour online banking team";
+
+					$mail = new PHPMailer();
+					$mail->isSMTP();                                      // Set mailer to use SMTP
+					$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+					$mail->SMTPAuth = true;                               // Enable SMTP authentication
+					$mail->Username = 'team3securecoding@gmail.com';                 // SMTP username
+					$mail->Password = 'securecoding';                           // SMTP password
+					$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+					$mail->Port = 587;
+
+					$mail->From      = 'team3securecoding@gmail.com';
+					$mail->FromName  = 'Team3';
+					$mail->Subject   = "Your online banking password reset request!";
+					$mail->Body      = $message;
+					$mail->AddAddress( $email);
+
+					return $mail->Send()?1:$mail->ErrorInfo;
+}
+
 function redirect($url, $statusCode = 303) {
    header('Location: ' . $url, true, $statusCode);
    die();

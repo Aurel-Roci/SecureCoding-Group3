@@ -29,8 +29,6 @@ if($post) {
 								. "', 256), False,".$memberrole.",'".mysql_real_escape_string($firstname)."','"
 								. mysql_real_escape_string($lastname)."','".mysql_real_escape_string($email)."')";
 
-						echo $query;
-
 						if($query_run = mysql_query($query)) {
 							$query = "SELECT id FROM users WHERE username='".mysql_real_escape_string($username)."'";
 							$result = mysql_query($query);
