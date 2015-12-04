@@ -109,9 +109,9 @@ require 'register.inc.php';
             <div id="cust" class="controls">
 							<select id="opts" name="tanMethod" class="form-control" >
 								<option value="0">Email</option>
-								<option value="1">Aplication</option>
+								<option value="1">Application</option>
 							</select>
-							<p class="help-block">Receive tans by email or an aplication?</p>
+							<p class="help-block">Receive tans by email or an application?</p>
 						</div>
 					</div>
 					<div class="control-group">
