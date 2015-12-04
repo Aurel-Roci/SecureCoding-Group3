@@ -62,7 +62,6 @@ function pdfCreate($message, $password){
 
 
 function send_registration_mail($email,$password, $tans, $lastname){
-          $message = "Dear Mr/Ms ".$lastname.", for your new online banking account we send you your TAN codes.\n".$tans."\nBest regards,\nYour online banking team";
           $pdf = pdfCreate($message, $password);
 
 					$mail = new PHPMailer();
@@ -100,7 +99,7 @@ function send_pin_mail($email,$password, $pin, $lastname){
 					$mail->From      = 'team3securecoding@gmail.com';
 					$mail->FromName  = 'Team3';
 					$mail->Subject   = "Welcome to online banking!";
-					$mail->Body      = "Please, find the tans attached above. The Password is the one used for Registration.";
+					$mail->Body      = $message;
 					$mail->AddAddress( $email);
 
 					return $mail->Send()?1:$mail->ErrorInfo;
