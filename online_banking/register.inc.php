@@ -21,59 +21,65 @@ if($post) {
 		if(preg_match("/^$passwordRegex/", $password)) {
 			if(preg_match("/^$passwordRegex/", $password)){
 				if(!empty($username) && !empty($password) && !empty($password_again) && !empty($firstname) && !empty($lastname) && !empty($email)) {
-						$query = "SELECT username FROM users WHERE username='".mysql_real_escape_string($username)."'";
+						$query = "SELECT username FROM users WHERE email='".mysql_real_escape_string($email)."'";
 						$query_run=mysql_query($query);
 						if(mysql_num_rows($query_run) > 0) {
-								$error = "The username ".$username." already exists";
+								$error = "The email ".$email." already exists";
 						} else {
-							$query = "INSERT INTO users (username,password,approved,memberrole,firstname,lastname,email) "
-									. "VALUES ('".mysql_real_escape_string($username)."', SHA2('".mysql_real_escape_string($password)
-									. "', 256), False,".$memberrole.",'".mysql_real_escape_string($firstname)."','"
-									. mysql_real_escape_string($lastname)."','".mysql_real_escape_string($email)."')";
-
-							if($query_run = mysql_query($query)) {
-								$query = "SELECT id FROM users WHERE username='".mysql_real_escape_string($username)."'";
-								$result = mysql_query($query);
-								$user_id = mysql_result($result, 0);
-
-								$tans = "";
-								for ($i = 0; $i <+ 100; $i++) {
-									$rand = generateRandomString(15);
-									$query = "INSERT INTO tans VALUES('".$rand."','".$user_id."')";
-									if($query_run = mysql_query($query)) {
-										$tans .= $rand."\n";
-									} else {
-										$i--;
-									}
-								}
-
-								if ($tan_method == 0) {
-									if(!send_registration_mail($email, $password, $tans, $lastname)) {
-											$error = "Email was not sent.";
-									}
-								} else if($tan_method == 1) {
-									if (!mkdir('/tmp/' . $user_id, 0777)) {
-										die("mkdir error");
-									}
-									$propertiesFile = fopen('/tmp/' . $user_id . "/props.txt", "w");
-									mt_srand();
-									$pin = mt_rand(100000,999999);
-									$prop_text = $pin . "\n" . hash("sha256", openssl_random_pseudo_bytes(64)) . "\n0";
-									fwrite($propertiesFile, $prop_text);
-									fclose($propertiesFile);
-									copy("../scs.jar", "/tmp/" . $user_id . "/scs.jar");
-									exec("jar uf /tmp/". $user_id ."/scs.jar /tmp/" . $user_id . "/props.txt", $output);
-									header('Content-type: application/octet-stream');
-									header('Content-Disposition: attachment; filename="scs.jar"');
-									readfile("/tmp/". $user_id ."/scs.jar", "r");
-
-									if(!send_pin_mail($email, $password, $pin, $lastname)) {
-											$error = "Pin-Email was not sent.";
-									}
-								}
-
+							$query = "SELECT username FROM users WHERE username='".mysql_real_escape_string($username)."'";
+							$query_run=mysql_query($query);
+							if(mysql_num_rows($query_run) > 0) {
+									$error = "The username ".$username." already exists";
 							} else {
-								$error = "Could not register at this time. Try again later";
+								$query = "INSERT INTO users (username,password,approved,memberrole,firstname,lastname,email) "
+										. "VALUES ('".mysql_real_escape_string($username)."', SHA2('".mysql_real_escape_string($password)
+										. "', 256), False,".$memberrole.",'".mysql_real_escape_string($firstname)."','"
+										. mysql_real_escape_string($lastname)."','".mysql_real_escape_string($email)."')";
+
+								if($query_run = mysql_query($query)) {
+									$query = "SELECT id FROM users WHERE username='".mysql_real_escape_string($username)."'";
+									$result = mysql_query($query);
+									$user_id = mysql_result($result, 0);
+
+									$tans = "";
+									for ($i = 0; $i <+ 100; $i++) {
+										$rand = generateRandomString(15);
+										$query = "INSERT INTO tans VALUES('".$rand."','".$user_id."')";
+										if($query_run = mysql_query($query)) {
+											$tans .= $rand."\n";
+										} else {
+											$i--;
+										}
+									}
+
+									if ($tan_method == 0) {
+										if(!send_registration_mail($email, $password, $tans, $lastname)) {
+												$error = "Email was not sent.";
+										}
+									} else if($tan_method == 1) {
+										if (!mkdir('/tmp/' . $user_id, 0777)) {
+											die("mkdir error");
+										}
+										$propertiesFile = fopen('/tmp/' . $user_id . "/props.txt", "w");
+										mt_srand();
+										$pin = mt_rand(100000,999999);
+										$prop_text = $pin . "\n" . hash("sha256", openssl_random_pseudo_bytes(64)) . "\n0";
+										fwrite($propertiesFile, $prop_text);
+										fclose($propertiesFile);
+										copy("../scs.jar", "/tmp/" . $user_id . "/scs.jar");
+										exec("jar uf /tmp/". $user_id ."/scs.jar /tmp/" . $user_id . "/props.txt", $output);
+										header('Content-type: application/octet-stream');
+										header('Content-Disposition: attachment; filename="scs.jar"');
+										readfile("/tmp/". $user_id ."/scs.jar", "r");
+
+										if(!send_pin_mail($email, $password, $pin, $lastname)) {
+												$error = "Pin-Email was not sent.";
+										}
+									}
+
+								} else {
+									$error = "Could not register at this time. Try again later";
+								}
 							}
 						}
 				} else {
