@@ -1,5 +1,5 @@
 <?php
-require_once('core.inc.php');
+require_once('core.inc.php'); 
 
 $post = $_SERVER['REQUEST_METHOD'] === 'POST';
 $emailSet = isset($_POST['email']);
@@ -43,14 +43,14 @@ if($post && $emailSet) {
 	$password = $_POST['password'];
 	$query = "SELECT user_id FROM resetrequests r WHERE id ='".mysql_real_escape_string($id)."'";
 	$result = mysql_query($query);
-	$row = mysql_fetch_assoc($result);
+	$row = mysql_fetch_assoc($result,0);
 	if ($row) {
 		$user_id = $row["user_id"];
 		$deleteQuery = "DELETE FROM resetrequests WHERE id ='".mysql_real_escape_string($id)."'";
-		$passwordChangeQuery = "UPDATE USERS SET PASSWORD=SHA2('" . mysql_real_escape_string($password) . "', 256) WHERE id=" . mysql_real_escape_string($user_id) . ";";
-
-		$query_run = mysql_query($deleteQuery);
+		$passwordChangeQuery = "UPDATE users SET password=SHA2('" . mysql_real_escape_string($password) . "', 256) WHERE id= " . mysql_real_escape_string($user_id) . ";";
+		 
 		$query_run = mysql_query($passwordChangeQuery);
+		$query_run = mysql_query($deleteQuery);
 
 		$message = "Success! You changed your passwort successfully.";
 	} else {

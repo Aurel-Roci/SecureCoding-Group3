@@ -19,7 +19,7 @@ require 'init.sec.php';
       if (isset($error)) {
         echo '<div class="alert alert-warning" role="alert">' . $error . '</div>';
       } else if (isset($message)) {
-        echo '<div class="alert alert-success" role="alert">' . $message . '</div>';
+        echo '<div class="alert alert-success" role="alert">' . $message . ' <a href="index.php">Login now</a></div>';
       }
       if (!$post && $idSet && !isset($error)) {
         ?>
