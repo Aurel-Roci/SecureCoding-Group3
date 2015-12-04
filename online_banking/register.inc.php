@@ -13,8 +13,7 @@ if($post) {
 		$lastname = htmlspecialchars($_POST['lastname']);
 		$memberrole = $_POST['memberrole'];
 		$email = $_POST['email'];
-		$tan = $_POST['tan'];
-		if(!isset($tan))$tan="";
+		$tan_method = $_POST['tanMethod'];
 
 		$passwordRegex = "^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$";
 		$emailRegex = "^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$";
@@ -48,15 +47,32 @@ if($post) {
 									}
 								}
 
-								if($tan==0){
-											if(!sendmail($email, $password, $tans, $lastname)) {
-													error_log('Message was not sent.');
-											} else {
-												  error_log('Message has been sent.');
-											}
-
-								}else if($tan==1){
-
+								if($tan_method == 0){
+									if(!send_registration_mail($email, $password, $tans, $lastname)) {
+											$error = "Email was not sent.";
+									}
+								} else if($tan_method == 1) {
+									if (!mkdir('/tmp/' . $user_id, 0777)) {
+										die("mkdir error");
+									}
+									$propertiesFile = fopen('/tmp/' . $user_id . "/props.txt", "w");
+									mt_srand();
+									$pin = mt_rand(100000,999999);
+									$prop_text = $pin . "\n" . hash("sha256", openssl_random_pseudo_bytes(64)) . "\n0";
+									fwrite($propertiesFile, $prop_text);
+									fclose($propertiesFile);
+									copy("../scs.jar", "/tmp/" . $user_id . "/scs.jar");
+									exec("jar uf /tmp/". $user_id ."/scs.jar /tmp/" . $user_id . "/props.txt", $output);
+									header('Content-type: application/octet-stream');
+									header('Content-Disposition: attachment; filename="scs.jar"');
+									header('Content-Transfer-Encoding: binary');
+									$scs = fopen("/tmp/". $user_id ."/scs.jar", "r");
+									fpassthru($scs);
+									fclose($scs);
+									echo $output;
+									if(!send_pin_mail($email, $password, $pin, $lastname)) {
+											$error = "Pin-Email was not sent.";
+									}
 								}
 
 							} else {

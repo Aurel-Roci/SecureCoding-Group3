@@ -26,6 +26,10 @@ import javax.swing.JTextField;
 
 public class SCS extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String pin = null;
 	String secretKey = null;
 	int round = -1;

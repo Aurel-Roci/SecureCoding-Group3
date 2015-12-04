@@ -102,8 +102,12 @@ require 'register.inc.php';
 							</select>
 							<p class="help-block">Are you an employee or a normal customer?</p>
 						</div>
+          </div>
+          <div class="control-group">
+            <!-- Tan method -->
+            <label class="control-label" for="tanMethod">TAN Method</label>
             <div id="cust" class="controls">
-							<select id="opts" name="tan" class="form-control" >
+							<select id="opts" name="tanMethod" class="form-control" >
 								<option value="0">Email</option>
 								<option value="1">Aplication</option>
 							</select>

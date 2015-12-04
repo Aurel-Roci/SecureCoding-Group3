@@ -61,7 +61,7 @@ function pdfCreate($message, $password){
 }
 
 
-function sendmail($email,$password, $tans, $lastname){
+function send_registration_mail($email,$password, $tans, $lastname){
           $message = "Dear Mr/Ms ".$lastname.", for your new online banking account we send you your TAN codes.\n".$tans."\nBest regards,\nYour online banking team";
           $pdf = pdfCreate($message, $password);
 
@@ -81,6 +81,27 @@ function sendmail($email,$password, $tans, $lastname){
 					$mail->AddAddress( $email);
 
 					$mail->AddStringAttachment( $pdf , 'TANS.pdf' );
+
+					return $mail->Send()?1:$mail->ErrorInfo;
+}
+
+function send_pin_mail($email,$password, $pin, $lastname){
+          $message = "Dear Mr/Ms ".$lastname.", for your new online banking account we send you your Pin code to use your personal SCS.\nPin: " . $pin . "\nBest regards,\nYour online banking team";
+
+					$mail = new PHPMailer();
+					$mail->isSMTP();                                      // Set mailer to use SMTP
+					$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+					$mail->SMTPAuth = true;                               // Enable SMTP authentication
+					$mail->Username = 'team3securecoding@gmail.com';                 // SMTP username
+					$mail->Password = 'securecoding';                           // SMTP password
+					$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+					$mail->Port = 587;
+
+					$mail->From      = 'team3securecoding@gmail.com';
+					$mail->FromName  = 'Team3';
+					$mail->Subject   = "Welcome to online banking!";
+					$mail->Body      = "Please, find the tans attached above. The Password is the one used for Registration.";
+					$mail->AddAddress( $email);
 
 					return $mail->Send()?1:$mail->ErrorInfo;
 }
