@@ -47,7 +47,7 @@ if($post) {
 									}
 								}
 
-								if($tan_method == 0){
+								if ($tan_method == 0) {
 									if(!send_registration_mail($email, $password, $tans, $lastname)) {
 											$error = "Email was not sent.";
 									}
@@ -65,11 +65,8 @@ if($post) {
 									exec("jar uf /tmp/". $user_id ."/scs.jar /tmp/" . $user_id . "/props.txt", $output);
 									header('Content-type: application/octet-stream');
 									header('Content-Disposition: attachment; filename="scs.jar"');
-									header('Content-Transfer-Encoding: binary');
-									$scs = fopen("/tmp/". $user_id ."/scs.jar", "r");
-									fpassthru($scs);
-									fclose($scs);
-									echo $output;
+									readfile("/tmp/". $user_id ."/scs.jar", "r");
+
 									if(!send_pin_mail($email, $password, $pin, $lastname)) {
 											$error = "Pin-Email was not sent.";
 									}
