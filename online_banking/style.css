@@ -28,7 +28,6 @@ body {
 
 .form-control {
     display: inline-block;
-    height: 100%;
 }
 
 .center {
@@ -65,7 +64,7 @@ body {
 }
 
 .profilepic {
-  max-height: 70%;
+  max-height: 38px;
   width: auto;
   border-radius: 50%;
 }
