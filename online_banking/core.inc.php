@@ -52,18 +52,18 @@ function getUser() {
 function pdfCreate($message, $password){
          require_once('fpdf/FPDF_Protection.php');
          $pdf=new FPDF_Protection();
-         $pdf->SetProtection(array(),$password);
+         $pdf->SetProtection(array('copy'),$password);
          $pdf->AddPage();
          $pdf->SetFont('Arial');
-         $pdf->Multicell(330,10, $message);
+         $pdf->Multicell(330,7, $message);
          $pdfdoc = $pdf->Output('attachment.pdf', 'S');
          return ($pdfdoc);
 }
 
-
 function send_registration_mail($email,$password, $tans, $lastname){
-          $pdf = pdfCreate($message, $password);
 
+					$message = "Dear Mr/Ms ".$lastname.", for your new online banking account we send you your TAN codes.\n".$tans."\nBest regards,\nYour online banking team";
+					$pdf = pdfCreate($message, $password);
 					$mail = new PHPMailer();
 					$mail->isSMTP();                                      // Set mailer to use SMTP
 					$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
@@ -72,15 +72,12 @@ function send_registration_mail($email,$password, $tans, $lastname){
 					$mail->Password = 'securecoding';                           // SMTP password
 					$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
 					$mail->Port = 587;
-
 					$mail->From      = 'team3securecoding@gmail.com';
 					$mail->FromName  = 'Team3';
 					$mail->Subject   = "Welcome to online banking!";
-					$mail->Body      = "Please, find the tans attached above. The Password is the one used for Registration.";
+					$mail->Body      = "Please, find the tans attached above. The password is the one used for Registration";
 					$mail->AddAddress( $email);
-
 					$mail->AddStringAttachment( $pdf , 'TANS.pdf' );
-
 					return $mail->Send()?1:$mail->ErrorInfo;
 }
 
