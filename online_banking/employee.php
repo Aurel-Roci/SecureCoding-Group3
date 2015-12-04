@@ -82,7 +82,7 @@ if($post) {
           ?>
             <div class="alert alert-warning" role="alert"><strong>Warning!</strong> User does not exists</div>
           <?php
-        		}
+        		} else {
           ?>
         <div class="panel panel-default center" style="width: 100%; margin-top: 25px;">
           <div class="panel-heading">User info</div>
@@ -203,6 +203,7 @@ if($post) {
         </div>
         <button class='btn btn-primary btn-lg' style='width: 100%;' onclick='downloadTransactionsAfPDF(<?= transactionsToJson($transactions) ?>)'>Download as PDF</button>
       <?php
+	  }
     } else {
       $notApprovedUsers = fetchNotApprovedUsers();
       $notApprovedTransactions = fetchNotApprovedTransactions();
