@@ -12,32 +12,27 @@
 			$recipient_name = $_POST['recipient'];
 			$amount = $_POST['amount'];
 			$tan = $_POST['tan'];
-      $description = $_POST['description'];
+			$description = $_POST['description'];
 			if($amount<0){
         ?>
         <div class="alert alert-warning" role="alert"><strong>Warning!</strong>You cannot transfer a negative amount of money!</div>
         <?php
       }else{
         if(!empty($recipient_name) &&!empty($amount) &&!empty($tan)&&  !empty($description)){
-          $senderbalance = getBalance(getUser()->id);
+          $senderbalance = getUser()->getBalance();
           $newbalance = $senderbalance - $amount;
           if($newbalance>=0){
               $recipient = fetchUserWithUsername($recipient_name);
-                  if ($recipient) {
-                    userBalance(getUser()->id,$newbalance);
-                    $recipientbalance = getBalance($recipient->id);
-                    $transfer = $recipientbalance+$amount;
-                    userBalance($recipient->id,$transfer);
+                  if ($recipient) { 
             				$tan_is_for_user = isTanFromUser($tan, getUser()->id);
-                    $tan_unused = isTanUnused($tan);
-
+							$tan_unused = isTanUnused($tan); 
             				if($tan_is_for_user && $tan_unused) {
             					insertNewTransaction(getUser()->id, $recipient->id, $amount, $description, $tan);
-                    } else {
-                      ?>
-                      <div class="alert alert-warning" role="alert"><strong>Warning!</strong> There is a problem with the inserted TAN!</div>
-                      <?php
-                    }
+						} else {
+						  ?>
+						  <div class="alert alert-warning" role="alert"><strong>Warning!</strong> There is a problem with the inserted TAN!</div>
+						  <?php
+						}
 
           			  } else {
                     ?>
@@ -54,7 +49,7 @@
 		} else if (isset($_FILES['transactionfile'])) {
       //tmp_name
       $filepath = $_FILES['transactionfile']['tmp_name'];
-      $output = [];
+      $output = "";
       $return_line = exec("../parser_src/upload_parser " . escapeshellarg($filepath), $output, $return_var);
     }
   }

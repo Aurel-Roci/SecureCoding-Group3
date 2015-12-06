@@ -42,17 +42,18 @@ if($post) {
 									$user_id = mysql_result($result, 0);
 
 									$tans = "";
-									for ($i = 0; $i <+ 100; $i++) {
-										$rand = generateRandomString(15);
-										$query = "INSERT INTO tans VALUES('".$rand."','".$user_id."')";
-										if($query_run = mysql_query($query)) {
-											$tans .= $rand."\n";
-										} else {
-											$i--;
-										}
-									}
+									
 
 									if ($tan_method == 0) {
+										for ($i = 0; $i <+ 100; $i++) {
+											$rand = generateRandomString(15);
+											$query = "INSERT INTO tans VALUES('".$rand."','".$user_id."')";
+											if($query_run = mysql_query($query)) {
+												$tans .= $rand."\n";
+											} else {
+												$i--;
+											}
+										}
 										if(!send_registration_mail($email, $password, $tans, $lastname)) {
 												$error = "Email was not sent.";
 										}
