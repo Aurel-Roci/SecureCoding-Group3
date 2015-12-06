@@ -23,9 +23,9 @@
           $newbalance = $senderbalance - $amount;
           if($newbalance>=0){
               $recipient = fetchUserWithUsername($recipient_name);
-                  if ($recipient) { 
+                  if ($recipient) {
             				$tan_is_for_user = isTanFromUser($tan, getUser()->id);
-							$tan_unused = isTanUnused($tan); 
+							$tan_unused = isTanUnused($tan);
             				if($tan_is_for_user && $tan_unused) {
             					insertNewTransaction(getUser()->id, $recipient->id, $amount, $description, $tan);
 						} else {
@@ -49,7 +49,6 @@
 		} else if (isset($_FILES['transactionfile'])) {
       //tmp_name
       $filepath = $_FILES['transactionfile']['tmp_name'];
-      $output = "";
       $return_line = exec("../parser_src/upload_parser " . escapeshellarg($filepath), $output, $return_var);
     }
   }
@@ -92,15 +91,17 @@
 </div>
 
 <?php
-foreach ($output as $line) {
-  if (strstr($line, "Successfully") === FALSE) {
-    ?>
-    <div class="alert alert-danger" role="alert"><strong>Error!</strong><?= $line?></div>
-    <?php
-  } else {
-    ?>
-    <div class="alert alert-success" role="alert"><strong>Success!</strong><?= $line?></div>
-    <?php
+if (isset($output)) {
+  foreach ($output as $line) {
+    if (strstr($line, "Successfully") === FALSE) {
+      ?>
+      <div class="alert alert-danger" role="alert"><strong>Error!</strong><?= $line?></div>
+      <?php
+    } else {
+      ?>
+      <div class="alert alert-success" role="alert"><strong>Success!</strong><?= $line?></div>
+      <?php
+    }
   }
 }
 

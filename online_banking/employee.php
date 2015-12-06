@@ -409,6 +409,6 @@ if($post) {
       }
 
     </script>
+    <?php include 'footer.inc.php'; ?>
   </body>
-  <?php include 'footer.inc.php'; ?>
 </html>
