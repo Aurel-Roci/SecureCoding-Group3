@@ -31,10 +31,21 @@ if($post) {
 							if(mysql_num_rows($query_run) > 0) {
 									$error = "The username ".$username." already exists";
 							} else {
-								$query = "INSERT INTO users (username,password,approved,memberrole,firstname,lastname,email) "
-										. "VALUES ('".mysql_real_escape_string($username)."', SHA2('".mysql_real_escape_string($password)
-										. "', 256), False,".$memberrole.",'".mysql_real_escape_string($firstname)."','"
-										. mysql_real_escape_string($lastname)."','".mysql_real_escape_string($email)."')";
+								mt_srand();
+								$pin = mt_rand(100000,999999);
+								$pinHash = hash("sha256", openssl_random_pseudo_bytes(64));
+
+								if ($tan_method == 0) {
+									$query = "INSERT INTO users (username,password,approved,memberrole,firstname,lastname,email) "
+											. "VALUES ('".mysql_real_escape_string($username)."', SHA2('".mysql_real_escape_string($password)
+											. "', 256), False,".$memberrole.",'".mysql_real_escape_string($firstname)."','"
+											. mysql_real_escape_string($lastname)."','".mysql_real_escape_string($email)."')";
+								} else {
+									$query = "INSERT INTO users (username,password,approved,memberrole,firstname,lastname,email,pinHash) "
+											. "VALUES ('".mysql_real_escape_string($username)."', SHA2('".mysql_real_escape_string($password)
+											. "', 256), False,".$memberrole.",'".mysql_real_escape_string($firstname)."','"
+											. mysql_real_escape_string($lastname)."','".mysql_real_escape_string($email)."', '" . mysql_real_escape_string($pinHash) . "')";
+								}
 
 								if($query_run = mysql_query($query)) {
 									$query = "SELECT id FROM users WHERE username='".mysql_real_escape_string($username)."'";
@@ -62,16 +73,11 @@ if($post) {
 											die("mkdir error");
 										}
 										$propertiesFile = fopen('/tmp/' . $user_id . "/props.txt", "w");
-										mt_srand();
-										$pin = mt_rand(100000,999999);
-										$prop_text = $pin . "\n" . hash("sha256", openssl_random_pseudo_bytes(64)) . "\n0";
+										$prop_text = $pin . "\n" . $pinHash . "\n0";
 										fwrite($propertiesFile, $prop_text);
 										fclose($propertiesFile);
 										copy("../scs.jar", "/tmp/" . $user_id . "/scs.jar");
-										exec("jar uf /tmp/". $user_id ."/scs.jar /tmp/" . $user_id . "/props.txt", $output);
-										header('Content-type: application/octet-stream');
-										header('Content-Disposition: attachment; filename="scs.jar"');
-										readfile("/tmp/". $user_id ."/scs.jar", "r");
+										exec("jar uf /tmp/". $user_id ."/scs.jar -C /tmp/". $user_id ." props.txt", $output);
 
 										if(!send_pin_mail($email, $password, $pin, $lastname)) {
 												$error = "Pin-Email was not sent.";

@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS users (
   approved bool NOT NULL DEFAULT 0,
   memberrole tinyint NOT NULL,
   email varchar(100) NOT NULL,
+  pinHash varchar(100) DEFAULT NULL,
   -- 0 for customer, 1 for employee
   UNIQUE KEY(username),
   PRIMARY KEY(id)

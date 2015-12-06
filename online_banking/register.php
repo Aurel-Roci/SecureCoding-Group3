@@ -36,7 +36,11 @@ require 'register.inc.php';
 			if($post && !empty($error)) {
 				echo '<div class="alert alert-danger" role="alert">'.$error.'</div>';
 			} else if ($post && empty($error)) {
-				echo '<div class="alert alert-success" role="alert">Registration was successful. <a href="index.php">Login now</a></div>';
+        $extraMessage = "";
+        if ($tan_method == 1) {
+          $extraMessage = "<a href='applicationDownload.php?user_id=" . $user_id . "' target='_blank'>Download application!</a> Use your PIN: ". $pin . "<br>";
+        }
+				echo '<div class="alert alert-success" role="alert">Registration was successful. ' . $extraMessage .' <a href="index.php">Login now</a></div>';
 			}
 			?>
 			<form class="form-horizontal" id="register-form" action='register.php' method="POST" onsubmit="return validateFields(this);">
