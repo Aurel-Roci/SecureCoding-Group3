@@ -104,7 +104,6 @@ if (isset($output)) {
     }
   }
 }
-*/
 ?>
 
 <div class="panel panel-default center" style="width: 100%; margin-top: 25px;">
