@@ -39,6 +39,19 @@
         return $array_row[0];
       }
     }
+
+    function getLastUsedTAN() {
+      $query = "SELECT lastUsedTAN FROM users WHERE id='".$this->id. "';";
+
+      $result = mysql_query($query);
+
+      if($result && mysql_num_rows($result) > 0) {
+        $row = mysql_fetch_assoc($result);
+        $array_row = array_values($row);
+        return intval($array_row[0]);
+      }
+      return 0;
+    }
   }
 
   function fetchUser($username, $password) {

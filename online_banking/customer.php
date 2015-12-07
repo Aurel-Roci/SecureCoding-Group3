@@ -40,6 +40,7 @@ require 'init.sec.php';
 
     <div class="container">
       <?php
+      require_once 'customer.inc.php';
       if (!getUser()->isApproved()) {
       ?>
       <div class="alert alert-warning" role="alert">Your user account hasn't been approved yet! Please contact an employee.</div>

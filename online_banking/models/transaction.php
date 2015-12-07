@@ -111,11 +111,20 @@
     if ($user->pinHash) {
       $secretKey = substr($tan, strpos($tan, ";") + 1);
       $hashCount = intval(substr($tan, 0, strpos($tan, ";")));
-      $realHash = $amount . $account . $user->pinHash;
-      for ($i = 0; $i <= $hashCount; $i++) {
-        $realHash = hash("sha256", utf8_encode($realHash));
+      echo $user->getLastUsedTAN()."<br>";
+      if ($hashCount <= $user->getLastUsedTAN()) {
+        return false;
+      } else {
+        $realHash = $user->pinHash;
+        for ($i = 0; $i < $hashCount; $i++) {
+          echo $realHash."<br>";
+          $realHash = hash("sha256", utf8_encode($realHash));
+        }
+        $realHash = hash("sha256", $amount . $account . $realHash);
+        echo $realHash."<br>";
+        echo $secretKey."<br>";
+        return strcmp($secretKey, $realHash) == 0;
       }
-      return strcmp($secretKey, $realHash) == 0;
     }
   	$query = "SELECT id FROM tans WHERE id = '" . mysql_real_escape_string($tan) . "' and user_id = " . $user->id;
   	$query_result = mysql_query($query);
@@ -128,7 +137,7 @@
   	return mysql_num_rows($query_result) == 0;
   }
 
-  function insertNewTransaction($senderid, $recipientid, $amount, $description, $tan) {
+  function insertNewTransaction($senderid, $recipientid, $amount, $description, $tan, $hashCount) {
     $date_string = "null";
     if ($amount < 10000) {
       $date_string = "NOW()";
@@ -138,6 +147,9 @@
   		. "VALUES ('" . $senderid . "', '" . $recipientid . "', " . $date_string . ", "
       . $amount . " , '" . mysql_real_escape_string($description) . "','" . mysql_real_escape_string($tan) . "')";
     mysql_query($query);
+
+    $query2 = "UPDATE users SET lastUsedTAN = " . $hashCount . " WHERE id = " . $senderid . ";";
+    mysql_query($query2);
   }
 
   function initializeBalance($user_id, $balance) {

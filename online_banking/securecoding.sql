@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS users (
   memberrole tinyint NOT NULL,
   email varchar(100) NOT NULL,
   pinHash varchar(100) DEFAULT NULL,
+  lastUsedTAN int(64) NOT NULL DEFAULT '-1',
   -- 0 for customer, 1 for employee
   UNIQUE KEY(username),
   PRIMARY KEY(id)
@@ -52,7 +53,7 @@ CREATE TABLE IF NOT EXISTS users (
 --
 
 CREATE TABLE IF NOT EXISTS tans (
-  id varchar(15) NOT NULL,
+  id varchar(64) NOT NULL,
   user_id int,
   -- used variable removed and added a tan field in the transactions to
   -- stick to some database modeling conventions
@@ -77,11 +78,10 @@ CREATE TABLE IF NOT EXISTS transactions (
   -- and for approving you set the current timestamp
   -- for example: UPDATE transactions SET approve_date = NOW() WHERE ...
   create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  tan_id VARCHAR(15) NOT NULL,
+  tan_id VARCHAR(64) NOT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(sender_id) REFERENCES users(id) ON DELETE NO ACTION,
   FOREIGN KEY(recipient_id) REFERENCES users(id) ON DELETE NO ACTION,
-  FOREIGN KEY(tan_id) REFERENCES tans(id) ON DELETE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `resetrequests` (
