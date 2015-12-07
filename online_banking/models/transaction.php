@@ -111,18 +111,18 @@
     if ($user->pinHash) {
       $secretKey = substr($tan, strpos($tan, ";") + 1);
       $hashCount = intval(substr($tan, 0, strpos($tan, ";")));
-      echo $user->getLastUsedTAN()."<br>";
+      // echo $user->getLastUsedTAN()."<br>";
       if ($hashCount <= $user->getLastUsedTAN()) {
         return false;
       } else {
         $realHash = $user->pinHash;
         for ($i = 0; $i < $hashCount; $i++) {
-          echo $realHash."<br>";
+          // echo $realHash."<br>";
           $realHash = hash("sha256", utf8_encode($realHash));
         }
         $realHash = hash("sha256", $amount . $account . $realHash);
-        echo $realHash."<br>";
-        echo $secretKey."<br>";
+        // echo $realHash."<br>";
+        // echo $secretKey."<br>";
         return strcmp($secretKey, $realHash) == 0;
       }
     }
