@@ -5,7 +5,7 @@ $conn_error='Could not connect';
 $mysql_host='localhost';
 $mysql_user='root';
 // For the virtual machine we need this password
-$mysql_pass='samurai';
+$mysql_pass='root';
 $mysql_db= 'securecoding';
 
 @$conn = mysql_connect($mysql_host,$mysql_user,$mysql_pass);

@@ -131,6 +131,11 @@
   	return mysql_num_rows($query_result) == 1;
   }
 
+  function validateTANForFile($tan, $filepath) {
+    echo hash_file("sha256", $filepath);
+    return false;
+  }
+
   function isTanUnused($tan){
   	$query = "SELECT id FROM transactions WHERE tan_id = '" . mysql_real_escape_string($tan) . "'";
   	$query_result = mysql_query($query);
