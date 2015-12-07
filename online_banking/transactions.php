@@ -57,11 +57,24 @@ if (isset($output)) {
           <input name="transactionfile" class="form-control" type="file" accept="text/plain"/>
           <p class="help-block">
             The transaction file has to match exactly the following format to work:<br/>
-            sender_id(account number),recipient_id(account number),amount,TAN<br/>
-            [(10 digits),(10 digits),(1-10 digits).(0-2 digits),(15 alphanumeric character)]
+            sender_id(account number),recipient_id(account number),amount,TAN,description<br/>
+            [(10 digits),(10 digits),(1-10 digits).(0-2 digits),(15 alphanumeric character),(0-200 alphanumeric character)]<br/>
+            TAN has not to be provided if the application TAN is used.
           </p>
         </div>
       </div>
+      <?php
+      if ($user->pinHash) {
+      ?>
+      <div class="form_group">
+        <label for="fileTAN" class="col-sm-2 control-label">File TAN:</label>
+        <div class="col-sm-10">
+          <input name="fileTAN" class="form-control" placeholder="1234567890ABCDE" type="text"/>
+        </div>
+      </div>
+      <?php
+      }
+      ?>
       <input type="submit" class="form-control" value="Upload transaction file" />
     </form>
   </div>

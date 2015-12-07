@@ -25,18 +25,48 @@
 
 int main(int argc, char* argv[]) {
     char filePathBuffer[200];
-    char fileLine[64];
+    char fileLine[256];
+    char sha[65];
+    char tanFile[65];
+    char user_id[16];
+    bool shaFile = false;
     int i, reti, line, correct;
     FILE *data;
-    size_t len = 64;
+    size_t len = 256;
     regex_t regex;
     MYSQL *conn;
-
-    fileLine[63] = 0x00;
+    if (argc < 3) {
+        printf("To few arguments\n");
+        exit(2);
+    }
+    fileLine[255] = 0x00;
 
     // Reading filepath
     strncpy(filePathBuffer, argv[1], 199);
     filePathBuffer[199] = 0x00;
+
+    strncpy(user_id, argv[2], 15);
+    user_id[15] = 0x00;
+    if (argc >= 5) {
+        char* temp_buffer;
+        char[70] tan_str;
+        char delimiter[2] = ";";
+        strncpy(sha, argv[3], 64);
+        if (strlen(sha) != 64) {
+            printf("Error with hash!\n");
+            exit(2);
+        }
+        strncpy(tanFile, argv[4], 64);
+        if (strlen(tanFile) > 64) {
+            printf("TAN has wrong length\n");
+            exit(2);
+        }
+        if (strcmp(tanFile, sha) != 0) {
+            printf("TAN wrong!\n");
+            exit(2);
+        }
+        shaFile = true;
+    }
 
     data = fopen(filePathBuffer, "r");
 
@@ -57,6 +87,64 @@ int main(int argc, char* argv[]) {
         exit(2);
     }
 
+    {
+        MYSQL_RES *result;
+        char check_query[500];
+        {
+            char temp[400] = "SELECT id FROM users WHERE id = %s and approved = true";
+            snprintf(check_query, 499, temp, user_id);
+        }
+        if (mysql_query(conn, check_query)) {
+            printf("Error in user checking!\n");
+            continue;
+        }
+
+        result = mysql_store_result(conn);
+
+        if (result == NULL) {
+            printf("Result for user checking is NULL!\n");
+            continue;
+        }
+
+        if (mysql_num_rows(result) != 1) {
+            printf("User does not exist or is not approved!\n");
+            mysql_free_result(result);
+            continue;
+        }
+
+        mysql_free_result(result);
+    }
+
+    {
+        MYSQL_RES *result;
+        char check_query[500];
+        char temp[400] = "INSERT INTO tans(id, user_id) VALUES(\"%s\", %s)";
+        snprintf(check_query, 499, temp, sha, user_id);
+
+        if (mysql_query(conn, check_query)) {
+            printf("Error in inserting!\n");
+            mysql_close(conn);
+            exit(2);
+        }
+
+        result = mysql_store_result(conn);
+
+        if (result == NULL) {
+            printf("Result for inserting is NULL!\n");
+            mysql_close(conn);
+            exit(2);
+        }
+
+        if (mysql_affected_rows(conn) != 1) {
+            printf("Could not insert new TAN!\n");
+            mysql_free_result(result);
+            mysql_close(conn);
+            exit(2);
+        }
+
+        mysql_free_result(result);
+    }
+
     while (fgets(fileLine, len, data) != NULL) {
       line++;
       int endofline = strlen(fileLine) - 1;
@@ -66,7 +154,7 @@ int main(int argc, char* argv[]) {
 
       // printf("Here is the line: %s\n%i", fileLine, strlen(fileLine));
 
-      reti = regcomp(&regex, "^[0-9]\\{10\\},[0-9]\\{10\\},[0-9]\\{1,10\\}[.]\\{0,1\\}[0-9]\\{0,2\\},[a-zA-Z0-9]\\{15\\}$", 0);
+      reti = regcomp(&regex, "^[0-9]\\{10\\},[0-9]\\{10\\},[0-9]\\{1,10\\}[.]\\{0,1\\}[0-9]\\{0,2\\},[a-zA-Z0-9]\\{15\\},[a-zA-Z0-9]\\{0,200\\}$", 0);
       if (reti) {
           printf("Line %i Parsing Error! Something went wrong (regex)!\n", line);
           continue;
@@ -79,16 +167,21 @@ int main(int argc, char* argv[]) {
           int index = 0, subindex = 0;
           char *temp_buffer;
           char delimiter[2] = ",";
+          char description[201];
 
           memset (data, 0, sizeof (data));
 
           temp_buffer = strtok(fileLine, delimiter);
           strcpy(data[0], temp_buffer);
 
-          for (i = 1; i < 4; i++) {
+          for (i = 1; i < 3; i++) {
               temp_buffer = strtok(NULL, delimiter);
               strcpy(data[i], temp_buffer);
           }
+          temp_buffer = strtok(NULL, delimiter);
+          strcpy(data[3], temp_buffer);
+          temp_buffer = strtok(NULL, delimiter);
+          strcpy(description, temp_buffer);
           {
               /*
                * Check and insert data in the MYSQL database
@@ -105,30 +198,57 @@ int main(int argc, char* argv[]) {
               char date_text[10];
               my_bool is_null_date = 0;
 
-              mysql_real_escape_string(conn, tan_id, data[3], 15);
-              {
-                  char temp[400] = "SELECT ta.id FROM tans ta join users u on (ta.user_id = u.id), users u2 WHERE ta.id = \"%s\" and ta.user_id = \"%s\" and u.approved = true and u2.id = \"%s\" and u2.approved = true and NOT EXISTS (SELECT tr.tan_id FROM transactions tr WHERE tr.tan_id = ta.id)";
-                  snprintf(check_query, 399, temp, tan_id, data[0], data[1]);
-              }
-              if (mysql_query(conn, check_query)) {
-                  printf("Line %i:Error in tan checking!\n", line);
-                  continue;
-              }
+              if (shaFile) {
+                  {
+                      char temp[400] = "SELECT u1.id FROM users u1, users u2 WHERE u1.user_id = \"%s\" and %s = %s and u1.approved = true and u2.id = \"%s\" and u2.approved = true";
+                      snprintf(check_query, 399, temp, data[0], data[0], user_id, data[1]);
+                  }
+                  if (mysql_query(conn, check_query)) {
+                      printf("Line %i:Error in tan checking!\n", line);
+                      continue;
+                  }
 
-              result = mysql_store_result(conn);
+                  result = mysql_store_result(conn);
 
-              if (result == NULL) {
-                  printf("Line %i: Result for tan checking is NULL!\n", line);
-                  continue;
-              }
+                  if (result == NULL) {
+                      printf("Line %i: Result for tan checking is NULL!\n", line);
+                      continue;
+                  }
 
-              if (mysql_num_rows(result) != 1) {
-                  printf("Line %i: TAN wrong/used or accounts not approved!\n", line);
+                  if (mysql_num_rows(result) != 1) {
+                      printf("Line %i: TAN wrong/used or accounts not approved!\n", line);
+                      mysql_free_result(result);
+                      continue;
+                  }
+
                   mysql_free_result(result);
-                  continue;
-              }
 
-              mysql_free_result(result);
+              } else {
+                  mysql_real_escape_string(conn, tan_id, data[3], 15);
+                  {
+                      char temp[400] = "SELECT ta.id FROM tans ta join users u on (ta.user_id = u.id), users u2 WHERE ta.id = \"%s\" and ta.user_id = \"%s\" and %s = %s and u.approved = true and u2.id = \"%s\" and u2.approved = true and NOT EXISTS (SELECT tr.tan_id FROM transactions tr WHERE tr.tan_id = ta.id)";
+                      snprintf(check_query, 499, temp, tan_id, data[0], data[0], user_id, data[1]);
+                  }
+                  if (mysql_query(conn, check_query)) {
+                      printf("Line %i:Error in tan checking!\n", line);
+                      continue;
+                  }
+
+                  result = mysql_store_result(conn);
+
+                  if (result == NULL) {
+                      printf("Line %i: Result for tan checking is NULL!\n", line);
+                      continue;
+                  }
+
+                  if (mysql_num_rows(result) != 1) {
+                      printf("Line %i: TAN wrong/used or accounts not approved!\n", line);
+                      mysql_free_result(result);
+                      continue;
+                  }
+
+                  mysql_free_result(result);
+              }
 
               if (amount >= 10000) {
                   strcpy(date_text, "null");
@@ -138,7 +258,7 @@ int main(int argc, char* argv[]) {
 
               stmt = mysql_stmt_init(conn);
               {
-                  char temp[200] = "INSERT INTO transactions(sender_id, recipient_id, amount, approval_date, tan_id) VALUES(%s, %s, ?, %s, ?)";
+                  char temp[200] = "INSERT INTO transactions(sender_id, recipient_id, amount, approval_date, tan_id, description) VALUES(%s, %s, ?, %s, ?, ?)";
                   snprintf(query, 300, temp, data[0], data[1], date_text);
               }
               if (stmt == NULL) {
@@ -162,8 +282,19 @@ int main(int argc, char* argv[]) {
               param[0].length = 0;
 
               param[1].buffer_type = MYSQL_TYPE_STRING;
-              param[1].buffer = (void *) &data[3];
-              param[1].buffer_length = strlen(data[3]);
+              if (shaFile) {
+                  param[1].buffer = (void *) &data[3];
+                  param[1].buffer_length = strlen(data[3]);
+              } else {
+                  param[1].buffer = (void *) &data[3];
+                  param[1].buffer_length = strlen(data[3]);
+              }
+              param[1].is_null = 0;
+              param[1].length = 0;
+
+              param[1].buffer_type = MYSQL_TYPE_STRING;
+              param[1].buffer = (void *) &description;
+              param[1].buffer_length = strlen(description);
               param[1].is_null = 0;
               param[1].length = 0;
 
@@ -201,6 +332,7 @@ int main(int argc, char* argv[]) {
           continue;
       }
     }
+    mysql_close(conn);
     fclose(data);
     printf("Successfully inserted %i lines!", correct);
     return 0;
