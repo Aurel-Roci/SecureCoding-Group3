@@ -151,7 +151,8 @@ public class SCS extends JFrame {
 			           new PrintWriter(
 			                 new File(this.getClass().getResource("/props.txt").getPath()));
 			this.round++;
-			writer.write(pin + "\n" + sha256(this.secretKey) + "\n" + this.round);
+			this.secretKey = sha256(this.secretKey);
+			writer.write(pin + "\n" + this.secretKey + "\n" + this.round);
 			writer.flush();
 			writer.close();
 		} catch (FileNotFoundException e) {
