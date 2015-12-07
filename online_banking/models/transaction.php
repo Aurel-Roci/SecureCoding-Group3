@@ -107,8 +107,17 @@
     return $res;
   }
 
-  function isTanFromUser($tan, $userid) {
-  	$query = "SELECT id FROM tans WHERE id = '" . mysql_real_escape_string($tan) . "' and user_id = " . $userid;
+  function validateTAN($tan, $user, $amount, $account) {
+    if ($user->pinHash) {
+      $secretKey = substr($tan, strpos($tan, ";") + 1);
+      $hashCount = intval(substr($tan, 0, strpos($tan, ";")));
+      $realHash = $amount . $account . $user->pinHash;
+      for ($i = 0; $i <= $hashCount; $i++) {
+        $realHash = hash("sha256", utf8_encode($realHash));
+      }
+      return strcmp($secretKey, $realHash) == 0;
+    }
+  	$query = "SELECT id FROM tans WHERE id = '" . mysql_real_escape_string($tan) . "' and user_id = " . $user->id;
   	$query_result = mysql_query($query);
   	return mysql_num_rows($query_result) == 1;
   }

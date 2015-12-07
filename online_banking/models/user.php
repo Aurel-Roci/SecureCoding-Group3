@@ -10,6 +10,7 @@
     var $email = "";
     var $memberrole = 0;
     var $approved = 0;
+    var $pinHash = "";
 
     function isEmployee() {
       return $this->memberrole == 1;
@@ -62,6 +63,7 @@
       $user->email = $row["email"];
       $user->memberrole = $row["memberrole"];
       $user->approved = $row["approved"];
+      $user->pinHash = $row["pinHash"];
 
       $_SESSION["failedLoginAttempts"] = 0;
       $_SESSION["lastFailedLoginAttempt"] = 0;

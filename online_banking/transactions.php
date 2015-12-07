@@ -13,40 +13,39 @@
 			$amount = $_POST['amount'];
 			$tan = $_POST['tan'];
 			$description = $_POST['description'];
-			if($amount<0){
+			if($amount<0) {
         ?>
         <div class="alert alert-warning" role="alert"><strong>Warning!</strong>You cannot transfer a negative amount of money!</div>
         <?php
-      }else{
-        if(!empty($recipient_name) &&!empty($amount) &&!empty($tan)&&  !empty($description)){
+      } else {
+        if(!empty($recipient_name) &&!empty($amount) &&!empty($tan)&&  !empty($description)) {
           $senderbalance = getUser()->getBalance();
           $newbalance = $senderbalance - $amount;
           if($newbalance>=0){
-              $recipient = fetchUserWithUsername($recipient_name);
-                  if ($recipient) { 
-            				$tan_is_for_user = isTanFromUser($tan, getUser()->id);
-							$tan_unused = isTanUnused($tan); 
-            				if($tan_is_for_user && $tan_unused) {
-            					insertNewTransaction(getUser()->id, $recipient->id, $amount, $description, $tan);
-						} else {
-						  ?>
-						  <div class="alert alert-warning" role="alert"><strong>Warning!</strong> There is a problem with the inserted TAN!</div>
-						  <?php
-						}
-
-          			  } else {
-                    ?>
-                    <div class="alert alert-warning" role="alert"><strong>Warning!</strong> The user you are trying to reach does not exist!</div>
-                    <?php
-                  }
-              }else {
-                ?>
-                <div class="alert alert-warning" role="alert"><strong>Warning!</strong> You do not have enough money to make this transaction!</div>
-                <?php
-              }
+            $recipient = fetchUserWithUsername($recipient_name);
+            if ($recipient) {
+        			$tan_is_for_user = validateTAN($tan, getUser(), $amount, $recipient->getAccountNumber());
+						  $tan_unused = isTanUnused($tan);
+          		if($tan_is_for_user && $tan_unused) {
+      					insertNewTransaction(getUser()->id, $recipient->id, $amount, $description, $tan);
+					    } else {
+    					  ?>
+    					  <div class="alert alert-warning" role="alert"><strong>Warning!</strong> There is a problem with the inserted TAN!</div>
+    					  <?php
+  				    }
+          	} else {
+              ?>
+              <div class="alert alert-warning" role="alert"><strong>Warning!</strong> The user you are trying to reach does not exist!</div>
+              <?php
+            }
+          } else {
+            ?>
+            <div class="alert alert-warning" role="alert"><strong>Warning!</strong> You do not have enough money to make this transaction!</div>
+            <?php
+          }
         }
       }
-		} else if (isset($_FILES['transactionfile'])) {
+  	} else if (isset($_FILES['transactionfile'])) {
       //tmp_name
       $filepath = $_FILES['transactionfile']['tmp_name'];
       $output = "";
@@ -92,6 +91,7 @@
 </div>
 
 <?php
+/*
 foreach ($output as $line) {
   if (strstr($line, "Successfully") === FALSE) {
     ?>
@@ -103,7 +103,7 @@ foreach ($output as $line) {
     <?php
   }
 }
-
+*/
 ?>
 
 <div class="panel panel-default center" style="width: 100%; margin-top: 25px;">
@@ -149,11 +149,6 @@ foreach ($output as $line) {
 
     if (!validateAmount(form.amount.value)) {
       alert("Please use the correct format for the amount.");
-      return false;
-    }
-
-    if (!validateTAN(form.tan.value)) {
-      alert("Please provide valid TANs.");
       return false;
     }
 
