@@ -22,6 +22,9 @@
 #define USER        "root"
 #define PASSWORD    "samurai"
 #define DATABASE    "securecoding"
+typedef int bool;
+#define true 1
+#define false 0
 
 int main(int argc, char* argv[]) {
     char filePathBuffer[200];
@@ -49,7 +52,7 @@ int main(int argc, char* argv[]) {
     user_id[15] = 0x00;
     if (argc >= 5) {
         char* temp_buffer;
-        char[70] tan_str;
+        char tan_str[70];
         char delimiter[2] = ";";
         strncpy(sha, argv[3], 64);
         if (strlen(sha) != 64) {
@@ -96,47 +99,20 @@ int main(int argc, char* argv[]) {
         }
         if (mysql_query(conn, check_query)) {
             printf("Error in user checking!\n");
-            continue;
+            mysql_close(conn);
+            exit(2);
         }
 
         result = mysql_store_result(conn);
 
         if (result == NULL) {
             printf("Result for user checking is NULL!\n");
-            continue;
+            mysql_close(conn);
+            exit(2);
         }
 
         if (mysql_num_rows(result) != 1) {
             printf("User does not exist or is not approved!\n");
-            mysql_free_result(result);
-            continue;
-        }
-
-        mysql_free_result(result);
-    }
-
-    {
-        MYSQL_RES *result;
-        char check_query[500];
-        char temp[400] = "INSERT INTO tans(id, user_id) VALUES(\"%s\", %s)";
-        snprintf(check_query, 499, temp, sha, user_id);
-
-        if (mysql_query(conn, check_query)) {
-            printf("Error in inserting!\n");
-            mysql_close(conn);
-            exit(2);
-        }
-
-        result = mysql_store_result(conn);
-
-        if (result == NULL) {
-            printf("Result for inserting is NULL!\n");
-            mysql_close(conn);
-            exit(2);
-        }
-
-        if (mysql_affected_rows(conn) != 1) {
-            printf("Could not insert new TAN!\n");
             mysql_free_result(result);
             mysql_close(conn);
             exit(2);
@@ -153,8 +129,11 @@ int main(int argc, char* argv[]) {
       }
 
       // printf("Here is the line: %s\n%i", fileLine, strlen(fileLine));
-
-      reti = regcomp(&regex, "^[0-9]\\{10\\},[0-9]\\{10\\},[0-9]\\{1,10\\}[.]\\{0,1\\}[0-9]\\{0,2\\},[a-zA-Z0-9]\\{15\\},[a-zA-Z0-9]\\{0,200\\}$", 0);
+      if (shaFile) {
+        reti = regcomp(&regex, "^[0-9]\\{10\\},[0-9]\\{10\\},[0-9]\\{1,10\\}[.]\\{0,1\\}[0-9]\\{0,2\\},[a-zA-Z0-9 ]\\{0,200\\}$", 0);
+      } else {
+        reti = regcomp(&regex, "^[0-9]\\{10\\},[0-9]\\{10\\},[0-9]\\{1,10\\}[.]\\{0,1\\}[0-9]\\{0,2\\},[a-zA-Z0-9]\\{15\\},[a-zA-Z0-9 ]\\{0,200\\}$", 0);
+      }
       if (reti) {
           printf("Line %i Parsing Error! Something went wrong (regex)!\n", line);
           continue;
@@ -258,7 +237,7 @@ int main(int argc, char* argv[]) {
 
               stmt = mysql_stmt_init(conn);
               {
-                  char temp[200] = "INSERT INTO transactions(sender_id, recipient_id, amount, approval_date, tan_id, description) VALUES(%s, %s, ?, %s, ?, ?)";
+                  char temp[200] = "INSERT INTO transactions(sender_id, recipient_id, amount, approval_date, description, tan_id) VALUES(%s, %s, ?, %s, ?, ?)";
                   snprintf(query, 300, temp, data[0], data[1], date_text);
               }
               if (stmt == NULL) {
@@ -282,21 +261,21 @@ int main(int argc, char* argv[]) {
               param[0].length = 0;
 
               param[1].buffer_type = MYSQL_TYPE_STRING;
-              if (shaFile) {
-                  param[1].buffer = (void *) &data[3];
-                  param[1].buffer_length = strlen(data[3]);
-              } else {
-                  param[1].buffer = (void *) &data[3];
-                  param[1].buffer_length = strlen(data[3]);
-              }
-              param[1].is_null = 0;
-              param[1].length = 0;
-
-              param[1].buffer_type = MYSQL_TYPE_STRING;
               param[1].buffer = (void *) &description;
               param[1].buffer_length = strlen(description);
               param[1].is_null = 0;
               param[1].length = 0;
+
+              param[2].buffer_type = MYSQL_TYPE_STRING;
+              if (shaFile) {
+                  param[2].buffer = (void *) &sha;
+                  param[2].buffer_length = strlen(sha);
+              } else {
+                  param[2].buffer = (void *) &data[3];
+                  param[2].buffer_length = strlen(data[3]);
+              }
+              param[2].is_null = 0;
+              param[2].length = 0;
 
               if (mysql_stmt_bind_param(stmt, param) != 0) {
   		            // perror(mysql_error(conn));
