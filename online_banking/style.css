@@ -72,7 +72,7 @@ body {
 footer {
   border-top: 1px solid;
   border-top-color: #ddd;
-  position: absolute;
+  position: fixed;
   left: 0;
   bottom: 0;
   height: 40px;

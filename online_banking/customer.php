@@ -175,6 +175,6 @@ require 'init.sec.php';
         doc.save("transaction.pdf");
       }
     </script>
+    <?php include 'footer.inc.php'; ?>
   </body>
-  <?php include 'footer.inc.php'; ?>
 </html>
