@@ -22,6 +22,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class SCS extends JFrame {
@@ -50,7 +51,7 @@ public class SCS extends JFrame {
 		amountLabel = new JLabel("Amount: ");
 		accountLabel = new JLabel("To (User id): ");
 		fileLabel = new JLabel("TAN: ");
-		pinField = new JTextField(6);
+		pinField = new JPasswordField(6);
 		amountField = new JTextField(12);
 		accountField = new JTextField(12);
 		selectFileButton = new JButton("Select File");
