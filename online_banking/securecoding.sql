@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 
 -- Drops tables to replace the old ones
 -- if you want only to update comment the following line
-DROP TABLE IF EXISTS transactions,tans, users;
+DROP TABLE IF EXISTS resetrequests, transactions,tans, users;
 
 --
 -- Table structure for table users
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS transactions (
   tan_id VARCHAR(64) NOT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(sender_id) REFERENCES users(id) ON DELETE NO ACTION,
-  FOREIGN KEY(recipient_id) REFERENCES users(id) ON DELETE NO ACTION,
+  FOREIGN KEY(recipient_id) REFERENCES users(id) ON DELETE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `resetrequests` (

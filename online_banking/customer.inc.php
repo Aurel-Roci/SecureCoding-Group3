@@ -56,14 +56,16 @@
       $filepath = $_FILES['transactionfile']['tmp_name'];
       // TODO if aplication for tans hash_file("sha256", $filepath)
       if ($user->pinHash) {
-        list($count_str, $tanFile) = split(';', $_POST['recipient']);
-        $count = intval($count_str);
+        $tanFile = substr($tan, strpos($tan, ";") + 1);
+        $count = intval(substr($tan, 0, strpos($tan, ";")));
         $key = $user->pinHash;
-        for ($i = 1; $i < $count; $i++) {
-          $key = hash("sha256", $key);
+        for ($i = 0; $i < $count; $i++) {
+          $key = hash("sha256", utf8_encode($key));
         }
         $toHash = file_get_contents($filepath);
-        if (!$toHash) {
+        if ($hashCount <= $user->getLastUsedTAN()) {
+          $output = array("Wrong TAN");
+        }else if (!$toHash) {
           $output = array("Could not read file");
         } else if (strlen($tanFile) == 64){
           $output = array("TAN has not the correct length");

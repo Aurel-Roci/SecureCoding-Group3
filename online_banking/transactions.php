@@ -36,11 +36,11 @@ if (isset($output)) {
   foreach ($output as $line) {
     if (strstr($line, "Successfully") === FALSE) {
       ?>
-      <div class="alert alert-danger" role="alert"><strong>Error!</strong><?= $line?></div>
+      <div class="alert alert-danger" role="alert"><strong>Error!</strong> <?= $line?></div>
       <?php
     } else {
       ?>
-      <div class="alert alert-success" role="alert"><strong>Success!</strong><?= $line?></div>
+      <div class="alert alert-success" role="alert"><strong>Success!</strong> <?= $line?></div>
       <?php
     }
   }
@@ -66,7 +66,7 @@ if (isset($output)) {
       <?php
       if ($user->pinHash) {
       ?>
-      <div class="form_group">
+      <div class="form-group">
         <label for="fileTAN" class="col-sm-2 control-label">File TAN:</label>
         <div class="col-sm-10">
           <input name="fileTAN" class="form-control" placeholder="1234567890ABCDE" type="text"/>
