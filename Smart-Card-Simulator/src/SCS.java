@@ -10,10 +10,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Calendar;
+import java.util.TimeZone;
 import java.util.regex.Pattern;
 
 import javax.swing.JButton;
@@ -33,7 +34,6 @@ public class SCS extends JFrame {
 	private static final long serialVersionUID = 1L;
 	String pin = null;
 	String secretKey = null;
-	int round = -1;
 
 	JPanel container, p2, p3;
 	JButton generate, generateFileButton, selectFileButton;
@@ -102,7 +102,6 @@ public class SCS extends JFrame {
 				Toolkit.getDefaultToolkit().getSystemClipboard().setContents(
                         new StringSelection(sha256ForMessage(secretKey, toHash)), null);
 				JOptionPane.showMessageDialog(getParent(), "TAN has been copied to your clipboard");
-				updateProps();
 			}
 		});
 		generateFileButton.addActionListener(new ActionListener() {
@@ -120,7 +119,6 @@ public class SCS extends JFrame {
 					JOptionPane.showMessageDialog(getParent(), "TAN has been copied to your clipboard");
 					
 					fis.close();
-					updateProps();
 				} catch (FileNotFoundException e1) {
 					JOptionPane.showMessageDialog(getParent(), "Error opening file!");
 					e1.printStackTrace();
@@ -143,24 +141,6 @@ public class SCS extends JFrame {
 		});
 	}
 
-	/**
-	 * 
-	 */
-	protected void updateProps() {
-		try {
-			PrintWriter writer = 
-			           new PrintWriter(
-			                 new File(this.getClass().getResource("/props.txt").getPath()));
-			this.round++;
-			this.secretKey = sha256(this.secretKey);
-			writer.write(pin + "\n" + this.secretKey + "\n" + this.round);
-			writer.flush();
-			writer.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-
 	public String sha256ForMessage(String secretKey, String msg) {
 		MessageDigest md = null;
 		try {
@@ -169,15 +149,21 @@ public class SCS extends JFrame {
 			e.printStackTrace();
 		}
 		md.update(msg.getBytes());
-		md.update(secretKey.getBytes());
+		String secret = secretKey;
+		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("CET"));
+		long round = (long)(cal.getTimeInMillis() / 1000) % 9000000;
+		for(int i = 0; i<round; i++) {
+			secret = sha256(secret);
+		}
+		md.update(secret.getBytes());
 		byte[] data = md.digest();
 		StringBuffer hexString = new StringBuffer();
 		for (int i = 0; i < data.length; i++) {
 			hexString.append(Integer.toString((data[i] & 0xff) + 0x100, 16).substring(1));
 		}
-		return this.round + ";" + hexString.toString();
+		return round + ";" + hexString.toString();
 	}
-	
+
 	public String sha256ForFile(String secretKey, InputStream fis) throws IOException {
 		MessageDigest md = null;
 		try {
@@ -189,13 +175,20 @@ public class SCS extends JFrame {
 		DigestInputStream dis = new DigestInputStream(fis, md);
         while (dis.read(data) != -1) {}
         dis.close();
-		md.update(secretKey.getBytes());
+
+		String secret = secretKey;
+		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("CET"));
+		long round = (long)(cal.getTimeInMillis() / 1000) % 9000000;
+		for(int i = 0; i<round; i++) {
+			secret = sha256(secret);
+		}
+		md.update(secret.getBytes());
 		byte[] hashData = md.digest();
 		StringBuffer hexString = new StringBuffer();
 		for (int i = 0; i < hashData.length; i++) {
 			hexString.append(Integer.toString((hashData[i] & 0xff) + 0x100, 16).substring(1));
 		}
-		return this.round + ";" + hexString.toString();
+		return round + ";" + hexString.toString();
 	}
 	
 	public String sha256(String message) {
@@ -232,7 +225,6 @@ public class SCS extends JFrame {
 		try {
 			frame.pin = reader.readLine();
 			frame.secretKey = reader.readLine();
-			frame.round = Integer.parseInt(reader.readLine());
 			reader.close();
 		} catch (IllegalArgumentException e) {
 			frame.showError("Could not read properties please contact an admin!");
