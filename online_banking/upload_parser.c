@@ -29,8 +29,8 @@ typedef int bool;
 int main(int argc, char* argv[]) {
     char filePathBuffer[200];
     char fileLine[256];
-    char sha[65];
-    char tanFile[65];
+    char sha[70];
+    char tanFile[70];
     char user_id[16];
     bool shaFile = false;
     int i, reti, line, correct;
@@ -46,22 +46,22 @@ int main(int argc, char* argv[]) {
 
     // Reading filepath
     strncpy(filePathBuffer, argv[1], 199);
-    filePathBuffer[199] = 0x00;
 
     strncpy(user_id, argv[2], 15);
     user_id[15] = 0x00;
-    if (argc >= 5) {
+
+    if (argc >= 6) {
         char* temp_buffer;
         char tan_str[70];
         char delimiter[2] = ";";
-        strncpy(sha, argv[3], 64);
+        strncpy(sha, argv[3], 69);
         if (strlen(sha) != 64) {
-            printf("Error with hash!\n");
+            printf("Error with hash! %i\n", strlen(sha));
             exit(2);
         }
-        strncpy(tanFile, argv[4], 64);
-        if (strlen(tanFile) > 64) {
-            printf("TAN has wrong length\n");
+        strncpy(tanFile, argv[4], 69);
+        if (strlen(tanFile) != 64) {
+            printf("TAN has wrong length %i\n", strlen(tanFile));
             exit(2);
         }
         if (strcmp(tanFile, sha) != 0) {
@@ -80,7 +80,6 @@ int main(int argc, char* argv[]) {
 
     correct = 0;
     line = 0;
-
     conn = mysql_init(NULL);
 
     /* Connect to database */
@@ -89,7 +88,6 @@ int main(int argc, char* argv[]) {
         printf("Could not connect to the database!\n");
         exit(2);
     }
-
     {
         MYSQL_RES *result;
         char check_query[500];
@@ -121,9 +119,33 @@ int main(int argc, char* argv[]) {
         mysql_free_result(result);
     }
 
+    if (shaFile) {
+        MYSQL_RES *result;
+        char check_query[500];
+        {
+            char temp[400] = "UPDATE users SET lastUsedTAN = %s WHERE id = %s";
+            snprintf(check_query, 499, temp, argv[5], user_id);
+        }
+        if (mysql_query(conn, check_query)) {
+            printf("Error in lastUsedTAN update query!\n");
+            mysql_close(conn);
+            exit(2);
+        }
+
+        if (mysql_affected_rows(conn) != 1) {
+            printf("error updating lastUsedTAN!\n");
+            mysql_free_result(result);
+            mysql_close(conn);
+            exit(2);
+        }
+
+        mysql_free_result(result);
+    }
+
     while (fgets(fileLine, len, data) != NULL) {
       line++;
       int endofline = strlen(fileLine) - 1;
+
       if ((endofline > 0) && (fileLine[endofline] == '\n')) {
           fileLine[endofline] = 0x00;
       }
@@ -157,8 +179,10 @@ int main(int argc, char* argv[]) {
               temp_buffer = strtok(NULL, delimiter);
               strcpy(data[i], temp_buffer);
           }
-          temp_buffer = strtok(NULL, delimiter);
-          strcpy(data[3], temp_buffer);
+          if (!shaFile) {
+              temp_buffer = strtok(NULL, delimiter);
+              strcpy(data[3], temp_buffer);
+          }
           temp_buffer = strtok(NULL, delimiter);
           strcpy(description, temp_buffer);
           {
@@ -179,7 +203,7 @@ int main(int argc, char* argv[]) {
 
               if (shaFile) {
                   {
-                      char temp[400] = "SELECT u1.id FROM users u1, users u2 WHERE u1.user_id = \"%s\" and %s = %s and u1.approved = true and u2.id = \"%s\" and u2.approved = true";
+                      char temp[400] = "SELECT u1.id FROM users u1, users u2 WHERE u1.id = \"%s\" and %s = %s and u1.approved = true and u2.id = \"%s\" and u2.approved = true";
                       snprintf(check_query, 399, temp, data[0], data[0], user_id, data[1]);
                   }
                   if (mysql_query(conn, check_query)) {
