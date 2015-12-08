@@ -56,6 +56,7 @@
       $filepath = $_FILES['transactionfile']['tmp_name'];
       // TODO if aplication for tans hash_file("sha256", $filepath)
       if ($user->pinHash) {
+        $tan = $_POST['fileTAN'];
         $tanFile = substr($tan, strpos($tan, ";") + 1);
         $count = intval(substr($tan, 0, strpos($tan, ";")));
         $key = $user->pinHash;
@@ -63,17 +64,19 @@
           $key = hash("sha256", utf8_encode($key));
         }
         $toHash = file_get_contents($filepath);
-        if ($hashCount <= $user->getLastUsedTAN()) {
+        // echo $hashCount."<br/>";
+        // echo $user->getLastUsedTAN()."<br/>";
+        if ($count <= $user->getLastUsedTAN()) {
           $output = array("Wrong TAN");
         }else if (!$toHash) {
           $output = array("Could not read file");
-        } else if (strlen($tanFile) == 64){
+        } else if (strlen($tanFile) != 64){
           $output = array("TAN has not the correct length");
         }else {
           $toHash = $toHash . $key;
           $hash = hash("sha256", $toHash);
           $return_line = exec("../parser_src/upload_parser " . escapeshellarg($filepath) . " " . $user->id . " "
-            . $hash . " " . $tanFile, $output, $return_var);
+            . $hash . " " . $tanFile . " " . $count, $output, $return_var);
         }
       } else {
         $return_line = exec("../parser_src/upload_parser " . escapeshellarg($filepath) . " " . $user->id, $output, $return_var);

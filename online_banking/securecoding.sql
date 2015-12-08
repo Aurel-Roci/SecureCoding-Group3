@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2015 at 09:13 PM
+-- Generation Time: Oct 23, 2015 at 09:40 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -17,34 +17,94 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `securecoding`
+-- Database: securecoding
 --
 
 -- --------------------------------------------------------
 
+-- Drops tables to replace the old ones
+-- if you want only to update comment the following line
+DROP TABLE IF EXISTS resetrequests, transactions,tans, users;
+
 --
--- Table structure for table `resetrequests`
+-- Table structure for table users
 --
+
+CREATE TABLE IF NOT EXISTS users (
+  id int AUTO_INCREMENT,
+  username varchar(15) NOT NULL,
+  password varchar(64) NOT NULL,
+  firstname varchar(20) NOT NULL,
+  lastname varchar(20) NOT NULL,
+  approved bool NOT NULL DEFAULT 0,
+  memberrole tinyint NOT NULL,
+  email varchar(100) NOT NULL,
+  pinHash varchar(100) DEFAULT NULL,
+  lastUsedTAN int(64) NOT NULL DEFAULT '-1',
+  -- 0 for customer, 1 for employee
+  UNIQUE KEY(username),
+  PRIMARY KEY(id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table tans
+--
+
+CREATE TABLE IF NOT EXISTS tans (
+  id varchar(64) NOT NULL,
+  user_id int,
+  -- used variable removed and added a tan field in the transactions to
+  -- stick to some database modeling conventions
+  PRIMARY KEY(id),
+  FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table transactions
+--
+
+CREATE TABLE IF NOT EXISTS transactions (
+  id int AUTO_INCREMENT,
+  sender_id int NOT NULL,
+  recipient_id int NOT NULL,
+  amount float NOT NULL,
+  approval_date DATETIME,
+  description VARCHAR(200) NOT NULL,
+  -- same as before if approve_date is not set it is not approved
+  -- and for approving you set the current timestamp
+  -- for example: UPDATE transactions SET approve_date = NOW() WHERE ...
+  create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  tan_id VARCHAR(64) NOT NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY(sender_id) REFERENCES users(id) ON DELETE NO ACTION,
+  FOREIGN KEY(recipient_id) REFERENCES users(id) ON DELETE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `resetrequests` (
   `id` int(11) unsigned NOT NULL,
-  `user_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tans`
---
-
-CREATE TABLE IF NOT EXISTS `tans` (
-  `id` varchar(64) NOT NULL,
-  `user_id` int(11) DEFAULT NULL
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `resetrequests_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tans`
+-- Dumping data for table users
 --
+
+
+INSERT INTO `users` (`id`, `username`, `password`, `firstname`, `lastname`, `approved`, `memberrole`, `email`, `pinHash`, `lastUsedTAN`) VALUES
+(1, 'admin', SHA2('samurai', 256), 'Admin', 'Admin', 1, 1, 'admin@amdmin', NULL, -1),
+(3, 'demo1', '500a22a913191b83b6f87c16d46e80818c63fcb3b55c47b4a3a804ec40f232e8', 'Demo1', 'Demo1', 1, 0, 'demo1@demo1', NULL, -1),
+(4, 'demo2', '0816701f7887407dd46154bc48a40d8fd8d1efc6ffce1169e6a529c089d86d35', 'Demo2', 'Demo2', 1, 0, 'demo2@demo2', NULL, -1),
+(5, 'demo3', 'dcd2a67f356abc6ed31521e7525c122a60598460066d456a23788f750d21800c', 'Demo3', 'Demo3', 1, 0, 'demo3@demo3', NULL, -1),
+(6, 'demo4', 'f7eaf7647884430dcf73849fc512b0ee2b55d5ebe83a4d8f9b1779d4722fd575', 'Demo4', 'Demo4', 1, 0, 'demo4@demo4', NULL, -1),
+(7, 'demo5', 'f2354c846c530a498890fa5f379c2323171c7dace1bc7fef1ced09c195e08677', 'Demo5', 'Demo5', 1, 0, 'demo5@demo5', NULL, -1);
+
 
 INSERT INTO `tans` (`id`, `user_id`) VALUES
 ('7InXU4jUuSxya58', 1),
@@ -554,26 +614,6 @@ INSERT INTO `tans` (`id`, `user_id`) VALUES
 ('ZpPOReBza38nEhJ', 7),
 ('zzgBn6jZq6jCL80', 7);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `transactions`
---
-
-CREATE TABLE IF NOT EXISTS `transactions` (
-  `id` int(11) NOT NULL,
-  `sender_id` int(11) NOT NULL,
-  `recipient_id` int(11) NOT NULL,
-  `amount` float NOT NULL,
-  `approval_date` datetime DEFAULT NULL,
-  `description` varchar(200) NOT NULL,
-  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `tan_id` varchar(64) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `transactions`
---
 
 INSERT INTO `transactions` (`id`, `sender_id`, `recipient_id`, `amount`, `approval_date`, `description`, `create_date`, `tan_id`) VALUES
 (2, 1, 3, 100000, '2015-12-06 12:54:46', 'balance initialization', '2015-12-06 11:54:46', '7LcXs9CSKubXnn4'),
@@ -590,108 +630,6 @@ INSERT INTO `transactions` (`id`, `sender_id`, `recipient_id`, `amount`, `approv
 (13, 7, 5, 500, '2015-12-06 13:10:48', 'Transfer to demo3', '2015-12-06 12:10:48', 'XpYnbJyiIG6sXi5'),
 (14, 6, 3, 3000, '2015-12-06 13:11:18', 'Transfer to demo1', '2015-12-06 12:11:18', 'Oa4mSl6jEIeJmno'),
 (15, 6, 5, 3000, '2015-12-06 13:12:07', 'Transfer to demo3', '2015-12-06 12:12:07', 'NP1zmvg6rY1PPap');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL,
-  `username` varchar(15) NOT NULL,
-  `password` varchar(64) NOT NULL,
-  `firstname` varchar(20) NOT NULL,
-  `lastname` varchar(20) NOT NULL,
-  `approved` tinyint(1) NOT NULL DEFAULT '0',
-  `memberrole` tinyint(4) NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `pinHash` varchar(100) DEFAULT NULL,
-  `lastUsedTAN` int(64) NOT NULL DEFAULT '-1'
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `username`, `password`, `firstname`, `lastname`, `approved`, `memberrole`, `email`, `pinHash`, `lastUsedTAN`) VALUES
-(1, 'admin', '2df84a679ae22f29fcf4db23ec02d318e61e16e1bbe36a7aa3136a516febb611', 'Admin', 'Admin', 1, 1, 'admin@amdmin', NULL, -1),
-(3, 'demo1', '500a22a913191b83b6f87c16d46e80818c63fcb3b55c47b4a3a804ec40f232e8', 'Demo1', 'Demo1', 1, 0, 'demo1@demo1', NULL, -1),
-(4, 'demo2', '0816701f7887407dd46154bc48a40d8fd8d1efc6ffce1169e6a529c089d86d35', 'Demo2', 'Demo2', 1, 0, 'demo2@demo2', NULL, -1),
-(5, 'demo3', 'dcd2a67f356abc6ed31521e7525c122a60598460066d456a23788f750d21800c', 'Demo3', 'Demo3', 1, 0, 'demo3@demo3', NULL, -1),
-(6, 'demo4', 'f7eaf7647884430dcf73849fc512b0ee2b55d5ebe83a4d8f9b1779d4722fd575', 'Demo4', 'Demo4', 1, 0, 'demo4@demo4', NULL, -1),
-(7, 'demo5', 'f2354c846c530a498890fa5f379c2323171c7dace1bc7fef1ced09c195e08677', 'Demo5', 'Demo5', 1, 0, 'demo5@demo5', NULL, -1);
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `resetrequests`
---
-ALTER TABLE `resetrequests`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
-
---
--- Indexes for table `tans`
---
-ALTER TABLE `tans`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
-
---
--- Indexes for table `transactions`
---
-ALTER TABLE `transactions`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `sender_id` (`sender_id`),
-  ADD KEY `recipient_id` (`recipient_id`);
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `transactions`
---
-ALTER TABLE `transactions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `resetrequests`
---
-ALTER TABLE `resetrequests`
-  ADD CONSTRAINT `resetrequests_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `tans`
---
-ALTER TABLE `tans`
-  ADD CONSTRAINT `tans_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
-
---
--- Constraints for table `transactions`
---
-ALTER TABLE `transactions`
-  ADD CONSTRAINT `transactions_ibfk_1` FOREIGN KEY (`sender_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION,
-  ADD CONSTRAINT `transactions_ibfk_2` FOREIGN KEY (`recipient_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

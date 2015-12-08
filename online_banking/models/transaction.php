@@ -78,9 +78,9 @@
 
         $transaction->id = $row["id"];
         $transaction->sender_id = $row["sender_id"];
-        $transaction->sender_acc = $row["sender_acc"];
+        //$transaction->sender_acc = $row["sender_acc"];
         $transaction->recipient_id = $row["recipient_id"];
-        $transaction->recipient_acc = $row["recipient_acc"];
+        //$transaction->recipient_acc = $row["recipient_acc"];
         $transaction->description = $row["description"];
         $transaction->amount = $row["amount"];
         $transaction->approval_date = $row["approval_date"];
