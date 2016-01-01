@@ -24,9 +24,9 @@
 {
 	\chapter{Executive Summary}\
 
-   \textbf{Secode21}\\
+   \textbf{Team2}\\
 
-	We found several vulnerabilities, which could cause severe damage to the \textit{Secode21}. It is possible to get access to the admin page via stealing the session. Thus an attacker can register an arbitrary employee or customer and unlock the registered user. An	attacker can also execute a brute force attack on known user ids as there is no lock mechanism to prevent this. Besides the security issues there is also a severe problem with regard to the business logic. In the current state this web application should not be used productively!	\\
+	We found several vulnerabilities, which could cause severe damage to the \textit{Team2}. It is possible to get access to the admin page via stealing the session. Thus an attacker can register an arbitrary employee or customer and unlock the registered user. An	attacker can also execute a brute force attack on known user ids as there is no lock mechanism to prevent this. Besides the security issues there is also a severe problem with regard to the business logic. In the current state this web application should not be used productively!	\\
 
 
 	\textbf{Team3 Online Banking}\\
@@ -35,7 +35,7 @@
 
 	\textbf{Comparison}\\
 
-	In summary we were able to clearly state out that the \textit{Team3 Online Banking} web application has less and also less severe vulnerabilites then the \textit{Secode21} web application. Furthermore it has to be said that the detected issues of the \textit{Team3 Online Banking} are easier to fix and will cost less money to implement.
+	In summary we were able to clearly state out that the \textit{Team3 Online Banking} web application has less and also less severe vulnerabilites then the \textit{Team2} web application. Furthermore it has to be said that the detected issues of the \textit{Team3 Online Banking} are easier to fix and will cost less money to implement.
 }
 
 \pagebreak
@@ -127,9 +127,9 @@
 %\input{chapters/01_introduction}
 % TODO: add more chapters here
 \chapter{Vulnerabilities Overview}
-Based on our testing, we identified the following vulnerabilities for the Secode21
+Based on our testing, we identified the following vulnerabilities for the Team2
 Bank and the OnlineBanking Bank:
-\section{Secode21}
+\section{Team2}
 \subsection{Static Session ID} \
 \begin{itemize}
 	\item Likelihood: \textit{high}
@@ -211,9 +211,15 @@ for a valid password
 
 \section{Vulnerability Overview}
 
+\chapter{Tools used}
+\section{sqlmap}
+
+
+\section{RIPS}
+\section{FindBugs}
 \chapter{Detailed Report}
 
-The following pages describe for each test how both applications Secode21 and Online Banking Bank
+The following pages describe for each test how both applications Team2 and Online Banking Bank
 performed. The test is divided in different sections following the OWASP Testing Guide v4.
 
 \pagebreak
@@ -223,19 +229,18 @@ performed. The test is divided in different sections following the OWASP Testing
 \subsection{Test File Extensions Handling for Sensitive Information (OTG-CONFIG-003)}\
 
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 8\\& Impact: 5\\& Risk: 5
+	\textbf{Team2} & Likelihood: 8\\& Impact: 9\\& Risk: 3
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
-	Observation   & File extensions are handled correctly but while testing we found a folder called SQL with sql files and pdf files describing the database structure and the sql commands used by the web application.    \\
+	Observation   & File extensions are handled correctly but while testing we found folders which we could access.   \\
 	Discovery  & TODO \\
 	Likelihood & The likelihood is quite high that someone tries a tool to find these kind of vulnerabilities. There is no need for special knowledge because the tools work quite automatically without much configuration. \\
-	Implication    & These vulnerabilities could help attackers to perform sql injection attacks because you know the database structure and the sql commands used in the implementation of the web application. \\
-	Recommendations& Block the access to sql files and to those folders that describe the web applications architecture. \\
-	Comparison& Our web application handles file extensions correctly, but it is possible to access the compiled c program that handles the batch files. This is a problem because you can reverse engineer the code and use the vulnerabilities found. This scenario is possible but is very complex. \\
+	Impact    & There is no impact the folders do not contain sensitive information.\\
+	Recommendations & Block the access to files and to those folders, or remove them from the directory since they are not needed there.\\ 
 	\hline
 \end{tabular}
 \\
@@ -244,7 +249,7 @@ performed. The test is divided in different sections following the OWASP Testing
 \begin{center}
 	\begin{tabular}{ll}
 		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value : 9.8}} \\
 		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
 		\rowcolor[HTML]{ECF4FF}
@@ -256,7 +261,45 @@ performed. The test is divided in different sections following the OWASP Testing
 		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
 		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } L              \\
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } H              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } H              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } H
+	\end{tabular}
+\end{center}
+\begin{tabular}{cR{12cm}}
+	\textbf{Team3} & Likelihood: 8\\& Impact: 0\\& Risk: 1
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Team2}} \\
+	\hline
+	Observation   & File extensions are handled correctly but while testing we found folders which we could access smart-card simulator folder.   \\
+	Discovery  & TODO \\
+	Likelihood & The likelihood is quite high that someone tries a tool to find these kind of vulnerabilities. There is no need for special knowledge because the tools work quite automatically without much configuration. \\
+	Impact    & There is no impact since there is nothing important hard-coded in the jave file.\\
+	Recommendations & Block the access to files and to those folders.\\ 
+	\hline
+\end{tabular}
+
+\begin{center}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9}
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value : 0}} \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N              \\
 		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N              \\
 		\rowcolor[HTML]{ECF4FF}
@@ -269,15 +312,15 @@ performed. The test is divided in different sections following the OWASP Testing
 
 
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
-	Observation   &  he application is not accessable over HTTP. HTTPS is enforced.  \\
-	Discovery  &  We also tried to connect via \textit{netcat} using the following command: \textit{{nc IP\_ADDRESS 80}} , which did not work. \\
+	Observation   &  The application is not accessable over HTTP. HTTPS is enforced.  \\
+	Discovery  &  We also tried to connect via \textit{netcat} using the following command: \textit{{nc IP\_ADDRESS 80}} , which did not work. We also used \textit{nmap} for testing which returned the methods used by the webapp.\\
 
 	Likelihood & N/A \\
 	Implication    & N/A \\
@@ -286,68 +329,45 @@ performed. The test is divided in different sections following the OWASP Testing
 	\hline
 \end{tabular}
 
-
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=150mm]{logos/nmap.jpg}
+	\caption{RIPS \label{overflow}}
+\end{figure} 
 
 \pagebreak
 \subsection{Test HTTP Strict Transport Security (OTG-CONFIG-007)}\
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
-	Observation   & The \textit{HTTP Strict Transport Security} protocol is never used. \\
-	Discovery  & We used \textit{Charles Web Proxy} to check the HTTP response headers and the \textit{Strict-Transport-Security} header was not found. \\
-	Likelihood & N/A \\
-	Implication    & N/A \\
-	Recommendations & It would be better so transport some data via https and use the HSTS protocol. \\
-	Comparison& The same results apply for our web application. \\
+	Observation   &  The webapp is not using Strict Transport Security.  \\
+	Discovery  &  We found this using \textit{Curl}.\\
+	
+	Likelihood & It is not complicated to perform a MitM attack to exploit this vulnerability. \\
+	Impact    & A man-in-the-middle attacker attempts to intercept traffic from a victim user using an invalid certificate and hopes the user will accept the bad certificate. \\
+	Recommendations & Enable Strict Transport Security. \\
+	Comparison & Our webapp has Strict Transport Security enabled. \\
 	\hline
 \end{tabular}
-\\
-\vspace{0.5cm}
-\\
-\begin{center}
-	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N
-	\end{tabular}
-\end{center}
-
-\begin{figure}[H]
-\centering
-\includegraphics[scale=0.6]{figures/charles_results}
-\end{figure}
-
-\pagebreak
-
+ \begin{figure}[H]
+ 	\centering
+ 	\includegraphics[width=150mm]{logos/rsts.jpg}
+ 	\caption{RIPS \label{overflow}}
+ \end{figure} 
 \pagebreak
 \subsection{Test RIA cross domain policy (OTG-CONFIG-008)}\
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation   & There are no RIA applications on the system and therefore is no crossdomain.xml file provided. \\
 	Discovery  & Using \textit{wget} we tried to find a \textit{crossdomain.xml} or \textit{clientaccesspolicy.xml} file and couldn't find it. \\
@@ -389,62 +409,38 @@ performed. The test is divided in different sections following the OWASP Testing
 \section{Identity Management Testing}\
 \subsection{Test Role Definitions (OTG-IDENT-001)}\
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 10\\& Impact: 4\\& Risk: 4
+	\textbf{Team2} & Likelihood: 10\\& Impact: 0\\& Risk: 0
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
-	Observation   & We found out that there exist two different roles in the system. There is the role of a normal customer and the role of an employee. Employees have the additional functionality to view account and transaction details of all the customers. Transactions over 10000 euro and new user registrations can be accepted by the employee. \\
-	Discovery  & No special tools except a browser were needed because all the roles and their available functions are described. \\
+	Observation   & We found out that there exist two different roles in the system. There is the role of a normal customer and the role of an banker. Employees have the additional functionality to view account and transaction details of all the customers. Transactions over 10000 euro and new user registrations can be accepted by the employee.\\
+	Discovery  & No special tools except a browser were needed because all the roles and their available functions can be seen on the webapp. All the roles have the functinalities they are supposed to have. \\
 	Likelihood & It is very likely that people find this information. \\
-	Implication    & There is no direct implication, but knowing the roles and their functionality helps with other attacks. \\
-	Recommendations & Don't describe the roles on the web page. \\
+	Impact    & There is no direct implication. \\
+	Recommendations & N/A \\
 	Comparison & Our web application provides the same roles, but the roles are not described on the web page. \\
 	\hline
 \end{tabular}
-\\
-\vspace{0.5cm}
-\\
-\begin{center}
-	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N
-	\end{tabular}
-\end{center}
+ 
 \pagebreak
 
 \subsection{Test User Registration Process (OTG-IDENT-002)}\
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 5\\& Impact: 5\\& Risk: 5
+	\textbf{Team2} & Likelihood: 5\\& Impact: 5\\& Risk: 5
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
-	Observation   & Any person can register themself as an user and this registration than gets validated by an employee. One person can register multiple times and with different roles. There is no proof of the identity of a user possible. The identification requirements include the name, surname, phone number, email address and username, but only two of these can be verified. \\
+	Observation   & Any person can register themselves as an user and this registration than gets validated by an employee. One person can register multiple times and with different roles. There is no proof of the identity of a user possible. The identification requirements include the email address and username, but only two of these can be verified. \\
 	Discovery  & No special tools are needed to get this information. A browser and multiple registration tests provided the necessary results. \\
 	Likelihood & It is quite likely that this information can be retrieved by any user with minimal experience. \\
 	Implication    & User could try to register multiple times and with wrong information to get access to user accounts with more permissions or to create multiple bank accounts. \\
-	Recommendations & The information passed in the registration form should be validated, especially the email address and phone number can be verified very easily. The name can be validated by hand if a customer would go to the bank and the employee would than accept his registration. \\
+	Recommendations & The information passed in the registration form should be validated. The name can be validated by hand if a customer would go to the bank and the employee would than accept his registration. \\
 	Comparison & Our web application doesn't require a phone number for the registration an the role of the user can be selected in the registration form. It doesn't make our application less secure, because the registration has still to be accepted by an employee. \\
 	\hline
 \end{tabular}
@@ -477,18 +473,18 @@ performed. The test is divided in different sections following the OWASP Testing
 
 \subsection{Test Account Provisioning Process (OTG-IDENT-003)}\
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: N/A\\& Impact: N/A\\& Risk: N/A
+	\textbf{Team2} & Likelihood: N/A\\& Impact: N/A\\& Risk: N/A
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
-	Observation   & Our observation showed us that employees can accept customer registrations and can make customer accounts to employee accounts. \\
+	Observation   & Our observation showed us that employees can accept customer registrations. \\
 	Discovery  & All the observations were made with the \textit{Chrome} web browser. \\
-	Implication    & If an employee account gets hacked you can make even other accounts to employees and accept new registrations. \\
+	Impact    & If an employee account gets hacked you can accept new registrations. \\
 	Recommendations & N/A \\
-	Comparison & In our web application the employee doesn't make customer accounts to employee accounts but rather accepts special employee registrations. It makes no difference in the security. \\
+	Comparison & In our web application the employee accepts new registration. It makes no difference in the security. \\
 	\hline
 \end{tabular}
 \\
@@ -499,7 +495,7 @@ performed. The test is divided in different sections following the OWASP Testing
 		\rowcolor[HTML]{34CDF9}
 		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
 		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N/A              \\
 		\rowcolor[HTML]{ECF4FF}
 		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } N/A              \\
 		\rowcolor[HTML]{BBDAFF}
@@ -520,12 +516,12 @@ performed. The test is divided in different sections following the OWASP Testing
 
 \subsection{Testing for Account Enumeration and Guessable User Account (OTG-IDENT-004)}\
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation   & We found out that the web application makes no difference between existing usernames and non existing usernames when trying to login with wrong credentials. The same html response and the same response headers are provided by the system. \\
 	Discovery  & We used the \textit{Charles Web Proxy} to analyze the web application responses. \\
@@ -534,180 +530,81 @@ performed. The test is divided in different sections following the OWASP Testing
 	Comparison & Our web application makes no difference between login tries with existing usernames and non existing ones. Both web applications aren't vulnerable here. \\
 	\hline
 \end{tabular}
-\\
-\vspace{0.5cm}
-\\
-\begin{center}
-	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N/A
-	\end{tabular}
-\end{center}
+ 
 \pagebreak
 
 \subsection{Testing for Weak or unenforced username policy (OTG-IDENT-005)}\
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
-	Observation   & The usernames are not auto-generated and therefore there is no special structure in the usernames. \\
-	Discovery  & No tool is used here. The username field in the registration form gives us all the information we need. \\
-	Implication    & N/A \\
+	Observation   & The usernames should be more than 2 characters. \\
+	Discovery  & No tool is used here. Trying to sign up with short usernames gave us the warning. \\
+	Impact   & N/A \\
 	Recommendations & N/A \\
-	Comparison & The same applies for our web application. \\
+	Comparison & Our application has no username restriction. \\
 	\hline
 \end{tabular}
-\\
-\vspace{0.5cm}
-\\
-\begin{center}
-	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N/A
-	\end{tabular}
-\end{center}
+ 
 \pagebreak
 
 \section{Authentication Testing}\
 \subsection{Testing for Credentials Transported over an Encrypted Channel(OTG-AUTHN-001)}\
 
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 8\\& Impact: 8\\& Risk: 8
+	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
-	Observation   & This ensures that our credentials are sent using an encrypted channel
-	and that the credentials are not readable by a malicious user using a sniffer. The credetials are sent
-	unencrypted over HTTP to the server and everyone in the network can read them.\\
-	Discovery  &  We used \textit{Zed Attack Proxy (ZED)} in order to capture packet headers
-	and to inspect them.  We saw that the request addressed to the web application is  using the HTTP protocol
-	and that the credentials were simple POST parameters\\
-	Likelihood & Everyone in the adjacent network or who can read the packages could also get the credentials \\
-	Implication    & Authentication as user\\
-	Recommendations & Use https to encrypt this information \\
-	Comparison & The same applies for our web application.\\
+	Observation   & The webapp uses HTTPS protocol, so all the information is sent encrypted through the channel therefore we cannot sniff the data.\\
+	Discovery  & The website s using an SSL certificate \\
+	Likelihood & NA \\
+	Impact    & NA\\
+	Recommendations &   \\
+	Comparison & Our webapp is using HTTPS, so the data is transported over an encrypted channel.\\
 	\hline
 \end{tabular}
 \\
 \vspace{0.5cm}
 \\
-\begin{center}
-	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } R              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N
-	\end{tabular}
-\end{center}
+
 
 \pagebreak
 \subsection{Testing for default credentials(OTG-AUTHN-002)}\
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 10\\& Impact: 4\\& Risk: 6
+	\textbf{Team2} & Likelihood: 10\\& Impact: 4\\& Risk: 6
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
-	Observation   & We found out that there exists the default credentials \textit{admin:admin} \\
-	Discovery  & We were already given these credentials and additionally we tested the webapp with
-	w3af where this credentials were discovered.\\
-	Likelihood & It is very likely that people find this information. \\
-	Implication    & The attacker gain employee access in the web application. \\
-	Recommendations & Use other credentials for testing, or delete the default ones after you launch the application. \\
-	Comparison & Our web application has a different combination of \textit{user:password}.\\
+	Observation   & There are no default credentials for the webapp. \\
+	Discovery  & We saw the credentials text file that was given by the other team.\\
+	Likelihood & N/A \\
+	Impact    &  N/A \\
+	Recommendations &  N/A\\
+	Comparison & The same goes for our webapp.\\
 	\hline
 \end{tabular}
-\\
-\vspace{0.5cm}
-\\
-\begin{center}
-	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N
-	\end{tabular}
-\end{center}
-
+ 
 \pagebreak
 \subsection{Testing for bypassing authentication schema (OTG-AUTHN-004)}\
 
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: NA\\& Impact: NA\\& Risk: NA
+	\textbf{Team2} & Likelihood: NA\\& Impact: NA\\& Risk: NA
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation &  We did not find any possibility to bypass the authentication schema.\\
 	Discovery & N/A\\
@@ -747,20 +644,19 @@ performed. The test is divided in different sections following the OWASP Testing
 \subsection{Testing for Browser cache weakness (OTG-AUTHN-006)}\
 
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 0\\& Impact: NA\\& Risk: NA
+	\textbf{Team2} & Likelihood: 0\\& Impact: NA\\& Risk: NA
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation & The web app set the cache-control to no-cache an no-store and Pragma to no-cache\\
-	Discovery & By reviewing the response header with the chrome developer tools we could
-	analyze the parameters\\
-	Likelihood & For every registration process\\
-	Implication & Brute Force is to easy for simple passwords\\
-	Recommendations & Introduce password restrictions\\
-	Comparison & The same problem we encountered in our webapp \\
+	Discovery & By checking the \textit{about:cache} in Firefox we saw the Headers\\
+	Likelihood &  N/A \\
+	Implication & N/A \\
+	Recommendations &  N/A\\
+	Comparison & The same goes for our webapp \\
 	\hline
 \end{tabular}
 \\
@@ -793,15 +689,14 @@ performed. The test is divided in different sections following the OWASP Testing
 \subsection{Testing for Weak password policy (OTG-AUTHN-007)}\
 
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 6\\& Impact: 5\\& Risk: 5
+	\textbf{Team2} & Likelihood: 6\\& Impact: 5\\& Risk: 5
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
-	Observation & The registration process does not have a restriction for weak passwords and the user can't
-	change the password. Furthermore the password can contain the username\\
+	Observation & The registration process does not have a restriction for weak passwords. Furthermore the password can contain the username\\
 	Discovery & Tested manually the registration process with a one character password and the username as password\\
 	Likelihood & For every registration process the user has the possibility to choose a weak password\\
 	Implication & Brute Force is to easy for simple passwords\\
@@ -836,36 +731,21 @@ performed. The test is divided in different sections following the OWASP Testing
 \end{center}
 
 \pagebreak
-\section{Authorization Testing}\
-\subsection{Testing Directory traversal/file include (OTG-AUTHZ-001)}\
-
+\subsection{Testing for weak password change or reset functionalities (OTG-AUTHN-009)}\
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 4\\& Impact: 5\\& Risk: 5
+	\textbf{Team2} & Likelihood: 10\\& Impact: 8\\& Risk: 5
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
-	Observation   & We could not find any path traversals with dotdotpwn but w3af found some.
-	The phpinfo.php can be accessed and it contains the paths for several config files. So
-	an attacker directly knows where to search for this files. Also since the attacker can see
-	the phpinfo.php and see the installed software and its versions he can easily search for vulnerabilities for that version \\
-	Discovery  & We used the dotdotpwn tool to find such traversals with the following command:
-	\begin{lstlisting}
-		sudo ./dotdotpwn.pl -O -m http -h 192.168.21.39
-		-f /etc/hosts -k "localhost" -d 10 -s -E
-	\end{lstlisting}
-	-O is to get the operating system; -d 10 dotdotpwn will search until a deepness of 10;
-	-m is to indicate that the protocol is http and -h for the server ip; -f /etc/hosts searches
-	after the hosts file; -k defines that a file without ``localhost'' in it is a false positive.
-	Afterwards we tried w3af and it found the phpinfo.php file\\
-	Likelihood & This is more an additional information for other attacks but it is a
-	good help for attackers to find vulnerabilities faster \\
-	Implication    & The attacker knows the position of the config files, how php is
-	configured and what version are used \\
-	Recommendations & make the phpinfo page not accessible or delete it \\
-	Comparison & Our webapp does not have a phpinfo page.\\
+	Observation & The password reset functionality can cause unwanted password change or the user to loose access to their account. Since the functionality changes the current password to a random one and sends an email to the user with the new password. \\
+	Discovery & Tested manually to reset the password. An error occurred and the email was not send but the password was changed.\\
+	Likelihood & It is very high that someone can enter an email address of another user and cause change their password without the users request.\\
+	Impact & The impact can be quite high especially in case when the email with the new password fails to send, the user can loose access to his account.\\
+	Recommendations & Instead of setting a new random password, sending an email with a link where the user can set a new password himself will be the best solution.\\
+	Comparison & Our webapp  sends an email with link to change the password. The random number generated for the link is long, so trying to brute force it will take a very long time.\\ 
 	\hline
 \end{tabular}
 \\
@@ -874,7 +754,7 @@ performed. The test is divided in different sections following the OWASP Testing
 \begin{center}
 	\begin{tabular}{ll}
 		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value : 7.5 }} \\
 		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
 		\rowcolor[HTML]{ECF4FF}
@@ -886,32 +766,58 @@ performed. The test is divided in different sections following the OWASP Testing
 		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
 		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } L              \\
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N              \\
 		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N              \\
 		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } H
 	\end{tabular}
 \end{center}
 
-\begin{figure}
-	\centering
-	\includegraphics[width=\textwidth]{data/dotdotpwn.png}
-	\caption{dotdotpwn screenshot}
-	\label{fig:dotdotpwn}
-\end{figure}
+\pagebreak
+\section{Authorization Testing}\
+\subsection{Testing Directory traversal/file include (OTG-AUTHZ-001)}\
+
+\begin{tabular}{cR{12cm}}
+	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0 
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Team2}} \\
+	\hline
+	Observation   & We could not find any path traversals .\\
+	Discovery  & We used the \textit{dotdotpwn} tool to find such traversals with the following command:
+	\begin{lstlisting}
+		sudo ./dotdotpwn.pl -O -m http -h IP_ADDRESS 
+	\end{lstlisting}
+	-O is to get the operating system;  
+	-m is to indicate that the protocol is http and -h for the server ip;  
+	which gave no results.
+	Afterwards we tried \textit{w3af} and it did not find anything.\\
+	Likelihood & This is more an additional information for other attacks but it is a
+	good help for attackers to find vulnerabilities faster \\
+	Impact    & N/A \\
+	Recommendations & N/A \\
+	Comparison & The results were the same for our webapp.\\
+	\hline
+\end{tabular}  
+ 
+
+\pagebreak
+\subsection{Testing for Bypassing Session Management Schema(OTG-SESS-001)}\
 
 \pagebreak
 
 \subsection{Testing for Privilege Escalation (OTG-AUTHZ-003)}\
 
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation   & It is not possible to escalate privileges of the user.  \\
 	Discovery  & We tried to change the user privilege by changing the user id after we saw that they are generated by incrementing from the first user ID, using \textit{Burp}.\\
@@ -921,25 +827,43 @@ performed. The test is divided in different sections following the OWASP Testing
 	Comparison & The same results apply for our web application.\\
 	\hline
 \end{tabular}
+\pagebreak
 
+\subsection{Testing for Insecure Direct Object References (OTG-AUTHZ-004)}\
+\begin{tabular}{cR{12cm}}
+	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Team2}} \\
+	\hline
+	Observation   & It is not possible to retrieve objects belonging to other users or otherwise bypass authorization.  \\
+	Discovery  & We tried to change the user privilege by changing the user id after we saw that they are generated by incrementing from the first user ID, using \textit{Burp}.\\
+	Likelihood & N/A \\
+	Implication    & N/A \\
+	Recommendations & N/A \\
+	Comparison & The same results apply for our web application.\\
+	\hline
+\end{tabular}
 \pagebreak
 \section{Session Management Testing}\
 \subsection{Testing for Bypassing Session Management Schema(OTG-SESS-001)}\
 
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+	\textbf{Team2} & Likelihood: 10\\ & Impact: 7\\& Risk: 7
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
-	Observation   & PHP session ids are used and such session ids normally can't be bypassed that means calculated easily\\
-	Discovery  & We used the Chrome extension ``Advanced Rest Client'' to analyze the Request and the Cookies\\
-	Likelihood & NA\\
-	Implication    & NA\\
-	Recommendations& NA\\
-	Comparison& Our web application also uses PHP session ids \\
+	Observation   & There is no Random Session Token generated, nor any Session Time-out functionality. Also there is no cookie configuration.\\
+	Discovery  & We observed the php code which we were given.\\
+	Likelihood & It is very likely that an attacker notices this, since the SessionID does not change.\\
+	Impact    & This can cause a Session Hijack.\\
+	Recommendations & Generate random SessionIDs and create a Session Time-out functionality.\\
+	Comparison& Our web app generates random SessionIDs creates a session time-out, also set the cookie parameters. \\
 	\hline
 \end{tabular}
 \\
@@ -948,23 +872,23 @@ performed. The test is divided in different sections following the OWASP Testing
 \begin{center}
 	\begin{tabular}{ll}
 		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value : 6.7}} \\
 		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } NA              \\
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } L              \\
 		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } NA              \\
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } H              \\
 		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } NA              \\
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N              \\
 		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } NA              \\
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N              \\
 		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } NA              \\
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U 	              \\
 		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } NA              \\
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } H              \\
 		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } NA              \\
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } H              \\
 		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } NA
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N
 	\end{tabular}
 \end{center}
 
@@ -972,24 +896,23 @@ performed. The test is divided in different sections following the OWASP Testing
 \subsection{Testing for Cookies attributes(OTG-SESS-002)}\
 
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 10\\& Impact: 3\\& Risk: 3
+	\textbf{Team2} & Likelihood: 10\\& Impact: 6\\& Risk: 3
 \end{tabular}
 
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation &  The cookie for the PHP session id has a to general path (``//''). So
 	the application is vulnerable to other web application on the same server. They will
-	also get the cookie from the user. \\
-
-	Discovery  & We used the Chrome developer tools to analyze the cookies\\
-	Likelihood & N/A\\
-	Implication    & The cookies can be read and used by other web applications that
+	also get the cookie from the user.  The HttpOnly is not set also there is no expiration time for the cookie.\\
+	Discovery  & We used the Firefox Web developer toolbar to analyze the cookie attributes. \\
+	Likelihood & It is vary easy and straight forward to use this tool so it is highly likely for someone to find that out.\\
+	Impact    & The cookies can be read and used by other web applications that
 	match the path value. \\
-	Recommendations & Set the path as thight as possible. For Team21 for example ``//secode//'' \\
-	Comparison& Our web application has exact the same vulnerability.\\
+	Recommendations & Set the path as tight as possible. \\
+	Comparison & Our web app has the all the cookie parameters set, and the timeout of the cookie is set to 10 minutes.\\
 	\hline
 \end{tabular}
 \\
@@ -998,7 +921,7 @@ performed. The test is divided in different sections following the OWASP Testing
 \begin{center}
 	\begin{tabular}{ll}
 		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value : 6.1}} \\
 		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } L             \\
 		\rowcolor[HTML]{ECF4FF}
@@ -1022,21 +945,21 @@ performed. The test is divided in different sections following the OWASP Testing
 \subsection{Testing for Session Fixation(OTG-SESS-003)}\
 
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 8\\& Impact: 5\\& Risk: 5
+	\textbf{Team2} & Likelihood: 9\\& Impact: 5\\& Risk: 5
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation   & The session id is not invalidated and therefore does not change after the user is authenticated. This means
 	an attacker can force a known session id on a user. Once the user is authenticated the attacker can access also as authenticated
 	user \\
-	Discovery  & We used the Chrome extension ``Advanced Rest Client'' to analyze the Request and the Cookies\\
+	Discovery  & We used \textit{ZAP} proxy to intercept the traffic.\\
 	Likelihood & This attack is pretty easy and can also be performed by low skilled people\\
 	Implication    & The attacker can do everything the user can \\
 	Recommendations& Change the session id after logging in \\
-	Comparison& Our web application has exact the same vulnerability\\
+	Comparison & Our web app generates a new random SessionID after the user logs in.\\
 	\hline
 \end{tabular}
 \\
@@ -1045,7 +968,7 @@ performed. The test is divided in different sections following the OWASP Testing
 \begin{center}
 	\begin{tabular}{ll}
 		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value : 8.1}} \\
 		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N             \\
 		\rowcolor[HTML]{ECF4FF}
@@ -1068,21 +991,20 @@ performed. The test is divided in different sections following the OWASP Testing
 \subsection{Testing for Exposed Session Variables (OTG-SESS-004)}\
 
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 10\\& Impact: 7\\& Risk: 7
+	\textbf{Team2} & Likelihood: 10\\& Impact: 6\\& Risk: 6
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
-	Observation & The application from Team 21 does not use HTTPS and therefore the session variables
-	are accessible during transport. An attacker could hijack the session simply read the session id by eavesdropping
-	and reusing it \\
-	Discovery & We used the Chrome developer tools to analyze the requests \\
+	Observation & The application from Team 2  use SSL certificate and therefore the session variables
+	are not accessible during transport. But the Session variable is not destroyed after the user logs out.\\
+	Discovery & We used the \textit{Firefox web developer tools} to analyze the cookies. Also the \textit{Firebug} tool and we got the same outcome. \\
 	Likelihood & This attack is pretty easy and can also be performed by low skilled people\\
-	Implication & The attacker can read the session variables and depending on the information in them  \\
-	Recommendations & Use HTTP with TLS encryption and avoid GET request including the session id\\
-	Comparison & Our web application has exact the same vulnerability\\
+	Impact & The attacker can read the session variables and depending on the information in them  \\
+	Recommendations & Remove the cookie after logout.\\
+	Comparison & Our application destroys the session after the user logs out.\\
 	\hline
 \end{tabular}
 \\
@@ -1091,9 +1013,9 @@ performed. The test is divided in different sections following the OWASP Testing
 \begin{center}
 	\begin{tabular}{ll}
 		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value : 5.9}} \\
 		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } A             \\
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } P             \\
 		\rowcolor[HTML]{ECF4FF}
 		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
 		\rowcolor[HTML]{BBDAFF}
@@ -1115,24 +1037,22 @@ performed. The test is divided in different sections following the OWASP Testing
 \subsection{Testing for logout functionality(OTG-SESS-006)}\
 
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 5\\& Impact: 6\\& Risk: 5
+	\textbf{Team2} & Likelihood: 4\\& Impact: 6\\& Risk: 5
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation & The logout functionallity has been tested an works without any problems.
 	The user gets correctly logged out and pages where authentication is needed can't be accessed afterwards.
 	Also reusing the session id does not work. But the application seems to have no automatic
 	logout after a certain amount of time.\\
-	Discovery & We tested the functionallity manually and used the Chrome extension ``Advanced Rest Client''
-	to reuse the session cookie \\
-	Likelihood & The only problem is that user sometimes only close the browser tab and than the session continues to exist\\
-	Implication & An attacker would be logged in if he can access afterwards the computer. Possible scenario Internet cafe
-	or something similar\\
+	Discovery & We tested the functionallity manually and used the Chrome extension ``Advanced Rest Client'' to reuse the session cookie \\
+	Likelihood & The only problem is that user sometimes only close the browser tab and than the session continues to exist.\\
+	Impact & An attacker would be logged in if he can access afterwards the computer. Possible scenario Internet cafe	or something similar\\
 	Recommendations & implement an automatic server side logout\\
-	Comparison & Our web application works also as expected but also does not have an automatic logout on the server side\\
+	Comparison & Our webapp has the same problem that it does not log out after the web browser is closed, but it does log out after 10 minutes of inactivity.\\
 	\hline
 \end{tabular}
 \\
@@ -1141,7 +1061,7 @@ performed. The test is divided in different sections following the OWASP Testing
 \begin{center}
 	\begin{tabular}{ll}
 		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value : 4.6}} \\
 		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } P             \\
 		\rowcolor[HTML]{ECF4FF}
@@ -1165,20 +1085,20 @@ performed. The test is divided in different sections following the OWASP Testing
 \subsection{Test Session Timeout(OTG-SESS-007)}\
 
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 4\\& Impact: 6\\& Risk: 7
+	\textbf{Team2} & Likelihood: 4\\& Impact: 6\\& Risk: 7
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation & The application has the timeout of the session set to the browsers
 	session lifetime.\\
-	Discovery & We tested the functionallity manually and used the Chrome developertools to check the cookies\\
-	Likelihood & same as for OTG-SESS-006. Public computers are here the biggest problem\\
-	Implication & An attacker is directly authenticated if the session is not ended\\
+	Discovery & We tested the functionallity manually and used the Chrome developertools to check the cookies.\\
+	Likelihood & The same as for OTG-SESS-006. Public computers are here the biggest problem\\
+	Impact & An attacker is directly authenticated if the session is not ended\\
 	Recommendations & Implement a server side session invalidation and delete the stored data on the client\\
-	Comparison & Also our webapp has this vulnerability\\
+	Comparison & Our webapp has a session timeout of 10 minutes, which invalidates the session after 10 minutes of inactivity.\\
 	\hline
 \end{tabular}
 \\
@@ -1187,7 +1107,7 @@ performed. The test is divided in different sections following the OWASP Testing
 \begin{center}
 	\begin{tabular}{ll}
 		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value : 4.6}} \\
 		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } P             \\
 		\rowcolor[HTML]{ECF4FF}
@@ -1211,12 +1131,12 @@ performed. The test is divided in different sections following the OWASP Testing
 \subsection{Testing for Session puzzling(OTG-SESS-008)}\
 
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation & The application has only one authorization method so a session puzzling
 	is not applicable.\\
@@ -1233,12 +1153,12 @@ performed. The test is divided in different sections following the OWASP Testing
 \subsection{Testing for Reflected Cross Site Scripting(OTG-INPVAL-001)}\
 
 \begin{tabular}{cc}
-	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 8\\ Impact: 5\\ Risk:5 \end{tabular}
+	\textbf{Team2} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 8\\ Impact: 5\\ Risk:5 \end{tabular}
 \end{tabular}\
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation   & We observed no reflected cross site scripting vulnerability. \\
 	Discovery  & It seems that all parameters are stored in the database before inserting the values in the HTML. \\
@@ -1253,87 +1173,47 @@ performed. The test is divided in different sections following the OWASP Testing
 \subsection{Testing for Stored Cross Site Scripting(OTG-INPVAL-002)}\
 
 \begin{tabular}{cc}
-	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 8\\ Impact: 5\\ Risk:5 \end{tabular}
+	\textbf{Team2} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 8\\ Impact: 5\\ Risk:5 \end{tabular}
 \end{tabular}\
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
-	Observation   &  We observed several possibilities to execute a stored XSS attack. But not all of
-	them could be exploited as the length of the corresponding database fields was
-	often very restricted.
-	We manually tried to inject JavaScript code in every input field. Therefore we
-	used the following code, which just alerts a message.
+	Observation   &  We cannot insert javascript code in the webapp. \\
+	Discovery  & We tried to insert the following javascript code in the username of the sign up page but there is a restriction in the length of the username to 23 characters therefore it failed.
 	\begin{lstlisting}
-		<script type="javascript">alert("XSS");</script>
+	<script>alert("1");</script>
 	\end{lstlisting} \\
-	Discovery  & We inserted Javascript code in the name field on the register page.
-	When we logged in as an employee the script was executed.  There were cases when the script caused for new registered users after the script was entered to not appear. \\
-	Likelihood & This vulnerability can be easily detected, but require some JavaScript knowledge to exploit it. Therefore we estimated the likelihood to be medium. \\
-	Implication    & The implications are severe as we proofed that it is possible to steal the session. As we injected the code on the admin landingpage, which implies that we were able to act as an admin and register an abitrary account. \\
-	Recommendations & Implement a input sanitation on all input fields on the backend side!  Try to use whitelisting for the different datatypes and do not rely on the frontend input
-	validation. \\
-	Comparison& \\
+	Likelihood & N/A \\
+	Impact    & N/A \\
+	Recommendations & N/A \\
+	Comparison & Our web app does not allow XSS but because we sanitize the input of the user.\\
 	\hline
 \end{tabular}
 
-\vspace{0.5cm}
-\begin{center}
-	% Please add the following required packages to your document preamble:
-	% \usepackage[table,xcdraw]{xcolor}
-	% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
-	%\begin{table}[]
-	%\centering
-	%	\caption{My caption}
-	%\label{my-label}
-	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} N}               \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} M}               \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} N}               \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} Y}               \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} U}               \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} M}               \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} M}               \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} L}
-	\end{tabular}
-	%\end{table}
-\end{center}
+ 
 \pagebreak
 \subsection{Testing for HTTP Verb Tampering(OTG-INPVAL-003)}\
 
 
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation   &  We did not observe any notable behavior.  \\
-	Discovery  &  We used the Zed  Attack  Proxy  (ZAP)	to change the HTTP requests method to the ones listed below. The requests that were allowed responded
-	with the index page or an empty body. The rejected requests responded with an
-	error message in the body.\
+	Discovery  &  We used a script to automatically test the HTTP methods.\
 
 	Methods that were allowed\
 
-	\begin{itemize}
-		\item HEAD
+	\begin{itemize} 
 		\item OPTIONS
 		\item GET
-		\item POST
-
+		\item POST 
 	\end{itemize}
 
 	Methods that were rejected\
@@ -1352,7 +1232,7 @@ performed. The test is divided in different sections following the OWASP Testing
 \end{tabular}
 
 \begin{figure}
-	\includegraphics[width=\linewidth]{tampering.png}
+	\includegraphics[width=\linewidth]{logos/methods.jpg}
 	\caption{Results}
 	\label{fig:test}
 \end{figure}
@@ -1366,100 +1246,93 @@ performed. The test is divided in different sections following the OWASP Testing
 \pagebreak
 \subsection{Testing for SQL Injection (OTG-INPVAL-005) and Mysql testing (OTG-INPVAL-005)}\
 
+\subsubsection{Team2}
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation   & We observed that no SQL Injection was possible. Since we knew that the other team had
 	to use Mysql we tested also specifically for Mysql \\
-	Discovery  & We tried inserting various SQL statements in the fields of using \textit{SQL Inject Me} tool and failed.
-	Also w3af was used and it could not find any vulnerabilities \\
+	Discovery  & We tried inserting various SQL statements in the fields of using \textit{sqlmap} tool and failed, also we did static test of the PHP code using \textit{RIPS} which did not find any.\\
 	Likelihood & N/A \\
 	Implication    & N/A \\
 	Recommendations & N/A \\
 	Comparison& Our web application is also immune to SQL Injections \\
 	\hline
 \end{tabular}
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=50mm]{logos/RIPS2.jpg}
+	\caption{RIPS \label{overflow}}
+\end{figure}
+Using \textit{RIPS} with verbosity level 1  and vulnerability all server-side we get the above results.
+The 3 cases of \textit{SQL Injection} are \textit{false-positives}. The input in the query is already set and is not affected by the user input.
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=150mm]{logos/Injection1.jpg}
+	\caption{RIPS \label{overflow}}
+\end{figure}
 
+The case of file manipulation is \textit{false-positive} since the variables passed as parameters here have nothing to do with user input.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=150mm]{logos/file1.jpg}
+	\caption{RIPS \label{overflow}}
+\end{figure} 
+
+Also using the following \textit{sqlmap} command we did not find any SQL Injection possible.\\
+
+\begin{lstlisting}
+sqlmap -u https://localhost/ex1/securecoding/
+\end{lstlisting}
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=150mm]{logos/sql.jpg}
+	\caption{RIPS \label{overflow}}
+\end{figure}
 \pagebreak
-\subsection{Testing for XML Injection(OTG-INPVAL-008)}\
+\subsubsection{Team3}
+Using \textit{RIPS} with verbosity level 1  and vulnerability all server-side we get the above results.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=50mm]{logos/stats3.jpg}
+	\caption{RIPS \label{overflow}}
+\end{figure}
 
-\begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
-\end{tabular}
 
-\begin{tabular}{ l|p{11cm}  }
-	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
-	\hline
-	Observation   & We did not find any vulnerability regarding XML Injection\\
-	Discovery  & We used w3af to find XML injection vulerabilities and it could not find any. \\
-	Likelihood & N/A \\
-	Implication    & N/A \\
-	Recommendations & N/A \\
-	Comparison& Our web application is also immune to XML Injections \\
-	\hline
-\end{tabular}
+For the \textit{SQL Injection} cases the input data is sanitized before being executed into the queries. So the warnings given by \textit{RIPS} are \textit{false-positive}.
 
-\pagebreak
-\subsection{Testing for SSI Injection(OTG-INPVAL-009)}\
+Also using the following \textit{sqlmap} command we did not find any SQL Injection possible.\\
 
-\begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
-\end{tabular}
+\begin{lstlisting}
+sqlmap -u https://localhost/SecureCoding-Group3/online_banking/
+\end{lstlisting}
+\begin{figure}[ht!]
+	\centering
+	\includegraphics[width=150mm]{logos/sql.jpg}
+	\caption{RIPS \label{overflow}}
+\end{figure}
 
-\begin{tabular}{ l|p{11cm}  }
-	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
-	\hline
-	Observation   & We did not find any vulnerability regarding SSI Injection\\
-	Discovery  & We used w3af to find SSI injection possibilities and it could not find any vulnerabilities. \\
-	Likelihood & N/A \\
-	Implication    & N/A \\
-	Recommendations & N/A \\
-	Comparison& Our web application is also immune to XML Injections \\
-	\hline
-\end{tabular}
 
-\pagebreak
-\subsection{Testing for XPATH Injection(OTG-INPVAL-010)}\
 
-\begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
-\end{tabular}
-
-\begin{tabular}{ l|p{11cm}  }
-	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
-	\hline
-	Observation   & We did not find any vulnerability regarding XPATH Injection\\
-	Discovery  & We used w3af to find XPATH injections and it could not find any vulnerabilities \\
-	Likelihood & N/A \\
-	Implication    & N/A \\
-	Recommendations & N/A \\
-	Comparison& Our web application is also immune to XPATH Injections \\
-	\hline
-\end{tabular}
-
+ 
 \pagebreak
 \subsection{Testing for Code Injection, Testing for Local File Inclusion, Testing for Remote File Inclusion(OTG-INPVAL-012)}\
 
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
-	Observation   & We did not find any vulnerability regarding code injection and local or remote file inclusion in our
-	web app. Team 21 did not implemented that feature\\
-	Discovery  & Tryed to perform a command execution via the backticks (`) and also the semicolon (;) in the filename but our
-	webapp correctly handled the files without injections \\
+	Observation   & We did not find any vulnerability regarding code injection and local or remote file inclusion in our web app. Team 2 did not implemented that feature\\
+	Discovery  & Tried to perform a command execution via the backticks (`) and also the semicolon (;) in the filename but our	webapp correctly handled the files without injections \\
 	Likelihood & N/A \\
 	Implication    & N/A \\
 	Recommendations & N/A \\
@@ -1469,34 +1342,39 @@ performed. The test is divided in different sections following the OWASP Testing
 
 \pagebreak
 \subsection{Testing for Command Injection(OTG-INPVAL-013)}\
+\subsubsection{Team2}
+The case of command execution is yet again a \textit{false-positive} since the variable entered into the \textit{exec} function is a file. If the file contains malicious user input is another problem, and we have to do the check for that elsewhere.\\
 
-\begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
-\end{tabular}
-
-\begin{tabular}{ l|p{11cm}  }
-	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
-	\hline
-	Observation   & Could not find any possibilities too for such a injection\\
-	Discovery  & Searched manually and used the OWASPTOP10 profile for w3af and did not found a possibility\\
-	Likelihood & N/A \\
-	Implication    & N/A \\
-	Recommendations & N/A \\
-	Comparison& Neither our app showed such a vulnerability\\
-	\hline
-\end{tabular}
-
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=150mm]{logos/command1.jpg}
+	\caption{RIPS \label{overflow}}
+\end{figure}
+ 
+\pagebreak
+\subsubsection{Team3}
+\textit{RIPS} finds two vulnerabilities for file disclosure and command execution in \textit{applicationDownload.php}, which are \textit{false-positive} since the variable is taken from the database, the user does not input it directly.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=50mm]{logos/download3.jpg}
+	\caption{RIPS \label{overflow}}
+\end{figure}
+\textit{RIPS} finds two vulnerabilities for file disclosure and command execution in \textit{customer.inc.php}, the same case applies here, they are \textit{false-positive} the variables passed on the sensitive functions are not user input.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=150mm]{logos/trans3.jpg}
+	\caption{RIPS \label{overflow}}
+\end{figure}
 \pagebreak
 \subsection{Testing for Buffer overflow, Testing for Heap overflow, Testing for Stack overflow, Testing for Format string (OTG-INPVAL-014)}\
 
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation   & We did not find any vulnerability regarding buffer overflow,
 	heap overflow, stack overflow or string formatting\\
@@ -1513,12 +1391,12 @@ performed. The test is divided in different sections following the OWASP Testing
 \subsection{Testing for incubated vulnerabilities(OTG-INPVAL-015)}\
 
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 7\\& Impact: 7\\& Risk: 5
+	\textbf{Team2} & Likelihood: 7\\& Impact: 7\\& Risk: 5
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation   & A part of the XSS injection counts also to this vulnerability thats possible on the web app of
 	team 21. Code like the example on the owasp page for OTG-INPVAL-015 could exploit the web app\\
@@ -1541,22 +1419,18 @@ Team21 does not provide a lot of error messages for incorrect inputs (e.g. incor
 length, wrong TAN, TAN used). \\
 Based on the client side input validation, there are also no messages for manipulated input via proxy or by removing the validation patterns, which can lead to problems. Examples would be a malformated email which results in a not working account or a longer input then expected, which cuts off the end of the input. There are some cases when the page returns the path of the file where the error occurred.\\
 
-\textbf{Team3}\\
-
-
-\section{Cryptography}\
-
-\pagebreak
+ 
+ 
 \section{Business Logic Testing}\
 \subsection{Test Business Logic Data Validation(OTG-BUSLOGIC-001)}\
 
 \begin{tabular}{cc}
-	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 0\\ Impact: 0\\ Risk:0 \end{tabular}
+	\textbf{Team2} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 0\\ Impact: 0\\ Risk:0 \end{tabular}
 \end{tabular}\
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation   & Tests show that data validation is both: client side and server side.\\
 	Discovery  & We intercepted the input before it gets send to the server using \textit{Burp} and manipulated the data, and we received an error message. \\
@@ -1569,21 +1443,16 @@ Based on the client side input validation, there are also no messages for manipu
 \end{tabular}
 
 \pagebreak
-\subsection{Test Ability to Forge Requests(OTG-BUSLOGIC-002)}\
-\pagebreak
-\subsection{Test Integrity Checks(OTG-BUSLOGIC-003)}\
-\pagebreak
-\subsection{Test for Process Timing(OTG-BUSLOGIC-004)}\
-\pagebreak
+ 
 \subsection{Test Number of Times a Function Can be Used Limits(OTG-BUSLOGIC-005)}\
 
 \begin{tabular}{cc}
-	\textbf{Secode21} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 0\\ Impact: 0\\ Risk:0 \end{tabular}
+	\textbf{Team2} \hspace{9cm} & \begin{tabular}{@{}c@{}c@{}}Likelihood: 0\\ Impact: 0\\ Risk:0 \end{tabular}
 \end{tabular}\
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation   & We tried inserting the same tan multiple times.\\
 	Discovery  & The web application did not accept requests with a TAN that was already used. \\
@@ -1596,26 +1465,18 @@ Based on the client side input validation, there are also no messages for manipu
 \end{tabular}
 
 \pagebreak
-\subsection{Testing for the Circumvention of Work Flows(OTG-BUSLOGIC-006)}\
-\pagebreak
-\subsection{Test Defenses Against Application Misuse(OTG-BUSLOGIC-007)}\
-\pagebreak
-\subsection{Test Upload of Unexpected File Types(OTG-BUSLOGIC-008)}\
-\pagebreak
-\subsection{Test Upload of Malicious Files(OTG-BUSLOGIC-009)}\
-\pagebreak
-
+ 
 \section{Client Side Testing}
 
 \subsection{Testing for DOM based Cross Site Scripting (OTG-CLIENT-001)}\
 
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation   & Observing the HTML source code showed us that they don't use javascript and therefore there can't be any DOM XSS vulnerabilities. \\
 	Discovery  & We used \textit{Chrome} and its developer tools to take a look at the HTML source code. \\
@@ -1654,12 +1515,12 @@ Based on the client side input validation, there are also no messages for manipu
 
 \subsection{Testing for JavaScript Execution (OTG-CLIENT-002)}\
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 9\\& Impact: 10\\& Risk: 9
+	\textbf{Team2} & Likelihood: 9\\& Impact: 10\\& Risk: 9
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation   & We found several XSS vulnerabilities allowing the execution of arbitrary javascript code in the clients browser. \\
 	Discovery  & We used the tools \textit{w3af} and \textit{ZED Attack Proxy} to find some XSS vulnerabilities and found enough of them. \\
@@ -1697,12 +1558,12 @@ Based on the client side input validation, there are also no messages for manipu
 
 \subsection{Testing for HTML Injection (OTG-CLIENT-003)}\
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 8\\& Impact: 7\\& Risk: 7
+	\textbf{Team2} & Likelihood: 8\\& Impact: 7\\& Risk: 7
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation   & The HTML injection vulnerability exists  \\
 	Discovery  & The vulnerability was found by the tools \textit{w3af} and \textit{ZED Attack Proxy}. \\
@@ -1741,12 +1602,12 @@ Based on the client side input validation, there are also no messages for manipu
 
 \subsection{Testing for Client Side URL Redirect (OTG-CLIENT-004)}\
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation   & We couldn't find any client side redirections in the html source code of the web application and therefore exists no client side url redirect vulnerability. \\
 	Discovery  & We used \textit{Chrome} and its web inspector to look at the html code. \\
@@ -1784,12 +1645,12 @@ Based on the client side input validation, there are also no messages for manipu
 
 \subsection{Testing for CSS Injection (OTG-CLIENT-005)}\
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation   & Our search didn't find any spots in the html source code where there is user generated input used to change some css attributes. \\
 	Discovery  & \textit{Chrome} and its web inspector were used to read the html code. \\
@@ -1827,12 +1688,12 @@ Based on the client side input validation, there are also no messages for manipu
 
 \subsection{Testing for Client Side Resource Manipulation (OTG-CLIENT-006)}\
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation   & We couldn't find any vulnerability here, but we could only check if such a vulnerability exists in the javascript code and not in the  php code, because we had no access to the php source code. \\
 	Discovery  & We used \textit{Chrome} and its developer tools to inspect the html/javascript code. \\
@@ -1870,12 +1731,12 @@ Based on the client side input validation, there are also no messages for manipu
 
 \subsection{Test Cross Origin Resource Sharing (OTG-CLIENT-007)}\
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation   & The inspected web application doesn't make use of XMLHttpRequests and therefor no cross origin resource sharing vulnerabilities exist. \\
 	Discovery  & We used \textit{Chrome} and its developer tools to inspect the html/javascript code and \textit{Charles Web Proxy} to make sure that no request is executed. \\
@@ -1913,12 +1774,12 @@ Based on the client side input validation, there are also no messages for manipu
 
 \subsection{Testing for Cross Site Flashing (OTG-CLIENT-008)}\
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation   & \textit{ActionScript} and \textit{Flash} are never used in this web application. \\
 	Discovery  & We tried to use the web application on a pc with no \textit{Adobe Flash} installed and got no request to install it. Additionally the html code was inspected with \textit{Chrome} and no reference to \textit{Adobe Flash} was found. \\
@@ -1957,12 +1818,12 @@ Based on the client side input validation, there are also no messages for manipu
 
 \subsection{Testing for Clickjacking (OTG-CLIENT-009)}\
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 8\\& Impact: 9\\& Risk: 8
+	\textbf{Team2} & Likelihood: 8\\& Impact: 9\\& Risk: 8
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation   & We found a vulnerability in the web application that allows attackers to make clickjacking attacks by bundling the website inside an iframe to give the user the feeling of interacting with the target website but being instead on a malicious web page. \\
 
@@ -2003,12 +1864,12 @@ Based on the client side input validation, there are also no messages for manipu
 
 \subsection{Testing WebSockets (OTG-CLIENT-010)}\
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation   & We inspected the html/javascript source code to find an use of WebSockets but could't find any of them. That means also, that there are no WebSockets vulnerabilities applicable. \\
 	Discovery  & \textit{Chrome} and its developer tools can show the source code of the web page and can show you if WebSockets are used to communicate with other resources. \\
@@ -2046,12 +1907,12 @@ Based on the client side input validation, there are also no messages for manipu
 
 \subsection{Test Web Messaging (OTG-CLIENT-011)}\
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation   & The web application makes doesn't use the Web Messaging technology (aka Cross Document Messaging) and therefor we couldn't find any vulnerability. \\
 	Discovery  & We used \textit{Charles Web Proxy} and \textit{Chrome} and its developer tools to see if any other requests are executed from the web application. \\
@@ -2089,12 +1950,12 @@ Based on the client side input validation, there are also no messages for manipu
 
 \subsection{Test Local Storage (OTG-CLIENT-012)}\
 \begin{tabular}{cR{12cm}}
-	\textbf{Secode21} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Secode21}} \\
+	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation   & The web application make no use of the local storage functionality of the browsers. \\
 	Discovery  & We tested the web application with a browser and tested all the functionality and \textit{Chromes} web inspector didn't show any use of the local storage functionality of the browser. \\
@@ -2127,8 +1988,7 @@ Based on the client side input validation, there are also no messages for manipu
 		\rowcolor[HTML]{ECF4FF}
 		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N/A
 	\end{tabular}
-\end{center}
-\pagebreak
+\end{center} 
 
 
 \appendix{}
