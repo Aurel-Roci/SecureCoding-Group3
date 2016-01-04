@@ -20,12 +20,6 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {3}Tools used}{4}{chapter.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}sqlmap}{4}{section.3.1}
-\defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}RIPS}{4}{section.3.2}
-\defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}FindBugs}{4}{section.3.3}
-\defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {4}Detailed Report}{5}{chapter.4}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.1}Configuration and Deploy Management Testing}{6}{section.4.1}
@@ -56,23 +50,23 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.3.2}Testing for default credentials(OTG-AUTHN-002)}{18}{subsection.4.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.3}Testing for bypassing authentication schema (OTG-AUTHN-004)}{19}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.3}Testing for Weak lock out mechanism(OTG-AUTHN-003)}{19}{subsection.4.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.4}Testing for Browser cache weakness (OTG-AUTHN-006)}{20}{subsection.4.3.4}
+\contentsline {subsection}{\numberline {4.3.4}Testing for bypassing authentication schema (OTG-AUTHN-004)}{20}{subsection.4.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.5}Testing for Weak password policy (OTG-AUTHN-007)}{21}{subsection.4.3.5}
+\contentsline {subsection}{\numberline {4.3.5}Testing for Browser cache weakness (OTG-AUTHN-006)}{21}{subsection.4.3.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.3.6}Testing for weak password change or reset functionalities (OTG-AUTHN-009)}{22}{subsection.4.3.6}
+\contentsline {subsection}{\numberline {4.3.6}Testing for Weak password policy (OTG-AUTHN-007)}{22}{subsection.4.3.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.4}Authorization Testing}{23}{section.4.4}
+\contentsline {subsection}{\numberline {4.3.7}Testing for weak password change or reset functionalities (OTG-AUTHN-009)}{23}{subsection.4.3.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.4.1}Testing Directory traversal/file include (OTG-AUTHZ-001)}{23}{subsection.4.4.1}
+\contentsline {section}{\numberline {4.4}Authorization Testing}{24}{section.4.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.4.2}Testing for Bypassing Session Management Schema(OTG-SESS-001)}{24}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.1}Testing Directory traversal/file include (OTG-AUTHZ-001)}{24}{subsection.4.4.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.4.3}Testing for Privilege Escalation (OTG-AUTHZ-003)}{25}{subsection.4.4.3}
+\contentsline {subsection}{\numberline {4.4.2}Testing for Privilege Escalation (OTG-AUTHZ-003)}{25}{subsection.4.4.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.4.4}Testing for Insecure Direct Object References (OTG-AUTHZ-004)}{26}{subsection.4.4.4}
+\contentsline {subsection}{\numberline {4.4.3}Testing for Insecure Direct Object References (OTG-AUTHZ-004)}{26}{subsection.4.4.3}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.5}Session Management Testing}{27}{section.4.5}
 \defcounter {refsection}{0}\relax 
@@ -102,30 +96,28 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.6.4}Testing for SQL Injection (OTG-INPVAL-005) and Mysql testing (OTG-INPVAL-005)}{39}{subsection.4.6.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\nonumberline Team2}{39}{section*.8}
-\defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\nonumberline Team3}{40}{section*.13}
+\contentsline {subsubsection}{\nonumberline Team3}{40}{section*.12}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.6.5}Testing for Code Injection, Testing for Local File Inclusion, Testing for Remote File Inclusion(OTG-INPVAL-012)}{42}{subsection.4.6.5}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.6.6}Testing for Command Injection(OTG-INPVAL-013)}{43}{subsection.4.6.6}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\nonumberline Team2}{43}{section*.16}
+\contentsline {subsubsection}{\nonumberline Team2}{43}{section*.15}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsubsection}{\nonumberline Team3}{44}{section*.18}
+\contentsline {subsubsection}{\nonumberline Team3}{44}{section*.17}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.6.7}Testing for Buffer overflow, Testing for Heap overflow, Testing for Stack overflow, Testing for Format string (OTG-INPVAL-014)}{45}{subsection.4.6.7}
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {4.6.8}Testing for incubated vulnerabilities(OTG-INPVAL-015)}{46}{subsection.4.6.8}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.7}Error Handling}{46}{section.4.7}
+\contentsline {section}{\numberline {4.7}Error Handling}{47}{section.4.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.8}Business Logic Testing}{46}{section.4.8}
+\contentsline {section}{\numberline {4.8}Business Logic Testing}{48}{section.4.8}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.8.1}Test Business Logic Data Validation(OTG-BUSLOGIC-001)}{47}{subsection.4.8.1}
+\contentsline {subsection}{\numberline {4.8.1}Test Business Logic Data Validation(OTG-BUSLOGIC-001)}{48}{subsection.4.8.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.8.2}Test Number of Times a Function Can be Used Limits(OTG-BUSLOGIC-005)}{48}{subsection.4.8.2}
+\contentsline {subsection}{\numberline {4.8.2}Test Number of Times a Function Can be Used Limits(OTG-BUSLOGIC-005)}{49}{subsection.4.8.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.8.3}Test Upload of Unexpected File Types (OTG-BUSLOGIC-008)}{49}{subsection.4.8.3}
+\contentsline {subsection}{\numberline {4.8.3}Test Upload of Unexpected File Types (OTG-BUSLOGIC-008)}{50}{subsection.4.8.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.9}Client Side Testing}{50}{section.4.9}
+\contentsline {section}{\numberline {4.9}Client Side Testing}{51}{section.4.9}

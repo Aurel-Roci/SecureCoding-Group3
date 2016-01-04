@@ -156,18 +156,27 @@ After testing the application there were no vulnerabilities found!
  
 
 \chapter{Tools used}
+\
 
-\section{sqlmap}
-We used \textit{sqlmap} to test for SQL Injections, and we did not find any.
-\section{RIPS}
-We used RIPS to do a static testing of the PHP code. It showed warnings for SQL Injections which were \textit{false-positives}. The were also some \textit{false-positive} with command execution.
-\section{FindBugs}
-We used this tool to do a static testing of the Java code, and we did not find any vulnerabilities in the code of \textit{Team2}, and we found two \textit{false-positive} warnings in the code of \textit{Team3}.
+\textit{sqlmap} - We used \textit{sqlmap} to test for SQL Injections, and we did not find any.\
+
+\textit{RIPS} - We used RIPS to do a static testing of the PHP code. It showed warnings for SQL Injections which were \textit{false-positives}. The were also some \textit{false-positive} with command execution.\
+
+\textit{FindBugs} - We used this tool to do a static testing of the Java code, and we did not find any vulnerabilities in the code of \textit{Team2}, and we found two \textit{false-positive} warnings in the code of \textit{Team3}.\
+
+\textit{netcat} - We used this tool to check the HTTP methods but it did not give any output. \
+
+\textit{nmap} We used this tool to check HTTP method, and it showed which methods were allowed and which ones were not allowed.
+
+\textit{w3af} - We used this tool to find if the website had vulnerabilities by running an automatic test one the website. And found CSRF vulnerability. \
+
+\textit{Zed Attack Proxy (ZAP)} - We used this for a spider attack towards the website, and did not find any CSRF vulnerability.\
+
+\textit{Burp} - We used this tool to to intercept the message from the web browser to the server and alter it.\
 
 \chapter{Detailed Report}
 
-The following pages describe for each test how both applications Team2 and Online Banking Bank
-performed. The test is divided in different sections following the OWASP Testing Guide v4.
+The following pages describe for each test how both applications Team2 and Team3. The test is divided in different sections following the OWASP Testing Guide v4.
 
 \pagebreak
 
@@ -221,7 +230,7 @@ performed. The test is divided in different sections following the OWASP Testing
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
-	\multicolumn{2}{c}{\textbf{Team2}} \\
+	\multicolumn{2}{c}{\textbf{Team3}} \\
 	\hline
 	Observation   & File extensions are handled correctly but while testing we found folders which we could access smart-card simulator folder.   \\
 	Discovery  & TODO \\
@@ -541,7 +550,25 @@ performed. The test is divided in different sections following the OWASP Testing
 	Comparison & The same goes for our webapp.\\
 	\hline
 \end{tabular}
- 
+\pagebreak
+\subsection{Testing for Weak lock out mechanism(OTG-AUTHN-003)}\
+\begin{tabular}{cR{12cm}}
+	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Team2}} \\
+	\hline
+	Observation   & The user is shown redirected from the login page after a 3 failed tries. \\
+	Discovery  &We entered the wrong credentials until we had to click the login button to be able to enter the credentials again.\\
+	Likelihood & N/A \\
+	Impact    &  N/A \\
+	Recommendations &  N/A\\
+	Comparison & The same goes for our webapp.\\
+	\hline
+\end{tabular}
+
 \pagebreak
 \subsection{Testing for bypassing authentication schema (OTG-AUTHN-004)}\
 
@@ -750,10 +777,6 @@ performed. The test is divided in different sections following the OWASP Testing
 	\hline
 \end{tabular}  
  
-
-\pagebreak
-\subsection{Testing for Bypassing Session Management Schema(OTG-SESS-001)}\
-
 \pagebreak
 
 \subsection{Testing for Privilege Escalation (OTG-AUTHZ-003)}\
@@ -1211,7 +1234,7 @@ performed. The test is divided in different sections following the OWASP Testing
 \pagebreak
 \subsection{Testing for SQL Injection (OTG-INPVAL-005) and Mysql testing (OTG-INPVAL-005)}\
 
-\subsubsection{Team2}
+
 \begin{tabular}{cR{12cm}}
 	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
 \end{tabular}
@@ -1296,12 +1319,11 @@ sqlmap -u https://localhost/SecureCoding-Group3/online_banking/
 	\hline
 	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
-	Observation   & We did not find any vulnerability regarding code injection and local or remote file inclusion in our web app. Team 2 did not implemented that feature\\
-	Discovery  & Tried to perform a command execution via the backticks (`) and also the semicolon (;) in the filename but our	webapp correctly handled the files without injections \\
+	Observation   & We did not find any vulnerability regarding code injection and local or remote file inclusion in our web app. Team 2 we were able to upload a file with code but there was no abnormal behavior of the web app. \\
+	Discovery  & Tried to perform a command execution via the backticks (`) and also the semicolon (;) in the filename but our	webapp correctly handled the files without injections. We upload files with code written in them but nothing happened. \\
 	Likelihood & N/A \\
 	Implication    & N/A \\
-	Recommendations & N/A \\
-	Comparison& NA \\
+	Recommendations & N/A \\ 
 	\hline
 \end{tabular}
 
@@ -1375,14 +1397,14 @@ The case of command execution is yet again a \textit{false-positive} since the v
 	Only really short injection code can be used so the possibilities are limited. \\
 	\hline
 \end{tabular}
-
+\pagebreak
 \section{Error Handling}\
 
-\textbf{Team21}\\
+\textbf{Team2}\\
 
 Team2 provides an error for the transactions using file upload only when the file format is not correct. Every other time when the correct file format is uploaded with incorrect data, the file is accepted even though no transaction is executed.\\
  
- 
+ \pagebreak
 \section{Business Logic Testing}\
 \subsection{Test Business Logic Data Validation(OTG-BUSLOGIC-001)}\
 

@@ -7,54 +7,51 @@
 \BOOKMARK [2][-]{subsection.2.1.3}{Mail}{section.2.1}% 7
 \BOOKMARK [1][-]{section.2.2}{Team3}{chapter.2}% 8
 \BOOKMARK [0][-]{chapter.3}{Tools used}{}% 9
-\BOOKMARK [1][-]{section.3.1}{sqlmap}{chapter.3}% 10
-\BOOKMARK [1][-]{section.3.2}{RIPS}{chapter.3}% 11
-\BOOKMARK [1][-]{section.3.3}{FindBugs}{chapter.3}% 12
-\BOOKMARK [0][-]{chapter.4}{Detailed Report}{}% 13
-\BOOKMARK [1][-]{section.4.1}{Configuration and Deploy Management Testing}{chapter.4}% 14
-\BOOKMARK [2][-]{subsection.4.1.1}{Test File Extensions Handling for Sensitive Information \(OTG-CONFIG-003\)}{section.4.1}% 15
-\BOOKMARK [2][-]{subsection.4.1.2}{Test HTTP Methods \(OTG-CONFIG-006\)}{section.4.1}% 16
-\BOOKMARK [2][-]{subsection.4.1.3}{Test HTTP Strict Transport Security \(OTG-CONFIG-007\)}{section.4.1}% 17
-\BOOKMARK [2][-]{subsection.4.1.4}{Test RIA cross domain policy \(OTG-CONFIG-008\)}{section.4.1}% 18
-\BOOKMARK [1][-]{section.4.2}{Identity Management Testing}{chapter.4}% 19
-\BOOKMARK [2][-]{subsection.4.2.1}{Test Role Definitions \(OTG-IDENT-001\)}{section.4.2}% 20
-\BOOKMARK [2][-]{subsection.4.2.2}{Test User Registration Process \(OTG-IDENT-002\)}{section.4.2}% 21
-\BOOKMARK [2][-]{subsection.4.2.3}{Test Account Provisioning Process \(OTG-IDENT-003\)}{section.4.2}% 22
-\BOOKMARK [2][-]{subsection.4.2.4}{Testing for Account Enumeration and Guessable User Account \(OTG-IDENT-004\)}{section.4.2}% 23
-\BOOKMARK [2][-]{subsection.4.2.5}{Testing for Weak or unenforced username policy \(OTG-IDENT-005\)}{section.4.2}% 24
-\BOOKMARK [1][-]{section.4.3}{Authentication Testing}{chapter.4}% 25
-\BOOKMARK [2][-]{subsection.4.3.1}{Testing for Credentials Transported over an Encrypted Channel\(OTG-AUTHN-001\)}{section.4.3}% 26
-\BOOKMARK [2][-]{subsection.4.3.2}{Testing for default credentials\(OTG-AUTHN-002\)}{section.4.3}% 27
-\BOOKMARK [2][-]{subsection.4.3.3}{Testing for bypassing authentication schema \(OTG-AUTHN-004\)}{section.4.3}% 28
-\BOOKMARK [2][-]{subsection.4.3.4}{Testing for Browser cache weakness \(OTG-AUTHN-006\)}{section.4.3}% 29
-\BOOKMARK [2][-]{subsection.4.3.5}{Testing for Weak password policy \(OTG-AUTHN-007\)}{section.4.3}% 30
-\BOOKMARK [2][-]{subsection.4.3.6}{Testing for weak password change or reset functionalities \(OTG-AUTHN-009\)}{section.4.3}% 31
-\BOOKMARK [1][-]{section.4.4}{Authorization Testing}{chapter.4}% 32
-\BOOKMARK [2][-]{subsection.4.4.1}{Testing Directory traversal/file include \(OTG-AUTHZ-001\)}{section.4.4}% 33
-\BOOKMARK [2][-]{subsection.4.4.2}{Testing for Bypassing Session Management Schema\(OTG-SESS-001\)}{section.4.4}% 34
-\BOOKMARK [2][-]{subsection.4.4.3}{Testing for Privilege Escalation \(OTG-AUTHZ-003\)}{section.4.4}% 35
-\BOOKMARK [2][-]{subsection.4.4.4}{Testing for Insecure Direct Object References \(OTG-AUTHZ-004\)}{section.4.4}% 36
-\BOOKMARK [1][-]{section.4.5}{Session Management Testing}{chapter.4}% 37
-\BOOKMARK [2][-]{subsection.4.5.1}{Testing for Bypassing Session Management Schema\(OTG-SESS-001\)}{section.4.5}% 38
-\BOOKMARK [2][-]{subsection.4.5.2}{Testing for Cookies attributes\(OTG-SESS-002\)}{section.4.5}% 39
-\BOOKMARK [2][-]{subsection.4.5.3}{Testing for Session Fixation\(OTG-SESS-003\)}{section.4.5}% 40
-\BOOKMARK [2][-]{subsection.4.5.4}{Testing for Exposed Session Variables \(OTG-SESS-004\)}{section.4.5}% 41
-\BOOKMARK [2][-]{subsection.4.5.5}{Testing for Cross Site Request Forgery\(OTG-SESS-005\)}{section.4.5}% 42
-\BOOKMARK [2][-]{subsection.4.5.6}{Testing for logout functionality\(OTG-SESS-006\)}{section.4.5}% 43
-\BOOKMARK [2][-]{subsection.4.5.7}{Test Session Timeout\(OTG-SESS-007\)}{section.4.5}% 44
-\BOOKMARK [2][-]{subsection.4.5.8}{Testing for Session puzzling\(OTG-SESS-008\)}{section.4.5}% 45
-\BOOKMARK [1][-]{section.4.6}{Data Validation Testing}{chapter.4}% 46
-\BOOKMARK [2][-]{subsection.4.6.1}{Testing for Reflected Cross Site Scripting\(OTG-INPVAL-001\)}{section.4.6}% 47
-\BOOKMARK [2][-]{subsection.4.6.2}{Testing for Stored Cross Site Scripting\(OTG-INPVAL-002\)}{section.4.6}% 48
-\BOOKMARK [2][-]{subsection.4.6.3}{Testing for HTTP Verb Tampering\(OTG-INPVAL-003\)}{section.4.6}% 49
-\BOOKMARK [2][-]{subsection.4.6.4}{Testing for SQL Injection \(OTG-INPVAL-005\) and Mysql testing \(OTG-INPVAL-005\)}{section.4.6}% 50
-\BOOKMARK [2][-]{subsection.4.6.5}{Testing for Code Injection, Testing for Local File Inclusion, Testing for Remote File Inclusion\(OTG-INPVAL-012\)}{section.4.6}% 51
-\BOOKMARK [2][-]{subsection.4.6.6}{Testing for Command Injection\(OTG-INPVAL-013\)}{section.4.6}% 52
-\BOOKMARK [2][-]{subsection.4.6.7}{Testing for Buffer overflow, Testing for Heap overflow, Testing for Stack overflow, Testing for Format string \(OTG-INPVAL-014\)}{section.4.6}% 53
-\BOOKMARK [2][-]{subsection.4.6.8}{Testing for incubated vulnerabilities\(OTG-INPVAL-015\)}{section.4.6}% 54
-\BOOKMARK [1][-]{section.4.7}{Error Handling}{chapter.4}% 55
-\BOOKMARK [1][-]{section.4.8}{Business Logic Testing}{chapter.4}% 56
-\BOOKMARK [2][-]{subsection.4.8.1}{Test Business Logic Data Validation\(OTG-BUSLOGIC-001\)}{section.4.8}% 57
-\BOOKMARK [2][-]{subsection.4.8.2}{Test Number of Times a Function Can be Used Limits\(OTG-BUSLOGIC-005\)}{section.4.8}% 58
-\BOOKMARK [2][-]{subsection.4.8.3}{Test Upload of Unexpected File Types \(OTG-BUSLOGIC-008\)}{section.4.8}% 59
-\BOOKMARK [1][-]{section.4.9}{Client Side Testing}{chapter.4}% 60
+\BOOKMARK [0][-]{chapter.4}{Detailed Report}{}% 10
+\BOOKMARK [1][-]{section.4.1}{Configuration and Deploy Management Testing}{chapter.4}% 11
+\BOOKMARK [2][-]{subsection.4.1.1}{Test File Extensions Handling for Sensitive Information \(OTG-CONFIG-003\)}{section.4.1}% 12
+\BOOKMARK [2][-]{subsection.4.1.2}{Test HTTP Methods \(OTG-CONFIG-006\)}{section.4.1}% 13
+\BOOKMARK [2][-]{subsection.4.1.3}{Test HTTP Strict Transport Security \(OTG-CONFIG-007\)}{section.4.1}% 14
+\BOOKMARK [2][-]{subsection.4.1.4}{Test RIA cross domain policy \(OTG-CONFIG-008\)}{section.4.1}% 15
+\BOOKMARK [1][-]{section.4.2}{Identity Management Testing}{chapter.4}% 16
+\BOOKMARK [2][-]{subsection.4.2.1}{Test Role Definitions \(OTG-IDENT-001\)}{section.4.2}% 17
+\BOOKMARK [2][-]{subsection.4.2.2}{Test User Registration Process \(OTG-IDENT-002\)}{section.4.2}% 18
+\BOOKMARK [2][-]{subsection.4.2.3}{Test Account Provisioning Process \(OTG-IDENT-003\)}{section.4.2}% 19
+\BOOKMARK [2][-]{subsection.4.2.4}{Testing for Account Enumeration and Guessable User Account \(OTG-IDENT-004\)}{section.4.2}% 20
+\BOOKMARK [2][-]{subsection.4.2.5}{Testing for Weak or unenforced username policy \(OTG-IDENT-005\)}{section.4.2}% 21
+\BOOKMARK [1][-]{section.4.3}{Authentication Testing}{chapter.4}% 22
+\BOOKMARK [2][-]{subsection.4.3.1}{Testing for Credentials Transported over an Encrypted Channel\(OTG-AUTHN-001\)}{section.4.3}% 23
+\BOOKMARK [2][-]{subsection.4.3.2}{Testing for default credentials\(OTG-AUTHN-002\)}{section.4.3}% 24
+\BOOKMARK [2][-]{subsection.4.3.3}{Testing for Weak lock out mechanism\(OTG-AUTHN-003\)}{section.4.3}% 25
+\BOOKMARK [2][-]{subsection.4.3.4}{Testing for bypassing authentication schema \(OTG-AUTHN-004\)}{section.4.3}% 26
+\BOOKMARK [2][-]{subsection.4.3.5}{Testing for Browser cache weakness \(OTG-AUTHN-006\)}{section.4.3}% 27
+\BOOKMARK [2][-]{subsection.4.3.6}{Testing for Weak password policy \(OTG-AUTHN-007\)}{section.4.3}% 28
+\BOOKMARK [2][-]{subsection.4.3.7}{Testing for weak password change or reset functionalities \(OTG-AUTHN-009\)}{section.4.3}% 29
+\BOOKMARK [1][-]{section.4.4}{Authorization Testing}{chapter.4}% 30
+\BOOKMARK [2][-]{subsection.4.4.1}{Testing Directory traversal/file include \(OTG-AUTHZ-001\)}{section.4.4}% 31
+\BOOKMARK [2][-]{subsection.4.4.2}{Testing for Privilege Escalation \(OTG-AUTHZ-003\)}{section.4.4}% 32
+\BOOKMARK [2][-]{subsection.4.4.3}{Testing for Insecure Direct Object References \(OTG-AUTHZ-004\)}{section.4.4}% 33
+\BOOKMARK [1][-]{section.4.5}{Session Management Testing}{chapter.4}% 34
+\BOOKMARK [2][-]{subsection.4.5.1}{Testing for Bypassing Session Management Schema\(OTG-SESS-001\)}{section.4.5}% 35
+\BOOKMARK [2][-]{subsection.4.5.2}{Testing for Cookies attributes\(OTG-SESS-002\)}{section.4.5}% 36
+\BOOKMARK [2][-]{subsection.4.5.3}{Testing for Session Fixation\(OTG-SESS-003\)}{section.4.5}% 37
+\BOOKMARK [2][-]{subsection.4.5.4}{Testing for Exposed Session Variables \(OTG-SESS-004\)}{section.4.5}% 38
+\BOOKMARK [2][-]{subsection.4.5.5}{Testing for Cross Site Request Forgery\(OTG-SESS-005\)}{section.4.5}% 39
+\BOOKMARK [2][-]{subsection.4.5.6}{Testing for logout functionality\(OTG-SESS-006\)}{section.4.5}% 40
+\BOOKMARK [2][-]{subsection.4.5.7}{Test Session Timeout\(OTG-SESS-007\)}{section.4.5}% 41
+\BOOKMARK [2][-]{subsection.4.5.8}{Testing for Session puzzling\(OTG-SESS-008\)}{section.4.5}% 42
+\BOOKMARK [1][-]{section.4.6}{Data Validation Testing}{chapter.4}% 43
+\BOOKMARK [2][-]{subsection.4.6.1}{Testing for Reflected Cross Site Scripting\(OTG-INPVAL-001\)}{section.4.6}% 44
+\BOOKMARK [2][-]{subsection.4.6.2}{Testing for Stored Cross Site Scripting\(OTG-INPVAL-002\)}{section.4.6}% 45
+\BOOKMARK [2][-]{subsection.4.6.3}{Testing for HTTP Verb Tampering\(OTG-INPVAL-003\)}{section.4.6}% 46
+\BOOKMARK [2][-]{subsection.4.6.4}{Testing for SQL Injection \(OTG-INPVAL-005\) and Mysql testing \(OTG-INPVAL-005\)}{section.4.6}% 47
+\BOOKMARK [2][-]{subsection.4.6.5}{Testing for Code Injection, Testing for Local File Inclusion, Testing for Remote File Inclusion\(OTG-INPVAL-012\)}{section.4.6}% 48
+\BOOKMARK [2][-]{subsection.4.6.6}{Testing for Command Injection\(OTG-INPVAL-013\)}{section.4.6}% 49
+\BOOKMARK [2][-]{subsection.4.6.7}{Testing for Buffer overflow, Testing for Heap overflow, Testing for Stack overflow, Testing for Format string \(OTG-INPVAL-014\)}{section.4.6}% 50
+\BOOKMARK [2][-]{subsection.4.6.8}{Testing for incubated vulnerabilities\(OTG-INPVAL-015\)}{section.4.6}% 51
+\BOOKMARK [1][-]{section.4.7}{Error Handling}{chapter.4}% 52
+\BOOKMARK [1][-]{section.4.8}{Business Logic Testing}{chapter.4}% 53
+\BOOKMARK [2][-]{subsection.4.8.1}{Test Business Logic Data Validation\(OTG-BUSLOGIC-001\)}{section.4.8}% 54
+\BOOKMARK [2][-]{subsection.4.8.2}{Test Number of Times a Function Can be Used Limits\(OTG-BUSLOGIC-005\)}{section.4.8}% 55
+\BOOKMARK [2][-]{subsection.4.8.3}{Test Upload of Unexpected File Types \(OTG-BUSLOGIC-008\)}{section.4.8}% 56
+\BOOKMARK [1][-]{section.4.9}{Client Side Testing}{chapter.4}% 57
