@@ -126,97 +126,44 @@
 
 %\input{chapters/01_introduction}
 % TODO: add more chapters here
+
 \chapter{Vulnerabilities Overview}
 Based on our testing, we identified the following vulnerabilities for the Team2
 Bank and the OnlineBanking Bank:
 \section{Team2}
+
 \subsection{Static Session ID} \
 \begin{itemize}
 	\item Likelihood: \textit{high}
 	\item Implication: \textit{high}
-	\item Risk: \textit{high}
-	\item Reference: OWASP OTG-SESS-003
+	\item Risk: \textit{high} 
 \end{itemize}
 
 The session id is saved in form of the (static) user id in a cookie. This cookie can be used on any machine
 to take over the account of a user. The lifetime of this cookie is only limited by the cookie lifetime field.
 
+\subsection{File Upload} 
+There was no instructions on the structure of the information for the file upload functionality. There was a sample file, but after uploading it, and trying it with several accounts, it did not work.
 
-\subsection{Stored XSS in Registration} \
-\begin{itemize}
-	\item Likelihood: \textit{medium}
-	\item Implication: \textit{high}
-	\item Risk: \textit{high}
-	\item Reference: OWASP OTG-INPVAL-002
-\end{itemize}
-
-Using stored cross-site-scripting attacks, one can inject JavaScript code, that is run, when the Administrator/Employee logs in. Arbitrary code can be loaded from a third party page.
-
-\subsection{Brute Force Password} \
-\begin{itemize}
-	\item Likelihood: \textit{high}
-	\item Implication: \textit{medium}
-	\item Risk: \textit{medium}
-	\item Reference: OWASP OTG-AUTHN-003
-\end{itemize}
-The application has no lock out mechanism, which allows brute force attacks on known usernames and testing
-for a valid password
+\subsection{Mail}
+The e-mail functionality to send the tans upon sign up was not working.
 
 
-\subsection{Directory Traversal} \
-\begin{itemize}
-	\item Likelihood: \textit{high}
-	\item Implication: \textit{medium}
-	\item Risk: \textit{medium}
-	\item Reference: OWASP OTG-AUTHN-001
-\end{itemize}
+\section{Team3}
 
-It is possible to access \textit{SQL} directory through the \textit{url}.
+After testing the application there were no vulnerabilities found!
 
-
-\section{Team3 Online Banking}
-
-\subsection{Static Session ID}\label{Static Session ID}\
-\begin{itemize}
-	\item Likelihood: \textit{high}
-	\item Implication: \textit{high}
-	\item Risk: \textit{high}
-	\item Reference: OWASP OTG-SESS-003
-\end{itemize}
-
-The session id is saved in form of the (static) user id in a cookie. This cookie can be used on any machine
-to take over the account of a user. The lifetime of this cookie is only limited by the cookie lifetime field.
-
-
-\subsection{Stored XSS in Registration}\label{Stored XSS in Registration}\
-\begin{itemize}
-	\item Likelihood: \textit{medium}
-	\item Implication: \textit{high}
-	\item Risk: \textit{high}
-	\item Reference: OWASP OTG-INPVAL-002
-\end{itemize}
-
-Using stored cross-site-scripting attacks, one can inject JavaScript code, that is run, when the Administrator/Employee logs in. Arbitrary code can be loaded from a third party page.
-
-\subsection{{Brute Force Password}}\label{Missing Lock Out Mechanism}\
-\begin{itemize}
-	\item Likelihood: \textit{high}
-	\item Implication: \textit{medium}
-	\item Risk: \textit{medium}
-	\item Reference: OWASP OTG-AUTHN-003
-\end{itemize}
-The application has no lock out mechanism, which allows brute force attacks on known usernames and testing
-for a valid password
-
-
-\section{Vulnerability Overview}
+ 
 
 \chapter{Tools used}
+
 \section{sqlmap}
-
-
+We used \textit{sqlmap} to test for SQL Injections, and we did not find any.
 \section{RIPS}
+We used RIPS to do a static testing of the PHP code. It showed warnings for SQL Injections which were \textit{false-positives}. The were also some \textit{false-positive} with command execution.
 \section{FindBugs}
+We used this tool to do a static testing of the Java code, and we did not find any vulnerabilities in the code of \textit{Team2}, and we found two \textit{false-positive} warnings in the code of \textit{Team3}.
+
 \chapter{Detailed Report}
 
 The following pages describe for each test how both applications Team2 and Online Banking Bank
@@ -1032,6 +979,24 @@ performed. The test is divided in different sections following the OWASP Testing
 		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N
 	\end{tabular}
 \end{center}
+\pagebreak
+\subsection{Testing for Cross Site Request Forgery(OTG-SESS-005)}\
+\begin{tabular}{cR{12cm}}
+	\textbf{Team2} & Likelihood: 10\\& Impact: 6\\& Risk: 6
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Team2}} \\
+	\hline
+	Observation & The application is vulnerable to CRSF.\\
+	Discovery & WE used \textit{w3af} tool to analyze the website and it showed that there is CRSF vulnerability.\\
+	Likelihood & N/A\\
+	Impact & N/A  \\
+	Recommendations & N/A\\
+	Comparison & N/A\\
+	\hline
+\end{tabular}
 
 \pagebreak
 \subsection{Testing for logout functionality(OTG-SESS-006)}\
@@ -1415,10 +1380,7 @@ The case of command execution is yet again a \textit{false-positive} since the v
 
 \textbf{Team21}\\
 
-Team21 does not provide a lot of error messages for incorrect inputs (e.g. incorrect TAN
-length, wrong TAN, TAN used). \\
-Based on the client side input validation, there are also no messages for manipulated input via proxy or by removing the validation patterns, which can lead to problems. Examples would be a malformated email which results in a not working account or a longer input then expected, which cuts off the end of the input. There are some cases when the page returns the path of the file where the error occurred.\\
-
+Team2 provides an error for the transactions using file upload only when the file format is not correct. Every other time when the correct file format is uploaded with incorrect data, the file is accepted even though no transaction is executed.\\
  
  
 \section{Business Logic Testing}\
@@ -1460,7 +1422,22 @@ Based on the client side input validation, there are also no messages for manipu
 	Likelihood & N/A \\
 	Implication    & N/A \\
 	Recommendations & N/A \\
-	Comparison& We got the same result with our application. \\
+	Comparison & We got the same result with our application. \\
+	\hline
+\end{tabular}
+
+
+\pagebreak
+\subsection{Test Upload of Unexpected File Types (OTG-BUSLOGIC-008) }
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Team2}} \\
+	\hline
+	Observation   & The is no possibility to upload any unexpected file type.  \\
+	Discovery  & We tried to upload different type of files from the one presented on the website. There was an error every time the file had different extension from the one specified on the website.  \\
+	Likelihood &  N/A \\
+	Implication    & N/A \\
+	Comparison & Our application reacts the same way, it does not allow uploading file types different from the one specified. \\
 	\hline
 \end{tabular}
 
@@ -1468,528 +1445,7 @@ Based on the client side input validation, there are also no messages for manipu
  
 \section{Client Side Testing}
 
-\subsection{Testing for DOM based Cross Site Scripting (OTG-CLIENT-001)}\
-
-\begin{tabular}{cR{12cm}}
-	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
-\end{tabular}
-
-\begin{tabular}{ l|p{11cm}  }
-	\hline
-	\multicolumn{2}{c}{\textbf{Team2}} \\
-	\hline
-	Observation   & Observing the HTML source code showed us that they don't use javascript and therefore there can't be any DOM XSS vulnerabilities. \\
-	Discovery  & We used \textit{Chrome} and its developer tools to take a look at the HTML source code. \\
-	Likelihood & N/A \\
-	Implication    & N/A \\
-	Comparison & Our web application uses javascript in many different cases, but we couldn't find any DOM XSS vulnerabilities. \\
-	\hline
-\end{tabular}
-\\
-\vspace{0.5cm}
-\\
-\begin{center}
-	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N/A
-	\end{tabular}
-\end{center}
-
-\pagebreak
-
-\subsection{Testing for JavaScript Execution (OTG-CLIENT-002)}\
-\begin{tabular}{cR{12cm}}
-	\textbf{Team2} & Likelihood: 9\\& Impact: 10\\& Risk: 9
-\end{tabular}
-
-\begin{tabular}{ l|p{11cm}  }
-	\hline
-	\multicolumn{2}{c}{\textbf{Team2}} \\
-	\hline
-	Observation   & We found several XSS vulnerabilities allowing the execution of arbitrary javascript code in the clients browser. \\
-	Discovery  & We used the tools \textit{w3af} and \textit{ZED Attack Proxy} to find some XSS vulnerabilities and found enough of them. \\
-	Likelihood & It is very likely that these vulnerabilities are found and you don't need much experience to use them. \\
-	Implication    & The vulnerabilities found can be used to hijack the session of an user, accept user registrations or even making user accounts to employee accounts. \\
-	Comparison & Our app is also vulnerable against XSS attacks but the difficulty is higher as in their web application. More experienced people are necessary to exploit them. \\
-	\hline
-\end{tabular}
-\\
-\vspace{0.5cm}
-\\
-\begin{center}
-	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } H              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } H              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } L
-	\end{tabular}
-\end{center}
-\pagebreak
-
-\subsection{Testing for HTML Injection (OTG-CLIENT-003)}\
-\begin{tabular}{cR{12cm}}
-	\textbf{Team2} & Likelihood: 8\\& Impact: 7\\& Risk: 7
-\end{tabular}
-
-\begin{tabular}{ l|p{11cm}  }
-	\hline
-	\multicolumn{2}{c}{\textbf{Team2}} \\
-	\hline
-	Observation   & The HTML injection vulnerability exists  \\
-	Discovery  & The vulnerability was found by the tools \textit{w3af} and \textit{ZED Attack Proxy}. \\
-	Likelihood & It is quite likely that this vulnerability is found and can be used very easily. \\
-	Implication    &  vulnerability can have many consequences, like disclosure of a user's session cookies that could be used to impersonate the victim, or, more generally, it can allow the attacker to modify the page content seen by the victims. \\
-	Comparison & Our web application is vulnerable as well, but javascript validations and text length restrictions of the input fields make it more difficult to exploit these vulnerabilities. \\
-	\hline
-\end{tabular}
-\\
-\vspace{0.5cm}
-\\
-\begin{center}
-	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } L
-	\end{tabular}
-\end{center}
-\pagebreak
-
-
-\subsection{Testing for Client Side URL Redirect (OTG-CLIENT-004)}\
-\begin{tabular}{cR{12cm}}
-	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
-\end{tabular}
-
-\begin{tabular}{ l|p{11cm}  }
-	\hline
-	\multicolumn{2}{c}{\textbf{Team2}} \\
-	\hline
-	Observation   & We couldn't find any client side redirections in the html source code of the web application and therefore exists no client side url redirect vulnerability. \\
-	Discovery  & We used \textit{Chrome} and its web inspector to look at the html code. \\
-	Likelihood & N/A \\
-	Implication    & N/A \\
-	Comparison & The same results apply for our web application. \\
-	\hline
-\end{tabular}
-\\
-\vspace{0.5cm}
-\\
-\begin{center}
-	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N/A
-	\end{tabular}
-\end{center}
-\pagebreak
-
-\subsection{Testing for CSS Injection (OTG-CLIENT-005)}\
-\begin{tabular}{cR{12cm}}
-	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
-\end{tabular}
-
-\begin{tabular}{ l|p{11cm}  }
-	\hline
-	\multicolumn{2}{c}{\textbf{Team2}} \\
-	\hline
-	Observation   & Our search didn't find any spots in the html source code where there is user generated input used to change some css attributes. \\
-	Discovery  & \textit{Chrome} and its web inspector were used to read the html code. \\
-	Likelihood & N/A \\
-	Implication    & N/A \\
-	Comparison & The same results apply for our web application. \\
-	\hline
-\end{tabular}
-\\
-\vspace{0.5cm}
-\\
-\begin{center}
-	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N/A
-	\end{tabular}
-\end{center}
-\pagebreak
-
-\subsection{Testing for Client Side Resource Manipulation (OTG-CLIENT-006)}\
-\begin{tabular}{cR{12cm}}
-	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
-\end{tabular}
-
-\begin{tabular}{ l|p{11cm}  }
-	\hline
-	\multicolumn{2}{c}{\textbf{Team2}} \\
-	\hline
-	Observation   & We couldn't find any vulnerability here, but we could only check if such a vulnerability exists in the javascript code and not in the  php code, because we had no access to the php source code. \\
-	Discovery  & We used \textit{Chrome} and its developer tools to inspect the html/javascript code. \\
-	Likelihood & N/A \\
-	Implication    & N/A \\
-	Comparison & Our web application uses javascript more often, but user controlled input which specifies the path of a resource was not found. \\
-	\hline
-\end{tabular}
-\\
-\vspace{0.5cm}
-\\
-\begin{center}
-	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N/A
-	\end{tabular}
-\end{center}
-\pagebreak
-
-\subsection{Test Cross Origin Resource Sharing (OTG-CLIENT-007)}\
-\begin{tabular}{cR{12cm}}
-	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
-\end{tabular}
-
-\begin{tabular}{ l|p{11cm}  }
-	\hline
-	\multicolumn{2}{c}{\textbf{Team2}} \\
-	\hline
-	Observation   & The inspected web application doesn't make use of XMLHttpRequests and therefor no cross origin resource sharing vulnerabilities exist. \\
-	Discovery  & We used \textit{Chrome} and its developer tools to inspect the html/javascript code and \textit{Charles Web Proxy} to make sure that no request is executed. \\
-	Likelihood & N/A \\
-	Implication    & N/A \\
-	Comparison & Our web application uses XMLHttpRequests but sends the requests to the same origin and therefor there exist no cross origin resource sharing vulnerabilities. \\
-	\hline
-\end{tabular}
-\\
-\vspace{0.5cm}
-\\
-\begin{center}
-	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N/A
-	\end{tabular}
-\end{center}
-\pagebreak
-
-\subsection{Testing for Cross Site Flashing (OTG-CLIENT-008)}\
-\begin{tabular}{cR{12cm}}
-	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
-\end{tabular}
-
-\begin{tabular}{ l|p{11cm}  }
-	\hline
-	\multicolumn{2}{c}{\textbf{Team2}} \\
-	\hline
-	Observation   & \textit{ActionScript} and \textit{Flash} are never used in this web application. \\
-	Discovery  & We tried to use the web application on a pc with no \textit{Adobe Flash} installed and got no request to install it. Additionally the html code was inspected with \textit{Chrome} and no reference to \textit{Adobe Flash} was found. \\
-	Likelihood & N/A \\
-	Implication    & N/A \\
-	Comparison & The same results apply for our web application.  \\
-	\hline
-\end{tabular}
-\\
-\vspace{0.5cm}
-\\
-\begin{center}
-	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N/A
-	\end{tabular}
-\end{center}
-\pagebreak
-
-
-\subsection{Testing for Clickjacking (OTG-CLIENT-009)}\
-\begin{tabular}{cR{12cm}}
-	\textbf{Team2} & Likelihood: 8\\& Impact: 9\\& Risk: 8
-\end{tabular}
-
-\begin{tabular}{ l|p{11cm}  }
-	\hline
-	\multicolumn{2}{c}{\textbf{Team2}} \\
-	\hline
-	Observation   & We found a vulnerability in the web application that allows attackers to make clickjacking attacks by bundling the website inside an iframe to give the user the feeling of interacting with the target website but being instead on a malicious web page. \\
-
-	Discovery  & The tool \textit{w3af} found out that the web application does not make use of protection techniques to prevent click jacking attacks. The use of \textit{X-Frame-Options} header would help on the server side to prevent against this type of attacks, but is never used by this web application. \\
-	\\
-	Likelihood & It is quite likely that someone would use this kind of exploits on an online banking website, because the people trust these websites. It is not very difficult to use this vulnerability to attack the users. \\
-	Implication    & The user would think he would interact with the secure online banking system, but in reality he is on a malicious website that can record his interaction and filter out sensitive information. \\
-	Comparison & The same results apply for our web application. \\
-	\hline
-\end{tabular}
-\\
-\vspace{0.5cm}
-\\
-\begin{center}
-	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } R              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } H              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } H              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N
-	\end{tabular}
-\end{center}
-\pagebreak
-
-
-\subsection{Testing WebSockets (OTG-CLIENT-010)}\
-\begin{tabular}{cR{12cm}}
-	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
-\end{tabular}
-
-\begin{tabular}{ l|p{11cm}  }
-	\hline
-	\multicolumn{2}{c}{\textbf{Team2}} \\
-	\hline
-	Observation   & We inspected the html/javascript source code to find an use of WebSockets but could't find any of them. That means also, that there are no WebSockets vulnerabilities applicable. \\
-	Discovery  & \textit{Chrome} and its developer tools can show the source code of the web page and can show you if WebSockets are used to communicate with other resources. \\
-	Likelihood & N/A \\
-	Implication    & N/A \\
-	Comparison & The same results apply for our web application.  \\
-	\hline
-\end{tabular}
-\\
-\vspace{0.5cm}
-\\
-\begin{center}
-	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N/A
-	\end{tabular}
-\end{center}
-\pagebreak
-
-\subsection{Test Web Messaging (OTG-CLIENT-011)}\
-\begin{tabular}{cR{12cm}}
-	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
-\end{tabular}
-
-\begin{tabular}{ l|p{11cm}  }
-	\hline
-	\multicolumn{2}{c}{\textbf{Team2}} \\
-	\hline
-	Observation   & The web application makes doesn't use the Web Messaging technology (aka Cross Document Messaging) and therefor we couldn't find any vulnerability. \\
-	Discovery  & We used \textit{Charles Web Proxy} and \textit{Chrome} and its developer tools to see if any other requests are executed from the web application. \\
-	Likelihood & N/A \\
-	Implication    & N/A \\
-	Comparison & The same results apply for our web application.  \\
-	\hline
-\end{tabular}
-\\
-\vspace{0.5cm}
-\\
-\begin{center}
-	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N/A
-	\end{tabular}
-\end{center}
-\pagebreak
-
-\subsection{Test Local Storage (OTG-CLIENT-012)}\
-\begin{tabular}{cR{12cm}}
-	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
-\end{tabular}
-
-\begin{tabular}{ l|p{11cm}  }
-	\hline
-	\multicolumn{2}{c}{\textbf{Team2}} \\
-	\hline
-	Observation   & The web application make no use of the local storage functionality of the browsers. \\
-	Discovery  & We tested the web application with a browser and tested all the functionality and \textit{Chromes} web inspector didn't show any use of the local storage functionality of the browser. \\
-	Likelihood & N/A \\
-	Implication    & N/A \\
-	Comparison & The same results apply for our web application.  \\
-	\hline
-\end{tabular}
-\\
-\vspace{0.5cm}
-\\
-\begin{center}
-	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N/A
-	\end{tabular}
-\end{center} 
-
+We did not do any client-side testing on this website.
 
 \appendix{}
 
