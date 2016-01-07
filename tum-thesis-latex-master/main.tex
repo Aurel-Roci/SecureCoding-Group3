@@ -57,19 +57,28 @@
 	\begin{tabular}{lll}
 		\hline
 		{\textbf{Name}} & { \textbf{Task}} & {\textbf{Time}} \\ \hline
-		Aurel Roci &  Configuration and Deploy Management Testing  &  1.5          \\
-		
-	    & Error Handling   &  0.25             \\
-		& Testing for default credentials & 0.25  \\
-		& Testing for Reflected Cross Site Scripting &  0.25  \\
-		& Testing for Stored Cross Site Scripting   & 0.25 \\
-		& Testing for HTTP Verb Tampering &  0.25     \\
-		& Testing for SQL Injection &  0.25 \\
-		& Test Number of Times a Function Can be Used Limits & 0.25 \\
-		& Test Business Logic Data Validation & 1 \\
-		& Executive Summary & 0.5 \\
+		Aurel Roci & Test File Extensions Handling for Sensitive Information and documenting & 1\\
+		& Test HTTP Methods and documenting & 1\\
+		& Test HTTP Strict Transport Security and documenting & 1\\
+		& Test RIA cross domain policy & 1\\
+	    & Error Handling   &  0.5       \\
+		& Testing for default credentials & 0.5  \\
+		& Testing for Reflected Cross Site Scripting and documenting &  0.5  \\
+		& Testing for Stored Cross Site Scripting and documenting& 0.5 \\
+		& Testing for HTTP Verb Tampering and documenting &  0.5     \\
+		& Testing for SQL Injection and documenting &  2 \\
+		& Test Number of Times a Function Can be Used Limits & 0.5 \\
+		& Test Business Logic Data Validation and documenting & 1 \\ 
+		& Testing for Bypassing Session Management Schema and documenting & 1\\
+		& Testing for Cookies attributes and documenting & 1 \\
+		& Testing for Session Fixation and documenting & 1\\
+		& Testing for Exposed Session Variables and documenting & 1\\
+		& Testing for Cross Site Request Forgery and documenting & 1\\
+		& Testing for logout functionality and documenting & 1\\
+		& Test Session Timeout and documenting & 1\\
+		& Testing for Session puzzling and documenting & 1\\
 		& Testing Report & 2  \\
-		& Testing for Cross Site Request Forgery  & 0.25  \\
+		& Testing for Cross Site Request Forgery  & 0.5  \\
 		& Testing for Privilege Escalation  & 1  \\
 		& Presentation & 0.25 \\
 		\hline
@@ -81,10 +90,14 @@
 		\hline
 		Patrick Sattler &  Presentation & 2 \\		 
 		& Testing for Code Injection, local or remote file inclusion & 1 \\
-		& Testing for Command Injection & 0.5 \\
-		& Testing for Format string & 0.25 \\
-		& Testing for incubated vulnerabilities & 0.5 \\
-		 &  &
+		& Testing for Command Injection & 1 \\
+		& Testing for Format string & 0.5 \\
+		& Testing for incubated vulnerabilities & 1 \\ 
+	    & Testing Directory traversal/file include & 1\\
+		& Testing for bypassing authorization schema & 1\\
+		& Testing for Privilege Escalation & 1\\
+		& Testing for Insecure Direct Object References & 1\\
+		
 	\end{tabular}%
 }
 \end{table}
@@ -261,7 +274,7 @@ The following pages describe for each test how both applications Team2 and Team3
 \pagebreak
 \subsection{Test HTTP Strict Transport Security (OTG-CONFIG-007)}\
 \begin{tabular}{cR{12cm}}
-	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+	\textbf{Team2} & Likelihood: 7\\& Impact: 5\\& Risk: 4
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
@@ -473,7 +486,7 @@ The following pages describe for each test how both applications Team2 and Team3
 
 \subsection{Testing for Weak or unenforced username policy (OTG-IDENT-005)}\
 \begin{tabular}{cR{12cm}}
-	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+	\textbf{Team2} & Likelihood: 10\\& Impact: 0\\& Risk: 0
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
@@ -837,7 +850,7 @@ The following pages describe for each test how both applications Team2 and Team3
 \subsection{Testing for Bypassing Session Management Schema(OTG-SESS-001)}\
 
 \begin{tabular}{cR{12cm}}
-	\textbf{Team2} & Likelihood: 10\\ & Impact: 7\\& Risk: 7
+	\textbf{Team2} & Likelihood: 10\\ & Impact: 6\\& Risk: 7
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
@@ -1603,7 +1616,7 @@ Team2 provides an error for the transactions using file upload only when the fil
 \section{Client Side Testing}
 \subsection{Testing for Clickjacking (OTG-CLIENT-009) }
 \begin{tabular}{cR{12cm}}
-	\textbf{Team2} & Likelihood: 8\\& Impact: 8\\& Risk: 6
+	\textbf{Team2} & Likelihood: 7\\& Impact: 5\\& Risk: 6
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
@@ -1626,6 +1639,7 @@ Team2 provides an error for the transactions using file upload only when the fil
 	Recommendation & The use of X-Frame-Options header would help on the server side to
 	prevent against this type of attacks, but is never used by this web
 	application.  \\
+	Comparison & Our webapp is secure towards clickjacking.\\
 	\hline
 \end{tabular}
 \\
