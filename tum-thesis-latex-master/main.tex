@@ -26,10 +26,10 @@
 
    \textbf{Team2}\\
 
-	We found several vulnerabilities, which could cause severe damage to the \textit{Team2}. It is possible to get access to the admin page via stealing the session. Thus an attacker can register an arbitrary employee or customer and unlock the registered user. An	attacker can also execute a brute force attack on known user ids as there is no lock mechanism to prevent this. Besides the security issues there is also a severe problem with regard to the business logic. In the current state this web application should not be used productively!	\\
+	We found several vulnerabilities, which could cause severe damage to the \textit{Team2}. It is possible to get access to the admin page via stealing the session. Thus an attacker can register an arbitrary employee or customer and unlock the registered user. There is also no upload format of the content, for the file to be uploaded.\\
 
 
-	\textbf{Team3 Online Banking}\\
+	\textbf{Team3}\\
 
 	We found some issues, which potentially could cause damage to the \textit{Team3 Online Banking}. However the detected issues are quite easy to fix. If an experienced attacker performs a man in the middle attack he'll be able to track session ids. The implications are severe, as the	attacker can take over the role of the customer, but this attack requires advanced knowledge. With regard to the business logic there was only one issue with low risk detected. \\
 
@@ -57,64 +57,29 @@
 	\begin{tabular}{lll}
 		\hline
 		{\textbf{Name}} & { \textbf{Task}} & {\textbf{Time}} \\ \hline
-		Aurel Roci &  Test HTTP Methods  &  0.25          \\
-	    & Error Handling   &  1             \\
+		Aurel Roci &  Configuration and Deploy Management Testing  &  1.5          \\
+		
+	    & Error Handling   &  0.25             \\
 		& Testing for default credentials & 0.25  \\
-		& Testing for Reflected Cross Site Scripting &  0.5  \\
-		& Testing for Stored Cross Site Scripting   & 2 \\
-		& Testing for HTTP Verb Tampering &  0.5     \\
-		& Testing for SQL Injection &  2 \\
-		& Test Number of Times a Function Can be Used Limits & 0.75 \\
-		& Test Business Logic Data Validation & 1.5 \\
+		& Testing for Reflected Cross Site Scripting &  0.25  \\
+		& Testing for Stored Cross Site Scripting   & 0.25 \\
+		& Testing for HTTP Verb Tampering &  0.25     \\
+		& Testing for SQL Injection &  0.25 \\
+		& Test Number of Times a Function Can be Used Limits & 0.25 \\
+		& Test Business Logic Data Validation & 1 \\
 		& Executive Summary & 0.5 \\
 		& Testing Report & 2  \\
-		& Testing for Cross Site Request Forgery  & 0.5  \\
-		& Testing for Privilege Escalation  & 1.5  \\
+		& Testing for Cross Site Request Forgery  & 0.25  \\
+		& Testing for Privilege Escalation  & 1  \\
 		& Presentation & 0.25 \\
 		\hline
 		\hline
-		Stefan Ch. Kofler & Test File Extensions Handling for Sensitive Information & 2.0 \\
-		& Test HTTP Strict Transport Security & 0.5 \\
-		& Test RIA cross domain policy & 0.5 \\
-		& Test Role Definitions & 1.25 \\
-		& Test User Registration Process & 0.75 \\
-		& Test Account Provisioning Process & 0.5 \\
-		& Testing for Account Enumeration and Guessable User Account & 0.5 \\
-		& Testing for Weak or unenforced username policy & 0.5 \\
-		& Testing for DOM based Cross Site Scripting & 0.75 \\
-		& Testing for JavaScript Execution & 2.0 \\
-		& Testing for HTML Injection & 0.5 \\
-		& Testing for Client Side URL Redirect & 0.75 \\
-		& Testing for CSS Injection & 0.5 \\
-		& Testing for Client Side Resource Manipulation & 0.5 \\
-		& Test Cross Origin Resource Sharing & 1.25 \\
-		& Testing for Cross Site Flashing & 0.5 \\
-		& Testing for Clickjacking & 1.0 \\
-		& Testing WebSockets & 0.75 \\
-		& Test Web Messaging & 0.5 \\
-		& Test Local Storage & 0.5 \\
+		Stefan Ch. Kofler & \\
+	
 		\hline
 		\hline
-		Patrick Sattler & understanding w3af and configuration & 2 \\
-		& w3af testing overflow and format string & 1.5 \\
-		& Test bruteforce for password & 0.5 \\
-		& Test bruteforce for TAN & 1 \\
-		& Test Registration process & 1 \\
-		& Test password policy & 0.5 \\
-		& Test credentials transport & 1 \\
-		& Test bypassing authentication schema & 1 \\
-		& Test browser cache weakness & 1 \\
-		& Test weak password policy & 0.5 \\
-		& Testing Directory traversal/file include & 1.75 \\
-		& Testing bypassing session management & 1 \\
-		& Testing cookie attributes & 0.75 \\
-		& Testing session fixation & 0.75 \\
-		& Testing for Exposed Session Variables & 0.5 \\
-		& Testing for Cross Site Request Forgery & 1 \\
-		& Testing for logout functionality & 0.5 \\
-		& Test Session Timeout & 0.75 \\
-		& Testing for Session puzzling & 0.25 \\
-		& Testing for XML/SSI/XPATH Injection & 2 \\
+		Patrick Sattler &  \\
+		& Presentation & 2 \\ 
 		& Testing for Code Injection, local or remote file inclusion & 1 \\
 		& Testing for Command Injection & 0.5 \\
 		& Testing for Format string & 0.25 \\
@@ -372,12 +337,29 @@ The following pages describe for each test how both applications Team2 and Team3
 	\hline
 	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
-	Observation   & We found out that there exist two different roles in the system. There is the role of a normal customer and the role of an banker. Employees have the additional functionality to view account and transaction details of all the customers. Transactions over 10000 euro and new user registrations can be accepted by the employee.\\
-	Discovery  & No special tools except a browser were needed because all the roles and their available functions can be seen on the webapp. All the roles have the functinalities they are supposed to have. \\
+	Observation   & We found out that there exist two different roles in the system. There is the role of a normal customer and the role of an banker. Employees can view account and transaction details of all the customers. Transactions over 10000 euro and new user registrations can be accepted by the employee.\\
+	Discovery  & All the roles and their available functions can be seen on the webapp.  \\
+	Likelihood & It is very likely that people find this information. \\
+	Impact    & There is no direct implication. \\
+	Recommendations & N/A \\ 
+	\hline
+\end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{tabular}{cR{12cm}}
+	\textbf{Team3} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Team3}} \\
+	\hline
+	Observation   & We found out that there exist two different roles in the system. There is the role of a normal customer and the role of an banker. Employees can view account and transaction details of all the customers. Transactions over 10000 euro and new user registrations can be accepted by the employee.\\
+	Discovery  & All the roles and their available functions can be seen on the webapp.  \\
 	Likelihood & It is very likely that people find this information. \\
 	Impact    & There is no direct implication. \\
 	Recommendations & N/A \\
-	Comparison & Our web application provides the same roles, but the roles are not described on the web page. \\
 	\hline
 \end{tabular}
  
@@ -1319,14 +1301,31 @@ sqlmap -u https://localhost/SecureCoding-Group3/online_banking/
 	\hline
 	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
-	Observation   & We did not find any vulnerability regarding code injection and local or remote file inclusion in our web app. Team 2 we were able to upload a file with code but there was no abnormal behavior of the web app. \\
+	Observation   & We did not find any vulnerability regarding code injection and local or remote file inclusion.  \\
 	Discovery  & Tried to perform a command execution via the backticks (`) and also the semicolon (;) in the filename but our	webapp correctly handled the files without injections. We upload files with code written in them but nothing happened. \\
 	Likelihood & N/A \\
 	Implication    & N/A \\
 	Recommendations & N/A \\ 
 	\hline
 \end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{tabular}{cR{12cm}}
+	\textbf{Team3} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
 
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Team3}} \\
+	\hline
+	Observation   & We did not find any vulnerability regarding code injection and local or remote file inclusion in our web app.   \\
+	Discovery  & Tried to perform a command execution via the backticks (`) and also the semicolon (;) in the filename but our	webapp correctly handled the files without injections. We upload files with code written in them but nothing happened. \\
+	Likelihood & N/A \\
+	Implication    & N/A \\
+	Recommendations & N/A \\ 
+	\hline
+\end{tabular}
 \pagebreak
 \subsection{Testing for Command Injection(OTG-INPVAL-013)}\
 \subsubsection{Team2}
@@ -1365,36 +1364,65 @@ The case of command execution is yet again a \textit{false-positive} since the v
 	\hline
 	Observation   & We did not find any vulnerability regarding buffer overflow,
 	heap overflow, stack overflow or string formatting\\
-	Discovery  & We used w3af to locate such vilnerabilities. \\
+	Discovery  & We used w3af to locate such vulnerabilities. \\
 	Likelihood & N/A \\
 	Implication    & N/A \\
-	Recommendations & N/A \\
-	Comparison& Our web application is also immune to buffer overflow,
-	heap overflow, stack overflow and string formatting \\
+	Recommendations & N/A \\ 
 	\hline
 \end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{tabular}{cR{12cm}}
+	\textbf{Team3} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
 
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Team3}} \\
+	\hline
+	Observation   & We did not find any vulnerability regarding buffer overflow,
+	heap overflow, stack overflow or string formatting\\
+	Discovery  & We used w3af to locate such vulnerabilities. \\
+	Likelihood & N/A \\
+	Implication    & N/A \\
+	Recommendations & N/A \\ 
+	\hline
+\end{tabular}
 \pagebreak
 \subsection{Testing for incubated vulnerabilities(OTG-INPVAL-015)}\
 
 \begin{tabular}{cR{12cm}}
-	\textbf{Team2} & Likelihood: 7\\& Impact: 7\\& Risk: 5
+	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
 	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
-	Observation   & A part of the XSS injection counts also to this vulnerability thats possible on the web app of
-	team 21. Code like the example on the owasp page for OTG-INPVAL-015 could exploit the web app\\
-	Discovery  & We knew that stored XSS is possible so also this attack works and someone could hijack an
-	admins account simply by creating an user\\
-	Likelihood & The attack is pretty easy and the employee only has to view the accounts
-	page and if the attacker is a bit skilled the employee does not even discover that something was wrong \\
-	Implication    & The attacker can hijack the session and do all the other things possible with XSS\\
-	Recommendations & Validate and escape the user input \\
-	Comparison& Our web application has the same vulnerability but there it is a lot more restricted.
-	Only really short injection code can be used so the possibilities are limited. \\
+	Observation   &The webapp is secure towards incubated vulnerabilities.\\
+	Discovery  & We tried XSS, uploading file with commands, SQL Injections and neither of them worked. So there is no possibility to inject code.\\
+	Likelihood & N/A \\
+	Implication    & N/A\\
+	Recommendations & N/A \\ 
+	\hline
+\end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{tabular}{cR{12cm}}
+	\textbf{Team3} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Team3}} \\
+	\hline
+	Observation   & We did not find any vulnerability regarding incubated vulnerabilities.\\
+	Discovery  & There is no possibility to inject code in the webapp since every user input is sanitized \\
+	Likelihood & N/A \\
+	Implication    & N/A \\
+	Recommendations & N/A \\ 
 	\hline
 \end{tabular}
 \pagebreak
@@ -1421,11 +1449,27 @@ Team2 provides an error for the transactions using file upload only when the fil
 
 	Likelihood & N/A \\
 	Implication    & N/A \\
-	Recommendations & N/A \\
-	Comparison& We got the same result with our application. \\
+	Recommendations & N/A \\ 
 	\hline
 \end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{tabular}{cR{12cm}}
+	\textbf{Team3} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
 
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Team3}} \\
+	\hline
+		Observation   & Tests show that data validation is both: client side and server side.\\
+		Discovery  & We intercepted the input before it gets send to the server using \textit{Burp} and manipulated the data, and we received an error message. \\ 
+		Likelihood & N/A \\
+		Implication    & N/A \\
+		Recommendations & N/A \\ 
+	\hline
+\end{tabular}
 \pagebreak
  
 \subsection{Test Number of Times a Function Can be Used Limits(OTG-BUSLOGIC-005)}\
@@ -1439,15 +1483,30 @@ Team2 provides an error for the transactions using file upload only when the fil
 	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
 	Observation   & We tried inserting the same tan multiple times.\\
-	Discovery  & The web application did not accept requests with a TAN that was already used. \\
-
+	Discovery  & The web application did not accept requests with a TAN that was already used in the HTML form, but we did not receive any error with the file upload, but the transaction did not go through. \\ 
 	Likelihood & N/A \\
 	Implication    & N/A \\
-	Recommendations & N/A \\
-	Comparison & We got the same result with our application. \\
+	Recommendations & N/A \\ 
 	\hline
 \end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{tabular}{cR{12cm}}
+	\textbf{Team3} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
 
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Team3}} \\
+	\hline
+	Observation   & Tests show that data validation is both: client side and server side.\\
+	Discovery  & We intercepted the input before it gets send to the server using \textit{Burp} and manipulated the data, and we received an error message. \\ 
+	Likelihood & N/A \\
+	Implication    & N/A \\
+	Recommendations & N/A \\ 
+	\hline
+\end{tabular}
 
 \pagebreak
 \subsection{Test Upload of Unexpected File Types (OTG-BUSLOGIC-008) }
@@ -1459,10 +1518,27 @@ Team2 provides an error for the transactions using file upload only when the fil
 	Discovery  & We tried to upload different type of files from the one presented on the website. There was an error every time the file had different extension from the one specified on the website.  \\
 	Likelihood &  N/A \\
 	Implication    & N/A \\
-	Comparison & Our application reacts the same way, it does not allow uploading file types different from the one specified. \\
+	Recommendation & N/A \\
 	\hline
 \end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{tabular}{cR{12cm}}
+	\textbf{Team3} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
 
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Team3}} \\
+	\hline
+	Observation   & The is no possibility to upload any unexpected file type.  \\
+	Discovery  & We tried to upload different type of files from the one presented on the website. There was an error every time the file had different extension from the one specified on the website.  \\
+	Likelihood &  N/A \\
+	Implication    & N/A \\
+	Recommendation & N/A \\
+	\hline
+\end{tabular}
 \pagebreak
  
 \section{Client Side Testing}
