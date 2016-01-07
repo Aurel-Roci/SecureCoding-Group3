@@ -121,3 +121,5 @@
 \contentsline {subsection}{\numberline {4.8.3}Test Upload of Unexpected File Types (OTG-BUSLOGIC-008)}{49}{subsection.4.8.3}
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.9}Client Side Testing}{50}{section.4.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.9.1}Testing for Clickjacking (OTG-CLIENT-009)}{50}{subsection.4.9.1}

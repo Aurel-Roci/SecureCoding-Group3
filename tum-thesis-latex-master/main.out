@@ -55,3 +55,4 @@
 \BOOKMARK [2][-]{subsection.4.8.2}{Test Number of Times a Function Can be Used Limits\(OTG-BUSLOGIC-005\)}{section.4.8}% 55
 \BOOKMARK [2][-]{subsection.4.8.3}{Test Upload of Unexpected File Types \(OTG-BUSLOGIC-008\)}{section.4.8}% 56
 \BOOKMARK [1][-]{section.4.9}{Client Side Testing}{chapter.4}% 57
+\BOOKMARK [2][-]{subsection.4.9.1}{Testing for Clickjacking \(OTG-CLIENT-009\)}{section.4.9}% 58

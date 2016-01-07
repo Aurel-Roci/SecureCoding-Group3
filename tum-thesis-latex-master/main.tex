@@ -1510,6 +1510,10 @@ Team2 provides an error for the transactions using file upload only when the fil
 
 \pagebreak
 \subsection{Test Upload of Unexpected File Types (OTG-BUSLOGIC-008) }
+\begin{tabular}{cR{12cm}}
+	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
+
 \begin{tabular}{ l|p{11cm}  }
 	\hline
 	\multicolumn{2}{c}{\textbf{Team2}} \\
@@ -1542,8 +1546,75 @@ Team2 provides an error for the transactions using file upload only when the fil
 \pagebreak
  
 \section{Client Side Testing}
+\subsection{Testing for Clickjacking (OTG-CLIENT-009) }
+\begin{tabular}{cR{12cm}}
+	\textbf{Team2} & Likelihood: 8\\& Impact: 9\\& Risk: 8
+\end{tabular}
 
-We did not do any client-side testing on this website.
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Team2}} \\
+	\hline
+	Observation   & We found a vulnerability in the web application that allows
+	attackers to make clickjacking attacks by bundling the website
+	inside an iframe to give the user the feeling of interacting with
+	the target website but being instead on a malicious web page.  \\
+	Discovery  & The tool w3af found out that the web application does not make
+	use of protection techniques to prevent click jacking attacks.  \\
+	Likelihood &  It is quite likely that someone would use this kind of exploits
+	on an online banking website, because the people trust these
+	websites. It is not very difficult to use this vulnerability to attack
+	the users. \\
+	Implication    & The user would think he would interact with the secure online
+	banking system, but in reality he is on a malicious website that
+	can record his interaction and filter out sensitive information. \\
+	Recommendation & The use of X-Frame-Options header would help on the server side to
+	prevent against this type of attacks, but is never used by this web
+	application.  \\
+	\hline
+\end{tabular}
+\\
+\vspace{0.5cm}
+\\
+\begin{center}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9}
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value : }} \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } R              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } H              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } H              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N
+	\end{tabular}
+\end{center} 
+\vspace{0.5cm}
+
+\begin{tabular}{cR{12cm}}
+	\textbf{Team3} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+\end{tabular}
+
+\begin{tabular}{ l|p{11cm}  }
+	\hline
+	\multicolumn{2}{c}{\textbf{Team3}} \\
+	\hline
+	Observation   & There is no possibility for clickjacking.  \\
+	Discovery  &The use of X-Frame-Options header prevents this. \\
+	Likelihood &  N/A \\
+	Implication    & N/A \\
+	Recommendation & N/A \\
+	\hline
+\end{tabular}
 
 \appendix{}
 
