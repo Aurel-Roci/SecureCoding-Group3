@@ -26,16 +26,16 @@
 
    \textbf{Team2}\\
 
-	We found several vulnerabilities, which could cause severe damage to the \textit{Team2}. It is possible to get access to the admin page via stealing the session. Thus an attacker can register an arbitrary employee or customer and unlock the registered user. There is also no upload format of the content, for the file to be uploaded.\\
+	We found several vulnerabilities, which could cause severe damage to the \textit{Team2}. It is possible to get access to the admin page via stealing the session. Thus an attacker can register an arbitrary employee or customer and unlock the registered user. There is also no upload format of the content, for the file to be uploaded.In the	current state this web application should not be used productively!\\
 
 
 	\textbf{Team3}\\
 
-	We found some issues, which potentially could cause damage to the \textit{Team3 Online Banking}. However the detected issues are quite easy to fix. If an experienced attacker performs a man in the middle attack he'll be able to track session ids. The implications are severe, as the	attacker can take over the role of the customer, but this attack requires advanced knowledge. With regard to the business logic there was only one issue with low risk detected. \\
+	After testing the web application we did not find any vulnerabilities.\\
 
 	\textbf{Comparison}\\
 
-	In summary we were able to clearly state out that the \textit{Team3 Online Banking} web application has less and also less severe vulnerabilites then the \textit{Team2} web application. Furthermore it has to be said that the detected issues of the \textit{Team3 Online Banking} are easier to fix and will cost less money to implement.
+	In summary we were able to clearly state out that the Team3 web application has no vulnerabilities, while Team2 has vulnerabilities.
 }
 
 \pagebreak
@@ -74,12 +74,12 @@
 		& Presentation & 0.25 \\
 		\hline
 		\hline
-		Stefan Ch. Kofler & \\
-	
+		Stefan Ch. Kofler & Reverse-Engineer the binary file & \\
+		& Binary-equivalent & \\
+		& Decompile jar file & \\
 		\hline
 		\hline
-		Patrick Sattler &  \\
-		& Presentation & 2 \\ 
+		Patrick Sattler &  Presentation & 2 \\		 
 		& Testing for Code Injection, local or remote file inclusion & 1 \\
 		& Testing for Command Injection & 0.5 \\
 		& Testing for Format string & 0.25 \\
@@ -100,18 +100,17 @@ Bank and the OnlineBanking Bank:
 \subsection{Static Session ID} \
 \begin{itemize}
 	\item Likelihood: \textit{high}
-	\item Implication: \textit{high}
-	\item Risk: \textit{high} 
+	\item Impact: \textit{Medium} 
 \end{itemize}
 
 The session id is saved in form of the (static) user id in a cookie. This cookie can be used on any machine
 to take over the account of a user. The lifetime of this cookie is only limited by the cookie lifetime field.
 
 \subsection{File Upload} 
-There was no instructions on the structure of the information for the file upload functionality. There was a sample file, but after uploading it, and trying it with several accounts, it did not work.
+There was no instructions on the structure of the information for the file upload functionality. There was a sample file, but it did not help with, since there were no instructions there as well.
 
 \subsection{Mail}
-The e-mail functionality to send the tans upon sign up was not working.
+The e-mail functionality upon sign up was not working.
 
 
 \section{Team3}
@@ -120,24 +119,27 @@ After testing the application there were no vulnerabilities found!
 
  
 
-\chapter{Tools used}
-\
+\chapter{Tools used} \
 
-\textit{sqlmap} - We used \textit{sqlmap} to test for SQL Injections, and we did not find any.\
+Aurel - \textit{sqlmap} - It is used to test for SQL Injections, and we did not find any.\\
 
-\textit{RIPS} - We used RIPS to do a static testing of the PHP code. It showed warnings for SQL Injections which were \textit{false-positives}. The were also some \textit{false-positive} with command execution.\
+Aurel - \textit{RIPS} - It is used to do a static testing of the PHP code. It showed warnings for SQL Injections which were \textit{false-positives}. The were also some \textit{false-positive} with command execution.\\
 
-\textit{FindBugs} - We used this tool to do a static testing of the Java code, and we did not find any vulnerabilities in the code of \textit{Team2}, and we found two \textit{false-positive} warnings in the code of \textit{Team3}.\
+Stefan - \textit{FindBugs} -It is used to do a static testing of the Java code, and we did not find any vulnerabilities in the code of \textit{Team2}, and we found two \textit{false-positive} warnings in the code of \textit{Team3}.\\
 
-\textit{netcat} - We used this tool to check the HTTP methods but it did not give any output. \
+Aurel - \textit{netcat} - It is used to check the HTTP methods but it did not give any output. \\
 
-\textit{nmap} We used this tool to check HTTP method, and it showed which methods were allowed and which ones were not allowed.
+Aurel - \textit{nmap} - It is used to check HTTP methods, and it showed which methods were allowed and which ones were not allowed.\\
 
-\textit{w3af} - We used this tool to find if the website had vulnerabilities by running an automatic test one the website. And found CSRF vulnerability. \
+Patrick - \textit{w3af} - It is used to find if the website had vulnerabilities by running an automatic test one the website. And found CSRF vulnerability. \\
 
-\textit{Zed Attack Proxy (ZAP)} - We used this for a spider attack towards the website, and did not find any CSRF vulnerability.\
+Patrick - \textit{Zed Attack Proxy (ZAP)} -It is used for a spider attack towards the website, and did not find any CSRF vulnerability.\\
 
-\textit{Burp} - We used this tool to to intercept the message from the web browser to the server and alter it.\
+Aurel - \textit{Burp} - It is used to intercept the message from the web browser to the server and alter it.\\
+
+Stefan - \textit{dotdotpwn} -It is used to check for directory traversal.\\
+
+Stefan - \textit{IDA Pro Free} - It is used to reverse-engineer the binary file of \textit{Team2}.
 
 \chapter{Detailed Report}
 
@@ -280,6 +282,28 @@ The following pages describe for each test how both applications Team2 and Team3
  	\includegraphics[width=150mm]{logos/rsts.jpg}
  	\caption{RIPS \label{overflow}}
  \end{figure} 
+ \begin{center}
+ 	\begin{tabular}{ll}
+ 		\rowcolor[HTML]{34CDF9}
+ 		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value : 5.3}} \\
+ 		\rowcolor[HTML]{BBDAFF}
+ 		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
+ 		\rowcolor[HTML]{ECF4FF}
+ 		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
+ 		\rowcolor[HTML]{BBDAFF}
+ 		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N              \\
+ 		\rowcolor[HTML]{ECF4FF}
+ 		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N              \\
+ 		\rowcolor[HTML]{BBDAFF}
+ 		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
+ 		\rowcolor[HTML]{ECF4FF}
+ 		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } L              \\
+ 		\rowcolor[HTML]{BBDAFF}
+ 		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N              \\
+ 		\rowcolor[HTML]{ECF4FF}
+ 		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N
+ 	\end{tabular}
+ \end{center}
 \pagebreak
 \subsection{Test RIA cross domain policy (OTG-CONFIG-008)}\
 \begin{tabular}{cR{12cm}}
@@ -367,7 +391,7 @@ The following pages describe for each test how both applications Team2 and Team3
 
 \subsection{Test User Registration Process (OTG-IDENT-002)}\
 \begin{tabular}{cR{12cm}}
-	\textbf{Team2} & Likelihood: 5\\& Impact: 5\\& Risk: 5
+	\textbf{Team2} & Likelihood: 5\\& Impact: 0\\& Risk: 0
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
@@ -388,7 +412,7 @@ The following pages describe for each test how both applications Team2 and Team3
 \begin{center}
 	\begin{tabular}{ll}
 		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value : 0}} \\
 		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
 		\rowcolor[HTML]{ECF4FF}
@@ -425,31 +449,7 @@ The following pages describe for each test how both applications Team2 and Team3
 	Comparison & In our web application the employee accepts new registration. It makes no difference in the security. \\
 	\hline
 \end{tabular}
-\\
-\vspace{0.5cm}
-\\
-\begin{center}
-	\begin{tabular}{ll}
-		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N/A              \\
-		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N/A
-	\end{tabular}
-\end{center}
+
 \pagebreak
 
 \subsection{Testing for Account Enumeration and Guessable User Account (OTG-IDENT-004)}\
@@ -487,7 +487,28 @@ The following pages describe for each test how both applications Team2 and Team3
 	Comparison & Our application has no username restriction. \\
 	\hline
 \end{tabular}
- 
+\begin{center}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9}
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value : 0}} \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N
+	\end{tabular}
+\end{center}
 \pagebreak
 
 \section{Authentication Testing}\
@@ -655,9 +676,9 @@ The following pages describe for each test how both applications Team2 and Team3
 	Observation & The registration process does not have a restriction for weak passwords. Furthermore the password can contain the username\\
 	Discovery & Tested manually the registration process with a one character password and the username as password\\
 	Likelihood & For every registration process the user has the possibility to choose a weak password\\
-	Implication & Brute Force is to easy for simple passwords\\
+	Impact & There is a lockout mechanism but with a week password, the attacker might guess it.\\
 	Recommendations & Introduce password restrictions\\
-	Comparison & The same problem we encountered in our webapp \\
+	Comparison & Our app has a standard password policy, at least 1 Uppercase, Lowercase, number required. \\
 	\hline
 \end{tabular}
 \\
@@ -666,7 +687,7 @@ The following pages describe for each test how both applications Team2 and Team3
 \begin{center}
 	\begin{tabular}{ll}
 		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value}} \\
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value : 6.5}} \\
 		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
 		\rowcolor[HTML]{ECF4FF}
@@ -751,14 +772,27 @@ The following pages describe for each test how both applications Team2 and Team3
 	-m is to indicate that the protocol is http and -h for the server ip;  
 	which gave no results.
 	Afterwards we tried \textit{w3af} and it did not find anything.\\
-	Likelihood & This is more an additional information for other attacks but it is a
-	good help for attackers to find vulnerabilities faster \\
+	Likelihood & N/A \\
 	Impact    & N/A \\
-	Recommendations & N/A \\
-	Comparison & The results were the same for our webapp.\\
+	Recommendations & N/A \\ 
 	\hline
-\end{tabular}  
+\end{tabular}  \\
+
+ \begin{tabular}{cR{12cm}}
+ 	\textbf{Team3} & Likelihood: 8\\& Impact: 0\\& Risk: 0 
+ \end{tabular}
  
+ \begin{tabular}{ l|p{11cm}  }
+ 	\hline
+ 	\multicolumn{2}{c}{\textbf{Team3}} \\
+ 	\hline
+ 	Observation   & We could access the Smart-Card-Simulator folder and gain access to the java source code.\\
+ 	Discovery  &  We manual found that folder, by loading \textit{/SecureCoding-Group3} url.\\
+ 	Likelihood & This is very likely to be discovered. \\
+ 	Impact    & There is no impact since the attacker can get the source code by decompiling the jar file. \\
+ 	Recommendations & Block the access to the folder. \\ 
+ 	\hline
+ \end{tabular}  
 \pagebreak
 
 \subsection{Testing for Privilege Escalation (OTG-AUTHZ-003)}\
@@ -1031,7 +1065,7 @@ The following pages describe for each test how both applications Team2 and Team3
 \begin{center}
 	\begin{tabular}{ll}
 		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value : 4.6}} \\
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value : 6.1}} \\
 		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } P             \\
 		\rowcolor[HTML]{ECF4FF}
@@ -1043,7 +1077,7 @@ The following pages describe for each test how both applications Team2 and Team3
 		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
 		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N              \\
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } H              \\
 		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } H              \\
 		\rowcolor[HTML]{ECF4FF}
@@ -1077,7 +1111,7 @@ The following pages describe for each test how both applications Team2 and Team3
 \begin{center}
 	\begin{tabular}{ll}
 		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value : 4.6}} \\
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value : 6.1}} \\
 		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } P             \\
 		\rowcolor[HTML]{ECF4FF}
@@ -1089,7 +1123,7 @@ The following pages describe for each test how both applications Team2 and Team3
 		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
 		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } N              \\
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } H              \\
 		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } H              \\
 		\rowcolor[HTML]{ECF4FF}
@@ -1101,22 +1135,43 @@ The following pages describe for each test how both applications Team2 and Team3
 \subsection{Testing for Session puzzling(OTG-SESS-008)}\
 
 \begin{tabular}{cR{12cm}}
-	\textbf{Team2} & Likelihood: 0\\& Impact: 0\\& Risk: 0
+	\textbf{Team2} & Likelihood: 10\\& Impact: 6\\& Risk: 5
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
 	\hline
 	\multicolumn{2}{c}{\textbf{Team2}} \\
 	\hline
-	Observation & The application has only one authorization method so a session puzzling
-	is not applicable.\\
-	Discovery & Manually searched\\
-	Likelihood & NA\\
-	Implication & NA\\
-	Recommendations & NA\\
-	Comparison & We provide also only one possibility to login so session puzzling is not possible\\
+	Observation & The application uses the same SessionID for everything. Even after logging out, the SessionID does not change.\\
+	Discovery & We used \textit{Burp} to intercept the communication of the webapp and all the interactions were using the same SessionID.\\
+	Likelihood & Its is very likely that an attacker will notice this.\\
+	Implication & A very simple example could be the password reset functionality that, in the entry point, could request the user to provide some identifying information such as the e-mail address. This page might then populate the session with these identifying values, which are received directly from the client side, or obtained from queries. At this point there may be some pages in the application that show private data based on this session object. In this manner the attacker could bypass the authentication process.\\
+	Recommendations & Generate a new SessionID for every interaction the user makes with the website.\\
+	Comparison & We change the SessionID with every user interaction with the website, so our app is secure. \\
 	\hline
 \end{tabular}
+\begin{center}
+	\begin{tabular}{ll}
+		\rowcolor[HTML]{34CDF9}
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value : 6.8}} \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N             \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } H              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } R              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } H              \\
+		\rowcolor[HTML]{BBDAFF}
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } H              \\
+		\rowcolor[HTML]{ECF4FF}
+		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N
+	\end{tabular}
+\end{center}
 
 \pagebreak
 \section{Data Validation Testing}\
@@ -1234,16 +1289,16 @@ The following pages describe for each test how both applications Team2 and Team3
 	Comparison& Our web application is also immune to SQL Injections \\
 	\hline
 \end{tabular}
-\begin{figure}[ht!]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=50mm]{logos/RIPS2.jpg}
 	\caption{RIPS \label{overflow}}
 \end{figure}
 Using \textit{RIPS} with verbosity level 1  and vulnerability all server-side we get the above results.
 The 3 cases of \textit{SQL Injection} are \textit{false-positives}. The input in the query is already set and is not affected by the user input.
-\begin{figure}[ht!]
+\begin{figure}[H]
 	\centering
-	\includegraphics[width=150mm]{logos/Injection1.jpg}
+	\includegraphics[width=170mm]{logos/Injection1.jpg}
 	\caption{RIPS \label{overflow}}
 \end{figure}
 
@@ -1261,7 +1316,7 @@ sqlmap -u https://localhost/ex1/securecoding/
 \end{lstlisting}
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[width=150mm]{logos/sql.jpg}
+	\includegraphics[width=175mm]{logos/sql.jpg}
 	\caption{RIPS \label{overflow}}
 \end{figure}
 \pagebreak
@@ -1283,7 +1338,7 @@ sqlmap -u https://localhost/SecureCoding-Group3/online_banking/
 \end{lstlisting}
 \begin{figure}[ht!]
 	\centering
-	\includegraphics[width=150mm]{logos/sql.jpg}
+	\includegraphics[width=175mm]{logos/sql.jpg}
 	\caption{RIPS \label{overflow}}
 \end{figure}
 
@@ -1333,7 +1388,7 @@ The case of command execution is yet again a \textit{false-positive} since the v
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=150mm]{logos/command1.jpg}
+	\includegraphics[width=170mm]{logos/command1.jpg}
 	\caption{RIPS \label{overflow}}
 \end{figure}
  
@@ -1342,13 +1397,13 @@ The case of command execution is yet again a \textit{false-positive} since the v
 \textit{RIPS} finds two vulnerabilities for file disclosure and command execution in \textit{applicationDownload.php}, which are \textit{false-positive} since the variable is taken from the database, the user does not input it directly.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=50mm]{logos/download3.jpg}
+	\includegraphics[width=120mm]{logos/download3.jpg}
 	\caption{RIPS \label{overflow}}
 \end{figure}
 \textit{RIPS} finds two vulnerabilities for file disclosure and command execution in \textit{customer.inc.php}, the same case applies here, they are \textit{false-positive} the variables passed on the sensitive functions are not user input.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=150mm]{logos/trans3.jpg}
+	\includegraphics[width=120mm]{logos/trans3.jpg}
 	\caption{RIPS \label{overflow}}
 \end{figure}
 \pagebreak
@@ -1548,7 +1603,7 @@ Team2 provides an error for the transactions using file upload only when the fil
 \section{Client Side Testing}
 \subsection{Testing for Clickjacking (OTG-CLIENT-009) }
 \begin{tabular}{cR{12cm}}
-	\textbf{Team2} & Likelihood: 8\\& Impact: 9\\& Risk: 8
+	\textbf{Team2} & Likelihood: 8\\& Impact: 8\\& Risk: 6
 \end{tabular}
 
 \begin{tabular}{ l|p{11cm}  }
@@ -1565,7 +1620,7 @@ Team2 provides an error for the transactions using file upload only when the fil
 	on an online banking website, because the people trust these
 	websites. It is not very difficult to use this vulnerability to attack
 	the users. \\
-	Implication    & The user would think he would interact with the secure online
+	Impact    & The user would think he would interact with the secure online
 	banking system, but in reality he is on a malicious website that
 	can record his interaction and filter out sensitive information. \\
 	Recommendation & The use of X-Frame-Options header would help on the server side to
@@ -1579,21 +1634,21 @@ Team2 provides an error for the transactions using file upload only when the fil
 \begin{center}
 	\begin{tabular}{ll}
 		\rowcolor[HTML]{34CDF9}
-		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value : }} \\
+		{\color[HTML]{ECF4FF} \textbf{Metric}}        & {\color[HTML]{ECF4FF} \textbf{Value : 4.7}} \\
 		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Access Vector}          & {\color[HTML]{333333} } N              \\
 		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } L              \\
+		{\color[HTML]{333333} Attack Complexity}      & {\color[HTML]{333333} } H              \\
 		\rowcolor[HTML]{BBDAFF}
 		{\color[HTML]{333333} Privileges Required}    & {\color[HTML]{333333} } N              \\
 		\rowcolor[HTML]{ECF4FF}
 		{\color[HTML]{333333} User Interaction}       & {\color[HTML]{333333} } R              \\
 		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } U              \\
+		{\color[HTML]{333333} Scope}                  & {\color[HTML]{333333} } C              \\
 		\rowcolor[HTML]{ECF4FF}
-		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } H              \\
+		{\color[HTML]{333333} Confidentiality Impact} & {\color[HTML]{333333} } L              \\
 		\rowcolor[HTML]{BBDAFF}
-		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } H              \\
+		{\color[HTML]{333333} Integrity Impact}       & {\color[HTML]{333333} } L              \\
 		\rowcolor[HTML]{ECF4FF}
 		{\color[HTML]{333333} Availability Impact}    & {\color[HTML]{333333} } N
 	\end{tabular}
