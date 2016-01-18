@@ -14,6 +14,14 @@
   $isOnEmployeePage = strpos($_SERVER['REQUEST_URI'], '/employee.php') !== false;
   $isOnPasswordResetPage = strpos($_SERVER['REQUEST_URI'], '/passwordReset.php') !== false;
 
+  if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 900)) {
+      // last request was more than 30 minutes ago
+      session_unset();     // unset $_SESSION variable for the run-time
+      session_destroy();   // destroy session data in storage
+  }
+
+  $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
+
   if (!isLoggedIn()) {
     if (!$isOnIndexPage && !$isOnRegisterPage && !$isOnPasswordResetPage) {
       redirect("index.php");
