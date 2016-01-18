@@ -108,6 +108,7 @@
   }
 
   function validateTAN($tan, $user, $amount, $account) {
+    $tan = escapeshellarg($tan);
     if ($user->pinHash) {
       $secretKey = substr($tan, strpos($tan, ";") + 1);
       $hashCount = intval(substr($tan, 0, strpos($tan, ";")));

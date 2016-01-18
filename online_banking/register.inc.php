@@ -19,7 +19,7 @@ if($post) {
 		$emailRegex = "^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$";
 
 		if(preg_match("/^$passwordRegex/", $password)) {
-			if(preg_match("/^$passwordRegex/", $password)){
+			if(preg_match("/^$emailRegex/", $email)){
 				if(!empty($username) && !empty($password) && !empty($password_again) && !empty($firstname) && !empty($lastname) && !empty($email)) {
 						$query = "SELECT username FROM users WHERE email='".mysql_real_escape_string($email)."'";
 						$query_run=mysql_query($query);
@@ -53,7 +53,7 @@ if($post) {
 									$user_id = mysql_result($result, 0);
 
 									$tans = "";
-									
+
 
 									if ($tan_method == 0) {
 										for ($i = 0; $i <+ 100; $i++) {

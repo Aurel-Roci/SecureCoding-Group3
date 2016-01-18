@@ -7,7 +7,7 @@ require('fpdf/fpdf.php');
 header('X-Frame-Options: DENY');
 
 ob_start();
-session_set_cookie_params(600, dirname($_SERVER['REQUEST_URI']));
+session_set_cookie_params(600, dirname($_SERVER['REQUEST_URI']), true, true);
 session_name('72AM7bD1sp2zIDdoEv6g');
 session_start();
 session_regenerate_id(true);
@@ -103,7 +103,7 @@ function send_pin_mail($email,$password, $pin, $lastname){
 }
 
 function sendPasswordResetMail($email, $link, $lastname){
-          $message = "Dear Mr/Ms ".$lastname.", you can reset your password by clicking on following link: <a href='".$link."'>$link</a> <br>If you didn't request a password reset please ignore this email.<br>Best regards,<br>Your online banking team"; 
+          $message = "Dear Mr/Ms ".$lastname.", you can reset your password by clicking on following link: <a href='".$link."'>$link</a> <br>If you didn't request a password reset please ignore this email.<br>Best regards,<br>Your online banking team";
 					$mail = new PHPMailer();
 					$mail->isSMTP();                                      // Set mailer to use SMTP
 					$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers

@@ -51,7 +51,7 @@ require 'init.sec.php';
               </div>
             </div>
           </fieldset>
-          <input type="id" id="id" name="id" value="<?= $_GET['id'] ?>" style="display: none;">
+          <input type="id" id="id" name="id" value="<?= htmlspecialchars($_GET['id']) ?>" style="display: none;">
         </form>
         <?php
       } else if ($post && $idSet) {

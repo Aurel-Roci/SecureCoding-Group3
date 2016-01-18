@@ -14,6 +14,7 @@
 			$amount = $_POST['amount'];
 			$tan = $_POST['tan'];
 			$description = $_POST['description'];
+      $description = htmlspecialchars($description);
 			if($amount<0) {
         ?>
         <div class="alert alert-warning" role="alert"><strong>Warning!</strong>You cannot transfer a negative amount of money!</div>

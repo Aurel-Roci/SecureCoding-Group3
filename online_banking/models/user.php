@@ -128,13 +128,19 @@
   }
 
   function approveUserWithId($user_id) {
-    $query = "UPDATE users SET approved = 1 WHERE id='".$user_id."';";
+    $query = "UPDATE users SET approved = 1 WHERE id='".mysql_real_escape_string($user_id)."';";
     mysql_query($query);
   }
 
   function approveUserWithIdAndBalance($user_id, $balance) {
+
+    $user_id = mysql_real_escape_string($user_id);
+    $balance = mysql_real_escape_string($user_id);
+    $user_id = htmlspecialchars($user_id);
+    $balance = htmlspecialchars($balance);
     $query = "UPDATE users SET approved = 1 WHERE id='".$user_id."';";
     mysql_query($query);
+
     initializeBalance($user_id, $balance);
   }
 

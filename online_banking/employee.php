@@ -74,6 +74,7 @@ if($post) {
 
       <?php
       $search = isset($_GET['user']);
+      $search = htmlspecialchars($search);
       if($search) {
         $username = $_GET['user'];
         $transactions = fetchTransactionsForUsername($username);
