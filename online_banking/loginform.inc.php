@@ -15,8 +15,8 @@
 <div class="container">
   <h1>Login</h1>
   <?php
-    if (isLoginBlocked()) {
-      echo '<div class="alert alert-danger" role="alert">Too many failed login attempts. Please try again later!</div>';
+    if (isLoginBlocked($username)) {
+      echo '<div class="alert alert-danger" role="alert">Too many failed login attempts. Your account has been blocked! Contact an employee to unblock your account!</div>';
     } else {
       if($post && empty($_SESSION['user'])) {
         echo '<div class="alert alert-danger" role="alert">Login error!</div>';

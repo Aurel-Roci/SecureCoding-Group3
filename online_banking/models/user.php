@@ -168,12 +168,14 @@
     return $users;
   }
 
-  function isLoginBlocked() {
+  function isLoginBlocked($username) {
     if (!isset($_SESSION["failedLoginAttempts"])) {
       $_SESSION["failedLoginAttempts"] = 0;
       $_SESSION["lastFailedLoginAttempt"] = 0;
     }
     if ($_SESSION["failedLoginAttempts"] > ATTEMPTS_BEFORE_LOCKOUT && $_SESSION["lastFailedLoginAttempt"] > time() - LOCKOUT_CLEAR_TIME) {
+      $query = "UPDATE users SET approved = 0 WHERE username='".mysql_real_escape_string($username)."';";
+      $result = mysql_query($query);
       return true;
     }
     return false;

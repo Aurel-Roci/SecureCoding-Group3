@@ -1,11 +1,12 @@
 <?php
   ini_set('display_errors', 1);
   ini_set('display_startup_errors', 1);
-  error_reporting(E_ALL);
+  error_reporting(0);
 
   $post = $_SERVER['REQUEST_METHOD'] === 'POST';
   $user = getUser();
-
+  $amountRegex = "^\d*\.?\d*$";
+  $tanRegex= "^[a-zA-Z0-9]{15}$";
   if($post) {
     $allPramatetersSet = isset($_POST['recipient']) && isset($_POST['amount']) && isset($_POST['tan']) && isset($_POST['description']);
 
@@ -15,9 +16,11 @@
 			$tan = $_POST['tan'];
 			$description = $_POST['description'];
       $description = htmlspecialchars($description);
-			if($amount<0) {
+
+
+			if($amount<0 || preg_match("/^$amountRegex/", $amount)) {
         ?>
-        <div class="alert alert-warning" role="alert"><strong>Warning!</strong>You cannot transfer a negative amount of money!</div>
+          <div class="alert alert-warning" role="alert"><strong>Warning!</strong>Incorrect amount of money!</div>
         <?php
       } else {
         if(!empty($recipient_name) &&!empty($amount) &&!empty($tan)&&  !empty($description)) {
