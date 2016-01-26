@@ -133,7 +133,6 @@
   }
 
   function approveUserWithIdAndBalance($user_id, $balance) {
-
     $user_id = mysql_real_escape_string($user_id);
     $balance = mysql_real_escape_string($user_id);
     $user_id = htmlspecialchars($user_id);

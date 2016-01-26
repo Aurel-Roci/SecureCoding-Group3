@@ -3,8 +3,6 @@
     var $id = 0;
     var $sender_id = 0;
     var $recipient_id = 0;
-    var $sender_acc=0;
-    var $recipient_acc=0;
     var $description="";
     var $amount = 0;
     var $approval_date = "";
@@ -78,9 +76,7 @@
 
         $transaction->id = $row["id"];
         $transaction->sender_id = $row["sender_id"];
-        //$transaction->sender_acc = $row["sender_acc"];
         $transaction->recipient_id = $row["recipient_id"];
-        //$transaction->recipient_acc = $row["recipient_acc"];
         $transaction->description = $row["description"];
         $transaction->amount = $row["amount"];
         $transaction->approval_date = $row["approval_date"];
@@ -108,7 +104,7 @@
   }
 
   function validateTAN($tan, $user, $amount, $account) {
-    
+
     if ($user->pinHash) {
       $secretKey = substr($tan, strpos($tan, ";") + 1);
       $hashCount = intval(substr($tan, 0, strpos($tan, ";")));
