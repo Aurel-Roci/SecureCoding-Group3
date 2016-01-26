@@ -87,6 +87,55 @@
 
 \chapter{Application Architecture} \
 
+Our applications consists of multiple files, most of them represent an own page in the web application, others are files that are included in this pages that perform some actions (e.g. creating a new user etc) and two models for the transactions and the users.
+
+\section{Models}
+
+We start by showing an UML class diagram of our two models.
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=0.55]{figures/class_diagram.pdf}
+	\caption{UML class diagram}
+	\label{fig1}
+\end{figure}
+
+\subsection{Transaction}
+
+An \textit{Transaction} object represents a single transaction. It contains all the necessary attributes that are also in the database table for the transactions. When fetching transaction from the database, these transactions are then mapped to \textit{Transaction} objects.
+
+The class has also two helper methods for checking if an \textit{Transaction} is approved and to map it to JSON string.
+
+Additionally the class has multiple class methods for fetching transactions, approving them, validating and checking TAN numbers, creating new transactions and to create a transaction that represents the initialization of a new user account with an specific balance.
+
+\subsection{User}
+
+\textit{User} objects represent an user account. It stores all the attributes of an user like their name, email address etc. This model gets also mapped from the database when fetching existing users.
+
+This class some helper methods for detecting if the user is an employee, if the account is approved, to get the account number in the right format, to get the current balance of the user and to get his last used TAN number.
+
+The \textit{User} class also has some class methods for fetching users, approving them and checking if the login system is blocked for this user.
+
+\section{Frameworks}
+
+The web application uses multiple external frameworks for providing functionality that would have been to much work to reimplement them on our own.
+
+\subsection{Bootstrap}
+
+\textit{Bootstrap} is a very popular HTML, CSS, and JS framework for developing user interfaces on the web. It helped us to build a great looking web application without spending to much time on the User Interface but rather on functionality and security.
+The framework is available for free under the MIT license.
+
+\subsection{jspdf}
+
+We used \textit{jspdf} to deliver pdf's to the client for their transaction history. It is an easy to use client-side javascript framework that builds the pdf files on the fly without having them to be stored on the web server. That makes our web application more space efficient.
+
+\subsection{fpdf}
+
+For the TAN's that had to be sent as an password protected pdf over email we used the \textit{fpdf} framework. This framework is an pure PHP framework and not an javascript framework such as jspdf. It is also really easy to use and provides a lot of functionality. We used a second pdf framework because the requirements changed for phase 3 and jspdf wouldn't even have the option to create password protected PDF files.
+
+\subsection{PHPMailer}
+
+\textit{PHPMailer} is the framework of our choice for sending emails over PHP. It is full-featured and allowed us to send emails and even add attachments to the emails (for the generated TAN pdf files).
 
 \chapter{Security Measures} \
 
