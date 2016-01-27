@@ -9,10 +9,12 @@
   require 'core.inc.php';
   require 'connect.inc.php';
 
-  $isOnIndexPage = strpos($_SERVER['REQUEST_URI'], '/index.php') !== false;
-  $isOnRegisterPage = strpos($_SERVER['REQUEST_URI'], '/register.php') !== false;
-  $isOnEmployeePage = strpos($_SERVER['REQUEST_URI'], '/employee.php') !== false;
-  $isOnPasswordResetPage = strpos($_SERVER['REQUEST_URI'], '/passwordReset.php') !== false;
+  $url = $_SERVER['REQUEST_URI'];
+
+  $isOnIndexPage = strpos($url, '/index.php') !== false;
+  $isOnRegisterPage = strpos($url, '/register.php') !== false;
+  $isOnEmployeePage = strpos($url, '/employee.php') !== false;
+  $isOnPasswordResetPage = strpos($url, '/passwordReset.php') !== false;
 
   if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 900)) {
       // last request was more than 30 minutes ago
@@ -21,6 +23,12 @@
   }
 
   $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
+
+  if (checkIfLessThanTwoBoolsAreTrue($isOnIndexPage, $isOnRegisterPage, $isOnEmployeePage, $isOnPasswordResetPage) == false) {
+    header('HTTP/1.0 400 Bad Request');
+    echo('This request is not valid!');
+    die();
+  }
 
   if (!isLoggedIn()) {
     if (!$isOnIndexPage && !$isOnRegisterPage && !$isOnPasswordResetPage) {

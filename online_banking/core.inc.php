@@ -127,4 +127,32 @@ function redirect($url, $statusCode = 303) {
    die();
 }
 
+function checkIfLessThanTwoBoolsAreTrue($var1, $var2, $var3, $var4) {
+  if ($var1) {
+    if ($var2 || $var3 || $var4) {
+      return false;
+    }
+    return true;
+  }
+  if ($var2) {
+    if ($var1 || $var3 || $var4) {
+      return false;
+    }
+    return true;
+  }
+  if ($var3) {
+    if ($var1 || $var2 || $var4) {
+      return false;
+    }
+    return true;
+  }
+  if ($var4) {
+    if ($var1 || $var2 || $var3) {
+      return false;
+    }
+    return true;
+  }
+  return true;
+}
+
 ?>
