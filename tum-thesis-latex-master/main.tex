@@ -118,6 +118,31 @@ The \textit{User} class also has some class methods for fetching users, approvin
 
 \pagebreak
 
+\section{Pages}
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=0.6]{figures/pages.pdf}
+	\caption{Overview of different accessible pages}
+	\label{pages}
+\end{figure}
+
+\autoref{pages} shows an overview of all the different accessible web pages and the flow between them.
+
+It starts by the user accessing any page of the web application. If the user isn't logged in already he gets redirected to the login page otherwise to the homepage of his user role.
+
+In the login page the user can log himself in, register a new account or reset his password. For the last two methods he gets redirected to an specific webpage for registering/resetting the password.
+
+After logging in the system detects if the user account is the one of an customer or an employee and loads the corresponding PHP file. They have different functionality but both of the include the same \textit{transactions.php} file for showing the transaction overview for a specific user.
+
+The functionality of these pages is mostly in different php files with the suffix .inc. These files are included in the pages PHP file and perform the necessary tasks a user clicked on.
+
+The \textit{core.inc.php} file is included in all the web pages and provides some additional functionality needed in the web pages.
+
+The \textit{init.sec.php} file is there to check on every page request if the user is logged in and prevents clickhijacking on the client side by adding some javascript to the web pages.
+
+\pagebreak
+
 \section{Frameworks}
 
 The web application uses multiple external frameworks for providing functionality that would have been to much work to reimplement them on our own.
