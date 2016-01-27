@@ -2,7 +2,8 @@
 require_once('core.inc.php');
 $error = "";
 $post = $_SERVER['REQUEST_METHOD'] === 'POST';
-if($post) {
+$c = new \Csrf\CsrfToken();
+if($post && $c->checkToken($timeout=20)) {
 	$allPramatetersSet = isset($_POST['username']) && isset($_POST['password']) && isset($_POST['password_again']) &&
 		isset($_POST['firstname']) && isset($_POST['lastname']) && isset($_POST['email']);
 	if($allPramatetersSet) {

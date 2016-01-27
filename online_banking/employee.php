@@ -1,8 +1,10 @@
 <?php
 require 'init.sec.php';
 
+$c = new \Csrf\CsrfToken();
+
 $post = $_SERVER['REQUEST_METHOD'] === 'POST';
-if($post) {
+if($post && $c->checkToken($timeout=20)) {
   if(isset($_POST['balance']) && isset($_POST['user_id'])) {
     $balance= $_POST['balance'];
     $user_id = $_POST['user_id'];
@@ -12,7 +14,7 @@ if($post) {
       header(':', true, 400);
     }
 
-  }else if (isset($_POST['user_id'])) {
+  } else if (isset($_POST['user_id'])) {
     $user_id = $_POST['user_id'];
     approveUserWithId($user_id);
   } else if (isset($_POST['transaction_id'])) {
@@ -384,7 +386,7 @@ if($post) {
         if (approve == true) {
           var http = new XMLHttpRequest();
           var url = "employee.php";
-          var params = "transaction_id="+id;
+          var params = "transaction_id="+id+"&csrf="+$_SESSION['csrf']['salt'];
           http.open("POST", url, true);
 
           http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

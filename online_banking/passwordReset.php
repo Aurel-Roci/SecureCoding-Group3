@@ -1,5 +1,7 @@
 <?php
 require 'init.sec.php';
+
+$c = new \Csrf\CsrfToken();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,9 +23,11 @@ require 'init.sec.php';
       } else if (isset($message)) {
         echo '<div class="alert alert-success" role="alert">' . $message . ' <a href="index.php">Login now</a></div>';
       }
+      $hiddenField = $c->generateHiddenField();
       if (!$post && $idSet && !isset($error)) {
         ?>
         <form class="form-horizontal" id="passwordReset-form" action='passwordReset.php' method="POST" onsubmit="return validatePasswordFields(this);">
+          <?php echo $hiddenField; ?>
           <fieldset>
             <div id="legend">
               <legend class="">Password reset</legend>
@@ -58,6 +62,7 @@ require 'init.sec.php';
       } else {
         ?>
         <form class="form-horizontal" id="passwordReset-form" action='passwordReset.php' method="POST" onsubmit="return validateFields(this);">
+          <?php echo $hiddenField; ?>
           <fieldset>
             <div id="legend">
               <legend class="">Password reset</legend>

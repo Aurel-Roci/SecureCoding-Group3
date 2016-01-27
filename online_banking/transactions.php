@@ -1,7 +1,13 @@
+<?php
+$c = new \Csrf\CsrfToken();
+$hiddenField = $c->generateHiddenField();
+?>
+
 <div class="panel panel-default center" style="width: 100%; margin-top: 25px;">
   <div class="panel-heading">Make new transaction</div>
   <div class="panel-body">
     <form class="form-horizontal" action="" method="POST" onsubmit="return validateFields(this);" id="transaction_form">
+      <?php echo $hiddenField; ?>
       <div class="form-group">
         <label for="transactionfile" class="col-sm-2 control-label">To</label>
         <div class="col-sm-10">
@@ -51,6 +57,7 @@ if (isset($output)) {
   <div class="panel-heading">Make new transactions by batch file upload</div>
   <div class="panel-body">
     <form class="form-horizontal" enctype="multipart/form-data" action="" method="POST">
+      <?php echo $hiddenField; ?>
       <div class="form-group">
         <label for="transactionfile" class="col-sm-2 control-label">Transaction file:</label>
         <div class="col-sm-10">

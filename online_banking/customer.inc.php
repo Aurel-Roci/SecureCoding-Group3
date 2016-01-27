@@ -4,10 +4,11 @@
   error_reporting(0);
 
   $post = $_SERVER['REQUEST_METHOD'] === 'POST';
+  $c = new \Csrf\CsrfToken();
   $user = getUser();
   $amountRegex = "^\d*\.?\d*$";
   $tanRegex= "^[a-zA-Z0-9]{15}$";
-  if($post) {
+  if($post && $c->checkToken($timeout=20)) {
     $allPramatetersSet = isset($_POST['recipient']) && isset($_POST['amount']) && isset($_POST['tan']) && isset($_POST['description']);
 
   	if($allPramatetersSet){

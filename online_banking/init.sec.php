@@ -9,6 +9,8 @@
   require 'core.inc.php';
   require 'connect.inc.php';
 
+  require 'CsrfToken.php';
+
   $url = $_SERVER['REQUEST_URI'];
 
   $isOnIndexPage = strpos($url, '/index.php') !== false;

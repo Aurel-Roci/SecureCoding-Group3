@@ -1,6 +1,8 @@
 <?php
 require 'init.sec.php';
 require 'register.inc.php';
+
+$c = new \Csrf\CsrfToken();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +46,8 @@ require 'register.inc.php';
 			}
 			?>
 			<form class="form-horizontal" id="register-form" action='register.php' method="POST" onsubmit="return validateFields(this);" autocomplete="off">
-				<fieldset>
+        <?php echo $c->generateHiddenField(); ?>
+      	<fieldset>
 					<div id="legend">
 						<legend class="">Register</legend>
 					</div>
