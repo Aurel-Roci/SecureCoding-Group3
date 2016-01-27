@@ -43,7 +43,7 @@ require 'register.inc.php';
 				echo '<div class="alert alert-success" role="alert">Registration was successful. ' . $extraMessage .' <a href="index.php">Login now</a></div>';
 			}
 			?>
-			<form class="form-horizontal" id="register-form" action='register.php' method="POST" onsubmit="return validateFields(this);">
+			<form class="form-horizontal" id="register-form" action='register.php' method="POST" onsubmit="return validateFields(this);" autocomplete="off">
 				<fieldset>
 					<div id="legend">
 						<legend class="">Register</legend>

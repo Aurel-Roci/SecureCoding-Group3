@@ -23,7 +23,7 @@
       }
       ?>
       <p>Please login with your user credentials below:</p>
-      <form action="<?php echo $current_file; ?>" method="POST">
+      <form action="<?php echo $current_file; ?>" method="POST" autocomplete="off">
         <div class="input-group">
           <span class="input-group-addon" id="basic-addon1">@</span>
           <input class="form-control" name="username" placeholder="Username" type="text">
