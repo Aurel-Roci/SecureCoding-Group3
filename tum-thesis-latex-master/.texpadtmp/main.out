@@ -9,20 +9,22 @@
 \BOOKMARK [2][-]{subsection.2.2.2}{jspdf}{section.2.2}% 9
 \BOOKMARK [2][-]{subsection.2.2.3}{fpdf}{section.2.2}% 10
 \BOOKMARK [2][-]{subsection.2.2.4}{PHPMailer}{section.2.2}% 11
-\BOOKMARK [0][-]{chapter.3}{Security Measures}{}% 12
-\BOOKMARK [0][-]{chapter.4}{Fixes}{}% 13
-\BOOKMARK [1][-]{subsection.4.0.1}{Testing for Weak lock out mechanism\(OTG-AUTHN-003\)}{chapter.4}% 14
-\BOOKMARK [2][-]{subsection.4.0.2}{Testing Directory traversal/file include \(OTG-AUTHZ-001\)}{subsection.4.0.1}% 15
-\BOOKMARK [2][-]{subsection.4.0.3}{Test Session Timeout\(OTG-SESS-007\)}{subsection.4.0.1}% 16
-\BOOKMARK [2][-]{subsection.4.0.4}{Testing for Reflected Cross Site Scripting\(OTG-INPVAL-001\)}{subsection.4.0.1}% 17
-\BOOKMARK [2][-]{subsection.4.0.5}{Testing for Stored Cross Site Scripting\(OTG-INPVAL-002\)}{subsection.4.0.1}% 18
-\BOOKMARK [2][-]{subsection.4.0.6}{Testing for SQL Injection \(OTG-INPVAL-005\) and Mysql testing \(OTG-INPVAL-005\)}{subsection.4.0.1}% 19
-\BOOKMARK [2][-]{subsection.4.0.7}{Testing for Code Injection, Testing for Local File Inclusion, Testing for Remote File Inclusion\(OTG-INPVAL-012\)}{subsection.4.0.1}% 20
-\BOOKMARK [2][-]{subsection.4.0.8}{Testing for Command Injection\(OTG-INPVAL-013\)}{subsection.4.0.1}% 21
-\BOOKMARK [2][-]{subsection.4.0.9}{Testing for incubated vulnerabilities\(OTG-INPVAL-015\)}{subsection.4.0.1}% 22
-\BOOKMARK [2][-]{subsection.4.0.10}{Analysis of Error Codes \(OTG-ERR-001\)}{subsection.4.0.1}% 23
-\BOOKMARK [2][-]{subsection.4.0.11}{Test Business Logic Data Validation\(OTG-BUSLOGIC-001\)}{subsection.4.0.1}% 24
-\BOOKMARK [2][-]{subsection.4.0.12}{Test Integrity Checks\(OTG-BUSLOGIC-003\)}{subsection.4.0.1}% 25
-\BOOKMARK [2][-]{subsection.4.0.13}{Testing for JavaScript Execution\(OTG-CLIENT-002\)}{subsection.4.0.1}% 26
-\BOOKMARK [2][-]{subsection.4.0.14}{Testing for HTML Injection\(OTG-CLIENT-003\)}{subsection.4.0.1}% 27
-\BOOKMARK [2][-]{subsection.4.0.15}{Testing for CSS Injection\(OTG-CLIENT-005\)}{subsection.4.0.1}% 28
+\BOOKMARK [1][-]{section.2.3}{Interaction with other systems}{chapter.2}% 12
+\BOOKMARK [1][-]{section.2.4}{Hardware/Software mapping}{chapter.2}% 13
+\BOOKMARK [0][-]{chapter.3}{Security Measures}{}% 14
+\BOOKMARK [0][-]{chapter.4}{Fixes}{}% 15
+\BOOKMARK [1][-]{subsection.4.0.1}{Testing for Weak lock out mechanism\(OTG-AUTHN-003\)}{chapter.4}% 16
+\BOOKMARK [2][-]{subsection.4.0.2}{Testing Directory traversal/file include \(OTG-AUTHZ-001\)}{subsection.4.0.1}% 17
+\BOOKMARK [2][-]{subsection.4.0.3}{Test Session Timeout\(OTG-SESS-007\)}{subsection.4.0.1}% 18
+\BOOKMARK [2][-]{subsection.4.0.4}{Testing for Reflected Cross Site Scripting\(OTG-INPVAL-001\)}{subsection.4.0.1}% 19
+\BOOKMARK [2][-]{subsection.4.0.5}{Testing for Stored Cross Site Scripting\(OTG-INPVAL-002\)}{subsection.4.0.1}% 20
+\BOOKMARK [2][-]{subsection.4.0.6}{Testing for SQL Injection \(OTG-INPVAL-005\) and Mysql testing \(OTG-INPVAL-005\)}{subsection.4.0.1}% 21
+\BOOKMARK [2][-]{subsection.4.0.7}{Testing for Code Injection, Testing for Local File Inclusion, Testing for Remote File Inclusion\(OTG-INPVAL-012\)}{subsection.4.0.1}% 22
+\BOOKMARK [2][-]{subsection.4.0.8}{Testing for Command Injection\(OTG-INPVAL-013\)}{subsection.4.0.1}% 23
+\BOOKMARK [2][-]{subsection.4.0.9}{Testing for incubated vulnerabilities\(OTG-INPVAL-015\)}{subsection.4.0.1}% 24
+\BOOKMARK [2][-]{subsection.4.0.10}{Analysis of Error Codes \(OTG-ERR-001\)}{subsection.4.0.1}% 25
+\BOOKMARK [2][-]{subsection.4.0.11}{Test Business Logic Data Validation\(OTG-BUSLOGIC-001\)}{subsection.4.0.1}% 26
+\BOOKMARK [2][-]{subsection.4.0.12}{Test Integrity Checks\(OTG-BUSLOGIC-003\)}{subsection.4.0.1}% 27
+\BOOKMARK [2][-]{subsection.4.0.13}{Testing for JavaScript Execution\(OTG-CLIENT-002\)}{subsection.4.0.1}% 28
+\BOOKMARK [2][-]{subsection.4.0.14}{Testing for HTML Injection\(OTG-CLIENT-003\)}{subsection.4.0.1}% 29
+\BOOKMARK [2][-]{subsection.4.0.15}{Testing for CSS Injection\(OTG-CLIENT-005\)}{subsection.4.0.1}% 30

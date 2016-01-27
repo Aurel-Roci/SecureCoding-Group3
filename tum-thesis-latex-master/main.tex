@@ -116,6 +116,8 @@ This class some helper methods for detecting if the user is an employee, if the 
 
 The \textit{User} class also has some class methods for fetching users, approving them and checking if the login system is blocked for this user.
 
+\pagebreak
+
 \section{Frameworks}
 
 The web application uses multiple external frameworks for providing functionality that would have been to much work to reimplement them on our own.
@@ -136,6 +138,28 @@ For the TAN's that had to be sent as an password protected pdf over email we use
 \subsection{PHPMailer}
 
 \textit{PHPMailer} is the framework of our choice for sending emails over PHP. It is full-featured and allowed us to send emails and even add attachments to the emails (for the generated TAN pdf files).
+
+\pagebreak
+
+\section{Interaction with other systems}
+
+Our web service interacts with just one other system and that is the \textit{Gravatar} service for getting a profile picture for the user without storing it on the web server.
+
+\textit{Gravatar} could be a potential security risk because the server isn't in our hands and if \textit{Gravatar} would be hacked, they could find out our users email addresses or could send instead of the profile picture other pictures that could lead to misuse of the online banking application.
+
+It should be mentioned that it is a very small security risk and that is not comparable to sites using \textit{Google Analytics} and similar tools and some online banking solutions even use them. \textit{Gravatar} a useful service and is completely free.
+
+\pagebreak
+\section{Hardware/Software mapping}
+
+\begin{figure}[!ht]
+	\centering
+	\includegraphics[scale=0.55]{figures/hw_sw_mapping.pdf}
+	\caption{Hardware/Software Mapping (UML deployment diagram)}
+	\label{fig1}
+\end{figure}
+
+Our online banking web application runs on an device called \textit{Online Banking Server} that is on our case a virtualized machine. This machine runs \textit{Samurai WTF} as an operation system. On this system we have two major services running. First the \textit{MySQL DB} database that contains the \textit{User Data}, \textit{Transaction Data}, and \textit{TAN Data}. On the other hand we have our \textit{Apache Web Server} on which our \textit{Online Banking Web Application} written in PHP is running. The web application has two major components: The \textit{Admin Interface} and the \textit{User Interface}.
 
 \chapter{Security Measures} \
 

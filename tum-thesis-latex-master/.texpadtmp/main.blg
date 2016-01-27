@@ -1,9 +1,9 @@
 [0] Config.pm:324> INFO - This is Biber 2.1
-[1] Config.pm:327> INFO - Logfile is '/Applications/MAMP/htdocs/securecoding/tum-thesis-latex-master/.texpadtmp/main.blg'
-[44] biber-darwin:276> INFO - === Tue Jan 26, 2016, 23:53:49
-[45] Biber.pm:333> INFO - Reading '/Applications/MAMP/htdocs/securecoding/tum-thesis-latex-master/.texpadtmp/main.bcf'
-[130] Biber.pm:645> INFO - Found 0 citekeys in bib section 0
-[130] Utils.pm:146> WARN - The file '/Applications/MAMP/htdocs/securecoding/tum-thesis-latex-master/.texpadtmp/main.bcf' does not contain any citations!
-[152] bbl.pm:505> INFO - Writing '/Applications/MAMP/htdocs/securecoding/tum-thesis-latex-master/.texpadtmp/main.bbl' with encoding 'UTF-8'
-[153] bbl.pm:596> INFO - Output to /Applications/MAMP/htdocs/securecoding/tum-thesis-latex-master/.texpadtmp/main.bbl
-[153] Biber.pm:106> INFO - WARNINGS: 1
+[0] Config.pm:327> INFO - Logfile is '/Applications/MAMP/htdocs/securecoding/tum-thesis-latex-master/.texpadtmp/main.blg'
+[41] biber-darwin:276> INFO - === Wed Jan 27, 2016, 10:41:19
+[42] Biber.pm:333> INFO - Reading '/Applications/MAMP/htdocs/securecoding/tum-thesis-latex-master/.texpadtmp/main.bcf'
+[132] Biber.pm:645> INFO - Found 0 citekeys in bib section 0
+[132] Utils.pm:146> WARN - The file '/Applications/MAMP/htdocs/securecoding/tum-thesis-latex-master/.texpadtmp/main.bcf' does not contain any citations!
+[148] bbl.pm:505> INFO - Writing '/Applications/MAMP/htdocs/securecoding/tum-thesis-latex-master/.texpadtmp/main.bbl' with encoding 'UTF-8'
+[148] bbl.pm:596> INFO - Output to /Applications/MAMP/htdocs/securecoding/tum-thesis-latex-master/.texpadtmp/main.bbl
+[148] Biber.pm:106> INFO - WARNINGS: 1
