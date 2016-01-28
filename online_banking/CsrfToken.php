@@ -118,7 +118,7 @@ class CsrfToken {
      *  @visibility protected
      *  @return string
      */
-    protected function calculateHash() {
+    public function calculateHash() {
         return sha1(implode('', $_SESSION['csrf']));
     }
 
@@ -213,24 +213,28 @@ class CsrfToken {
 
         // First check if csrf information is present in the session
         if (isset($_SESSION['csrf'])) {
-
+            echo "ISSET-";
             // Check the timeliness of the request
             if (!$this->checkTimeout($timeout)) {
+              echo "TIMEOUT-";
                 return FALSE;
             }
 
             // Check if there is a session id
             if (session_id()) {
+              echo "SESSIONID-";
                 // Check if response contains a usable csrf token
                 $isCsrfGet = isset($_GET['csrf']);
                 $isCsrfPost = isset($_POST['csrf']);
                 if (($this->acceptGet and $isCsrfGet) or $isCsrfPost) {
+                  echo "NEXT";
                     // Decode the received token hash
                     $tokenHash = base64_decode($_REQUEST['csrf']);
                     // Generate a new hash from the data we have
                     $generatedHash = $this->calculateHash();
                     // Compare and return the result
                     if ($tokenHash and $generatedHash) {
+                      echo "LAST";
                         return $tokenHash == $generatedHash;
                     }
                 }

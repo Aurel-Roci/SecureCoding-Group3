@@ -433,4 +433,39 @@ Fixed by fixing Injection vulnerabilities.\\
 
 \subsection{Testing for CSS Injection(OTG-CLIENT-005)}\
 Fixed by fixing Injection vulnerabilities.
+
+\subsection{Test remember password functionality(OTG-AUTHN-005)}\
+\textit{online\_banking/loginform.inc.php} line 26:
+\begin{lstlisting} 
+      <form action="<?php echo $current_file; ?>" method="POST" autocomplete="off">
+\end{lstlisting}\
+\textit{online\_banking/register.php} line 46:
+\begin{lstlisting} 
+			<form class="form-horizontal" id="register-form" 
+				action='register.php' method="POST" onsubmit="return
+				validateFields(this);" autocomplete="off">
+\end{lstlisting} 
+
+To instruct the web browser to don't show the user the dialog for saving the password and autofilling the login fields we set the \textit{autocomplete} attribute to \textit{off}. \\
+
+It is still to be mentioned that modern web browsers ignore this attribute because the browsers password management is generally seen as a net gain for security. Since users don't have to remember passwords that the browser stores for them, they are able to choose stronger passwords than they would otherwise.
+
+\subsection{Testing for bypassing authorization schema(OTG-AUTHZ-002)}\
+\textit{online\_banking/core.inc.php} lines 130-157:
+Added \textit{checkIfLessThanTwoBoolsAreTrue(\$var1, \$var2, \$var3, \$var4)} method for checking if less than two bool variables are true of a list of 4 variables.
+
+\textit{online\_banking/init.sec.php} lines 27-31:
+\begin{lstlisting} 
+  if (checkIfLessThanTwoBoolsAreTrue($isOnIndexPage, $isOnRegisterPage, 
+  		$isOnEmployeePage, $isOnPasswordResetPage) == false) {
+    header('HTTP/1.0 400 Bad Request');
+    echo('This request is not valid!');
+    die();
+  }
+\end{lstlisting} 
+
+The vulnerability was caused by a logic error in our web application. We checked if a user is on a specific page by searching for its path in url, but because \textit{Apache} always loads the first file specified in an URL it was possible to add other file paths add the end of the URL. Our web application then searched for file paths in the URL that should be accessible for everyone like the \textit{index.php} file and found it, even when it wasn't the page that was loaded by the \textit{Apache} web server.
+
+We fixed this vulnerability by checking if multiple URL checks give the result true. If thats the case the URL isn't seen as valid anymore and we return with a 400 error representing a bad request.
+
 \end{document}
