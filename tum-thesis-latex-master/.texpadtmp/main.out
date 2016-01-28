@@ -15,22 +15,20 @@
 \BOOKMARK [0][-]{chapter.3}{Security Measures}{}% 15
 \BOOKMARK [0][-]{chapter.4}{Fixes}{}% 16
 \BOOKMARK [1][-]{subsection.4.0.1}{Testing for Weak lock out mechanism\(OTG-AUTHN-003\)}{chapter.4}% 17
-\BOOKMARK [2][-]{subsection.4.0.2}{Testing Directory traversal/file include \(OTG-AUTHZ-001\)}{subsection.4.0.1}% 18
-\BOOKMARK [2][-]{subsection.4.0.3}{Testing for bypassing authorization schema \(OTG-AUTHZ-002\)}{subsection.4.0.1}% 19
-\BOOKMARK [2][-]{subsection.4.0.4}{Testing for Cross Site Request Forgery\(OTG-SESS-005\)}{subsection.4.0.1}% 20
-\BOOKMARK [2][-]{subsection.4.0.5}{Test Session Timeout\(OTG-SESS-007\)}{subsection.4.0.1}% 21
-\BOOKMARK [2][-]{subsection.4.0.6}{Testing for Reflected Cross Site Scripting\(OTG-INPVAL-001\)}{subsection.4.0.1}% 22
-\BOOKMARK [2][-]{subsection.4.0.7}{Testing for Stored Cross Site Scripting\(OTG-INPVAL-002\)}{subsection.4.0.1}% 23
-\BOOKMARK [2][-]{subsection.4.0.8}{Testing for SQL Injection \(OTG-INPVAL-005\) and Mysql testing \(OTG-INPVAL-005\)}{subsection.4.0.1}% 24
-\BOOKMARK [2][-]{subsection.4.0.9}{Testing for Code Injection, Testing for Local File Inclusion, Testing for Remote File Inclusion\(OTG-INPVAL-012\)}{subsection.4.0.1}% 25
-\BOOKMARK [2][-]{subsection.4.0.10}{Testing for Command Injection\(OTG-INPVAL-013\)}{subsection.4.0.1}% 26
-\BOOKMARK [2][-]{subsection.4.0.11}{Testing for incubated vulnerabilities\(OTG-INPVAL-015\)}{subsection.4.0.1}% 27
-\BOOKMARK [2][-]{subsection.4.0.12}{Analysis of Error Codes \(OTG-ERR-001\)}{subsection.4.0.1}% 28
-\BOOKMARK [2][-]{subsection.4.0.13}{Test Business Logic Data Validation\(OTG-BUSLOGIC-001\)}{subsection.4.0.1}% 29
-\BOOKMARK [2][-]{subsection.4.0.14}{Test Integrity Checks\(OTG-BUSLOGIC-003\)}{subsection.4.0.1}% 30
-\BOOKMARK [2][-]{subsection.4.0.15}{Testing for JavaScript Execution\(OTG-CLIENT-002\)}{subsection.4.0.1}% 31
-\BOOKMARK [2][-]{subsection.4.0.16}{Testing for HTML Injection\(OTG-CLIENT-003\)}{subsection.4.0.1}% 32
-\BOOKMARK [2][-]{subsection.4.0.17}{Testing for CSS Injection\(OTG-CLIENT-005\)}{subsection.4.0.1}% 33
-\BOOKMARK [2][-]{subsection.4.0.18}{Test remember password functionality\(OTG-AUTHN-005\)}{subsection.4.0.1}% 34
-\BOOKMARK [2][-]{subsection.4.0.19}{Testing for bypassing authorization schema\(OTG-AUTHZ-002\)}{subsection.4.0.1}% 35
-\BOOKMARK [2][-]{subsection.4.0.20}{Testing for Cross Site Request Forgery\(OTG-SESS-005\)}{subsection.4.0.1}% 36
+\BOOKMARK [2][-]{subsection.4.0.2}{Test remember password functionality\(OTG-AUTHN-005\)}{subsection.4.0.1}% 18
+\BOOKMARK [2][-]{subsection.4.0.3}{Testing Directory traversal/file include \(OTG-AUTHZ-001\)}{subsection.4.0.1}% 19
+\BOOKMARK [2][-]{subsection.4.0.4}{Testing for bypassing authorization schema \(OTG-AUTHZ-002\)}{subsection.4.0.1}% 20
+\BOOKMARK [2][-]{subsection.4.0.5}{Testing for Cross Site Request Forgery\(OTG-SESS-005\)}{subsection.4.0.1}% 21
+\BOOKMARK [2][-]{subsection.4.0.6}{Test Session Timeout\(OTG-SESS-007\)}{subsection.4.0.1}% 22
+\BOOKMARK [2][-]{subsection.4.0.7}{Testing for Reflected Cross Site Scripting\(OTG-INPVAL-001\)}{subsection.4.0.1}% 23
+\BOOKMARK [2][-]{subsection.4.0.8}{Testing for Stored Cross Site Scripting\(OTG-INPVAL-002\)}{subsection.4.0.1}% 24
+\BOOKMARK [2][-]{subsection.4.0.9}{Testing for SQL Injection \(OTG-INPVAL-005\) and Mysql testing \(OTG-INPVAL-005\)}{subsection.4.0.1}% 25
+\BOOKMARK [2][-]{subsection.4.0.10}{Testing for Code Injection, Testing for Local File Inclusion, Testing for Remote File Inclusion\(OTG-INPVAL-012\)}{subsection.4.0.1}% 26
+\BOOKMARK [2][-]{subsection.4.0.11}{Testing for Command Injection\(OTG-INPVAL-013\)}{subsection.4.0.1}% 27
+\BOOKMARK [2][-]{subsection.4.0.12}{Testing for incubated vulnerabilities\(OTG-INPVAL-015\)}{subsection.4.0.1}% 28
+\BOOKMARK [2][-]{subsection.4.0.13}{Analysis of Error Codes \(OTG-ERR-001\)}{subsection.4.0.1}% 29
+\BOOKMARK [2][-]{subsection.4.0.14}{Test Business Logic Data Validation\(OTG-BUSLOGIC-001\)}{subsection.4.0.1}% 30
+\BOOKMARK [2][-]{subsection.4.0.15}{Test Integrity Checks\(OTG-BUSLOGIC-003\)}{subsection.4.0.1}% 31
+\BOOKMARK [2][-]{subsection.4.0.16}{Testing for JavaScript Execution\(OTG-CLIENT-002\)}{subsection.4.0.1}% 32
+\BOOKMARK [2][-]{subsection.4.0.17}{Testing for HTML Injection\(OTG-CLIENT-003\)}{subsection.4.0.1}% 33
+\BOOKMARK [2][-]{subsection.4.0.18}{Testing for CSS Injection\(OTG-CLIENT-005\)}{subsection.4.0.1}% 34
