@@ -49,7 +49,7 @@
 	\begin{tabular}{lll}
 		\hline
 		{\textbf{Name}} & { \textbf{Task}} & {\textbf{Time}} \\ \hline
-		Aurel Roci & Test File Extensions Handling for Sensitive Information and documenting & 1\\
+		Aurel Roci &   &  \\
 
 		\hline
 		\hline
@@ -167,6 +167,7 @@ It should be mentioned that it is a very small security risk and that is not com
 Our online banking web application runs on an device called \textit{Online Banking Server} that is on our case a virtualized machine. This machine runs \textit{Samurai WTF} as an operation system. On this system we have two major services running. First the \textit{MySQL DB} database that contains the \textit{User Data}, \textit{Transaction Data}, and \textit{TAN Data}. On the other hand we have our \textit{Apache Web Server} on which our \textit{Online Banking Web Application} written in PHP is running. The web application has two major components: The \textit{Admin Interface} and the \textit{User Interface}.
 
 \chapter{Security Measures}   
+
 \subparagraph{Access Control}\
 
 To access Standard Chartered Online Banking, you need a unique combination of Username and PIN. We have also introduced these additional measures to protect your account:
@@ -179,6 +180,9 @@ $\bullet$ Automatic log out if there is no activity for a period of time. You wi
 
 The information exchanged between your Web browser and Online Banking is encrypted for your protection. Online Banking uses only \textit{https} requests between the Web Browser and server. This prevents attackers from doing a  Man-in-the-Middle attack.
 
+\subparagraph{Session Scrambling}\
+
+Change the session id when the user logs in, destroy the session after the user logs out. This prevents session hijacking.
 
 \subparagraph{Password hashing}\
 
@@ -200,6 +204,14 @@ Every input made in the Online Banking system is controlled by PHP built-in func
 
 In case the user wants to change the password of their account, they can make a request and then a link is send to their email, where they can change their password. This prevents any accidental change of password without the users knowledge.
 
+\subparagraph{Password Policy}\
+
+Strong password policy is imposed to the user when registering for the website. Also there is a brute force checking function for login. The user gets locked from their account until an employee activates the account again. This prevents the retrieval or guessing of the password by an attacker. 
+
+\subparagraph{Clickjacking}\
+
+We included a header to deny any insertions of a frame in the website, also, even if there is an insertions of another frame, we have javascript code that will keep the frame of the website on top.
+
 
 \chapter{Fixes}
 
@@ -215,6 +227,23 @@ $result = mysql_query($query);
 \end{lstlisting} 
 After the user tries to log 3 times and fails the account will be blocked until an employee approves it again. So if the attacker deletes the session and tries again the account is blocked.\\
 
+\pagebreak
+\subsection{Test remember password functionality(OTG-AUTHN-005)}\
+\textit{online\_banking/loginform.inc.php} line 26:
+\begin{lstlisting} 
+<form action="<?php echo $current_file; ?>" method="POST" autocomplete="off">
+\end{lstlisting}\
+\textit{online\_banking/register.php} line 46:
+\begin{lstlisting} 
+<form class="form-horizontal" id="register-form" 
+action='register.php' method="POST" onsubmit="return
+validateFields(this);" autocomplete="off">
+\end{lstlisting} 
+
+To instruct the web browser to don't show the user the dialog for saving the password and autofilling the login fields we set the \textit{autocomplete} attribute to \textit{off}. \\
+
+It is still to be mentioned that modern web browsers ignore this attribute because the browsers password management is generally seen as a net gain for security. Since users don't have to remember passwords that the browser stores for them, they are able to choose stronger passwords than they would otherwise. \\
+
 
 \subsection{Testing Directory traversal/file include (OTG-AUTHZ-001)}\
 
@@ -225,6 +254,7 @@ Fixed by fixing Command Injection and Local File Inclusion
 
 \textit{online\_banking/register.php}, lines 130-157. Added a boolean function to check if less than two values are true.
 \textit{online\_banking/init.sec.php}, lines 12-17, 
+
 \begin{lstlisting}
 $url = $_SERVER['REQUEST_URI'];
 
@@ -240,8 +270,10 @@ header('HTTP/1.0 400 Bad Request');
 echo('This request is not valid!');
 die();
 }
-\end{lstlisting} 
-Added url variables and then check if less than two of this variables are true. If more then one is true send a bad request header and close the application.
+\end{lstlisting}
+ 
+The vulnerability was caused by a logic error in our web application. We checked if a user is on a specific page by searching for its path in url, but because \textit{Apache} always loads the first file specified in an URL it was possible to add other file paths at the end of the URL. Our web application then searched for file paths in the URL that should be accessible for everyone like the \textit{index.php} file and found it, even when it wasn't the page that was loaded by the \textit{Apache} web server.
+
 \pagebreak
 \subsection{Testing for Cross Site Request Forgery(OTG-SESS-005)}\
 Added a new class that checks for the Csrf Token, \textit{online\_banking/CsrfToken.php}.
@@ -304,6 +336,8 @@ Added checks for the Csrf Token in the following files \textit{online\_banking/c
 10: <?php echo $hiddenField; ?>
 60: <?php echo $hiddenField; ?>
 \end{lstlisting}
+
+We basically added csrf tokens to every form and to every post request executed in the web application. When evaluating a post request we check the token and execute the desired action only if the token is still valid.
 
 \pagebreak
 \subsection{Test Session Timeout(OTG-SESS-007)}\
@@ -434,77 +468,5 @@ Fixed by fixing Injection vulnerabilities.\\
 \subsection{Testing for CSS Injection(OTG-CLIENT-005)}\
 Fixed by fixing Injection vulnerabilities.
 
-\subsection{Test remember password functionality(OTG-AUTHN-005)}\
-\textit{online\_banking/loginform.inc.php} line 26:
-\begin{lstlisting} 
-      <form action="<?php echo $current_file; ?>" method="POST" autocomplete="off">
-\end{lstlisting}\
-\textit{online\_banking/register.php} line 46:
-\begin{lstlisting} 
-			<form class="form-horizontal" id="register-form" 
-				action='register.php' method="POST" onsubmit="return
-				validateFields(this);" autocomplete="off">
-\end{lstlisting} 
-
-To instruct the web browser to don't show the user the dialog for saving the password and autofilling the login fields we set the \textit{autocomplete} attribute to \textit{off}. \\
-
-It is still to be mentioned that modern web browsers ignore this attribute because the browsers password management is generally seen as a net gain for security. Since users don't have to remember passwords that the browser stores for them, they are able to choose stronger passwords than they would otherwise.
-
-\subsection{Testing for bypassing authorization schema(OTG-AUTHZ-002)}\
-\textit{online\_banking/core.inc.php} lines 130-157:\\
-Added \textit{checkIfLessThanTwoBoolsAreTrue(\$var1, \$var2, \$var3, \$var4)} method for checking if less than two bool variables are true of a list of 4 variables.\\
-
-\textit{online\_banking/init.sec.php} lines 27-31:
-\begin{lstlisting} 
-  if (checkIfLessThanTwoBoolsAreTrue($isOnIndexPage, $isOnRegisterPage, 
-  		$isOnEmployeePage, $isOnPasswordResetPage) == false) {
-    header('HTTP/1.0 400 Bad Request');
-    echo('This request is not valid!');
-    die();
-  }
-\end{lstlisting} 
-
-The vulnerability was caused by a logic error in our web application. We checked if a user is on a specific page by searching for its path in url, but because \textit{Apache} always loads the first file specified in an URL it was possible to add other file paths add the end of the URL. Our web application then searched for file paths in the URL that should be accessible for everyone like the \textit{index.php} file and found it, even when it wasn't the page that was loaded by the \textit{Apache} web server.
-
-We fixed this vulnerability by checking if multiple URL checks give the result true. If thats the case the URL isn't seen as valid anymore and we return with a 400 error representing a bad request.
-
-\subsection{Testing for Cross Site Request Forgery(OTG-SESS-005)}\
-\textit{online\_banking/core.inc.php} lines 13:\\
-Remove session id regeneration after each request. We still keep the regeneration after a login and logout.\\
-
-\textit{online\_banking/CsrfToken.php}:\\
-New file from \textit{Github} for creating csrf tokens: \url{https://github.com/foxbunny/CSRF4PHP}\\
-
-\textit{online\_banking/customer.inc.php} lines 7 and 11:\\
-Create new \textit{CSRFToken} object and check if passed token is valid next to the check if it's a POST request.
-\begin{lstlisting} 
-  if($post && $c->checkToken($timeout=300))
-\end{lstlisting} 
-
-\textit{online\_banking/employee.php} lines 4, 7 and 389:\\
-Adds csrf token checks\\
-
-\textit{online\_banking/int.sec.php} line 12:\\
-Imports CSRFToken.php file\\
-
-\textit{online\_banking/loginform.inc.php} lines 3-5 and 29:\\
-Adds csrf token checks\\
-
-\textit{online\_banking/passwordReset.inc.php} lines 7-8 and 42:\\
-Adds csrf token checks\\
-
-\textit{online\_banking/passwordReset.php} lines 4, 26, 30 and 65:\\
-Adds csrf token checks\\
-
-\textit{online\_banking/register.inc.php} lines 5-6:\\
-Adds csrf token checks\\
-
-\textit{online\_banking/register.php} lines 5 and 49:\\
-Adds csrf token checks\\
-
-\textit{online\_banking/transactions.php} lines 1-5, 10 and 60:\\
-Adds csrf token checks\\
-
-We basically added csrf tokens to every form and to every post request executed in the web application. When evaluating a post request we check the token and execute the desired action only if the token is still valid.
 
 \end{document}
