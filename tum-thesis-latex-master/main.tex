@@ -505,4 +505,6 @@ Adds csrf token checks\\
 \textit{online\_banking/transactions.php} lines 1-5, 10 and 60:\\
 Adds csrf token checks\\
 
+We basically added csrf tokens to every form and to every post request executed in the web application. When evaluating a post request we check the token and execute the desired action only if the token is still valid.
+
 \end{document}
