@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.7.26)  27 JAN 2016 11:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.7.26)  28 JAN 2016 10:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1412,7 +1412,7 @@ LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <20.74> not available
 
 
 ]
-Package tocbasic Info: character protrusion at toc deactivated on input line 37.
+Package tocbasic Info: character protrusion at toc deactivated on input line 39.
  (/Applications/MAMP/htdocs/securecoding/tum-thesis-latex-master/.texpadtmp/main.toc
 LaTeX Font Info:    Try loading font information for OT1+pplx on input line 11.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1pplx.fd
@@ -1446,16 +1446,16 @@ Package microtype Info: Loading generic settings for font family
 \openout9 = `main.toc'.
 
 LaTeX Font Info:    Font shape `T1/pplx/m/sl' in size <10.95> not available
-(Font)              Font shape `T1/pplx/m/it' tried instead on input line 39.
+(Font)              Font shape `T1/pplx/m/it' tried instead on input line 41.
  [3]
 Chapter 1.
 
-Package nag Warning: table with no \caption on input line 83.
+Package nag Warning: table with no \caption on input line 85.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.88 \chapter
+l.90 \chapter
              {Application Architecture} \ [1
 
 
@@ -1463,34 +1463,34 @@ l.88 \chapter
 ]
 Chapter 2.
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 92.
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 94.
 <figures/class_diagram.pdf, id=235, 754.82pt x 568.1225pt>
 File: figures/class_diagram.pdf Graphic file (type pdf)
  <use figures/class_diagram.pdf>
-Package pdftex.def Info: figures/class_diagram.pdf used on input line 98.
+Package pdftex.def Info: figures/class_diagram.pdf used on input line 100.
 (pdftex.def)             Requested size: 415.1523pt x 312.46832pt.
 LaTeX Font Info:    Font shape `T1/pplx/bx/n' in size <12> not available
-(Font)              Font shape `T1/pplx/b/n' tried instead on input line 103.
+(Font)              Font shape `T1/pplx/b/n' tried instead on input line 105.
  [2
 
 
 ] <figures/pages.pdf, id=240, 711.65875pt x 423.5825pt>
 File: figures/pages.pdf Graphic file (type pdf)
  <use figures/pages.pdf>
-Package pdftex.def Info: figures/pages.pdf used on input line 125.
+Package pdftex.def Info: figures/pages.pdf used on input line 127.
 (pdftex.def)             Requested size: 426.99855pt x 254.15146pt.
 
-Overfull \hbox (8.743pt too wide) in paragraph at lines 125--126
+Overfull \hbox (8.743pt too wide) in paragraph at lines 127--128
  [][] 
  []
 
 [3 <./figures/class_diagram.pdf>] [4 <./figures/pages.pdf>] [5] [6] <figures/hw_sw_mapping.pdf, id=267, 784.9325pt x 564.1075pt>
 File: figures/hw_sw_mapping.pdf Graphic file (type pdf)
  <use figures/hw_sw_mapping.pdf>
-Package pdftex.def Info: figures/hw_sw_mapping.pdf used on input line 182.
+Package pdftex.def Info: figures/hw_sw_mapping.pdf used on input line 184.
 (pdftex.def)             Requested size: 431.7142pt x 310.26007pt.
 
-Overfull \hbox (13.45865pt too wide) in paragraph at lines 182--183
+Overfull \hbox (13.45865pt too wide) in paragraph at lines 184--185
  [][] 
  []
 
@@ -1503,14 +1503,14 @@ Chapter 3.
 Chapter 4.
 
 Package hyperref Warning: Difference (2) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 193.
+(hyperref)                than one, level fixed on input line 195.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 196--197
+Underfull \hbox (badness 10000) in paragraph at lines 198--199
 
  []
 
-LaTeX Font Info:    Try loading font information for T1+cmtt on input line 198.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 200.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
@@ -1519,7 +1519,7 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Underfull \hbox (badness 10000) in paragraph at lines 203--204
+Underfull \hbox (badness 10000) in paragraph at lines 205--206
 
  []
 
@@ -1527,62 +1527,62 @@ Underfull \hbox (badness 10000) in paragraph at lines 203--204
 
 
 ]
-Overfull \hbox (55.91594pt too wide) in paragraph at lines 217--218
+Overfull \hbox (55.91594pt too wide) in paragraph at lines 219--220
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 224--225
+Underfull \hbox (badness 10000) in paragraph at lines 226--227
 
  []
 
 [10]
-Underfull \hbox (badness 10000) in paragraph at lines 255--256
+Underfull \hbox (badness 10000) in paragraph at lines 257--258
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 275--276
+Underfull \hbox (badness 10000) in paragraph at lines 277--278
 
  []
 
 [11]
-Overfull \hbox (3.77904pt too wide) in paragraph at lines 281--282
+Overfull \hbox (3.77904pt too wide) in paragraph at lines 283--284
 []\T1/pplx/m/n/10.95 (-20) Inserted a func-tion when we read the vari-able in \T1/pplx/m/it/10.95 (-20) on-line_banking/applicationDownload.php
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 286--288
+Underfull \hbox (badness 10000) in paragraph at lines 288--290
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 296--297
+Underfull \hbox (badness 10000) in paragraph at lines 298--299
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 305--306
+Underfull \hbox (badness 10000) in paragraph at lines 307--308
 
  []
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 321--322
+Underfull \hbox (badness 10000) in paragraph at lines 323--324
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 326--327
+Underfull \hbox (badness 10000) in paragraph at lines 328--329
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 329--331
+Underfull \hbox (badness 10000) in paragraph at lines 331--333
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 333--335
+Underfull \hbox (badness 10000) in paragraph at lines 335--337
 
  []
 
@@ -1595,11 +1595,11 @@ This document will not have a glossary.
 Package nag Warning: 1 complaints in total.
 
 [13]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 338.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 338.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 340.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 340.
  (/Applications/MAMP/htdocs/securecoding/tum-thesis-latex-master/.texpadtmp/main.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 338.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 338.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 340.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 340.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: B8F5FACDEE6529BBA46C84F15CADDB69;1969.
 
@@ -1611,15 +1611,15 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 43091 strings out of 493089
- 916009 string characters out of 6134842
+ 43111 strings out of 493089
+ 916176 string characters out of 6134842
  1591257 words of memory out of 5000000
  45517 multiletter control sequences out of 15000+600000
- 43110 words of font info for 168 fonts, out of 8000000 for 9000
+ 44225 words of font info for 183 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,10n,83p,1836b,1964s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on /Applications/MAMP/htdocs/securecoding/tum-thesis-latex-master/.texpadtmp/main.pdf (17 pages, 1161340 bytes).
+Output written on /Applications/MAMP/htdocs/securecoding/tum-thesis-latex-master/.texpadtmp/main.pdf (17 pages, 1162079 bytes).
 PDF statistics:
  377 PDF objects out of 1000 (max. 8388607)
  313 compressed objects within 4 object streams
