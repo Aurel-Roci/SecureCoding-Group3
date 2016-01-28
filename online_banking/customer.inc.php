@@ -8,7 +8,7 @@
   $user = getUser();
   $amountRegex = "^\d*\.?\d*$";
   $tanRegex= "^[a-zA-Z0-9]{15}$";
-  if($post && $c->checkToken($timeout=20)) {
+  if($post && $c->checkToken($timeout=300)) {
     $allPramatetersSet = isset($_POST['recipient']) && isset($_POST['amount']) && isset($_POST['tan']) && isset($_POST['description']);
 
   	if($allPramatetersSet){

@@ -1,8 +1,6 @@
 <?php
 require 'init.sec.php';
 require 'register.inc.php';
-
-$c = new \Csrf\CsrfToken();
 ?>
 <!DOCTYPE html>
 <html lang="en">

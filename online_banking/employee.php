@@ -4,7 +4,7 @@ require 'init.sec.php';
 $c = new \Csrf\CsrfToken();
 
 $post = $_SERVER['REQUEST_METHOD'] === 'POST';
-if($post && $c->checkToken($timeout=20)) {
+if($post && $c->checkToken($timeout=300)) {
   if(isset($_POST['balance']) && isset($_POST['user_id'])) {
     $balance= $_POST['balance'];
     $user_id = $_POST['user_id'];
@@ -22,6 +22,7 @@ if($post && $c->checkToken($timeout=20)) {
     approveTransactionWithId($transaction_id);
   }
 }
+$newToken = $c->generateToken();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -125,9 +126,11 @@ if($post && $c->checkToken($timeout=20)) {
                 <td>
                   <p><?= $user->isEmployee() ? 'Employee' : 'Customer' ?></p>
                 </td>
-                <?php if (!$user->isApproved()) { ?>
+                <?php if (!$user->isApproved()) {
+                    $randomString = $c->randomString();
+                  ?>
                 <td>
-                  <p><input style="border: 1px solid #CCC;border-radius: 4px;" name="balance" placeholder="0.0" type="text"></p>
+                  <p><input style="border: 1px solid #CCC;border-radius: 4px;" name="balance" placeholder="0.0" type="text" id="<?= $randomString ?>"></p>
                 </td>
                 <?php } ?>
                 <td>
@@ -135,7 +138,7 @@ if($post && $c->checkToken($timeout=20)) {
                   if($user->isApproved()) {
                     echo "<p>Approved</p>";
                   } else {
-                    echo "<a href='#' onclick='requestUserApproval(\"".$user->username."\", ".$user->id.",this)'>Approve now!</a>";
+                    echo "<a href='#' onclick='requestUserApproval(\"".$user->username."\", ".$user->id.",this, document.getElementById(\"" . $randomString . "\"))'>Approve now!</a>";
                   }
                   ?>
                 </td>
@@ -226,6 +229,7 @@ if($post && $c->checkToken($timeout=20)) {
                   <th>Email</th>
                   <th>Balance</th>
                   <th>Role</th>
+                  <th>Inital balance</th>
                   <th>Approval state</th>
                 </tr>
               </thead>
@@ -250,9 +254,11 @@ if($post && $c->checkToken($timeout=20)) {
                     <td>
                       <p><?= $user->isEmployee() ? 'Employee' : 'Customer' ?></p>
                     </td>
-                    <?php if (!$user->isApproved()) { ?>
+                    <?php if (!$user->isApproved()) {
+                      $randomString = $c->randomString();
+                      ?>
                     <td>
-                      <p><input style="border: 1px solid #CCC;border-radius: 4px;" name="balance" placeholder="0.0" type="text"></p>
+                      <p><input style="border: 1px solid #CCC;border-radius: 4px;" name="balance" placeholder="0.0" type="text" id="<?= $randomString ?>"></p>
                     </td>
                     <?php } ?>
                     <td>
@@ -260,7 +266,7 @@ if($post && $c->checkToken($timeout=20)) {
                       if($user->isApproved()) {
                         echo "<p>Approved</p>";
                       } else {
-                        echo "<a href='#' onclick='requestUserApproval(\"".$user->username."\", ".$user->id.",this)'>Approve now!</a>";
+                        echo "<a href='#' onclick='requestUserApproval(\"".$user->username."\", ".$user->id.",this, document.getElementById(\"" . $randomString . "\"))'>Approve now!</a>";
                       }
                       ?>
                     </td>
@@ -343,18 +349,18 @@ if($post && $c->checkToken($timeout=20)) {
     <script type="text/javascript" src="dist/jspdf.plugin.table.js"></script>
 
     <script type="text/javascript">
-      function requestUserApproval(user, id, link) {
+      function requestUserApproval(user, id, link, balanceField) {
         var approve = confirm("Do you really want to approve "+user+"?");
 
         if (approve == true) {
           var http = new XMLHttpRequest();
           var url = "employee.php";
-          var params = "user_id="+id;
+          var params = "user_id="+id+"&csrf=<?= $newToken ?>";
           var balance = 0;
-          if (document.getElementsByName('balance')[0].value.length > 0) {
-            balance = document.getElementsByName('balance')[0].value;
-            params = params + "&balance=" + balance;
+          if (balanceField) {
+            balance = balanceField.value;
           }
+          params = params + "&balance=" + balance;
           http.open("POST", url, true);
 
           http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -386,7 +392,7 @@ if($post && $c->checkToken($timeout=20)) {
         if (approve == true) {
           var http = new XMLHttpRequest();
           var url = "employee.php";
-          var params = "transaction_id="+id+"&csrf="+$_SESSION['csrf']['salt'];
+          var params = "transaction_id="+id+"&csrf=<?= $newToken ?>";
           http.open("POST", url, true);
 
           http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

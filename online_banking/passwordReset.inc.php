@@ -5,7 +5,7 @@ $post = $_SERVER['REQUEST_METHOD'] === 'POST';
 $emailSet = isset($_POST['email']);
 $idSet = isset($_GET['id']) || isset($_POST['id']);
 $c = new \Csrf\CsrfToken();
-if($post && $emailSet && $c->checkToken($timeout=20)) {
+if($post && $emailSet && $c->checkToken($timeout=300)) {
 	$email = $_POST['email'];
   $query = "SELECT user_id FROM resetrequests r, users u WHERE user_id = u.id AND email ='".mysql_real_escape_string($email)."'";
   $query_run=mysql_query($query);
@@ -39,7 +39,7 @@ if($post && $emailSet && $c->checkToken($timeout=20)) {
 	if(mysql_num_rows($result) == 0) {
 		$error = "No password reset request with this id exists.";
 	}
-} else if ($post && $idSet && $c->checkToken($timeout=20)) {
+} else if ($post && $idSet && $c->checkToken($timeout=300)) {
 	$id = $_POST['id'];
 	$password = $_POST['password'];
 	$query = "SELECT user_id FROM resetrequests r WHERE id ='".mysql_real_escape_string($id)."'";

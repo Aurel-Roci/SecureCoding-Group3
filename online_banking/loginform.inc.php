@@ -2,7 +2,7 @@
   $post = $_SERVER['REQUEST_METHOD'] === 'POST';
   $c = new \Csrf\CsrfToken();
 
-  if($post && $c->checkToken($timeout=20)) {
+  if($post && $c->checkToken($timeout=300)) {
   	$username = $_POST['username'];
   	$password = $_POST['password'];
 
