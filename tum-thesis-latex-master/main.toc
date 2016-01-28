@@ -8,36 +8,76 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {2}Application Architecture}{2}{chapter.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}Security Measures}{3}{chapter.3}
+\contentsline {section}{\numberline {2.1}Models}{2}{section.2.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}Fixes}{4}{chapter.4}
+\contentsline {subsection}{\numberline {2.1.1}Transaction}{2}{subsection.2.1.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.0.1}Testing for Weak lock out mechanism(OTG-AUTHN-003)}{4}{subsection.4.0.1}
+\contentsline {subsection}{\numberline {2.1.2}User}{2}{subsection.2.1.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.0.2}Testing Directory traversal/file include (OTG-AUTHZ-001)}{4}{subsection.4.0.2}
+\contentsline {section}{\numberline {2.2}Pages}{4}{section.2.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.0.3}Test Session Timeout(OTG-SESS-007)}{5}{subsection.4.0.3}
+\contentsline {section}{\numberline {2.3}Frameworks}{6}{section.2.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.0.4}Testing for Reflected Cross Site Scripting(OTG-INPVAL-001)}{5}{subsection.4.0.4}
+\contentsline {subsection}{\numberline {2.3.1}Bootstrap}{6}{subsection.2.3.1}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.0.5}Testing for Stored Cross Site Scripting(OTG-INPVAL-002)}{6}{subsection.4.0.5}
+\contentsline {subsection}{\numberline {2.3.2}jspdf}{6}{subsection.2.3.2}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.0.6}Testing for SQL Injection (OTG-INPVAL-005) and Mysql testing (OTG-INPVAL-005)}{6}{subsection.4.0.6}
+\contentsline {subsection}{\numberline {2.3.3}fpdf}{6}{subsection.2.3.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.0.7}Testing for Code Injection, Testing for Local File Inclusion, Testing for Remote File Inclusion(OTG-INPVAL-012)}{7}{subsection.4.0.7}
+\contentsline {subsection}{\numberline {2.3.4}PHPMailer}{6}{subsection.2.3.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.0.8}Testing for Command Injection(OTG-INPVAL-013)}{7}{subsection.4.0.8}
+\contentsline {section}{\numberline {2.4}Interaction with other systems}{7}{section.2.4}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.0.9}Testing for incubated vulnerabilities(OTG-INPVAL-015)}{7}{subsection.4.0.9}
+\contentsline {section}{\numberline {2.5}Hardware/Software mapping}{8}{section.2.5}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.0.10}Analysis of Error Codes (OTG-ERR-001)}{7}{subsection.4.0.10}
+\contentsline {chapter}{\numberline {3}Security Measures}{9}{chapter.3}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.0.11}Test Business Logic Data Validation(OTG-BUSLOGIC-001)}{8}{subsection.4.0.11}
+\contentsline {subparagraph}{\nonumberline Access Control}{9}{section*.7}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.0.12}Test Integrity Checks(OTG-BUSLOGIC-003)}{8}{subsection.4.0.12}
+\contentsline {subparagraph}{\nonumberline Encryption technology}{9}{section*.8}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.0.13}Testing for JavaScript Execution(OTG-CLIENT-002)}{8}{subsection.4.0.13}
+\contentsline {subparagraph}{\nonumberline Password hashing}{9}{section*.9}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.0.14}Testing for HTML Injection(OTG-CLIENT-003)}{8}{subsection.4.0.14}
+\contentsline {subparagraph}{\nonumberline Password protected TANs}{9}{section*.10}
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {4.0.15}Testing for CSS Injection(OTG-CLIENT-005)}{8}{subsection.4.0.15}
+\contentsline {subparagraph}{\nonumberline Personal PIN SCS}{9}{section*.11}
+\defcounter {refsection}{0}\relax 
+\contentsline {subparagraph}{\nonumberline Input sanitation}{10}{section*.12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subparagraph}{\nonumberline Password Reset}{10}{section*.13}
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}Fixes}{11}{chapter.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.0.1}Testing for Weak lock out mechanism(OTG-AUTHN-003)}{11}{subsection.4.0.1}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.0.2}Testing Directory traversal/file include (OTG-AUTHZ-001)}{11}{subsection.4.0.2}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.0.3}Testing for bypassing authorization schema (OTG-AUTHZ-002)}{12}{subsection.4.0.3}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.0.4}Testing for Cross Site Request Forgery(OTG-SESS-005)}{13}{subsection.4.0.4}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.0.5}Test Session Timeout(OTG-SESS-007)}{15}{subsection.4.0.5}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.0.6}Testing for Reflected Cross Site Scripting(OTG-INPVAL-001)}{15}{subsection.4.0.6}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.0.7}Testing for Stored Cross Site Scripting(OTG-INPVAL-002)}{16}{subsection.4.0.7}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.0.8}Testing for SQL Injection (OTG-INPVAL-005) and Mysql testing (OTG-INPVAL-005)}{16}{subsection.4.0.8}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.0.9}Testing for Code Injection, Testing for Local File Inclusion, Testing for Remote File Inclusion(OTG-INPVAL-012)}{17}{subsection.4.0.9}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.0.10}Testing for Command Injection(OTG-INPVAL-013)}{17}{subsection.4.0.10}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.0.11}Testing for incubated vulnerabilities(OTG-INPVAL-015)}{17}{subsection.4.0.11}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.0.12}Analysis of Error Codes (OTG-ERR-001)}{17}{subsection.4.0.12}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.0.13}Test Business Logic Data Validation(OTG-BUSLOGIC-001)}{18}{subsection.4.0.13}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.0.14}Test Integrity Checks(OTG-BUSLOGIC-003)}{18}{subsection.4.0.14}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.0.15}Testing for JavaScript Execution(OTG-CLIENT-002)}{18}{subsection.4.0.15}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.0.16}Testing for HTML Injection(OTG-CLIENT-003)}{18}{subsection.4.0.16}
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {4.0.17}Testing for CSS Injection(OTG-CLIENT-005)}{18}{subsection.4.0.17}

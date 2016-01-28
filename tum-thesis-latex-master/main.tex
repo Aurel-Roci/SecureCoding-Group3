@@ -188,7 +188,40 @@ It should be mentioned that it is a very small security risk and that is not com
 
 Our online banking web application runs on an device called \textit{Online Banking Server} that is on our case a virtualized machine. This machine runs \textit{Samurai WTF} as an operation system. On this system we have two major services running. First the \textit{MySQL DB} database that contains the \textit{User Data}, \textit{Transaction Data}, and \textit{TAN Data}. On the other hand we have our \textit{Apache Web Server} on which our \textit{Online Banking Web Application} written in PHP is running. The web application has two major components: The \textit{Admin Interface} and the \textit{User Interface}.
 
-\chapter{Security Measures} \
+\chapter{Security Measures}   
+\subparagraph{Access Control}\
+
+To access Standard Chartered Online Banking, you need a unique combination of Username and PIN. We have also introduced these additional measures to protect your account:
+
+$\bullet$ Limited repeated attempts to login.\
+
+$\bullet$ Automatic log out if there is no activity for a period of time. You will need to log in again if you wish to continue with the service.
+
+\subparagraph{Encryption technology}\ 
+
+The information exchanged between your Web browser and Online Banking is encrypted for your protection. Online Banking uses only \textit{https} requests between the Web Browser and server. This prevents attackers from doing a  Man-in-the-Middle attack.
+
+
+\subparagraph{Password hashing}\
+
+The Online Banking system uses password hashing to store passwords of accounts, that way only the user knows the password. We SHA256, considered as secure hash function, to hash the passwords into the database of Online Banking system. This prevents any attacker retrieving the passwords in case they gain access to the database.
+
+\subparagraph{Password protected TANs}\
+
+Upon registration the user, based on choice, receives an email with a password protected pdf file containing the TANs. The \textit{fpdf} library is used to generate this file, and the \textit{PHPMalier} library to send the email through an \textit{gmail} account.
+
+\subparagraph{Personal PIN SCS}\
+
+The Smart Card Simulator has a unique personal pin number for every user which is send to the user through email. The SCS uses SHA256 hash function to generate a hash that will be applied to the transaction section in the Online Banking system and compared to another hash for verification. The hash function is considered secure therefore the usage of the application for transactions is secure. Without the knowledge of the hashing key the attacker cannot generate hash to make transactions.
+
+\subparagraph{Input sanitation}\
+
+Every input made in the Online Banking system is controlled by PHP built-in functions (\textit{mysql\_real\_escape\_string}; \textit{htmlspecialchars}; \textit{escapeshellarg}...). This prevents any malicious input made by a user resulting in crashing the system, as well prevents any code injection done by an attacker. 
+
+\subparagraph{Password Reset}\
+
+In case the user wants to change the password of their account, they can make a request and then a link is send to their email, where they can change their password. This prevents any accidental change of password without the users knowledge.
+
 
 \chapter{Fixes}
 
@@ -208,6 +241,91 @@ After the user tries to log 3 times and fails the account will be blocked until 
 \subsection{Testing Directory traversal/file include (OTG-AUTHZ-001)}\
 
 Fixed by fixing Command Injection and Local File Inclusion
+
+\pagebreak
+\subsection{Testing for bypassing authorization schema (OTG-AUTHZ-002)}\
+
+\textit{online\_banking/register.php}, lines 130-157. Added a boolean function to check if less than two values are true.
+\textit{online\_banking/init.sec.php}, lines 12-17, 
+\begin{lstlisting}
+$url = $_SERVER['REQUEST_URI'];
+
+$isOnIndexPage = strpos($url, '/index.php') !== false;
+$isOnRegisterPage = strpos($url, '/register.php') !== false;
+$isOnEmployeePage = strpos($url, '/employee.php') !== false;
+$isOnPasswordResetPage = strpos($url, '/passwordReset.php') !== false;
+\end{lstlisting} 
+and lines 27-32. 
+\begin{lstlisting}
+if (checkIfLessThanTwoBoolsAreTrue($isOnIndexPage, $isOnRegisterPage, $isOnEmployeePage, $isOnPasswordResetPage) == false) {
+header('HTTP/1.0 400 Bad Request');
+echo('This request is not valid!');
+die();
+}
+\end{lstlisting} 
+Added url variables and then check if less than two of this variables are true. If more then one is true send a bad request header and close the application.
+\pagebreak
+\subsection{Testing for Cross Site Request Forgery(OTG-SESS-005)}\
+Added a new class that checks for the Csrf Token, \textit{online\_banking/CsrfToken.php}.
+Added checks for the Csrf Token in the following files \textit{online\_banking/customer.inc.php} line 7 and line 11:
+\begin{lstlisting}
+7: $c = new \Csrf\CsrfToken(); 
+11: if($post && $c->checkToken($timeout=300))
+\end{lstlisting} 
+\textit{online\_banking/employee.php}
+\begin{lstlisting}
+4: $c = new \Csrf\CsrfToken();
+7: if($post && $c->checkToken($timeout=300))
+17: else if (isset($_POST['user_id'])) 
+25: $newToken = $c->generateToken();
+130:  $randomString = $c->randomString();
+133:  id="<?= $randomString ?>">
+389: var params = "transaction_id="+id+"&csrf="+$_SESSION['csrf']['salt'];
+\end{lstlisting} 
+\textit{online\_banking/init.sec.php}
+\begin{lstlisting}
+12: require 'CsrfToken.php';
+\end{lstlisting} 
+\textit{online\_banking/login.inc.php}
+\begin{lstlisting}
+3: $c = new \Csrf\CsrfToken();
+5: if($post && $c->checkToken($timeout=300)) {
+29: <?php echo $c->generateHiddenField(); ?>
+\end{lstlisting} 
+\textit{online\_banking/passwordReset.inc.php}
+\begin{lstlisting}
+7: $c = new \Csrf\CsrfToken();
+8: if($post && $emailSet && $c->checkToken($timeout=300)) 
+42:  else if ($post && $idSet && $c->checkToken($timeout=300))
+\end{lstlisting}
+\textit{online\_banking/passwordReset.php}
+\begin{lstlisting}
+4: $c = new \Csrf\CsrfToken();
+26: $hiddenField = $c->generateHiddenField();
+30: <?php echo $hiddenField; ?>
+65: <?php echo $hiddenField; ?>
+\end{lstlisting}
+\textit{online\_banking/register.inc.php}
+\begin{lstlisting}
+5: $c = new \Csrf\CsrfToken();
+6: echo $c->checkToken($timeout=300) ? 'true' : 'false';
+8: if ($c->checkToken($timeout=300))
+
+\end{lstlisting}
+\textit{online\_banking/register.php}
+\begin{lstlisting} 
+49: <?php echo $c->generateHiddenField(); ?>
+\end{lstlisting}
+
+\textit{online\_banking/transactions.php}
+\begin{lstlisting} 
+1: <?php
+2: $c = new \Csrf\CsrfToken();
+3: $hiddenField = $c->generateHiddenField();
+4: ?>
+10: <?php echo $hiddenField; ?>
+60: <?php echo $hiddenField; ?>
+\end{lstlisting}
 
 \pagebreak
 \subsection{Test Session Timeout(OTG-SESS-007)}\
