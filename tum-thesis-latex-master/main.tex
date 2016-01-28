@@ -451,8 +451,8 @@ To instruct the web browser to don't show the user the dialog for saving the pas
 It is still to be mentioned that modern web browsers ignore this attribute because the browsers password management is generally seen as a net gain for security. Since users don't have to remember passwords that the browser stores for them, they are able to choose stronger passwords than they would otherwise.
 
 \subsection{Testing for bypassing authorization schema(OTG-AUTHZ-002)}\
-\textit{online\_banking/core.inc.php} lines 130-157:
-Added \textit{checkIfLessThanTwoBoolsAreTrue(\$var1, \$var2, \$var3, \$var4)} method for checking if less than two bool variables are true of a list of 4 variables.
+\textit{online\_banking/core.inc.php} lines 130-157:\\
+Added \textit{checkIfLessThanTwoBoolsAreTrue(\$var1, \$var2, \$var3, \$var4)} method for checking if less than two bool variables are true of a list of 4 variables.\\
 
 \textit{online\_banking/init.sec.php} lines 27-31:
 \begin{lstlisting} 
@@ -467,5 +467,42 @@ Added \textit{checkIfLessThanTwoBoolsAreTrue(\$var1, \$var2, \$var3, \$var4)} me
 The vulnerability was caused by a logic error in our web application. We checked if a user is on a specific page by searching for its path in url, but because \textit{Apache} always loads the first file specified in an URL it was possible to add other file paths add the end of the URL. Our web application then searched for file paths in the URL that should be accessible for everyone like the \textit{index.php} file and found it, even when it wasn't the page that was loaded by the \textit{Apache} web server.
 
 We fixed this vulnerability by checking if multiple URL checks give the result true. If thats the case the URL isn't seen as valid anymore and we return with a 400 error representing a bad request.
+
+\subsection{Testing for Cross Site Request Forgery(OTG-SESS-005)}\
+\textit{online\_banking/core.inc.php} lines 13:\\
+Remove session id regeneration after each request. We still keep the regeneration after a login and logout.\\
+
+\textit{online\_banking/CsrfToken.php}:\\
+New file from \textit{Github} for creating csrf tokens: \url{https://github.com/foxbunny/CSRF4PHP}\\
+
+\textit{online\_banking/customer.inc.php} lines 7 and 11:\\
+Create new \textit{CSRFToken} object and check if passed token is valid next to the check if it's a POST request.
+\begin{lstlisting} 
+  if($post && $c->checkToken($timeout=300))
+\end{lstlisting} 
+
+\textit{online\_banking/employee.php} lines 4, 7 and 389:\\
+Adds csrf token checks\\
+
+\textit{online\_banking/int.sec.php} line 12:\\
+Imports CSRFToken.php file\\
+
+\textit{online\_banking/loginform.inc.php} lines 3-5 and 29:\\
+Adds csrf token checks\\
+
+\textit{online\_banking/passwordReset.inc.php} lines 7-8 and 42:\\
+Adds csrf token checks\\
+
+\textit{online\_banking/passwordReset.php} lines 4, 26, 30 and 65:\\
+Adds csrf token checks\\
+
+\textit{online\_banking/register.inc.php} lines 5-6:\\
+Adds csrf token checks\\
+
+\textit{online\_banking/register.php} lines 5 and 49:\\
+Adds csrf token checks\\
+
+\textit{online\_banking/transactions.php} lines 1-5, 10 and 60:\\
+Adds csrf token checks\\
 
 \end{document}

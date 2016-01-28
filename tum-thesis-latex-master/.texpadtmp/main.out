@@ -33,3 +33,4 @@
 \BOOKMARK [2][-]{subsection.4.0.17}{Testing for CSS Injection\(OTG-CLIENT-005\)}{subsection.4.0.1}% 33
 \BOOKMARK [2][-]{subsection.4.0.18}{Test remember password functionality\(OTG-AUTHN-005\)}{subsection.4.0.1}% 34
 \BOOKMARK [2][-]{subsection.4.0.19}{Testing for bypassing authorization schema\(OTG-AUTHZ-002\)}{subsection.4.0.1}% 35
+\BOOKMARK [2][-]{subsection.4.0.20}{Testing for Cross Site Request Forgery\(OTG-SESS-005\)}{subsection.4.0.1}% 36
